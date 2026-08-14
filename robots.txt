@@ -1,0 +1,11 @@
+# NewsXphere robots.txt — Founded by Monu Sharma
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+# Sitemaps
+Sitemap: https://newsxphere.com/sitemap.xml
+
+# Crawl-delay for polite bots (optional)
+User-agent: *
+Crawl-delay: 1
