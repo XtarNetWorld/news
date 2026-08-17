@@ -4,7 +4,7 @@ Allow: /
 Disallow: /cdn-cgi/
 
 # Sitemaps
-Sitemap: https://newsxphere.com/sitemap.xml
+Sitemap: https://www.newsxphere.com/sitemap.xml
 
 # Crawl-delay for polite bots (optional)
 User-agent: *
