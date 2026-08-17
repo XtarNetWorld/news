@@ -37,6 +37,8 @@ const openSearch = () => {
     }
     if (searchPanel) searchPanel.hidden = false;
     document.body.classList.add('search-open');
+    const hdr = document.querySelector('.site-header');
+    if (hdr) hdr.classList.remove('is-hidden');
     document.querySelector('#search-trigger').setAttribute('aria-expanded', 'true');
     renderSearchState(search.value);
 }
@@ -237,3 +239,102 @@ document.querySelector('#search-results')?.addEventListener('click', event => {
     closeSearch()
 });
 filterStories();
+
+
+/* ========== YouTube-style header hide / show (always fixed — no glitch) ========== */
+(function () {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    // Spacer keeps content from sitting under the fixed header
+    let spacer = document.querySelector('.header-spacer');
+    if (!spacer) {
+        spacer = document.createElement('div');
+        spacer.className = 'header-spacer';
+        spacer.setAttribute('aria-hidden', 'true');
+        // Place spacer where header used to sit in flow (before header's next sibling logic)
+        if (header.nextSibling) {
+            header.parentNode.insertBefore(spacer, header.nextSibling);
+        } else {
+            header.parentNode.appendChild(spacer);
+        }
+    }
+
+    function syncSpacer() {
+        // header height + top offset
+        const top = parseFloat(getComputedStyle(header).top) || 12;
+        spacer.style.height = (header.offsetHeight + top + 8) + 'px';
+    }
+
+    let lastY = window.scrollY || 0;
+    let hidden = false;
+    let ticking = false;
+    const DELTA = 8;
+    const TOP_SHOW = 40; // always show near very top
+
+    function hide() {
+        if (hidden) return;
+        header.classList.add('is-hidden');
+        hidden = true;
+    }
+
+    function show() {
+        if (!hidden) return;
+        header.classList.remove('is-hidden');
+        hidden = false;
+    }
+
+    function onScroll() {
+        const y = window.scrollY || window.pageYOffset || 0;
+        const dy = y - lastY;
+
+        if (y <= TOP_SHOW) {
+            show();
+            lastY = y;
+            ticking = false;
+            return;
+        }
+
+        if (Math.abs(dy) >= DELTA) {
+            if (dy > 0) {
+                // scrolling down → hide
+                hide();
+            } else {
+                // scrolling up → show
+                show();
+            }
+            lastY = y;
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', syncSpacer, { passive: true });
+
+    // Initial layout
+    syncSpacer();
+    // Re-measure after fonts/layout settle
+    requestAnimationFrame(syncSpacer);
+    setTimeout(syncSpacer, 100);
+    setTimeout(syncSpacer, 400);
+
+    // Keep header visible when search opens
+    const openSearchBtn = document.querySelector('#search-trigger');
+    if (openSearchBtn) {
+        openSearchBtn.addEventListener('click', function () {
+            show();
+        });
+    }
+})();
+
+
+
+
+

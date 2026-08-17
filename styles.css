@@ -129,16 +129,40 @@ a {
     bottom: 6%;
 }
 
+/* Always-fixed header — YouTube style, no position switching = no glitch */
 .site-header {
-    position: relative;
-    z-index: 20;
-    margin-top: 20px;
-    background: color-mix(in srgb,var(--surface) 85%,transparent);
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    z-index: 100;
+    width: min(952px, calc(100% - 24px));
+    margin: 0;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
     border: 1px solid var(--line);
     border-radius: 28px 28px 48px 48px;
-    box-shadow: var(--soft-shadow);
+    box-shadow: 0 12px 40px rgba(23, 42, 41, 0.12);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     overflow: visible;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform;
+}
+
+.site-header.is-hidden {
+    transform: translate3d(-50%, calc(-100% - 20px), 0);
+    pointer-events: none;
+}
+
+/* Pushes page content below the fixed header */
+.header-spacer {
+    display: block;
+    width: 100%;
+    height: 120px; /* JS will set exact height */
+    pointer-events: none;
+    flex-shrink: 0;
 }
 
 .site-header.wrapper {
@@ -201,9 +225,10 @@ a {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
     min-height: 70px;
-    padding: 17px 18px 21px;
+    padding: 14px 18px 16px;
+    flex-wrap: nowrap;
 }
 
 .brand {
@@ -240,17 +265,26 @@ a {
 .nav-shell nav {
     display: flex;
     align-items: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 4px;
     margin-left: auto;
+    justify-content: flex-end;
 }
 
 .topic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid transparent;
     border-radius: var(--radius-pill);
     background: transparent;
     color: var(--muted);
-    /* padding: 9px; */
+    padding: 8px 14px;
     font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .topic:hover, .topic.active {
@@ -307,14 +341,16 @@ a {
 #theme-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     border: 1px solid var(--line);
     border-radius: var(--radius-pill);
     background: var(--surface);
-    padding: 9px 13px;
-    min-width: 88px;
+    padding: 7px 12px;
+    min-width: 0;
     justify-content: center;
     color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .theme-toggle-icon {
@@ -640,8 +676,12 @@ h1, h2, h3, p {
 
 h1 {
     margin: 25px 0px 22px;
-    font: 500 clamp(56px, 8vw, 110px) / 0.94 "Playfair Display", serif;
-    letter-spacing: -0.07em;
+    font: 500 clamp(40px, 7.5vw, 110px) / 1.02 "Playfair Display", serif;
+    letter-spacing: -0.06em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: none;
+    word-break: normal;
 }
 
 h1 em, h2 em {
@@ -650,7 +690,7 @@ h1 em, h2 em {
 }
 
 h1 em {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .hero-copy > p {
@@ -979,8 +1019,11 @@ h1 em {
 .feature h2 {
     max-width: 620px;
     margin: 28px 0px 22px;
-    font: 500 clamp(38px, 4.4vw, 67px) / 0.98 "Playfair Display", serif;
-    letter-spacing: -0.065em;
+    font: 500 clamp(28px, 4.2vw, 67px) / 1.05 "Playfair Display", serif;
+    letter-spacing: -0.05em;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
 }
 
 .feature-copy > p {
@@ -1290,8 +1333,11 @@ h1 em {
 .manifesto blockquote {
     max-width: 800px;
     margin: 0px;
-    font: 500 clamp(30px, 4vw, 54px) / 1.05 "Playfair Display", serif;
-    letter-spacing: -0.05em;
+    font: 500 clamp(24px, 3.8vw, 54px) / 1.12 "Playfair Display", serif;
+    letter-spacing: -0.04em;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
 }
 
 .manifesto-orb {
@@ -1325,8 +1371,11 @@ h1 em {
 
 .briefing h2 {
     margin: 22px 0px 10px;
-    font: 500 clamp(36px, 4vw, 56px) / 0.95 "Playfair Display", serif;
-    letter-spacing: -0.06em;
+    font: 500 clamp(28px, 4vw, 56px) / 1.05 "Playfair Display", serif;
+    letter-spacing: -0.05em;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
 }
 
 .briefing h2 em {
@@ -1506,17 +1555,24 @@ h1 em {
 
     .nav-shell {
         flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 14px 14px;
+        align-items: center;
     }
 
     .menu-toggle {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 8px;
         border: 1px solid var(--line);
         border-radius: var(--radius-pill);
-        background: transparent;
-        padding: 9px 12px;
+        background: var(--surface);
+        padding: 9px 14px;
         font-size: 12px;
+        font-weight: 500;
+        color: var(--ink);
+        margin-left: auto;
+        white-space: nowrap;
     }
 
     .menu-toggle span {
@@ -1524,22 +1580,50 @@ h1 em {
         height: 6px;
         background: var(--coral);
         border-radius: 50%;
+        flex-shrink: 0;
     }
 
     .nav-shell nav {
         display: none;
         order: 5;
         width: 100%;
-        overflow: auto;
-        margin: 0px;
-        padding-top: 10px;
-        border: 1px solid #454040;
-        padding: 5;
-        border-radius: 24px;
+        margin: 4px 0 0;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--surface-2);
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        box-sizing: border-box;
     }
 
     .nav-shell nav.open {
         display: flex;
+    }
+
+    .nav-shell nav .topic {
+        padding: 10px 14px;
+        font-size: 13px;
+        background: var(--surface);
+        border-color: var(--line);
+        flex: 0 0 auto;
+    }
+
+    .nav-shell nav .topic:hover,
+    .nav-shell nav .topic.active {
+        background: var(--teal);
+        color: var(--bg);
+        border-color: transparent;
+    }
+
+    .search-trigger {
+        margin-left: 0;
+        flex-shrink: 0;
+    }
+
+    .brand {
+        flex-shrink: 0;
     }
 
     .hero {
@@ -1622,25 +1706,66 @@ h1 em {
     }
 
     .nav-shell {
-        padding: 17px 14px 21px;
-        gap: 11px;
+        padding: 12px 12px 14px;
+        gap: 8px;
     }
 
     .brand {
-        font-size: 20px;
-        margin-right: auto;
+        font-size: 19px;
+        margin-right: 0;
+        flex: 1 1 auto;
+        min-width: 0;
     }
 
     .brand strong {
-        width: 25px;
-        height: 25px;
-        font-size: 15px;
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+
+    .menu-toggle {
+        padding: 8px 12px;
+        font-size: 11px;
+        margin-left: auto;
     }
 
     .search-trigger {
-        width: 35px;
-        height: 35px;
-        padding: 0px;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    .nav-shell nav {
+        padding: 8px;
+        gap: 5px;
+        border-radius: 18px;
+    }
+
+    .nav-shell nav .topic {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .utility {
+        padding: 8px 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .utility-actions {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    #theme-toggle {
+        min-width: 0;
+        padding: 7px 10px;
+    }
+
+    .theme-toggle-label {
+        font-size: 10px;
     }
 
     .search-trigger .search-trigger-icon {
@@ -1664,7 +1789,57 @@ h1 em {
     }
 
     .hero h1 {
-        font-size: 59px;
+        font-size: clamp(34px, 9.5vw, 48px);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+    }
+
+    .hero h1 em {
+        white-space: normal;
+    }
+
+    .feature h2 {
+        font-size: clamp(26px, 7vw, 36px);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+    }
+
+    .page-hero h1 {
+        font-size: clamp(30px, 8vw, 42px);
+        line-height: 1.1;
+    }
+
+    .dashboard-heading h2,
+    .section-head h2,
+    .legal-body h2 {
+        font-size: clamp(22px, 5.5vw, 26px);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+    }
+
+    .card-body h3 {
+        font-size: clamp(20px, 5vw, 24px);
+        line-height: 1.15;
+        overflow-wrap: break-word;
+    }
+
+    .manifesto blockquote {
+        font-size: clamp(22px, 6vw, 30px);
+        line-height: 1.15;
+    }
+
+    .briefing h2 {
+        font-size: clamp(26px, 7vw, 36px);
+        line-height: 1.1;
+    }
+
+    .error-page .error-code {
+        font-size: clamp(64px, 20vw, 96px);
+    }
+
+    .error-page h1 {
+        font-size: clamp(24px, 6.5vw, 34px);
+        line-height: 1.12;
     }
 
     .hero-copy > p {
@@ -1730,9 +1905,7 @@ h1 em {
         padding: 32px 20px;
     }
 
-    .feature h2 {
-        font-size: 41px;
-    }
+    /* feature h2 size handled above */
 
     .feature-copy > p {
         font-size: 15px;
@@ -1811,13 +1984,17 @@ h1 em {
 
 .page-hero h1 {
     margin: 0 0 18px;
-    font: 500 clamp(42px, 6vw, 72px) / 0.96 "Playfair Display", serif;
-    letter-spacing: -0.06em;
+    font: 500 clamp(32px, 5.5vw, 72px) / 1.05 "Playfair Display", serif;
+    letter-spacing: -0.05em;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
 }
 
 .page-hero h1 em {
     color: var(--coral);
     font-style: italic;
+    white-space: normal;
 }
 
 .page-hero > p {
@@ -2010,16 +2187,20 @@ h1 em {
 }
 
 .error-page .error-code {
-    font: 500 clamp(96px, 18vw, 160px) / 0.9 "Playfair Display", serif;
-    letter-spacing: -0.08em;
+    font: 500 clamp(72px, 16vw, 160px) / 0.95 "Playfair Display", serif;
+    letter-spacing: -0.06em;
     color: var(--coral);
     margin: 0 0 12px;
+    overflow-wrap: break-word;
 }
 
 .error-page h1 {
     margin: 0 0 18px;
-    font: 500 clamp(32px, 5vw, 48px) / 1 "Playfair Display", serif;
-    letter-spacing: -0.05em;
+    font: 500 clamp(26px, 4.5vw, 48px) / 1.08 "Playfair Display", serif;
+    letter-spacing: -0.04em;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
 }
 
 .error-page p {
@@ -2050,19 +2231,182 @@ h1 em {
     }
 }
 
-/* Topic links on secondary pages */
+/* Topic links on secondary pages — match button.topic */
 a.topic {
     display: inline-flex;
     align-items: center;
-    padding: 9px 12px;
+    justify-content: center;
+    padding: 8px 14px;
     border: 1px solid transparent;
     border-radius: var(--radius-pill);
     background: transparent;
     color: var(--muted);
     font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-a.topic:hover {
+a.topic:hover,
+a.topic.active {
     background: var(--surface-2);
     color: var(--ink);
     border-color: var(--line);
 }
+
+
+/* ========== Text & header mobile safety ========== */
+h1, h2, h3, h4, .brand, .card-body h3, .signal-stat strong {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
+    max-width: 100%;
+}
+
+p, li, .legal-body p, .hero-copy > p, .card-body > p {
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+/* Prevent mid-word letter splitting on very narrow screens */
+@media (max-width: 420px) {
+    h1, h2, .page-hero h1, .feature h2, .briefing h2 {
+        letter-spacing: -0.02em !important;
+    }
+    .brand {
+        font-size: 18px;
+        letter-spacing: -0.03em;
+    }
+    .brand strong {
+        width: 22px;
+        height: 22px;
+        font-size: 13px;
+    }
+}
+
+/* Ensure containers don't force overflow */
+.hero-copy,
+.feature-copy,
+.page-hero,
+.legal-body,
+.error-page,
+.wrapper {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* ========== Header polish — all widths ========== */
+.site-header {
+    width: min(952px, calc(100% - 24px));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.utility {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    row-gap: 4px;
+}
+
+.utility-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.utility-actions button {
+    white-space: nowrap;
+    padding: 4px 2px;
+}
+
+/* Desktop: keep topics from crowding */
+@media (min-width: 901px) {
+    .nav-shell nav {
+        gap: 3px;
+    }
+    .topic {
+        padding: 8px 12px;
+    }
+}
+
+/* Mid tablets */
+@media (max-width: 900px) and (min-width: 561px) {
+    .nav-shell {
+        padding: 12px 16px 14px;
+    }
+    .menu-toggle {
+        margin-left: auto;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 380px) {
+    .utility {
+        padding: 6px 10px;
+        font-size: 9px;
+    }
+    .nav-shell {
+        padding: 10px 10px 12px;
+        gap: 6px;
+    }
+    .brand {
+        font-size: 17px;
+    }
+    .brand strong {
+        width: 22px;
+        height: 22px;
+        font-size: 13px;
+    }
+    .menu-toggle {
+        padding: 7px 10px;
+        font-size: 10px;
+        gap: 6px;
+    }
+    .search-trigger {
+        width: 34px;
+        height: 34px;
+    }
+    .nav-shell nav .topic {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+    .utility-actions button {
+        font-size: 9px;
+    }
+    #theme-toggle {
+        padding: 6px 8px;
+    }
+    .theme-toggle-label {
+        display: none;
+    }
+}
+
+
+/* YouTube-style header hide — mobile tweaks */
+@media (max-width: 900px) {
+    .site-header {
+        top: 10px;
+        width: min(100% - 20px, 680px);
+        border-radius: 22px 22px 32px 32px;
+    }
+    .site-header.is-hidden {
+        transform: translate3d(-50%, calc(-100% - 16px), 0);
+    }
+}
+
+@media (max-width: 560px) {
+    .site-header {
+        top: 8px;
+        width: calc(100% - 16px);
+        border-radius: 18px 18px 28px 28px;
+    }
+    .site-header.is-hidden {
+        transform: translate3d(-50%, calc(-100% - 14px), 0);
+    }
+}
+
+
