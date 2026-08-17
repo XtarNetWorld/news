@@ -76,8 +76,11 @@ a {
 }
 
 .wrapper {
-    width: min(1190px, 100% - 64px);
-    margin-inline: auto; }
+    width: min(1190px, calc(100% - 48px));
+    max-width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
 
 .sr-only {
     position: absolute;
@@ -137,6 +140,7 @@ a {
     transform: translate3d(-50%, 0, 0);
     z-index: 100;
     width: min(952px, calc(100% - 24px));
+    max-width: calc(100vw - 16px);
     margin: 0;
     background: color-mix(in srgb, var(--surface) 90%, transparent);
     border: 1px solid var(--line);
@@ -166,7 +170,8 @@ a {
 }
 
 .site-header.wrapper {
-    width: min(952px, 100% - 32px);
+    width: min(952px, calc(100% - 24px));
+    max-width: calc(100% - 16px);
 }
 
 .utility {
@@ -1546,7 +1551,8 @@ h1 em {
 
 @media (max-width: 900px) {
     .wrapper {
-        width: min(100% - 36px, 680px);
+        width: min(calc(100% - 28px), 680px);
+        max-width: 100%;
     }
 
     .utility-center, .brand-promise {
@@ -1681,7 +1687,8 @@ h1 em {
 
 @media (max-width: 560px) {
     .wrapper {
-        width: calc(100% - 28px);
+        width: calc(100% - 24px);
+        max-width: 100%;
     }
 
     .site-header {
@@ -2409,4 +2416,563 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
     }
 }
 
+/* ========== Layout safety (no universal max-width — that breaks UI) ========== */
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+}
+
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.wrapper {
+    width: min(1190px, calc(100% - 48px));
+    max-width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+
+/* Footer — clean, no glitch */
+.site-footer {
+    padding: 34px 0 24px;
+    border-top: 1px solid var(--line);
+    overflow: visible;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-inner.wrapper,
+.copyright.wrapper {
+    width: min(1190px, calc(100% - 48px));
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px 28px;
+}
+
+.footer-inner .brand {
+    flex: 0 0 auto;
+}
+
+.footer-inner > p {
+    flex: 1 1 220px;
+    min-width: 0;
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.footer-inner > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    color: var(--teal);
+    font-size: 12px;
+    flex: 0 1 auto;
+}
+
+.footer-inner > div a {
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.footer-inner > div a:hover {
+    color: var(--coral);
+}
+
+.copyright {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px 16px;
+    padding-top: 22px;
+    margin-top: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font: 10px / 1.5 "DM Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+}
+
+.copyright span {
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.founder-credit {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.founder-credit a {
+    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Briefing bottom section */
+.briefing {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.briefing form {
+    max-width: 100%;
+}
+
+.email-field {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.email-field input {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+/* Cards / sections that were clipping */
+.story-card,
+.signal-stat,
+.feature,
+.signal-dashboard,
+.ticker,
+.manifesto {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.hero-copy,
+.feature-copy,
+.card-body,
+.legal-body,
+.page-hero {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+/* Header width safety without breaking fixed layout */
+.site-header {
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .wrapper {
+        width: min(calc(100% - 28px), 680px);
+    }
+
+    .footer-inner.wrapper,
+    .copyright.wrapper {
+        width: min(calc(100% - 28px), 680px);
+    }
+
+    .footer-inner {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 560px) {
+    .wrapper {
+        width: calc(100% - 24px);
+    }
+
+    .footer-inner.wrapper,
+    .copyright.wrapper {
+        width: calc(100% - 24px);
+    }
+
+    .site-footer {
+        padding: 28px 0 18px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .footer-inner > p {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .footer-inner > div {
+        width: 100%;
+        gap: 10px 14px;
+    }
+
+    .copyright {
+        display: block;
+        text-align: center;
+        padding-top: 16px;
+        margin-top: 16px;
+        letter-spacing: 0.04em;
+        font-size: 10px;
+        line-height: 1.5;
+        white-space: normal;
+        overflow: visible;
+    }
+
+    .copyright span {
+        display: block;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        line-height: 1.55;
+    }
+
+    .briefing {
+        padding: 32px 20px;
+        gap: 28px;
+    }
+
+    .email-field {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 5px;
+        border-radius: var(--radius-pill);
+        gap: 0;
+    }
+
+    .email-field input {
+        min-width: 0;
+        flex: 1 1 auto;
+        width: auto;
+        padding: 11px 12px;
+        font-size: 14px;
+    }
+
+    .email-field button {
+        width: auto;
+        flex: 0 0 auto;
+        padding: 11px 14px;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper,
+    .footer-inner.wrapper,
+    .copyright.wrapper {
+        width: calc(100% - 16px);
+    }
+
+    .footer-inner > div a {
+        font-size: 11px;
+    }
+
+    .copyright {
+        font-size: 9px;
+        letter-spacing: 0.03em;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .copyright span {
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .founder-credit {
+        font-size: 10px;
+    }
+}
+
+/* Copyright — single line, wraps as one unit on narrow screens */
+.copyright {
+    display: block;
+    text-align: center;
+    padding-top: 22px;
+    margin-top: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font: 10px/1.5 "DM Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-sizing: border-box;
+}
+
+.copyright span {
+    display: inline;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Email / briefing form — solid on all widths */
+.briefing {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-end;
+    padding: 48px 40px;
+    margin-bottom: 80px;
+    border-radius: 48px 32px 52px 28px;
+    background: var(--teal);
+    color: var(--bg);
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.briefing form {
+    width: min(400px, 100%);
+    flex-shrink: 0;
+}
+
+.email-field {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    padding: 5px;
+    border-radius: var(--radius-pill);
+    background: var(--bg);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+.email-field input {
+    min-width: 0;
+    flex: 1 1 auto;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    padding: 12px 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.email-field input::placeholder {
+    color: var(--muted);
+}
+
+.email-field button {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--coral);
+    color: var(--surface);
+    padding: 12px 18px;
+    font-size: 13px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-note {
+    font: 10px "DM Mono", monospace !important;
+    color: color-mix(in srgb, var(--bg) 70%, transparent) !important;
+    margin: 12px 8px 0 !important;
+    line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+    .briefing {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 36px 28px;
+        gap: 28px;
+    }
+
+    .briefing form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .briefing {
+        padding: 28px 18px;
+        border-radius: 28px;
+        gap: 22px;
+        margin-bottom: 48px;
+    }
+
+    .email-field {
+        padding: 4px;
+        border-radius: 999px;
+    }
+
+    .email-field input {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .email-field button {
+        padding: 11px 14px;
+        font-size: 12px;
+    }
+
+    .form-note {
+        margin: 10px 4px 0 !important;
+        font-size: 9px !important;
+    }
+
+    .copyright {
+        text-align: center;
+        padding: 16px 4px 0;
+        margin-top: 16px;
+        font-size: 9px;
+        letter-spacing: 0.04em;
+    }
+}
+
+@media (max-width: 380px) {
+    .email-field {
+        flex-direction: column;
+        border-radius: 18px;
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .email-field input {
+        width: 100%;
+        padding: 12px 14px;
+        text-align: left;
+    }
+
+    .email-field button {
+        width: 100%;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 12px 16px;
+    }
+
+    .copyright {
+        font-size: 8px;
+        letter-spacing: 0.03em;
+    }
+}
+
+
+/* ========== Landing area — fit device width & height ========== */
+.hero {
+    min-height: auto;
+    padding: clamp(48px, 10vh, 110px) 0 clamp(40px, 6vh, 92px);
+    box-sizing: border-box;
+}
+
+.hero-copy {
+    max-width: min(640px, 100%);
+}
+
+.hero-copy h1 {
+    font-size: clamp(36px, 6.5vw + 1vh, 110px);
+    line-height: 1.05;
+    margin: clamp(12px, 2vh, 25px) 0 clamp(12px, 2vh, 22px);
+}
+
+.hero-copy > p {
+    font-size: clamp(14px, 1.5vw + 0.5vh, 17px);
+    max-width: min(480px, 100%);
+}
+
+.hero-actions {
+    margin-top: clamp(20px, 4vh, 36px);
+    flex-wrap: wrap;
+    gap: 14px 18px;
+}
+
+.hero-orbit {
+    width: min(40vw, 420px, 100%);
+    max-width: 100%;
+}
+
+/* Short viewports (landscape phones / small height) */
+@media (max-height: 700px) {
+    .hero {
+        padding: 36px 0 32px;
+        gap: 28px;
+    }
+    .hero-copy h1 {
+        font-size: clamp(32px, 7vw, 56px);
+        margin: 10px 0 12px;
+    }
+    .hero-orbit {
+        width: min(28vw, 200px);
+        min-width: 140px;
+    }
+    .hero-actions {
+        margin-top: 16px;
+    }
+}
+
+@media (max-height: 560px) {
+    .hero {
+        padding: 24px 0 20px;
+    }
+    .hero-orbit {
+        display: none; /* keep landing text primary on very short screens */
+    }
+    .ticker {
+        margin-bottom: 28px;
+    }
+}
+
+@media (max-width: 560px) {
+    .hero {
+        padding: clamp(36px, 8vh, 70px) 4px clamp(28px, 5vh, 48px);
+    }
+    .hero-copy h1 {
+        font-size: clamp(32px, 9vw, 48px);
+        line-height: 1.08;
+    }
+    .hero-copy > p {
+        font-size: 15px;
+    }
+    .hero-orbit {
+        width: min(72vw, 280px);
+        margin: clamp(28px, 5vh, 55px) auto 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero {
+        padding: 28px 2px 24px;
+    }
+    .hero-copy h1 {
+        font-size: clamp(28px, 8.5vw, 36px);
+    }
+    .hero-search {
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+    .hero-search kbd {
+        display: none;
+    }
+}
