@@ -334,7 +334,45 @@ filterStories();
     }
 })();
 
+/* YouTube-style: click outside search panel → close */
+(function () {
+    const panel = document.querySelector('#search-panel');
+    const trigger = document.querySelector('#search-trigger');
+    const heroSearch = document.querySelector('#hero-search');
+    if (!panel) return;
 
+    function isSearchOpen() {
+        return document.body.classList.contains('search-open') && panel && !panel.hidden;
+    }
 
+    document.addEventListener('mousedown', function (e) {
+        if (!isSearchOpen()) return;
+        const t = e.target;
+        // Inside search UI → keep open
+        if (panel.contains(t)) return;
+        if (trigger && trigger.contains(t)) return;
+        if (heroSearch && heroSearch.contains(t)) return;
+        // Outside → close
+        if (typeof closeSearch === 'function') {
+            closeSearch();
+        } else {
+            panel.hidden = true;
+            document.body.classList.remove('search-open');
+            document.body.classList.remove('search-dropdown-open');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+    }, true);
 
+    // Also close on touch outside (mobile)
+    document.addEventListener('touchstart', function (e) {
+        if (!isSearchOpen()) return;
+        const t = e.target;
+        if (panel.contains(t)) return;
+        if (trigger && trigger.contains(t)) return;
+        if (heroSearch && heroSearch.contains(t)) return;
+        if (typeof closeSearch === 'function') {
+            closeSearch();
+        }
+    }, { passive: true, capture: true });
+})();
 
