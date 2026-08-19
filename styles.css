@@ -249,10 +249,14 @@ a {
 
 .brand-logo {
     display: block;
-    height: 42px;
+    height: 100px;
     width: auto;
     max-width: min(240px, 38vw);
     object-fit: contain;
+}
+
+.brand-logo-light {
+    display: block;
 }
 
 .brand-logo-dark {
