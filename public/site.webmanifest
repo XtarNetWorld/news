@@ -9,11 +9,12 @@
   "lang": "en-US",
   "icons": [
     {
-      "src": "/public/favicon.ico",
+      "src": "/favicon.ico",
       "sizes": "any",
       "type": "image/x-icon",
       "purpose": "any maskable"
     }
   ]
 }
+
 
