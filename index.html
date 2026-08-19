@@ -435,7 +435,8 @@
                 <span class="section-number">03</span>
                 <blockquote>“The best news does not just tell you what happened. It gives you a sharper way to see what happens next.”</blockquote>
                 <div class="manifesto-orb">
-                    N<strong>X</strong>
+                    <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
+                    <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
                 </div>
             </section>
             <section class="briefing wrapper" id="newsletter">
@@ -473,10 +474,9 @@
         <div class="toast" id="toast" role="status" aria-live="polite">Reader mode off</div>
         <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
             <div class="footer-inner wrapper">
-                <a class="brand" href="/" itemprop="url">
-                    <span>News</span>
-                    <strong>X</strong>
-                    phere
+                <a class="brand" href="/" itemprop="url" aria-label="NewsXphere home" title="NewsXphere">
+                    <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
+                    <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
                 </a>
                 <p>Sharp reporting for curious people building what comes next.<br>
                 <span class="founder-credit">Founded, owned &amp; built by <strong itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Monu Sharma</span></strong> — also founder of <a href="https://xtarnet.us.to" rel="noopener noreferrer" target="_blank">xtarnet.us.to</a> &amp; <a href="https://govlinq.site" rel="noopener noreferrer" target="_blank">govlinq.site</a>.</span></p>
@@ -496,45 +496,6 @@
         </footer>
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;e3c1c9af36de41759418005494a48906&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
-    <!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-
-
-</body></html>
+</body>
+</html>
 

@@ -243,8 +243,7 @@ a {
     gap: 0;
     width: auto;
     min-height: 44px;
-    font: 600 23px / 1 "Playfair Display", serif;
-    letter-spacing: -0.05em;
+    line-height: 0;
     white-space: nowrap;
 }
 
@@ -253,6 +252,7 @@ a {
     height: 42px;
     width: auto;
     max-width: min(240px, 38vw);
+    object-fit: contain;
 }
 
 .brand-logo-dark {
@@ -265,19 +265,6 @@ a {
 
 [data-theme="dim"] .brand-logo-dark {
     display: block;
-}
-
-.brand strong {
-    display: inline-grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    margin: 0px 2px;
-    background: var(--coral);
-    color: var(--surface);
-    border-radius: 50%;
-    font: 600 17px / 1 "DM Sans", sans-serif;
-    transform: rotate(-12deg);
 }
 
 .brand-promise {
@@ -2491,6 +2478,12 @@ img, video, canvas, svg {
 
 .footer-inner .brand {
     flex: 0 0 auto;
+    align-self: flex-start;
+}
+
+.footer-inner .brand-logo {
+    height: 48px;
+    max-width: min(280px, 42vw);
 }
 
 .footer-inner > p {
