@@ -250,9 +250,11 @@ a {
 .brand-logo {
     display: block;
     height: 100px;
-    width: auto;
-    max-width: min(240px, 38vw);
+    /* width: auto; */
+    /* max-width: min(240px, 38vw); */
+    position: fixed;
     object-fit: contain;
+    left: 0;
 }
 
 .brand-logo-light {
