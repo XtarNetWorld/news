@@ -237,9 +237,34 @@ a {
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: auto;
+    min-height: 44px;
     font: 600 23px / 1 "Playfair Display", serif;
     letter-spacing: -0.05em;
     white-space: nowrap;
+}
+
+.brand-logo {
+    display: block;
+    height: 42px;
+    width: auto;
+    max-width: min(240px, 38vw);
+}
+
+.brand-logo-dark {
+    display: none;
+}
+
+[data-theme="dim"] .brand-logo-light {
+    display: none;
+}
+
+[data-theme="dim"] .brand-logo-dark {
+    display: block;
 }
 
 .brand strong {

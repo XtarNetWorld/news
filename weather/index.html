@@ -6,12 +6,14 @@
     <meta name="theme-color" content="#142322">
     <meta name="color-scheme" content="dark light">
 
-    <title>WR Weather Desk — Live Radar, Real-Time Weather & Forecast | NewsXphere</title>
-    <meta name="description" content="NewsXphere WR Weather Desk: Live precipitation radar, real-time local temperature, wind and 7-day forecast. Search NewsXphere weather, WR weather report, NXW report.">
-    <meta name="keywords" content="NewsXphere WR, NewsXphere weather, NewsXphere weather report, NXW report, WR weather report, live weather radar, NX weather, Monu Sharma">
+    <!-- Strong SEO for your keywords -->
+    <title>WR Weather Desk — Live Radar, Rain Map & Real-Time Reports | NewsXphere (NXW)</title>
+    <meta name="description" content="NewsXphere WR Weather Desk: Live precipitation radar, real-time local weather, rain animation and forecasts. Search NewsXphere weather, WR weather report, NXW report for atmospheric intelligence.">
+    <meta name="keywords" content="NewsXphere WR, NewsXphere weather, NewsXphere weather report, NXW report, WR weather report, NewsXphere radar, live weather radar, NX weather, WR Desk, Monu Sharma">
     <meta name="author" content="Monu Sharma">
     <meta name="publisher" content="NewsXphere">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
 
     <link rel="canonical" href="https://www.newsxphere.com/weather/">
     <link rel="alternate" hreflang="en" href="https://www.newsxphere.com/weather/">
@@ -20,26 +22,25 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NewsXphere">
-    <meta property="og:title" content="WR Weather Desk — Live Radar & Real-Time Weather | NewsXphere">
-    <meta property="og:description" content="Live rain radar, real-time location weather and 7-day forecast from NewsXphere WR Desk.">
+    <meta property="og:title" content="WR Weather Desk — Live Radar & Reports | NewsXphere (NXW)">
+    <meta property="og:description" content="Live rain radar, real-time location weather and forecasts from NewsXphere WR Desk.">
     <meta property="og:url" content="https://www.newsxphere.com/weather/">
     <meta property="og:image" content="https://www.newsxphere.com/public/og-cover.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@newsxphere">
-    <meta name="twitter:title" content="WR Weather Desk — Live Radar | NewsXphere">
+    <meta name="twitter:title" content="WR Weather Desk — Live Radar | NewsXphere (NXW)">
     <meta name="twitter:description" content="Real-time weather radar and local reports from NewsXphere.">
     <meta name="twitter:image" content="https://www.newsxphere.com/public/og-cover.jpg">
 
-    <!-- Favicons & Icons (consistent site-wide) -->
-    <link rel="icon" href="../public/icon.svg" type="image/svg+xml">
-    <link rel="icon" href="../public/favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="../public/apple-touch-icon.png">
-    <link rel="mask-icon" href="../public/icon.svg" color="#142322">
-
+    <link rel="icon" href="/public/favicon.ico" sizes="any">
+    <link rel="icon" href="/public/newsxphere-light-mode-logo.png" type="image/png" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="/public/newsxphere-dark-mode-logo.png" type="image/png" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="/public/newsxphere-light-mode-logo.png">
     <link rel="stylesheet" href="../styles.css">
     <script defer src="../script.js"></script>
 
+    <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     <script type="application/ld+json">
@@ -50,17 +51,13 @@
           "@type": "WebPage",
           "@id": "https://www.newsxphere.com/weather/#webpage",
           "url": "https://www.newsxphere.com/weather/",
-          "name": "WR Weather Desk — Live Radar, Real-Time Weather & Forecast | NewsXphere",
-          "description": "NewsXphere WR Weather Desk provides live precipitation radar, real-time local weather and 7-day forecast.",
+          "name": "WR Weather Desk — Live Radar, Rain Map & Real-Time Reports | NewsXphere (NXW)",
+          "description": "NewsXphere WR Weather Desk provides live precipitation radar, real-time local weather and forecasts. Optimized for NewsXphere weather, WR weather report, NXW report.",
           "inLanguage": "en-US",
           "publisher": {
             "@type": "NewsMediaOrganization",
             "name": "NewsXphere",
             "url": "https://www.newsxphere.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://www.newsxphere.com/public/icon.svg"
-            },
             "founder": { "@type": "Person", "name": "Monu Sharma" }
           }
         },
@@ -68,7 +65,7 @@
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.newsxphere.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Weather Desk (WR)", "item": "https://www.newsxphere.com/weather/" }
+            { "@type": "ListItem", "position": 2, "name": "Weather Desk (WR / NXW)", "item": "https://www.newsxphere.com/weather/" }
           ]
         }
       ]
@@ -100,7 +97,7 @@
             border: 1px solid var(--line);
             border-radius: var(--radius-lg);
             padding: 32px 26px;
-            max-width: 400px;
+            max-width: 380px;
             margin: 0 auto;
             box-shadow: var(--shadow);
             text-align: center;
@@ -119,26 +116,21 @@
             background: var(--surface-2);
             padding: 4px 11px;
             border-radius: var(--radius-pill);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
         .weather-temp-block {
             font-size: 68px;
             font-weight: 700;
             line-height: 1;
             color: var(--coral);
-            margin: 6px 0 8px;
+            margin: 6px 0 10px;
             font-family: "Playfair Display", serif;
         }
         .weather-condition-text {
             font-size: 16px;
             color: var(--ink);
             font-weight: 500;
-            margin-bottom: 8px;
-        }
-        .weather-extra {
-            font-size: 13px;
-            color: var(--muted);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .gps-action-btn {
             background: var(--ink);
@@ -165,6 +157,8 @@
             letter-spacing: 0.08em;
             margin-top: 12px;
         }
+
+        /* Radar */
         .radar-section {
             max-width: 1190px;
             margin: 0 auto 50px;
@@ -180,7 +174,7 @@
             margin-bottom: 16px;
         }
         #radar-map {
-            height: 500px;
+            height: 480px;
             width: 100%;
             border-radius: var(--radius-lg);
             border: 1px solid var(--line);
@@ -211,9 +205,11 @@
             color: var(--muted);
         }
         .radar-attribution a { color: var(--teal); }
+
+        /* Forecast */
         .forecast-section {
             max-width: 1190px;
-            margin: 0 auto 80px;
+            margin: 0 auto 60px;
             padding: 0 24px;
         }
         .forecast-section h2 {
@@ -246,8 +242,25 @@
             color: var(--muted);
             margin-top: 4px;
         }
+
+        /* Guide */
+        .guide-section {
+            max-width: 780px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+        .guide-section h2 {
+            font: 500 24px "Playfair Display", serif;
+            margin-bottom: 12px;
+        }
+        .guide-section ul {
+            color: var(--muted);
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
         @media (max-width: 640px) {
-            #radar-map { height: 380px; }
+            #radar-map { height: 360px; }
         }
     </style>
 </head>
@@ -259,7 +272,7 @@
 
     <header class="site-header wrapper">
         <div class="utility">
-            <span>Tuesday, August 18, 2026</span>
+            <span id="current-date">Tuesday, August 18, 2026</span>
             <span class="utility-center">
                 <i></i> WR Desk <i></i> Weather &amp; Climate Signals
             </span>
@@ -273,9 +286,10 @@
             </div>
         </div>
         <div class="nav-shell">
-            <a class="brand" href="/" aria-label="NewsXphere home">
-                <span>News</span><strong>X</strong>phere
-            </a>
+            <a class="brand" href="/" aria-label="NewsXphere home" title="NewsXphere">
+                    <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
+                    <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
+                </a>
             <span class="brand-promise">WR · Weather &amp; Signal Desk</span>
 
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -326,7 +340,7 @@
                 <span class="live-pulse"></span> WR · Weather Report Desk · NXW
             </div>
             <h1>Live Radar &amp; <em>Real-Time Local Weather</em></h1>
-            <p>Your exact location • Live rain radar • 7-day forecast</p>
+            <p>Your location • Live rain radar • Forecasts. Search “NewsXphere weather” or “NXW report”.</p>
             
             <div class="weather-display-card">
                 <div class="weather-location-title" id="locationText">Detecting Location...</div>
@@ -334,7 +348,6 @@
                 
                 <div class="weather-temp-block" id="tempText">--°</div>
                 <div class="weather-condition-text" id="conditionText">Connecting...</div>
-                <div class="weather-extra" id="extraText">Wind • Humidity loading...</div>
                 
                 <button class="gps-action-btn" id="gpsButton" onclick="getPreciseLocation()">
                     <span>⊙</span> Use Precise GPS Location
@@ -343,10 +356,11 @@
             </div>
         </section>
 
+        <!-- Live Radar -->
         <section class="radar-section wrapper">
             <span class="section-number">01</span>
             <h2>Live Precipitation Radar</h2>
-            <p class="section-desc">Animated rain &amp; snow radar centered on your location</p>
+            <p class="section-desc">Animated rain &amp; snow (past \~2 hours). Pan &amp; zoom. Closest free alternative to Zoom.Earth rain layer.</p>
             
             <div id="radar-map" role="img" aria-label="Live weather radar map"></div>
             
@@ -359,23 +373,37 @@
             </div>
             <p class="radar-attribution">
                 Radar by <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a> · 
-                Map © OpenStreetMap / Carto · Weather data by Open-Meteo
+                Map © OpenStreetMap / Carto · Weather by Open-Meteo
             </p>
         </section>
 
+        <!-- Forecast -->
         <section class="forecast-section wrapper">
             <span class="section-number">02</span>
-            <h2>7-Day Forecast</h2>
+            <h2>Next 7 Days Forecast</h2>
             <div class="forecast-grid" id="forecastGrid">
                 <div class="forecast-card"><div class="day">Loading...</div></div>
             </div>
+        </section>
+
+        <!-- Advanced Guide -->
+        <section class="guide-section">
+            <span class="section-number">03</span>
+            <h2>How to use this Weather Desk</h2>
+            <ul>
+                <li><strong>Location</strong> — Page auto-detects via IP. Click “Use Precise GPS Location” for exact position (browser will ask permission).</li>
+                <li><strong>Radar</strong> — Play button animates past rain/snow frames. Use Prev/Next to step manually.</li>
+                <li><strong>Map</strong> — Drag to move, scroll to zoom. Radar opacity is fixed for clarity.</li>
+                <li><strong>Header systems</strong> (theme, menu, search, saved) need your root <code>script.js</code> to work. If they don’t respond, check that <code>../script.js</code> loads correctly.</li>
+                <li><strong>Limitation</strong> — Full live satellite clouds + multi-model forecast maps like Zoom.Earth require paid data. This page uses the best free keyless options available in 2026.</li>
+            </ul>
         </section>
     </main>
 
     <aside class="saved-drawer" id="saved-drawer" aria-label="Saved stories" aria-hidden="true">
         <div class="drawer-head">
             <div>
-                <span class="section-number">03</span>
+                <span class="section-number">04</span>
                 <h2>My reading</h2>
             </div>
             <button id="close-saved" type="button" aria-label="Close">×</button>
@@ -407,7 +435,7 @@
             </div>
         </div>
         <div class="copyright wrapper">
-            <span>© 2026 NewsXphere.com · WR Weather Desk · Signal Over Noise</span>
+            <span>© 2026 NewsXphere · WR Weather Desk · Signal Over Noise</span>
         </div>
     </footer>
 
@@ -435,7 +463,8 @@
                 document.getElementById('locationText').textContent = region ? `${city}, ${region}` : city;
                 
                 if (data.latitude && data.longitude) {
-                    fetchAllWeather(data.latitude, data.longitude);
+                    fetchWeather(data.latitude, data.longitude);
+                    fetchForecast(data.latitude, data.longitude);
                     initMap(data.latitude, data.longitude);
                 } else {
                     initMap(20, 0);
@@ -446,29 +475,36 @@
             }
         }
 
-        async function fetchAllWeather(lat, lon) {
+        async function fetchWeather(lat, lon) {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`);
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=\( {lat}&longitude= \){lon}&current_weather=true`);
                 const data = await res.json();
-
-                if (data.current) {
-                    document.getElementById('tempText').textContent = Math.round(data.current.temperature_2m) + "°C";
-                    document.getElementById('conditionText').textContent = weatherCodes[data.current.weather_code] || "Stable";
-                    
-                    const wind = Math.round(data.current.wind_speed_10m);
-                    const hum = data.current.relative_humidity_2m;
-                    document.getElementById('extraText').textContent = `Wind ${wind} km/h • Humidity ${hum}%`;
+                if (data.current_weather) {
+                    document.getElementById('tempText').textContent = Math.round(data.current_weather.temperature) + "°C";
+                    document.getElementById('conditionText').textContent = weatherCodes[data.current_weather.weathercode] || "Stable";
                 }
+            } catch (e) {
+                document.getElementById('conditionText').textContent = "Feed unavailable";
+            }
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('gpsButton').style.display = 'inline-flex';
+        }
 
+        async function fetchForecast(lat, lon) {
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=\( {lat}&longitude= \){lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`);
+                const data = await res.json();
                 const grid = document.getElementById('forecastGrid');
                 grid.innerHTML = '';
+
                 if (data.daily) {
-                    for (let i = 0; i < Math.min(7, data.daily.time.length); i++) {
-                        const d = new Date(data.daily.time[i]);
+                    const days = data.daily.time;
+                    for (let i = 0; i < Math.min(7, days.length); i++) {
+                        const d = new Date(days[i]);
                         const dayName = i === 0 ? "Today" : d.toLocaleDateString(undefined, { weekday: 'short' });
                         const max = Math.round(data.daily.temperature_2m_max[i]);
                         const min = Math.round(data.daily.temperature_2m_min[i]);
-                        const code = data.daily.weather_code[i];
+                        const code = data.daily.weathercode[i];
                         const cond = weatherCodes[code] ? weatherCodes[code].split(' ')[0] : "—";
 
                         grid.innerHTML += `
@@ -480,11 +516,8 @@
                     }
                 }
             } catch (e) {
-                document.getElementById('conditionText').textContent = "Feed unavailable";
-                document.getElementById('extraText').textContent = "";
+                document.getElementById('forecastGrid').innerHTML = '<div class="forecast-card"><div class="day">Forecast unavailable</div></div>';
             }
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('gpsButton').style.display = 'inline-flex';
         }
 
         function getPreciseLocation() {
@@ -504,7 +537,7 @@
                     const lon = pos.coords.longitude;
 
                     try {
-                        const geoRes = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+                        const geoRes = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=\( {lat}&longitude= \){lon}&localityLanguage=en`);
                         const geo = await geoRes.json();
                         document.getElementById('locationText').textContent = geo.locality || geo.city || geo.principalSubdivision || "GPS Lock";
                     } catch (e) {
@@ -514,7 +547,8 @@
                     document.getElementById('statusText').textContent = "Accurate GPS Radar Lock";
                     document.getElementById('statusText').style.color = "var(--coral)";
 
-                    fetchAllWeather(lat, lon);
+                    fetchWeather(lat, lon);
+                    fetchForecast(lat, lon);
 
                     if (map) {
                         map.setView([lat, lon], 7);
@@ -523,7 +557,7 @@
                     }
                 },
                 () => {
-                    alert("Please allow location permission.");
+                    alert("Please allow location permission for precise GPS.");
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('gpsButton').style.display = 'inline-flex';
                 },
@@ -542,7 +576,8 @@
 
             L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                 maxZoom: 18,
-                subdomains: 'abcd'
+                subdomains: 'abcd',
+                attribution: ''
             }).addTo(map);
 
             loadRadar();
@@ -618,3 +653,5 @@
     </script>
 </body>
 </html>
+
+
