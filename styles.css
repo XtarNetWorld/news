@@ -230,30 +230,28 @@ a {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     min-height: 70px;
-    padding: 14px 12px 16px 0;
+    padding: 14px 18px 16px;
     flex-wrap: nowrap;
 }
 
 .brand {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0;
     width: auto;
     min-height: 44px;
     line-height: 0;
     white-space: nowrap;
-    margin-left: 0;
-    flex: 0 0 auto;
 }
 
 .brand-logo {
     display: block;
-    height: 96px;
+    height: 72px;
     width: auto;
-    max-width: min(420px, 50vw);
+    max-width: min(320px, 40vw);
     object-fit: contain;
 }
 
@@ -274,13 +272,13 @@ a {
 }
 
 .brand-promise {
-    font: 10px / 1.25 "DM Mono", monospace;
+    font: 8px / 1.3 "DM Mono", monospace;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--muted);
-    white-space: normal;
-    max-width: 170px;
-    margin-top: 2px;
+    white-space: nowrap;
+    position: absolute;
+    left: 200px;
 }
 
 .menu-toggle {
@@ -1649,7 +1647,15 @@ h1 em {
     }
 
     .brand {
+        flex: 0 0 auto;
         flex-shrink: 0;
+        margin-right: auto;
+        justify-content: flex-start;
+    }
+
+    .brand-logo {
+        height: 58px;
+        max-width: min(250px, 46vw);
     }
 
     .hero {
@@ -1739,9 +1745,10 @@ h1 em {
 
     .brand {
         font-size: 19px;
-        margin-right: 0;
-        flex: 1 1 auto;
+        margin-right: auto;
+        flex: 0 0 auto;
         min-width: 0;
+        justify-content: flex-start;
     }
 
     .brand strong {
@@ -2382,6 +2389,9 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
     }
     .brand {
         font-size: 17px;
+        margin-right: auto;
+        flex: 0 0 auto;
+        justify-content: flex-start;
     }
     .brand strong {
         width: 22px;
@@ -2490,17 +2500,19 @@ img, video, canvas, svg {
 }
 
 .footer-inner .brand-logo {
-    height: 72px;
-    max-width: min(320px, 42vw);
+    height: 52px;
+    max-width: min(240px, 30vw);
 }
 
 .nav-shell .brand-logo {
-    height: 88px;
-    max-width: min(360px, 45vw);
+    height: 95px;
+    max-width: min(320px, 40vw);
+    position: absolute;
+    left: 0px;
 }
 
 .manifesto-orb .brand-logo {
-    height: 92px;
+    height: 60px;
     max-width: min(300px, 42vw);
 }
 
@@ -2631,6 +2643,7 @@ img, video, canvas, svg {
 
     .footer-inner {
         gap: 16px;
+        justify-content: space-between;
     }
 }
 
@@ -2650,18 +2663,25 @@ img, video, canvas, svg {
 
     .footer-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 14px;
+    }
+
+    .footer-inner .brand-logo {
+        height: 46px;
+        max-width: min(200px, 46vw);
     }
 
     .footer-inner > p {
         flex: 1 1 auto;
         width: 100%;
+        text-align: center;
     }
 
     .footer-inner > div {
         width: 100%;
         gap: 10px 14px;
+        justify-content: center;
     }
 
     .copyright {
@@ -2683,6 +2703,11 @@ img, video, canvas, svg {
         word-break: break-word;
         max-width: 100%;
         line-height: 1.55;
+    }
+
+    .brand-logo {
+        height: 54px;
+        max-width: min(220px, 52vw);
     }
 
     .briefing {
