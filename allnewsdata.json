@@ -1,0 +1,38 @@
+{
+  "site": {
+    "name": "NewsXphere",
+    "baseUrl": "https://www.newsxphere.com"
+  },
+  "articles": [
+    {
+      "id": "strait-of-hormuz-attack-iran-blockade",
+      "slug": "strait-of-hormuz-attack-iran-blockade",
+      "url": "/world/strait-of-hormuz-attack-iran-blockade/",
+      "category": "World",
+      "section": "World Intelligence",
+      "label": "Breaking Conflict Analysis",
+      "title": "Strait of Hormuz Attack: Commercial Vessel Struck Amid Escalating Naval Blockade",
+      "excerpt": "A commercial tanker was struck by an unknown projectile while transiting the Strait of Hormuz, causing a confirmed casualty and sending crude prices higher amid an escalating maritime blockade.",
+      "image": "/public/strait-of-hormuz-attack-oil-tanker.jpg",
+      "imageAlt": "Commercial oil supertanker navigating contested international waters in the Strait of Hormuz",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-08-18T15:45:00+05:30",
+      "updatedAt": "2026-08-18T16:30:00+05:30",
+      "readTime": "5 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "Strait of Hormuz",
+        "Iran blockade",
+        "UKMTO",
+        "Brent crude",
+        "oil tanker",
+        "maritime security",
+        "geopolitics",
+        "world news",
+        "energy crisis"
+      ],
+      "featured": true
+    }
+  ]
+}

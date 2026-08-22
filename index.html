@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dim">
+<html lang="en" data-theme="paper">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,6 +44,16 @@
     <link rel="apple-touch-icon" href="/public/newsxphere-light-mode-logo.png">
     <link rel="manifest" href="/public/site.webmanifest">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('newsxphere-theme');
+                if (theme === 'dim' || theme === 'paper') {
+                    document.documentElement.setAttribute('data-theme', theme);
+                }
+            } catch (e) {}
+        })();
+    </script>
     <script defer src="script.js"></script>
     <!-- High-quality JSON-LD Structured Data: Organization, Founder, WebSite, WebPage -->
     <script type="application/ld+json">
@@ -72,7 +82,7 @@
             "https://govlinq.site"
           ],
           "publishingPrinciples": "https://www.newsxphere.com/",
-          "knowsAbout": ["Startups", "Technology", "Culture", "Climate", "Money", "Independent Journalism", "Product Design"]
+          "knowsAbout": ["Startups", "Tech", "Culture", "Job", "Independent Journalism", "Product Design"]
         },
         {
           "@type": "Person",
@@ -160,11 +170,12 @@
         <a class="skip-link" href="#main-content">Skip to content</a>
         <header class="site-header wrapper">
             <div class="utility">
-                <span>Friday, August 14, 2026</span>
+                <span id="live-date">Loading date</span>
                 <span class="utility-center">
-                    <i></i>
-                    Edition 014 <i></i>
-                    Independent intelligence
+                    <i class="live-separator" aria-hidden="true"></i>
+                    <span id="live-time">--:--:--</span>
+                    <i class="live-separator" aria-hidden="true"></i>
+                    <span class="live-bond">FOR YOU</span>
                 </span>
                 <div class="utility-actions">
                     <button id="saved-toggle" type="button">
@@ -187,20 +198,94 @@
                     NX · A calmer signal<br>for what's next.
                 </span>
 
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-                    Menu <span></span>
-                </button>
                 <nav id="primary-nav" aria-label="Primary navigation" class="">
+                    <div class="header-weather header-weather-desktop" id="desktop-weather" aria-label="Current weather">
+                        <span class="header-weather-icon" id="desktop-weather-icon" aria-hidden="true">☀</span>
+                        <span class="header-weather-temp" id="desktop-weather-temp">--°</span>
+                    </div>
                     <button class="topic active" data-topic="All" type="button">All signals</button>
+                    <button class="topic" data-topic="World" type="button">World</button>
                     <button class="topic" data-topic="Startups" type="button">Startups</button>
-                    <button class="topic" data-topic="Technology" type="button">Technology</button>
+                    <button class="topic" data-topic="Tech" type="button">Tech</button>
                     <button class="topic" data-topic="Culture" type="button">Culture</button>
-                    <button class="topic" data-topic="Climate" type="button">Climate</button>
-                    <button class="topic" data-topic="Money" type="button">Money</button>
+                    <button class="topic" data-topic="Job" type="button">Job</button>
                 </nav>
-                <button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search">
-                    <span class="search-trigger-icon" aria-hidden="true"></span>
-                </button>
+                <div class="header-controls">
+                    <div class="header-weather header-weather-mobile" id="mobile-weather" aria-label="Current weather">
+                        <span class="header-weather-icon" id="mobile-weather-icon" aria-hidden="true">☀</span>
+                        <span class="header-weather-temp" id="mobile-weather-temp">--°</span>
+                    </div>
+                    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+                        Menu <span></span>
+                    </button>
+                    <button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search">
+                        <span class="search-trigger-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="weather-popover weather-popover-desktop" id="desktop-weather-popover" hidden>
+                    <div class="weather-popover-head">
+                        <span class="weather-popover-label">Current weather</span>
+                        <button type="button" class="weather-popover-close" data-weather-close aria-label="Close weather">×</button>
+                    </div>
+                    <div class="weather-popover-main">
+                        <span class="weather-popover-icon" id="desktop-weather-popover-icon" aria-hidden="true">☀</span>
+                        <div>
+                            <div class="weather-popover-temp" id="desktop-weather-popover-temp">--°</div>
+                            <div class="weather-popover-place" id="desktop-weather-popover-place">Detecting location...</div>
+                        </div>
+                    </div>
+                    <div class="weather-popover-meta" id="desktop-weather-popover-meta">Loading current conditions...</div>
+                    <div class="weather-popover-stats">
+                        <span id="desktop-weather-popover-humidity">Humidity --%</span>
+                        <span id="desktop-weather-popover-wind">Wind -- km/h</span>
+                        <span id="desktop-weather-popover-rain">Rain --%</span>
+                    </div>
+                    <div class="weather-popover-tabs" aria-label="Weather details">
+                        <button type="button" class="weather-tab is-active" data-weather-tab="temperature">Temperature</button>
+                        <button type="button" class="weather-tab" data-weather-tab="precipitation">Precipitation</button>
+                        <button type="button" class="weather-tab" data-weather-tab="wind">Wind</button>
+                    </div>
+                    <div class="weather-popover-chart" id="desktop-weather-popover-chart" aria-hidden="true"></div>
+                    <div class="weather-popover-forecast" id="desktop-weather-popover-forecast"></div>
+                    <div class="weather-popover-mini">
+                        <span id="desktop-weather-popover-hi">H --°</span>
+                        <span id="desktop-weather-popover-lo">L --°</span>
+                        <span id="desktop-weather-popover-day">Today</span>
+                    </div>
+                    <a class="weather-popover-link" href="/weather/">Open full Weather Desk</a>
+                </div>
+                <div class="weather-popover weather-popover-mobile" id="mobile-weather-popover" hidden>
+                    <div class="weather-popover-head">
+                        <span class="weather-popover-label">Current weather</span>
+                        <button type="button" class="weather-popover-close" data-weather-close aria-label="Close weather">×</button>
+                    </div>
+                    <div class="weather-popover-main">
+                        <span class="weather-popover-icon" id="mobile-weather-popover-icon" aria-hidden="true">☀</span>
+                        <div>
+                            <div class="weather-popover-temp" id="mobile-weather-popover-temp">--°</div>
+                            <div class="weather-popover-place" id="mobile-weather-popover-place">Detecting location...</div>
+                        </div>
+                    </div>
+                    <div class="weather-popover-meta" id="mobile-weather-popover-meta">Loading current conditions...</div>
+                    <div class="weather-popover-stats">
+                        <span id="mobile-weather-popover-humidity">Humidity --%</span>
+                        <span id="mobile-weather-popover-wind">Wind -- km/h</span>
+                        <span id="mobile-weather-popover-rain">Rain --%</span>
+                    </div>
+                    <div class="weather-popover-tabs" aria-label="Weather details">
+                        <button type="button" class="weather-tab is-active" data-weather-tab="temperature">Temperature</button>
+                        <button type="button" class="weather-tab" data-weather-tab="precipitation">Precipitation</button>
+                        <button type="button" class="weather-tab" data-weather-tab="wind">Wind</button>
+                    </div>
+                    <div class="weather-popover-chart" id="mobile-weather-popover-chart" aria-hidden="true"></div>
+                    <div class="weather-popover-forecast" id="mobile-weather-popover-forecast"></div>
+                    <div class="weather-popover-mini">
+                        <span id="mobile-weather-popover-hi">H --°</span>
+                        <span id="mobile-weather-popover-lo">L --°</span>
+                        <span id="mobile-weather-popover-day">Today</span>
+                    </div>
+                    <a class="weather-popover-link" href="/weather/">Open full Weather Desk</a>
+                </div>
                 <div class="search-panel" id="search-panel" hidden="">
                     <div class="search-panel-inner">
                         <div class="search-sheet">
@@ -213,18 +298,18 @@
                             <button class="search-refresh" id="search-refresh" type="button">↻ Refresh stories</button>
                             <div class="search-meta">
                                 <span id="search-hint">Recent searches and trending signals</span>
-                                <span id="search-result-count">3 stories</span>
+                                <span id="search-result-count">Loading stories</span>
                             </div>
                             <div class="search-suggestions" id="search-suggestions">
                                 <section class="search-group">
                                     <h3>Recent</h3>
-                                    <button type="button" class="suggestion-item">anti-hustle startup</button>
-                                    <button type="button" class="suggestion-item">AI better questions</button>
-                                    <button type="button" class="suggestion-item">unplanned city spaces</button>
+                                    <button type="button" class="suggestion-item">Strait of Hormuz</button>
+                                    <button type="button" class="suggestion-item">maritime security</button>
+                                    <button type="button" class="suggestion-item">oil tanker</button>
                                 </section>
                                 <section class="search-group">
                                     <h3>Trending now</h3>
-                                    <button type="button" class="suggestion-item trend">founders choosing focus</button>
+                                    <button type="button" class="suggestion-item trend">Iran blockade</button>
                                 </section>
                             </div>
                             <div class="search-results" id="search-results" hidden=""></div>
@@ -321,7 +406,7 @@
                         </strong>
                         <span class="stat-meta">
                             5 min read <i></i>
-                            Technology
+                            Tech
                         </span>
                     </div>
                 </div>
@@ -331,24 +416,24 @@
                     <div class="story-kicker">
                         <span>Field note 01</span>
                         <i></i>
-                        <span itemprop="articleSection">Startups</span>
+                        <span itemprop="articleSection">World</span>
                         <i></i>
-                        <span>8 min read</span>
+                        <span>5 min read</span>
                     </div>
                     <h2 itemprop="headline">
-                        The internet is getting smaller. <em>That might be a good thing.</em>
+                        Strait of Hormuz attack sends a warning through <em>global energy routes.</em>
                     </h2>
-                    <p itemprop="description">After a decade of scale-at-all-costs, a new generation of founders is choosing focus, craft, and useful ambition.</p>
+                    <p itemprop="description">A commercial vessel strike in the Strait of Hormuz is raising fresh questions about maritime security, oil prices, and fragile trade corridors.</p>
                     <div class="byline" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span class="avatar">AM</span>
-                        <span>By <span itemprop="name">Anika Mehta</span></span>
-                        <small>Published <time itemprop="datePublished" datetime="2026-08-14">today</time></small>
+                        <span class="avatar">MS</span>
+                        <span>By <span itemprop="name">Monu Sharma</span></span>
+                        <small>Published <time itemprop="datePublished" datetime="2026-08-18">August 18, 2026</time></small>
                     </div>
                     <meta itemprop="publisher" content="NewsXphere">
-                    <meta itemprop="mainEntityOfPage" content="https://www.newsxphere.com/">
-                    <button class="read-button" data-read="feature" type="button">
+                    <meta itemprop="mainEntityOfPage" content="https://www.newsxphere.com/world/strait-of-hormuz-attack-iran-blockade/">
+                    <a class="read-button" href="/world/strait-of-hormuz-attack-iran-blockade/">
                         Read the full story <span>↗</span>
-                    </button>
+                    </a>
                 </div>
                 <div class="feature-art">
                     <div class="art-grid"></div>
@@ -368,16 +453,14 @@
                         <h2>Fresh signals</h2>
                     </div>
                     <div>
-                        <span id="result-status">3 stories</span>
+                        <span id="result-status">Loading stories</span>
                         <span>Selected for the curious</span>
                     </div>
                 </div>
                 <div class="story-grid" id="story-grid">
                     <article class="story-card card-dark" data-topic="Startups" data-search="founders small teams startup venture capital business">
                         <div class="card-visual forest">
-                            <span>
-                                Studio<br>report
-                            </span>
+                            <span>Studio report</span>
                             <b>↗</b>
                             <div class="visual-orb"></div>
                         </div>
@@ -388,38 +471,34 @@
                             </p>
                             <h3>The anti-hustle startup is having a moment</h3>
                             <p>Why more founders are building companies that look less like rockets and more like roots.</p>
-                            <div class="card-footer">
-                                <span>Leon Wu</span>
-                                <button class="save-button" aria-label="Save story: The anti-hustle startup is having a moment" data-save="startup" type="button">♡</button>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span>Leon Wu</span>
+                            <button class="save-button" aria-label="Save story: The anti-hustle startup is having a moment" data-save="startup" type="button">?</button>
                         </div>
                     </article>
-                    <article class="story-card" data-topic="Technology" data-search="technology ai tools artificial intelligence work future">
+                    <article class="story-card" data-topic="Tech" data-search="technology ai tools artificial intelligence work future">
                         <div class="card-visual orbit">
-                            <span>
-                                The<br>explainer
-                            </span>
+                            <span>The explainer</span>
                             <b>↗</b>
                             <div class="visual-orbit"></div>
                         </div>
                         <div class="card-body">
                             <p class="card-topic">
-                                Technology <i>·</i>
+                                Tech <i>·</i>
                                 5 min
                             </p>
                             <h3>AI's best feature might be making room for better questions</h3>
                             <p>The most useful tools are not answering for us. They are helping us see differently.</p>
-                            <div class="card-footer">
-                                <span>Nia Brooks</span>
-                                <button class="save-button" aria-label="Save story: AI's best feature might be making room for better questions" data-save="ai" type="button">♡</button>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span>Nia Brooks</span>
+                            <button class="save-button" aria-label="Save story: AI's best feature might be making room for better questions" data-save="ai" type="button">?</button>
                         </div>
                     </article>
                     <article class="story-card" data-topic="Culture" data-search="culture design cities community public spaces architecture">
                         <div class="card-visual city">
-                            <span>
-                                City<br>desk
-                            </span>
+                            <span>City desk</span>
                             <b>↗</b>
                             <div class="visual-city"></div>
                         </div>
@@ -430,10 +509,10 @@
                             </p>
                             <h3>What happens when a city leaves room for the unplanned?</h3>
                             <p>A field guide to the small public places where belonging tends to begin.</p>
-                            <div class="card-footer">
-                                <span>Mara Ellis</span>
-                                <button class="save-button" aria-label="Save story: What happens when a city leaves room for the unplanned?" data-save="city" type="button">♡</button>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span>Mara Ellis</span>
+                            <button class="save-button" aria-label="Save story: What happens when a city leaves room for the unplanned?" data-save="city" type="button">?</button>
                         </div>
                     </article>
                 </div>
@@ -504,6 +583,10 @@
         <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;e3c1c9af36de41759418005494a48906&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
 
 
 

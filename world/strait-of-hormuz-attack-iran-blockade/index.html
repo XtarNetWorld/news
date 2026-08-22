@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dim">
+<html lang="en" data-theme="paper">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,7 @@
     <meta name="author" content="Monu Sharma">
     <meta name="creator" content="Monu Sharma">
     <meta name="publisher" content="NewsXphere">
+    <meta name="newsxphere-article-id" content="strait-of-hormuz-attack-iran-blockade">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
@@ -50,6 +51,16 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/public/newsxphere-light-mode-logo.png">
     <link rel="stylesheet" href="../../styles.css">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('newsxphere-theme');
+                if (theme === 'dim' || theme === 'paper') {
+                    document.documentElement.setAttribute('data-theme', theme);
+                }
+            } catch (e) {}
+        })();
+    </script>
     <script defer src="../../script.js"></script>
 
     <!-- Structured Data (JSON-LD: NewsArticle + Breadcrumb) -->
@@ -356,7 +367,7 @@
   gtag('config', 'G-GZZ9P97SPK');
 </script>
 </head>
-<body>
+<body data-article-id="strait-of-hormuz-attack-iran-blockade">
     <!-- Background Ambients -->
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
@@ -365,11 +376,14 @@
 
     <!-- Global Header -->
     <header class="site-header wrapper">
-        <div class="utility">
-            <span>Tuesday, August 18, 2026</span>
-            <span class="utility-center">
-                <i></i> Edition 014 <i></i> Independent Intelligence
-            </span>
+            <div class="utility">
+                <span id="live-date">Loading date</span>
+                <span class="utility-center">
+                    <span class="live-separator" aria-hidden="true"></span>
+                    <span class="live-separator" aria-hidden="true"></span>
+                    <span id="live-time">--:--:--</span>
+                    <span class="live-bond">for you</span>
+                </span>
             <div class="utility-actions">
                 <button id="saved-toggle" type="button">Saved <b id="saved-count">0</b></button>
                 <button id="reading-mode" type="button">Reader</button>
@@ -392,10 +406,9 @@
             <nav id="primary-nav" aria-label="Primary navigation">
                 <a class="topic" href="/">All signals</a>
                 <a class="topic active" href="/world/">World</a>
-                <a class="topic" href="/tech/">Technology</a>
+                <a class="topic" href="/tech/">Tech</a>
                 <a class="topic" href="/culture/">Culture</a>
-                <a class="topic" href="/climate/">Climate</a>
-                <a class="topic" href="/money/">Money</a>
+                <a class="topic" href="/">Job</a>
             </nav>
             <button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search">
                 <span class="search-trigger-icon" aria-hidden="true"></span>
@@ -550,6 +563,20 @@
             </div>
 
         </article>
+
+        <section class="latest wrapper" id="more-stories">
+            <div class="section-head">
+                <div>
+                    <span class="section-number">03</span>
+                    <h2>More from NewsXphere</h2>
+                </div>
+                <div>
+                    <span>Auto-filled from allnewsdata.json</span>
+                    <span>Keep reading the signal</span>
+                </div>
+            </div>
+            <div class="story-grid" id="related-story-grid" aria-live="polite"></div>
+        </section>
 
         <!-- Briefing Section -->
         <section class="briefing wrapper" id="newsletter">

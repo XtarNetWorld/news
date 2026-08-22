@@ -285,6 +285,59 @@ a {
     display: none;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    min-width: 0;
+    justify-content: flex-end;
+}
+
+.header-weather {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 2px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 8px 22px rgba(23, 42, 41, 0.06);
+    cursor: pointer;
+}
+
+.header-weather-mobile {
+    display: none;
+}
+
+.header-weather-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.header-weather-temp {
+    font: 700 11px "DM Mono", monospace;
+    letter-spacing: 0.08em;
+}
+
+[data-theme="dim"] .header-weather {
+    background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+[data-theme="dim"] .header-weather-icon {
+    background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+}
+
 .nav-shell nav {
     display: flex;
     align-items: center;
@@ -292,6 +345,305 @@ a {
     gap: 4px;
     margin-left: auto;
     justify-content: flex-end;
+}
+
+.header-weather-desktop {
+    margin-right: 6px;
+}
+
+.weather-popover {
+    position: absolute;
+    z-index: 120;
+    top: calc(100% - 6px);
+    right: 18px;
+    width: min(320px, calc(100vw - 24px));
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, white 4%), var(--surface));
+    box-shadow: 0 24px 60px rgba(23, 42, 41, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.weather-popover[hidden] {
+    display: none !important;
+}
+
+.weather-popover-desktop {
+    top: calc(100% + 8px);
+    right: 18px;
+}
+
+.weather-popover-mobile {
+    display: none;
+    top: calc(100% + 6px);
+    right: 12px;
+    width: min(290px, calc(100vw - 20px));
+}
+
+.weather-popover-head,
+.weather-popover-main,
+.weather-popover-mini {
+    display: flex;
+    align-items: center;
+}
+
+.weather-popover-head {
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font: 10px "DM Mono", monospace;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.weather-popover-close {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1;
+}
+
+.weather-popover-main {
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.weather-popover-icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--surface-2) 84%, transparent);
+    font-size: 24px;
+}
+
+.weather-popover-temp {
+    font: 600 34px/1 "Playfair Display", serif;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+}
+
+.weather-popover-place {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.weather-popover-meta {
+    margin-bottom: 8px;
+    color: var(--ink);
+    font: 500 14px/1.4 "DM Sans", sans-serif;
+}
+
+.weather-popover-stats {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-bottom: 8px;
+    overflow-x: auto;
+}
+
+.weather-popover-stats span {
+    flex: 0 0 auto;
+    padding: 7px 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    color: var(--muted);
+    font: 10px "DM Mono", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.weather-popover-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    width: auto;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font: 11px "DM Mono", monospace;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+.weather-tab {
+    border: 0;
+    background: transparent;
+    padding: 0 0 8px;
+    border-bottom: 2px solid transparent;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+}
+
+.weather-tab.is-active {
+    color: var(--ink);
+    border-bottom-color: var(--coral);
+}
+
+.weather-popover-chart {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    align-items: end;
+    gap: 6px;
+    height: 82px;
+    margin-bottom: 8px;
+    padding: 6px 2px 0;
+    border-radius: 18px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 60%, transparent), transparent);
+}
+
+.weather-chart-point {
+    position: relative;
+    height: 100%;
+}
+
+.weather-chart-point i {
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    width: 2px;
+    height: 42px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--coral) 72%, var(--lime)), rgba(0,0,0,0));
+    opacity: 0.72;
+    border-radius: 999px;
+}
+
+.weather-popover.is-precipitation .weather-chart-point i {
+    background: linear-gradient(180deg, color-mix(in srgb, #2f76ff 70%, var(--surface-2)), rgba(0,0,0,0));
+}
+
+.weather-popover.is-wind .weather-chart-point i {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--teal) 72%, var(--surface-2)), rgba(0,0,0,0));
+}
+
+.weather-chart-point span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font: 11px "DM Mono", monospace;
+    white-space: nowrap;
+}
+
+.weather-chart-point small {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font: 9px "DM Mono", monospace;
+    white-space: nowrap;
+}
+
+.weather-popover-forecast {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.weather-forecast-pill {
+    appearance: none;
+    border: 1px solid var(--line);
+    padding: 8px 7px;
+    border-radius: 18px;
+    background: var(--surface-2);
+    text-align: center;
+    color: inherit;
+    cursor: pointer;
+}
+
+.weather-forecast-pill.is-active {
+    background: color-mix(in srgb, var(--surface) 86%, var(--coral));
+    border-color: color-mix(in srgb, var(--coral) 36%, var(--line));
+}
+
+.weather-popover.is-precipitation .weather-forecast-pill.is-active {
+    background: color-mix(in srgb, var(--surface) 86%, #2f76ff);
+    border-color: color-mix(in srgb, #2f76ff 36%, var(--line));
+}
+
+.weather-popover.is-wind .weather-forecast-pill.is-active {
+    background: color-mix(in srgb, var(--surface) 86%, var(--teal));
+    border-color: color-mix(in srgb, var(--teal) 36%, var(--line));
+}
+
+.weather-forecast-pill span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font: 10px "DM Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.weather-forecast-pill b {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 16px;
+}
+
+.weather-forecast-pill small {
+    color: var(--ink);
+    font: 11px "DM Mono", monospace;
+}
+
+.weather-popover-mini {
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font: 10px "DM Mono", monospace;
+    letter-spacing: 0.06em;
+}
+
+.weather-popover-mini span {
+    padding: 6px 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-2);
+}
+
+.weather-popover-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: var(--teal);
+    color: var(--bg);
+    font: 700 11px "DM Mono", monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .weather-popover-desktop {
+        display: none !important;
+    }
+
+    .weather-popover-mobile {
+        display: block;
+        left: 10px;
+        right: 10px;
+        width: auto;
+    }
+
+    .weather-popover-chart {
+        height: 76px;
+    }
+
+    .weather-popover-forecast {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 .topic {
@@ -1189,12 +1541,23 @@ h1 em {
 }
 
 .story-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: 32px 32px 42px 24px;
     background: var(--surface);
     box-shadow: var(--soft-shadow);
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.story-card-link {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    color: inherit;
+    text-decoration: none;
 }
 
 .story-card:hover {
@@ -1204,7 +1567,7 @@ h1 em {
 
 .story-card.card-dark {
     background: var(--dark);
-    color: var(--bg);
+    color: #edf2e9;
     border-color: transparent;
 }
 
@@ -1218,6 +1581,36 @@ h1 em {
     font: 10px "DM Mono", monospace;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+.image-card {
+    padding: 0;
+    border-radius: 0 0 44px 0;
+    isolation: isolate;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-card span,
+.image-card b {
+    position: absolute;
+    z-index: 1;
+}
+
+.image-card span {
+    top: 18px;
+    left: 19px;
+}
+
+.image-card b {
+    top: 18px;
+    right: 19px;
+    font: 18px "DM Sans", sans-serif;
 }
 
 .card-visual > b {
@@ -1298,6 +1691,7 @@ h1 em {
 }
 
 .card-body {
+    flex: 1 1 auto;
     padding: 22px 22px 19px;
 }
 
@@ -1307,14 +1701,22 @@ h1 em {
 }
 
 .card-dark .card-topic {
-    color: var(--lime);
+    color: #d6dfad;
+    font-weight: 600;
+    letter-spacing: 0.08em;
 }
 
 .card-body h3 {
     min-height: 82px;
     margin: 0px 0px 12px;
+    color: var(--ink);
     font: 500 25px / 1.04 "Playfair Display", serif;
     letter-spacing: -0.04em;
+}
+
+.story-card.card-dark .card-body h3 {
+    color: #f7f4ea;
+    text-shadow: none;
 }
 
 .card-body > p:not(.card-topic) {
@@ -1324,14 +1726,46 @@ h1 em {
     font-size: 13px;
 }
 
+.story-card.card-dark .card-body > p:not(.card-topic),
+.story-card.card-dark .card-footer {
+    color: #c6d2ca;
+}
+
+.story-card.card-dark .card-footer {
+    border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.story-card.card-dark .save-button {
+    color: #c6d2ca;
+}
+
+.story-card.card-dark .save-button.saved {
+    color: #eab39c;
+}
+
 .card-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--line);
-    padding-top: 14px;
+    position: relative;
+    margin-top: auto;
+    padding: 14px 22px 18px;
     color: var(--muted);
     font: 11px "DM Mono", monospace;
+}
+
+.card-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5.5%;
+    width: 89%;
+    height: 1px;
+    background: var(--line);
+}
+
+.story-card.card-dark .card-footer::before {
+    background: rgba(255, 255, 255, 0.16);
 }
 
 .save-button {
@@ -1578,10 +2012,61 @@ h1 em {
     }
 
     .nav-shell {
+        display: flex;
         flex-wrap: wrap;
         gap: 10px;
         padding: 12px 14px 14px;
         align-items: center;
+    }
+
+    .brand {
+        margin-right: 0;
+        flex: 0 1 auto;
+        order: 0;
+    }
+
+    .header-controls {
+        gap: 5px;
+        flex-shrink: 0;
+        flex: 0 0 auto;
+        min-width: 0;
+        order: 2;
+    }
+
+    .header-weather {
+        margin-right: 0;
+        margin-left: 0;
+        padding: 7px 9px;
+        flex-shrink: 0;
+    }
+
+    .header-weather-desktop {
+        display: none;
+    }
+
+    .header-weather-mobile {
+        display: inline-flex;
+    }
+
+    .weather-popover-desktop {
+        display: none !important;
+    }
+
+    .weather-popover-mobile {
+        display: block;
+        right: 10px;
+    }
+
+    .weather-popover-stats {
+        gap: 5px;
+    }
+
+    .weather-popover-stats span {
+        padding: 6px 8px;
+    }
+
+    .weather-popover-tabs {
+        gap: 14px;
     }
 
     .menu-toggle {
@@ -1591,11 +2076,12 @@ h1 em {
         border: 1px solid var(--line);
         border-radius: var(--radius-pill);
         background: var(--surface);
-        padding: 9px 14px;
-        font-size: 12px;
+        padding: 8px 11px;
+        font-size: 11px;
         font-weight: 500;
         color: var(--ink);
-        margin-left: auto;
+        margin-left: 0;
+        flex-shrink: 0;
         white-space: nowrap;
     }
 
@@ -1609,7 +2095,8 @@ h1 em {
 
     .nav-shell nav {
         display: none;
-        order: 5;
+        order: 3;
+        flex: 1 0 100%;
         width: 100%;
         margin: 4px 0 0;
         padding: 10px;
@@ -1624,6 +2111,14 @@ h1 em {
 
     .nav-shell nav.open {
         display: flex;
+    }
+
+    .weather-popover-mobile {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: calc(100% + 8px);
+        width: auto;
     }
 
     .nav-shell nav .topic {
@@ -1643,19 +2138,13 @@ h1 em {
 
     .search-trigger {
         margin-left: 0;
+        margin-left: auto;
         flex-shrink: 0;
-    }
-
-    .brand {
-        flex: 0 0 auto;
-        flex-shrink: 0;
-        margin-right: auto;
-        justify-content: flex-start;
     }
 
     .brand-logo {
-        height: 58px;
-        max-width: min(250px, 46vw);
+        height: 54px;
+        max-width: min(165px, 28vw);
     }
 
     .hero {
@@ -2359,6 +2848,11 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
 
 /* Desktop: keep topics from crowding */
 @media (min-width: 901px) {
+    .header-controls {
+        flex: 0 0 auto;
+        margin-left: 0;
+    }
+
     .nav-shell nav {
         gap: 3px;
     }
@@ -2384,28 +2878,43 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
         font-size: 9px;
     }
     .nav-shell {
-        padding: 10px 10px 12px;
+        flex-wrap: nowrap;
         gap: 6px;
+        padding: 10px 8px 12px;
     }
     .brand {
-        font-size: 17px;
-        margin-right: auto;
-        flex: 0 0 auto;
-        justify-content: flex-start;
+        margin-right: 0;
+        flex: 0 1 auto;
+        order: 0;
     }
-    .brand strong {
-        width: 22px;
-        height: 22px;
-        font-size: 13px;
+
+    .header-controls {
+        margin-left: auto;
+        gap: 4px;
     }
+
+    .brand-logo {
+        height: 44px;
+        max-width: min(112px, 20vw);
+    }
+
+    .header-weather {
+        padding: 5px 7px;
+        gap: 4px;
+    }
+
+    .weather-popover-mobile {
+        top: calc(100% + 6px);
+    }
+
     .menu-toggle {
-        padding: 7px 10px;
+        padding: 7px 8px;
         font-size: 10px;
-        gap: 6px;
+        gap: 4px;
     }
     .search-trigger {
-        width: 34px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
     }
     .nav-shell nav .topic {
         padding: 8px 10px;
@@ -2437,7 +2946,7 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
 
 @media (max-width: 560px) {
     .site-header {
-        top: 8px;
+        top: 0px;
         width: calc(100% - 16px);
         border-radius: 18px 18px 28px 28px;
     }
@@ -3035,5 +3544,291 @@ img, video, canvas, svg {
     }
     .hero-search kbd {
         display: none;
+    }
+}
+
+/* Final footer/newsletter alignment override */
+.site-footer {
+    padding: 34px 0 24px !important;
+    border-top: 1px solid var(--line) !important;
+    overflow: visible !important;
+}
+
+.footer-inner {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 20px 28px !important;
+}
+
+.footer-inner .brand {
+    justify-self: center !important;
+    margin: 0 !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+}
+
+.footer-inner .brand-logo {
+    height: 64px !important;
+    max-width: min(260px, 32vw) !important;
+}
+
+.footer-inner > p {
+    min-width: 0 !important;
+    margin: 0 !important;
+    color: var(--muted) !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere !important;
+}
+
+.footer-inner > div {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 10px 16px !important;
+    color: var(--teal) !important;
+    font-size: 12px !important;
+}
+
+.footer-inner > div a {
+    white-space: nowrap !important;
+    text-decoration: none !important;
+}
+
+.copyright {
+    display: block !important;
+    text-align: center !important;
+    padding-top: 22px !important;
+    margin-top: 22px !important;
+    border-top: 1px solid var(--line) !important;
+    color: var(--muted) !important;
+    font: 10px/1.5 "DM Mono", monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+}
+
+.copyright span {
+    display: inline !important;
+    line-height: 1.5 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.briefing {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 40px !important;
+    align-items: flex-end !important;
+    padding: 48px 40px !important;
+    margin-bottom: 80px !important;
+    border-radius: 48px 32px 52px 28px !important;
+    background: var(--teal) !important;
+    color: var(--bg) !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+.briefing > div {
+    min-width: 0 !important;
+    max-width: min(520px, 100%) !important;
+}
+
+.briefing form {
+    width: min(400px, 100%) !important;
+    flex-shrink: 0 !important;
+    max-width: 100% !important;
+}
+
+.briefing h2 {
+    margin: 0 0 14px !important;
+    font: 500 clamp(34px, 4vw, 56px) / 0.98 "Playfair Display", serif !important;
+    letter-spacing: -0.05em !important;
+}
+
+.briefing p {
+    margin: 0 !important;
+    max-width: 38ch !important;
+}
+
+.email-field {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 5px !important;
+    border-radius: var(--radius-pill) !important;
+    background: var(--bg) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.email-field input {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    color: var(--ink) !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+    border-radius: 999px !important;
+    background-clip: padding-box !important;
+    -webkit-background-clip: padding-box !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.email-field input:-webkit-autofill,
+.email-field input:-webkit-autofill:hover,
+.email-field input:-webkit-autofill:focus,
+.email-field input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--ink) !important;
+    caret-color: var(--ink) !important;
+    border-radius: 999px !important;
+    background-color: var(--bg) !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--bg) inset !important;
+    box-shadow: 0 0 0 1000px var(--bg) inset !important;
+    transition: background-color 9999s ease-out 0s !important;
+}
+
+.email-field input::selection {
+    background: color-mix(in srgb, var(--coral) 22%, transparent) !important;
+}
+
+.email-field button {
+    flex: 0 0 auto !important;
+    border: 0 !important;
+    border-radius: var(--radius-pill) !important;
+    background: var(--coral) !important;
+    color: var(--surface) !important;
+    padding: 12px 18px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.form-note {
+    font: 10px "DM Mono", monospace !important;
+    color: color-mix(in srgb, var(--bg) 70%, transparent) !important;
+    margin: 12px 8px 0 !important;
+    line-height: 1.4 !important;
+}
+
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        text-align: center !important;
+        gap: 16px !important;
+    }
+
+    .footer-inner > p,
+    .footer-inner > div {
+        width: 100% !important;
+        justify-self: center !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .briefing {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 36px 28px !important;
+        gap: 28px !important;
+    }
+
+    .briefing form {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .site-footer {
+        padding: 28px 0 18px !important;
+    }
+
+    .footer-inner .brand-logo {
+        height: 46px !important;
+        max-width: min(200px, 46vw) !important;
+    }
+
+    .copyright {
+        padding-top: 16px !important;
+        margin-top: 16px !important;
+        letter-spacing: 0.04em !important;
+        font-size: 9px !important;
+        white-space: normal !important;
+    }
+
+    .copyright span {
+        display: block !important;
+        white-space: normal !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+        line-height: 1.55 !important;
+    }
+
+    .briefing {
+        padding: 28px 18px !important;
+        border-radius: 28px !important;
+        gap: 22px !important;
+        margin-bottom: 48px !important;
+    }
+
+    .briefing h2 {
+        font-size: clamp(28px, 8vw, 40px) !important;
+    }
+
+    .email-field {
+        padding: 4px !important;
+    }
+
+    .email-field input {
+        padding: 12px 14px !important;
+        font-size: 13px !important;
+    }
+
+    .email-field button {
+        padding: 11px 14px !important;
+        font-size: 12px !important;
+    }
+
+    .form-note {
+        margin: 10px 4px 0 !important;
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .email-field {
+        flex-direction: column !important;
+        border-radius: 18px !important;
+        padding: 6px !important;
+        gap: 6px !important;
+    }
+
+    .email-field input {
+        width: 100% !important;
+        padding: 12px 14px !important;
+        text-align: left !important;
+    }
+
+    .email-field button {
+        width: 100% !important;
+        justify-content: center !important;
+        border-radius: 14px !important;
+        padding: 12px 16px !important;
+    }
+
+    .copyright {
+        font-size: 8px !important;
+        letter-spacing: 0.03em !important;
     }
 }
