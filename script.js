@@ -125,29 +125,58 @@ const weatherLabelForCode = (code = 0) => {
     return 'Stable';
 };
 
-const formatHour = (value) => new Intl.DateTimeFormat(undefined, { hour: 'numeric' }).format(new Date(value));
-const formatDay = (value) => new Intl.DateTimeFormat(undefined, { weekday: 'short' }).format(new Date(value));
+// hourly.time strings ("2026-08-22T14:00") are naive local time for the WEATHER
+// LOCATION, not the browser. Passing them to `new Date(...)` makes JS reinterpret
+// them in the browser's own timezone, silently shifting the hour label. Parse the
+// hour directly out of the string instead.
+const formatHour = (value) => {
+    if (typeof value !== 'string' || value.length < 13) return '';
+    const hour = Number(value.slice(11, 13));
+    if (!Number.isFinite(hour)) return '';
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+    return `${displayHour} ${period}`;
+};
 
-const renderWeatherChart = (container, hourly, mode = 'temperature') => {
+// daily.time strings are date-only ("2026-08-22"). `new Date("2026-08-22")` parses
+// as UTC midnight, which can land on the PREVIOUS calendar day once formatted in a
+// negative-UTC-offset timezone. Build the Date from local y/m/d components instead
+// so the weekday can't shift.
+const formatDay = (value) => {
+    if (typeof value !== 'string') return '';
+    const [year, month, day] = value.split('-').map(Number);
+    if (!year || !month || !day) return '';
+    return new Intl.DateTimeFormat(undefined, { weekday: 'short' }).format(new Date(year, month - 1, day));
+};
+
+const renderWeatherChart = (container, hourly, mode = 'temperature', startIndex = 0) => {
     if (!container) return;
     const temps = hourly?.temperature_2m || [];
     const precip = hourly?.precipitation_probability || [];
     const wind = hourly?.wind_speed_10m || hourly?.windspeed_10m || [];
     const times = hourly?.time || [];
     const source = mode === 'precipitation' ? precip : mode === 'wind' ? wind : temps;
-    const points = source.slice(0, 8);
-    if (!points.length) {
-        container.innerHTML = '';
+    const rawSlice = source.slice(startIndex, startIndex + 8);
+    // Some locations/models return null (not 0) for a given hour/variable when
+    // that data genuinely isn't available -- treat those as gaps, not zeros.
+    const validEntries = rawSlice
+        .map((value, index) => ({ value: Number(value), timeValue: times[startIndex + index] }))
+        .filter(entry => Number.isFinite(entry.value));
+
+    if (!validEntries.length) {
+        container.innerHTML = `<p style="grid-column:1 / -1;margin:0;padding:8px 4px;color:var(--muted);font:11px 'DM Mono',monospace;text-align:center;">No ${mode} data available for this location right now.</p>`;
         return;
     }
+
+    const points = validEntries.map(entry => entry.value);
     const min = Math.min(...points);
     const max = Math.max(...points);
     const range = Math.max(max - min, 1);
     const suffix = mode === 'precipitation' ? '%' : mode === 'wind' ? ' km/h' : '°';
-    container.innerHTML = points.map((temp, index) => {
-        const pct = 18 + ((temp - min) / range) * 64;
-        const label = times[index] ? formatHour(times[index]) : '';
-        return `<div class="weather-chart-point"><span style="bottom:${pct}%">${Math.round(temp)}${suffix}</span><i></i><small>${label}</small></div>`;
+    container.innerHTML = validEntries.map(({ value, timeValue }) => {
+        const pct = 18 + ((value - min) / range) * 64;
+        const label = timeValue ? formatHour(timeValue) : '';
+        return `<div class="weather-chart-point"><span style="bottom:${pct}%">${Math.round(value)}${suffix}</span><i></i><small>${label}</small></div>`;
     }).join('');
 };
 
@@ -193,8 +222,8 @@ const setWeatherMode = (mode) => {
         panel.classList.toggle('is-wind', activeWeatherMode === 'wind');
     });
     if (!weatherSnapshot) return;
-    renderWeatherChart(desktopWeatherPopoverChart, weatherSnapshot.hourly, activeWeatherMode);
-    renderWeatherChart(mobileWeatherPopoverChart, weatherSnapshot.hourly, activeWeatherMode);
+    renderWeatherChart(desktopWeatherPopoverChart, weatherSnapshot.hourly, activeWeatherMode, weatherSnapshot.currentHourIndex || 0);
+    renderWeatherChart(mobileWeatherPopoverChart, weatherSnapshot.hourly, activeWeatherMode, weatherSnapshot.currentHourIndex || 0);
 };
 
 const setSelectedWeatherDay = (dayIndex = 0) => {
@@ -228,36 +257,122 @@ const setSelectedWeatherDay = (dayIndex = 0) => {
     });
 };
 
+/* ---------------------------------------------------------------------
+ * Location + weather fetching -- entirely free, keyless services:
+ *   Weather: Open-Meteo (free, unlimited for non-commercial use, no key).
+ *   Location: chained IP-geolocation fallbacks, all free and keyless:
+ *     1. ipapi.co   -- free tier (soft cap around 30k req/month).
+ *     2. geojs.io   -- free, no published rate cap.
+ *     3. ipwho.is   -- free, no key, extra resilience if both above fail.
+ *     4. Fixed default location as an absolute last resort.
+ * Every failure is logged to the console so it's easy to diagnose which
+ * service (if any) is having trouble.
+ * ------------------------------------------------------------------- */
+
+const DEFAULT_WEATHER_LOCATION = { latitude: 51.5072, longitude: -0.1276, label: 'London, UK' };
+
+const fetchWithTimeout = async (url, options = {}, timeoutMs = 6000) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+        clearTimeout(timer);
+    }
+};
+
+// IP-based location only -- no browser geolocation prompt, no paid/keyed services.
+const resolveWeatherLocation = async () => {
+    try {
+        const res = await fetchWithTimeout('https://ipapi.co/json/', { cache: 'no-store' }, 5000);
+        if (!res.ok) throw new Error(`ipapi.co responded ${res.status}`);
+        const data = await res.json();
+        const lat = Number(data.latitude);
+        const lon = Number(data.longitude);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('ipapi.co returned invalid coordinates');
+        return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country_name].filter(Boolean).join(', ') };
+    } catch (ipapiError) {
+        console.warn('[weather] ipapi.co lookup failed, trying geojs.io instead:', ipapiError);
+        try {
+            const res = await fetchWithTimeout('https://get.geojs.io/v1/ip/geo.json', { cache: 'no-store' }, 5000);
+            if (!res.ok) throw new Error(`geojs.io responded ${res.status}`);
+            const data = await res.json();
+            const lat = Number(data.latitude);
+            const lon = Number(data.longitude);
+            if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('geojs.io returned invalid coordinates');
+            return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country || ''].filter(Boolean).join(', ') };
+        } catch (geojsError) {
+            console.warn('[weather] geojs.io lookup failed too, trying ipwho.is instead:', geojsError);
+            try {
+                const res = await fetchWithTimeout('https://ipwho.is/', { cache: 'no-store' }, 5000);
+                if (!res.ok) throw new Error(`ipwho.is responded ${res.status}`);
+                const data = await res.json();
+                if (data.success === false) throw new Error(data.message || 'ipwho.is lookup unsuccessful');
+                const lat = Number(data.latitude);
+                const lon = Number(data.longitude);
+                if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('ipwho.is returned invalid coordinates');
+                return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country || ''].filter(Boolean).join(', ') };
+            } catch (ipwhoError) {
+                console.warn('[weather] ipwho.is lookup failed too, using default location:', ipwhoError);
+                return DEFAULT_WEATHER_LOCATION;
+            }
+        }
+    }
+};
+
 const updateHeaderWeather = async () => {
     if (!desktopWeather && !mobileWeather) return;
 
     try {
-        const geoRes = await fetch('https://get.geojs.io/v1/ip/geo.json', { cache: 'no-store' });
-        if (!geoRes.ok) throw new Error('Geo lookup failed');
-        const geo = await geoRes.json();
-        const lat = Number(geo.latitude);
-        const lon = Number(geo.longitude);
-        if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('Invalid coordinates');
+        const { latitude: lat, longitude: lon, label } = await resolveWeatherLocation();
 
-        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max,wind_speed_10m_max&timezone=auto`, { cache: 'no-store' });
-        if (!weatherRes.ok) throw new Error('Weather lookup failed');
+        const weatherRes = await fetchWithTimeout(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,precipitation_probability,wind_speed_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max,wind_speed_10m_max&timezone=auto&windspeed_unit=kmh&precipitation_unit=mm`,
+            { cache: 'no-store' },
+            8000
+        );
+        if (!weatherRes.ok) throw new Error(`Weather lookup failed: ${weatherRes.status}`);
         const weather = await weatherRes.json();
         const temp = weather?.current_weather?.temperature;
         const code = weather?.current_weather?.weather_code ?? weather?.current_weather?.weathercode;
         const daily = weather?.daily || {};
         const hourly = weather?.hourly || {};
 
+        // Open-Meteo's hourly arrays always start at local midnight, NOT the current
+        // hour. Reading index [0] (as before) silently pulled midnight's humidity/
+        // wind/rain numbers while the temperature came from current_weather (which
+        // IS live) -- producing mismatched values like "Light drizzle, Rain 0%".
+        //
+        // current_weather.time and hourly.time are both naive local-time strings
+        // from the SAME response (timezone=auto), e.g. "2026-08-22T14:32" and
+        // "2026-08-22T14:00". Match them with plain string slicing only -- never
+        // run either through `new Date(...)`, because a bare "YYYY-MM-DDTHH:mm"
+        // string with no timezone offset gets parsed in the BROWSER's local
+        // timezone, not the weather location's. That mismatch is what was
+        // shifting the chart's start hour.
+        const currentWeatherTime = weather?.current_weather?.time || '';
+        const hourlyTimes = hourly.time || [];
+        const currentHourKey = currentWeatherTime.slice(0, 13); // "YYYY-MM-DDTHH"
+        let currentHourIndex = hourlyTimes.findIndex(t => t.slice(0, 13) === currentHourKey);
+        if (currentHourIndex === -1) currentHourIndex = 0;
+
         const tempText = Number.isFinite(temp) ? `${Math.round(temp)}°` : '--°';
         const iconText = weatherIconForCode(code);
-        const place = geo.city ? [geo.city, geo.region || geo.country || ''].filter(Boolean).join(', ') : 'Current location';
+        const place = label || 'Current location';
         const condition = weatherLabelForCode(code);
         const hi = Number.isFinite(daily.temperature_2m_max?.[0]) ? `H ${Math.round(daily.temperature_2m_max[0])}°` : 'H --°';
         const lo = Number.isFinite(daily.temperature_2m_min?.[0]) ? `L ${Math.round(daily.temperature_2m_min[0])}°` : 'L --°';
-        const dayLabel = daily.time?.[0] ? new Intl.DateTimeFormat(undefined, { weekday: 'long' }).format(new Date(daily.time[0])) : 'Today';
-        const humidity = hourly.precipitation_probability?.[0];
-        const wind = hourly.wind_speed_10m?.[0] ?? hourly.windspeed_10m?.[0];
-        const rain = daily.precipitation_probability_max?.[0];
-        weatherSnapshot = { tempText, iconText, place, condition, hi, lo, dayLabel, humidity, wind, rain, hourly, daily };
+        const dayLabel = (() => {
+            const t = daily.time?.[0];
+            if (!t) return 'Today';
+            const [y, m, d] = t.split('-').map(Number);
+            if (!y || !m || !d) return 'Today';
+            return new Intl.DateTimeFormat(undefined, { weekday: 'long' }).format(new Date(y, m - 1, d));
+        })();
+        const humidity = hourly.relative_humidity_2m?.[currentHourIndex];
+        const wind = weather?.current_weather?.windspeed ?? (hourly.wind_speed_10m?.[currentHourIndex] ?? hourly.windspeed_10m?.[currentHourIndex]);
+        const rain = hourly.precipitation_probability?.[currentHourIndex];
+        weatherSnapshot = { tempText, iconText, place, condition, hi, lo, dayLabel, humidity, wind, rain, hourly, daily, currentHourIndex };
 
         [desktopWeatherTemp, mobileWeatherTemp].forEach(el => {
             if (el) el.textContent = tempText;
@@ -265,9 +380,8 @@ const updateHeaderWeather = async () => {
         [desktopWeatherIcon, mobileWeatherIcon].forEach(el => {
             if (el) el.textContent = iconText;
         });
-        const title = geo.city ? `${geo.city}, ${geo.region || geo.country || ''}`.trim() : 'Current weather';
-        if (desktopWeather) desktopWeather.title = title;
-        if (mobileWeather) mobileWeather.title = title;
+        if (desktopWeather) desktopWeather.title = place;
+        if (mobileWeather) mobileWeather.title = place;
 
         [
             [desktopWeatherPopoverIcon, desktopWeatherPopoverTemp, desktopWeatherPopoverPlace, desktopWeatherPopoverMeta, desktopWeatherPopoverHi, desktopWeatherPopoverLo, desktopWeatherPopoverDay, desktopWeatherPopoverHumidity, desktopWeatherPopoverWind, desktopWeatherPopoverRain, desktopWeatherPopoverChart, desktopWeatherPopoverForecast],
@@ -283,12 +397,13 @@ const updateHeaderWeather = async () => {
             if (humidityEl) humidityEl.textContent = `Humidity ${Number.isFinite(humidity) ? `${Math.round(humidity)}%` : '--%'}`;
             if (windEl) windEl.textContent = `Wind ${Number.isFinite(wind) ? `${Math.round(wind)} km/h` : '-- km/h'}`;
             if (rainEl) rainEl.textContent = `Rain ${Number.isFinite(rain) ? `${Math.round(rain)}%` : '--%'}`;
-            renderWeatherChart(chartEl, hourly, activeWeatherMode);
+            renderWeatherChart(chartEl, hourly, activeWeatherMode, currentHourIndex);
             renderWeatherForecast(forecastEl, daily);
         });
         syncWeatherTabs();
         setSelectedWeatherDay(selectedWeatherDay);
     } catch (error) {
+        console.error('[weather] Unable to load live weather data:', error);
         [desktopWeatherTemp, mobileWeatherTemp].forEach(el => {
             if (el) el.textContent = '--°';
         });
