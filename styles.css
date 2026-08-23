@@ -3638,6 +3638,7 @@ img, video, canvas, svg {
     box-sizing: border-box !important;
     max-width: 100% !important;
     overflow: hidden !important;
+    margin-top: 25px;
 }
 
 .briefing > div {
