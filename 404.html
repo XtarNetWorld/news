@@ -32,11 +32,12 @@
         <a class="skip-link" href="#main-content">Skip to content</a>
         <header class="site-header wrapper">
             <div class="utility">
-                <span>Friday, August 14, 2026</span>
+                <span id="live-date">Loading date</span>
                 <span class="utility-center">
-                    <i></i>
-                    Edition 014 <i></i>
-                    Independent intelligence
+                    <i class="live-separator" aria-hidden="true"></i>
+                    <span id="live-time">--:--:--</span>
+                    <i class="live-separator" aria-hidden="true"></i>
+                    <span class="live-bond">FOR YOU</span>
                 </span>
                 <div class="utility-actions">
                     <button id="saved-toggle" type="button">
@@ -50,6 +51,7 @@
                 </div>
             </div>
             <div class="nav-shell">
+                
                 <a class="brand" href="/" aria-label="NewsXphere home" title="NewsXphere">
                     <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
                     <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
@@ -57,19 +59,95 @@
                 <span class="brand-promise">
                     NX · A calmer signal<br>for what's next.
                 </span>
-                <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-                    Menu <span></span>
-                </button>
-                <nav id="primary-nav" aria-label="Primary navigation">
-                    <a class="topic" href="/">All signals</a>
-                    <a class="topic" href="/">Startups</a>
-                    <a class="topic" href="/">Tech</a>
-                    <a class="topic" href="/">Culture</a>
-                    <a class="topic" href="/">Job</a>
+
+                <nav id="primary-nav" aria-label="Primary navigation" class="">
+                    <div class="header-weather header-weather-desktop" id="desktop-weather" aria-label="Current weather">
+                        <span class="header-weather-icon" id="desktop-weather-icon" aria-hidden="true">☀</span>
+                        <span class="header-weather-temp" id="desktop-weather-temp">--°</span>
+                    </div>
+                    <button class="topic active" data-topic="All" type="button">All signals</button>
+                    <button class="topic" data-topic="World" type="button">World</button>
+                    <button class="topic" data-topic="Startups" type="button">Startups</button>
+                    <button class="topic" data-topic="Tech" type="button">Tech</button>
+                    <button class="topic" data-topic="Culture" type="button">Culture</button>
+                    <button class="topic" data-topic="Job" type="button">Job</button>
                 </nav>
-                <button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search">
-                    <span class="search-trigger-icon" aria-hidden="true"></span>
-                </button>
+                <div class="header-controls">
+                    <div class="header-weather header-weather-mobile" id="mobile-weather" aria-label="Current weather">
+                        <span class="header-weather-icon" id="mobile-weather-icon" aria-hidden="true">☀</span>
+                        <span class="header-weather-temp" id="mobile-weather-temp">--°</span>
+                    </div>
+                    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+                        Menu <span></span>
+                    </button>
+                    <button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search">
+                        <span class="search-trigger-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="weather-popover weather-popover-desktop" id="desktop-weather-popover" hidden>
+                    <div class="weather-popover-head">
+                        <span class="weather-popover-label">Current weather</span>
+                        <button type="button" class="weather-popover-close" data-weather-close aria-label="Close weather">×</button>
+                    </div>
+                    <div class="weather-popover-main">
+                        <span class="weather-popover-icon" id="desktop-weather-popover-icon" aria-hidden="true">☀</span>
+                        <div>
+                            <div class="weather-popover-temp" id="desktop-weather-popover-temp">--°</div>
+                            <div class="weather-popover-place" id="desktop-weather-popover-place">Detecting location...</div>
+                        </div>
+                    </div>
+                    <div class="weather-popover-meta" id="desktop-weather-popover-meta">Loading current conditions...</div>
+                    <div class="weather-popover-stats">
+                        <span id="desktop-weather-popover-humidity">Humidity --%</span>
+                        <span id="desktop-weather-popover-wind">Wind -- km/h</span>
+                        <span id="desktop-weather-popover-rain">Rain --%</span>
+                    </div>
+                    <div class="weather-popover-tabs" aria-label="Weather details">
+                        <button type="button" class="weather-tab is-active" data-weather-tab="temperature">Temperature</button>
+                        <button type="button" class="weather-tab" data-weather-tab="precipitation">Precipitation</button>
+                        <button type="button" class="weather-tab" data-weather-tab="wind">Wind</button>
+                    </div>
+                    <div class="weather-popover-chart" id="desktop-weather-popover-chart" aria-hidden="true"></div>
+                    <div class="weather-popover-forecast" id="desktop-weather-popover-forecast"></div>
+                    <div class="weather-popover-mini">
+                        <span id="desktop-weather-popover-hi">H --°</span>
+                        <span id="desktop-weather-popover-lo">L --°</span>
+                        <span id="desktop-weather-popover-day">Today</span>
+                    </div>
+                    <a class="weather-popover-link" href="/weather/">Open full Weather Desk</a>
+                </div>
+                <div class="weather-popover weather-popover-mobile" id="mobile-weather-popover" hidden>
+                    <div class="weather-popover-head">
+                        <span class="weather-popover-label">Current weather</span>
+                        <button type="button" class="weather-popover-close" data-weather-close aria-label="Close weather">×</button>
+                    </div>
+                    <div class="weather-popover-main">
+                        <span class="weather-popover-icon" id="mobile-weather-popover-icon" aria-hidden="true">☀</span>
+                        <div>
+                            <div class="weather-popover-temp" id="mobile-weather-popover-temp">--°</div>
+                            <div class="weather-popover-place" id="mobile-weather-popover-place">Detecting location...</div>
+                        </div>
+                    </div>
+                    <div class="weather-popover-meta" id="mobile-weather-popover-meta">Loading current conditions...</div>
+                    <div class="weather-popover-stats">
+                        <span id="mobile-weather-popover-humidity">Humidity --%</span>
+                        <span id="mobile-weather-popover-wind">Wind -- km/h</span>
+                        <span id="mobile-weather-popover-rain">Rain --%</span>
+                    </div>
+                    <div class="weather-popover-tabs" aria-label="Weather details">
+                        <button type="button" class="weather-tab is-active" data-weather-tab="temperature">Temperature</button>
+                        <button type="button" class="weather-tab" data-weather-tab="precipitation">Precipitation</button>
+                        <button type="button" class="weather-tab" data-weather-tab="wind">Wind</button>
+                    </div>
+                    <div class="weather-popover-chart" id="mobile-weather-popover-chart" aria-hidden="true"></div>
+                    <div class="weather-popover-forecast" id="mobile-weather-popover-forecast"></div>
+                    <div class="weather-popover-mini">
+                        <span id="mobile-weather-popover-hi">H --°</span>
+                        <span id="mobile-weather-popover-lo">L --°</span>
+                        <span id="mobile-weather-popover-day">Today</span>
+                    </div>
+                    <a class="weather-popover-link" href="/weather/">Open full Weather Desk</a>
+                </div>
                 <div class="search-panel" id="search-panel" hidden="">
                     <div class="search-panel-inner">
                         <div class="search-sheet">
@@ -82,18 +160,18 @@
                             <button class="search-refresh" id="search-refresh" type="button">↻ Refresh stories</button>
                             <div class="search-meta">
                                 <span id="search-hint">Recent searches and trending signals</span>
-                                <span id="search-result-count">0 stories</span>
+                                <span id="search-result-count">Loading stories</span>
                             </div>
                             <div class="search-suggestions" id="search-suggestions">
                                 <section class="search-group">
                                     <h3>Recent</h3>
-                                    <button type="button" class="suggestion-item">anti-hustle startup</button>
-                                    <button type="button" class="suggestion-item">AI better questions</button>
-                                    <button type="button" class="suggestion-item">unplanned city spaces</button>
+                                    <button type="button" class="suggestion-item">Strait of Hormuz</button>
+                                    <button type="button" class="suggestion-item">maritime security</button>
+                                    <button type="button" class="suggestion-item">oil tanker</button>
                                 </section>
                                 <section class="search-group">
                                     <h3>Trending now</h3>
-                                    <button type="button" class="suggestion-item trend">founders choosing focus</button>
+                                    <button type="button" class="suggestion-item trend">Iran blockade</button>
                                 </section>
                             </div>
                             <div class="search-results" id="search-results" hidden=""></div>

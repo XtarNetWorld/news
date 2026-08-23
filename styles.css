@@ -737,6 +737,9 @@ a {
     font: 700 11px "DM Mono", monospace;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    display: inline-block;
+    min-width: 34px;
+    text-align: left;
 }
 
 .search-panel {
@@ -2273,12 +2276,10 @@ h1 em {
     .utility {
         padding: 8px 12px;
         gap: 8px;
-        flex-wrap: wrap;
     }
 
     .utility-actions {
         gap: 8px;
-        flex-wrap: wrap;
         justify-content: flex-end;
     }
 
@@ -2831,13 +2832,20 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
 }
 
 .utility {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px 12px;
     row-gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.utility::-webkit-scrollbar {
+    display: none;
 }
 
 .utility-actions {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-end;
 }
 

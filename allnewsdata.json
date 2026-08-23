@@ -33,6 +33,37 @@
         "energy crisis"
       ],
       "featured": true
+    },
+    {
+      "id": "agentic-ai-offline-models-replacing-cloud-2026",
+      "slug": "agentic-ai-offline-models-replacing-cloud-2026",
+      "url": "/tech/agentic-ai-offline-models-replacing-cloud-2026/",
+      "category": "Tech",
+      "section": "Tech Frontier",
+      "label": "AI Infrastructure Analysis",
+      "title": "AI Is Eating Software: How Agentic AI and Offline Models Are Replacing the Cloud in 2026",
+      "excerpt": "Developers are quietly ditching expensive cloud APIs for quantized local models running on lightweight Express.js servers. Inside the shift redrawing the economics of software.",
+      "image": "/public/agentic-ai-offline-models-2026.jpg",
+      "imageAlt": "Developer terminal running a quantized local language model alongside a server architecture diagram, symbolizing offline agentic AI",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-08-23T11:15:00+05:30",
+      "updatedAt": "2026-08-23T11:15:00+05:30",
+      "readTime": "6 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "agentic AI",
+        "offline AI models",
+        "local LLM deployment",
+        "quantized models",
+        "Qwen",
+        "Express.js",
+        "cloud cost reduction",
+        "edge AI",
+        "on-device inference",
+        "tech news"
+      ],
+      "featured": true
     }
   ]
 }
