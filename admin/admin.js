@@ -1,4 +1,5 @@
-const $=s=>document.querySelector(s), api=(path,options={})=>fetch(`/api/admin${path}`,{credentials:'include',...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});
+const API_BASE='https://newsxphere.xtarnet.us.to';
+const $=s=>document.querySelector(s), api=(path,options={})=>fetch(`${API_BASE}/api/admin${path}`,{credentials:'include',...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});
 const show=(el,text,ok=false)=>{el.hidden=!text;el.textContent=text;el.className=ok?'output success':'output'};
 async function check(){const r=await api('/status');if(!r.ok){$('#login-view').hidden=false;$('#app-view').hidden=true;return}$('#login-view').hidden=true;$('#app-view').hidden=false;$('#connection-title').textContent='Backend connected';$('#connection-detail').textContent='Authenticated Worker is ready.'}
 $('#login-form').addEventListener('submit',async e=>{e.preventDefault();const r=await api('/login',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});if(r.ok){$('#login-error').textContent='';check()}else $('#login-error').textContent='Login failed. Check your credentials.'});
