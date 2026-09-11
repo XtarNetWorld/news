@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NewsXphere — Latest signals</title>
+    <link>https://www.newsxphere.com/</link>
+    <description>Thoughtful reporting on startups, technology, culture, and the quiet shifts shaping tomorrow.</description>
+    <language>en-us</language>
+    <copyright>© 2026 NewsXphere</copyright>
+    <atom:link href="https://www.newsxphere.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Is Eating Software: How Agentic AI and Offline Models Are Replacing the Cloud in 2026</title>
+      <link>https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</guid>
+      <description>Developers are quietly ditching expensive cloud APIs for quantized local models running on lightweight Express.js servers.</description>
+      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+    <item>
+      <title>Shelley Fabares Dies at 82 — Cause of Death, Mike Farrell and Craig T. Nelson Tribute</title>
+      <link>https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</guid>
+      <description>What is known about Shelley Fabares, her career, and the tributes following her death.</description>
+      <pubDate>Mon, 24 Aug 2026 04:30:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+    <item>
+      <title>Strait of Hormuz Attack: Commercial Vessel Struck Amid Escalating Naval Blockade</title>
+      <link>https://www.newsxphere.com/world/strait-of-hormuz-attack-iran-blockade/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/strait-of-hormuz-attack-iran-blockade/</guid>
+      <description>A commercial tanker was struck in the Strait of Hormuz, raising questions about maritime security, oil prices, and trade corridors.</description>
+      <pubDate>Tue, 18 Aug 2026 10:15:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+  </channel>
+</rss>

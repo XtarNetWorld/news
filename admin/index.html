@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>NewsXphere Admin</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="shell">
+    <section id="login-view" class="panel auth-panel">
+      <div class="eyebrow">NEWSXPHERE / PRIVATE</div>
+      <h1>Editorial control room</h1>
+      <p class="muted">Manage drafts, GitHub publishing, AI writing, and indexing from one secure workspace.</p>
+      <form id="login-form" class="stack">
+        <label>Username<input name="username" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary" type="submit">Sign in</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="app-view" hidden>
+      <header class="topbar"><div><div class="eyebrow">NEWSXPHERE / ADMIN</div><h1>Editorial control room</h1></div><button id="logout" class="quiet">Sign out</button></header>
+      <nav class="tabs" aria-label="Admin sections"><button data-tab="overview" class="active">Overview</button><button data-tab="writer">AI writer</button><button data-tab="github">GitHub</button><button data-tab="indexing">Indexing</button></nav>
+      <p id="global-status" class="status" role="status"></p>
+
+      <section data-panel="overview" class="grid two">
+        <article class="panel"><div class="eyebrow">WORKFLOW</div><h2>Publish safely</h2><p class="muted">Generate a draft, review it, then commit the approved file through GitHub. Indexing is a separate, explicit action.</p><div class="checks"><span>✓ Private API keys</span><span>✓ Review before publish</span><span>✓ Noindex admin route</span></div></article>
+        <article class="panel"><div class="eyebrow">CONNECTION</div><h2 id="connection-title">Checking services…</h2><p id="connection-detail" class="muted">Loading backend status.</p><button id="refresh-status" class="quiet">Refresh status</button></article>
+      </section>
+
+      <section data-panel="writer" class="panel" hidden><div class="eyebrow">GEMINI</div><h2>Draft a news article</h2><form id="writer-form" class="stack"><label>Verified source notes<textarea name="source" rows="8" required placeholder="Paste only verified facts, source links, names, dates, and quotes…"></textarea></label><div class="grid two"><label>Headline angle<input name="angle" placeholder="Clear, factual breaking-news angle"></label><label>Target category<select name="category"><option>World</option><option>Tech</option><option>Startups</option><option>Culture</option><option>Business</option></select></label></div><button class="primary" type="submit">Generate draft</button></form><pre id="writer-output" class="output" hidden></pre></section>
+
+      <section data-panel="github" class="panel" hidden><div class="eyebrow">GITHUB</div><h2>Commit an approved file</h2><form id="github-form" class="stack"><label>Repository path<input name="path" required placeholder="world/my-story/index.html"></label><label>Commit message<input name="message" value="Publish editorial update" required></label><label>File contents<textarea name="content" rows="12" required></textarea></label><button class="primary" type="submit">Commit to GitHub</button></form><p class="muted small">The Worker only allows website files and uses your configured repository, branch, and token.</p></section>
+
+      <section data-panel="indexing" class="panel" hidden><div class="eyebrow">GOOGLE INDEXING API</div><h2>Request URL indexing</h2><form id="index-form" class="stack"><label>Public URL<input name="url" type="url" value="https://www.newsxphere.com/" required></label><button class="primary" type="submit">Request indexing</button></form><p id="index-output" class="output" hidden></p><p class="muted small">Google’s Indexing API is intended primarily for JobPosting and BroadcastEvent pages; for ordinary news URLs, submit your sitemap in Search Console as the reliable method.</p></section>
+    </section>
+  </main>
+  <script src="admin.js" defer></script>
+</body>
+</html>

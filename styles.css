@@ -1996,8 +1996,50 @@ h1 em {
 
 
 
-.reading-mode .hero, .reading-mode .ticker, .reading-mode .signal-dashboard, .reading-mode .latest, .reading-mode .manifesto, .reading-mode .briefing {
+.reading-mode .hero, .reading-mode .ticker, .reading-mode .signal-dashboard, .reading-mode .manifesto, .reading-mode .briefing {
     max-width: 760px;
+}
+
+/* Keep the article-card grid at its normal reading width. Narrowing the
+   parent while retaining the responsive columns makes the cards collapse. */
+.reading-mode .latest {
+    max-width: 1190px;
+}
+
+.article-sources {
+    margin: 38px 0 0;
+    padding: 24px 26px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--surface-2) 58%, transparent);
+}
+
+.article-sources h3 {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font: 500 22px / 1.15 "Playfair Display", serif;
+}
+
+.article-sources p,
+.article-sources li {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.article-sources p {
+    margin: 0 0 10px;
+}
+
+.article-sources ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.article-sources a {
+    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .reading-mode .hero-orbit, .reading-mode .signal-dashboard, .reading-mode .ticker {

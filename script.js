@@ -1,4 +1,5 @@
 const root = document.documentElement;
+
 const body = document.body;
 const articleDataUrl = '/allnewsdata.json';
 
