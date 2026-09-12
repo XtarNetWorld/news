@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"); :root {
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap");
+:root {
     --bg: #f4efe6;
     --surface: #fbf8f1;
     --surface-2: #e8e0d2;
@@ -2916,6 +2917,10 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
     .nav-shell {
         padding: 12px 16px 14px;
     }
+    .header-controls {
+        order: 1;
+        margin-left: auto;
+    }
     .menu-toggle {
         margin-left: auto;
     }
@@ -3881,5 +3886,52 @@ img, video, canvas, svg {
     .copyright {
         font-size: 8px !important;
         letter-spacing: 0.03em !important;
+    }
+}
+
+/* Final homepage alignment fixes: keep the desktop hero visually grouped. */
+@media (min-width: 901px) {
+    .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, .82fr);
+        align-items: center;
+        justify-content: initial;
+        gap: clamp(28px, 4vw, 64px);
+        padding-inline: clamp(18px, 3vw, 48px);
+    }
+
+    .hero-copy,
+    .hero-orbit {
+        min-width: 0;
+    }
+
+    .hero-orbit {
+        justify-self: end;
+    }
+}
+
+/* Reader Mode: the manifesto quote becomes a single readable column. */
+.reading-mode .manifesto {
+    display: block;
+    max-width: 760px;
+    padding: 56px 24px;
+}
+
+.reading-mode .manifesto blockquote {
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(26px, 4vw, 48px);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+}
+
+.reading-mode .manifesto .section-number,
+.reading-mode .manifesto-orb {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .reading-mode .manifesto {
+        padding: 42px 20px;
     }
 }
