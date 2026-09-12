@@ -5,6 +5,35 @@
   },
   "articles": [
     {
+      "id": "new-science-researches-and-curious-findings-detailed",
+      "slug": "new-science-researches-and-curious-findings-detailed",
+      "url": "/science/new-science-researches-and-curious-findings-detailed/",
+      "category": "Science",
+      "section": "Research",
+      "label": "Curiosity & Discovery",
+      "title": "New Science Researches and Curious Findings Detailed",
+      "excerpt": "An overview of recent curious scientific research studies, detailing known findings, methodological scope, and ongoing areas of inquiry.",
+      "image": "/public/new-science-researches-and-curious-findings-detailed-hero.svg",
+      "imageAlt": "New Science Researches and Curious Findings Detailed",
+      "imageSource": "",
+      "imageLicense": "",
+      "imageArtist": "",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-09-12T09:29:33.367Z",
+      "updatedAt": "2026-09-12T09:29:33.367Z",
+      "readTime": "8 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "science research",
+        "curious discoveries",
+        "scientific methodology",
+        "new studies",
+        "research analysis"
+      ],
+      "featured": true
+    },
+    {
       "id": "santy-sharma-iphone-duo-news",
       "slug": "santy-sharma-iphone-duo-news",
       "url": "/tech/santy-sharma-iphone-duo-news/",
