@@ -5,6 +5,35 @@
   },
   "articles": [
     {
+      "id": "santy-sharma-iphone-duo-news",
+      "slug": "santy-sharma-iphone-duo-news",
+      "url": "/tech/santy-sharma-iphone-duo-news/",
+      "category": "Tech",
+      "section": "Mobile Technology",
+      "label": "News Update",
+      "title": "Santy Sharma iPhone Duo News: Summary of Available Details and Coverage",
+      "excerpt": "An overview of current report details regarding Santy Sharma and the iPhone duo news.",
+      "image": "/public/santy-sharma-iphone-duo-news-hero.svg",
+      "imageAlt": "Santy Sharma iPhone Duo News: Summary of Available Details and Coverage",
+      "imageSource": "",
+      "imageLicense": "",
+      "imageArtist": "",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-09-12T09:01:23.439Z",
+      "updatedAt": "2026-09-12T09:01:23.439Z",
+      "readTime": "6 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "Santy Sharma",
+        "iPhone Duo",
+        "Tech News",
+        "Apple iPhone",
+        "Mobile Tech"
+      ],
+      "featured": true
+    },
+    {
       "id": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "slug": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "url": "/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/",
