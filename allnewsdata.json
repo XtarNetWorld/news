@@ -5,6 +5,32 @@
   },
   "articles": [
     {
+      "id": "nepal-vs-uae-analysis",
+      "slug": "nepal-vs-uae-analysis",
+      "url": "/world/nepal-vs-uae-analysis/",
+      "category": "World",
+      "section": "Sports",
+      "label": "Match Analysis",
+      "title": "Nepal vs UAE: Comprehensive Analysis of International Fixtures and Strategic Dynamics",
+      "excerpt": "An in-depth examination of international encounters between Nepal and the UAE, focusing on team preparation, strategic execution, and regional sports development.",
+      "image": "/public/nepal-vs-uae-analysis-hero.svg",
+      "imageAlt": "Nepal vs UAE: Comprehensive Analysis of International Fixtures and Strategic Dynamics",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-09-12T07:54:57.674Z",
+      "updatedAt": "2026-09-12T07:54:57.674Z",
+      "readTime": "8 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "Nepal vs UAE",
+        "International Sports",
+        "Match Analysis",
+        "Nepal UAE Fixtures",
+        "Regional Sports"
+      ],
+      "featured": true
+    },
+    {
       "id": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "slug": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "url": "/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/",
