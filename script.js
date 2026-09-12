@@ -293,7 +293,7 @@ const resolveWeatherLocation = async () => {
         if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('ipapi.co returned invalid coordinates');
         return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country_name].filter(Boolean).join(', ') };
     } catch (ipapiError) {
-        // Try the next provider silently; weather is non-critical UI.
+        console.warn('[weather] ipapi.co lookup failed, trying geojs.io instead:', ipapiError);
         try {
             const res = await fetchWithTimeout('https://get.geojs.io/v1/ip/geo.json', { cache: 'no-store' }, 5000);
             if (!res.ok) throw new Error(`geojs.io responded ${res.status}`);
@@ -303,7 +303,7 @@ const resolveWeatherLocation = async () => {
             if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('geojs.io returned invalid coordinates');
             return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country || ''].filter(Boolean).join(', ') };
         } catch (geojsError) {
-            // Try the final provider silently; avoid noisy console warnings.
+            console.warn('[weather] geojs.io lookup failed too, trying ipwho.is instead:', geojsError);
             try {
                 const res = await fetchWithTimeout('https://ipwho.is/', { cache: 'no-store' }, 5000);
                 if (!res.ok) throw new Error(`ipwho.is responded ${res.status}`);
@@ -314,7 +314,7 @@ const resolveWeatherLocation = async () => {
                 if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw new Error('ipwho.is returned invalid coordinates');
                 return { latitude: lat, longitude: lon, label: [data.city, data.region || data.country || ''].filter(Boolean).join(', ') };
             } catch (ipwhoError) {
-                // Use the fixed fallback silently when geolocation is unavailable.
+                console.warn('[weather] ipwho.is lookup failed too, using default location:', ipwhoError);
                 return DEFAULT_WEATHER_LOCATION;
             }
         }
@@ -404,7 +404,7 @@ const updateHeaderWeather = async () => {
         syncWeatherTabs();
         setSelectedWeatherDay(selectedWeatherDay);
     } catch (error) {
-        // Weather is optional; keep the page console clean when a provider is unavailable.
+        console.error('[weather] Unable to load live weather data:', error);
         [desktopWeatherTemp, mobileWeatherTemp].forEach(el => {
             if (el) el.textContent = '--°';
         });
@@ -470,7 +470,7 @@ const articleCardTemplate = (article, index = 0) => `
     <article class="story-card ${index === 0 ? 'card-dark' : ''}" data-topic="${escapeHtml(article.category)}" data-search="${escapeHtml(articleSearchText(article))}">
         <a class="story-card-link" href="${escapeHtml(article.url)}" aria-label="Read ${escapeHtml(article.title)}">
             <div class="card-visual image-card">
-                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" width="1200" height="800" sizes="(max-width: 700px) 92vw, 560px" decoding="async" fetchpriority="${index === 0 ? 'high' : 'low'}" loading="${index === 0 ? 'eager' : 'lazy'}">
+                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" loading="${index === 0 ? 'eager' : 'lazy'}">
                 <span>${escapeHtml(article.label || article.category)}</span>
                 <b>↗</b>
             </div>
@@ -620,18 +620,12 @@ const closeSearch = () => {
 
 async function loadArticleData() {
     try {
-        const response = await fetch(articleDataUrl, { cache: 'default' });
+        const response = await fetch(articleDataUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Article data failed: ${response.status}`);
         const data = await response.json();
-        const source = Array.isArray(data) ? data : data.articles;
-        const unique = new Map();
-        (Array.isArray(source) ? source : []).forEach(article => {
-            if (!article || !article.id || !article.url || !article.title) return;
-            if (!unique.has(article.id)) unique.set(article.id, article);
-        });
-        articles = [...unique.values()];
+        articles = Array.isArray(data.articles) ? data.articles : [];
     } catch (error) {
-        // Keep the public console quiet if the optional article catalog is unavailable.
+        console.error(error);
         articles = [];
     }
 
@@ -698,9 +692,7 @@ themeToggle?.addEventListener('click', () => {
 applyTheme(getPreferredTheme());
 updateLiveClock();
 setInterval(updateLiveClock, 1000);
-const scheduleOptionalWeather = () => updateHeaderWeather();
-if ('requestIdleCallback' in window) requestIdleCallback(scheduleOptionalWeather, { timeout: 1800 });
-else setTimeout(scheduleOptionalWeather, 1200);
+updateHeaderWeather();
 
 [desktopWeather, mobileWeather].forEach(button => {
     button?.addEventListener('click', () => openWeatherPopover(button));
@@ -830,8 +822,7 @@ loadArticleData();
 
     function syncSpacer() {
         const top = parseFloat(getComputedStyle(header).top) || 12;
-        const height = header.getBoundingClientRect().height;
-        spacer.style.height = (height + top + 8) + 'px';
+        spacer.style.height = (header.offsetHeight + top + 8) + 'px';
     }
 
     let lastY = window.scrollY || 0;
@@ -878,12 +869,11 @@ loadArticleData();
         }
     }, { passive: true });
 
-    if ('ResizeObserver' in window) {
-        new ResizeObserver(syncSpacer).observe(header);
-    } else {
-        window.addEventListener('resize', syncSpacer, { passive: true });
-    }
+    window.addEventListener('resize', syncSpacer, { passive: true });
     syncSpacer();
+    requestAnimationFrame(syncSpacer);
+    setTimeout(syncSpacer, 100);
+    setTimeout(syncSpacer, 400);
     document.querySelector('#search-trigger')?.addEventListener('click', show);
 })();
 
