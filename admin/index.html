@@ -9,36 +9,45 @@
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-  <main class="shell">
-    <section id="login-view" class="panel auth-panel">
-      <div class="eyebrow">NEWSXPHERE / PRIVATE</div>
-      <h1>Editorial control room</h1>
-      <p class="muted">Manage drafts, GitHub publishing, AI writing, and indexing from one secure workspace.</p>
-      <form id="login-form" class="stack">
-        <label>Username<input name="username" autocomplete="username" required></label>
-        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
-        <button class="primary" type="submit">Sign in</button>
-        <p id="login-error" class="error" role="alert"></p>
-      </form>
-    </section>
+  <div id="login-view" class="login-wrap">
+    <form id="login-form" class="login-card">
+      <div class="brand-mark">NX</div>
+      <p class="eyebrow">NEWSXPHERE ADMIN</p>
+      <h1>Welcome back</h1>
+      <p class="muted">Sign in to manage your editorial workspace.</p>
+      <label>Username<input name="username" autocomplete="username" required></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="button primary" type="submit">Sign in</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </div>
 
-    <section id="app-view" hidden>
-      <header class="topbar"><div><div class="eyebrow">NEWSXPHERE / ADMIN</div><h1>Editorial control room</h1></div><button id="logout" class="quiet">Sign out</button></header>
-      <nav class="tabs" aria-label="Admin sections"><button data-tab="overview" class="active">Overview</button><button data-tab="writer">AI writer</button><button data-tab="github">GitHub</button><button data-tab="indexing">Indexing</button></nav>
-      <p id="global-status" class="status" role="status"></p>
+  <div id="app-view" class="app" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">NX</span><span>NewsXphere<br><small>Admin</small></span></div>
+      <nav id="nav"><button class="nav-item active" data-view="dashboard">⌂ <span>Dashboard</span></button><button class="nav-item" data-view="articles">▤ <span>Articles</span></button><button class="nav-item" data-view="writer">✦ <span>AI Writer</span></button><button class="nav-item" data-view="publish">↗ <span>Publish & Index</span></button><button class="nav-item" data-view="settings">⚙ <span>Settings</span></button></nav>
+      <button id="logout" class="logout">Sign out</button>
+    </aside>
 
-      <section data-panel="overview" class="grid two">
-        <article class="panel"><div class="eyebrow">WORKFLOW</div><h2>Publish safely</h2><p class="muted">Generate a draft, review it, then commit the approved file through GitHub. Indexing is a separate, explicit action.</p><div class="checks"><span>✓ Private API keys</span><span>✓ Review before publish</span><span>✓ Noindex admin route</span></div></article>
-        <article class="panel"><div class="eyebrow">CONNECTION</div><h2 id="connection-title">Checking services…</h2><p id="connection-detail" class="muted">Loading backend status.</p><button id="refresh-status" class="quiet">Refresh status</button></article>
+    <main class="main">
+      <header class="topbar"><div><p class="eyebrow">EDITORIAL WORKSPACE</p><h1 id="page-title">Dashboard</h1></div><button id="mobile-menu" class="menu-button" aria-label="Open menu">☰</button></header>
+      <p id="notice" class="notice" role="status"></p>
+
+      <section data-view-panel="dashboard" class="view-panel">
+        <div class="welcome"><div><p class="eyebrow">GOOD TO SEE YOU</p><h2>Keep the signal clear.</h2><p class="muted">Create, review, publish, and request indexing from one place.</p></div><button class="button primary" data-go="writer">Create with AI</button></div>
+        <div class="stat-grid"><article class="stat"><span>Articles</span><strong id="article-count">—</strong></article><article class="stat"><span>Gemini</span><strong id="gemini-status">—</strong></article><article class="stat"><span>GitHub</span><strong id="github-status">—</strong></article><article class="stat"><span>Indexing</span><strong id="indexing-status">—</strong></article></div>
+        <div class="quick-grid"><button class="quick" data-go="articles"><b>▤</b><span>Browse articles<small>View your published stories</small></span></button><button class="quick" data-go="writer"><b>✦</b><span>Write with AI<small>Turn verified notes into a draft</small></span></button><button class="quick" data-go="publish"><b>↗</b><span>Publish or index<small>Commit and request Google indexing</small></span></button></div>
       </section>
 
-      <section data-panel="writer" class="panel" hidden><div class="eyebrow">GEMINI</div><h2>Draft a news article</h2><form id="writer-form" class="stack"><label>Verified source notes<textarea name="source" rows="8" required placeholder="Paste only verified facts, source links, names, dates, and quotes…"></textarea></label><div class="grid two"><label>Headline angle<input name="angle" placeholder="Clear, factual breaking-news angle"></label><label>Target category<select name="category"><option>World</option><option>Tech</option><option>Startups</option><option>Culture</option><option>Business</option></select></label></div><button class="primary" type="submit">Generate draft</button></form><pre id="writer-output" class="output" hidden></pre></section>
+      <section data-view-panel="articles" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">CONTENT</p><h2>Your articles</h2></div><button class="button primary" data-go="writer">New draft</button></div><input id="article-search" class="search" placeholder="Search articles…"><div id="article-list" class="article-list"><p class="muted">Loading articles…</p></div></section>
 
-      <section data-panel="github" class="panel" hidden><div class="eyebrow">GITHUB</div><h2>Commit an approved file</h2><form id="github-form" class="stack"><label>Repository path<input name="path" required placeholder="world/my-story/index.html"></label><label>Commit message<input name="message" value="Publish editorial update" required></label><label>File contents<textarea name="content" rows="12" required></textarea></label><button class="primary" type="submit">Commit to GitHub</button></form><p class="muted small">The Worker only allows website files and uses your configured repository, branch, and token.</p></section>
+      <section data-view-panel="writer" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">GEMINI PAGE BUILDER</p><h2>Create a complete article page</h2><p class="muted">The AI creates the title, slug, SEO data, body structure, FAQ, sources, and selected special blocks using the NewsXphere editorial style.</p></div></div><div class="page-builder"><form id="writer-form" class="card form-stack"><label>Verified source notes<textarea name="source" rows="13" required placeholder="Paste verified facts, source links, dates, names, quotes, and data. The AI must not invent information."></textarea></label><div class="form-row"><label>Story angle<input name="angle" placeholder="What is the central angle?"></label><label>Category<select name="category"><option>World</option><option>Tech</option><option>Startups</option><option>Culture</option><option>Business</option><option>Science</option></select></label></div><div class="form-row"><label>Author<input name="author" value="Monu Sharma"></label><label>Target length<select name="length"><option value="standard">Standard: 900–1,300 words</option><option value="deep">Deep analysis: 1,500–2,200 words</option><option value="brief">Brief: 500–800 words</option></select></label></div><fieldset><legend>Special page blocks</legend><label class="check"><input type="checkbox" name="blocks" value="takeaways" checked> Key takeaways</label><label class="check"><input type="checkbox" name="blocks" value="checklist" checked> Checklist or numbered analysis</label><label class="check"><input type="checkbox" name="blocks" value="quote"> Pull quote</label><label class="check"><input type="checkbox" name="blocks" value="comparison"> Comparison table</label><label class="check"><input type="checkbox" name="blocks" value="faq" checked> FAQ section</label><label class="check"><input type="checkbox" name="blocks" value="sources" checked> Sources and further reading</label></fieldset><button class="button primary" type="submit">Generate complete page</button></form><article class="card result-card page-result"><div class="result-top"><span class="eyebrow">GENERATED PAGE</span><div><button id="preview-page" class="text-button" type="button">Preview</button><button id="use-page" class="text-button" type="button">Use for publish</button></div></div><div id="page-summary" class="page-summary">Your complete page will appear here.</div><pre id="writer-output" class="result" hidden></pre><iframe id="page-preview" class="page-preview" title="Generated article preview" hidden></iframe></article></div></section>
 
-      <section data-panel="indexing" class="panel" hidden><div class="eyebrow">GOOGLE INDEXING API</div><h2>Request URL indexing</h2><form id="index-form" class="stack"><label>Public URL<input name="url" type="url" value="https://www.newsxphere.com/" required></label><button class="primary" type="submit">Request indexing</button></form><p id="index-output" class="output" hidden></p><p class="muted small">Google’s Indexing API is intended primarily for JobPosting and BroadcastEvent pages; for ordinary news URLs, submit your sitemap in Search Console as the reliable method.</p></section>
-    </section>
-  </main>
+      <section data-view-panel="publish" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">RELEASE</p><h2>Publish & index</h2></div></div><div class="publish-layout"><form id="github-form" class="card form-stack"><h3>Publish to GitHub</h3><label>Website file path<input name="path" placeholder="world/my-story/index.html" required></label><label>Commit message<input name="message" value="Publish editorial update" required></label><label>Approved file contents<textarea name="content" rows="12" required placeholder="Paste the final approved HTML or JSON here."></textarea></label><button class="button primary" type="submit">Commit to GitHub</button><p id="github-result" class="form-message"></p></form><form id="index-form" class="card form-stack"><h3>Request Google indexing</h3><p class="muted small">Use a live canonical NewsXphere URL after publishing.</p><label>Article URL<input name="url" type="url" value="https://www.newsxphere.com/" required></label><button class="button primary" type="submit">Request indexing</button><p id="index-result" class="form-message"></p></form></div></section>
+
+      <section data-view-panel="settings" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">SYSTEM</p><h2>Settings</h2></div></div><div class="card settings-card"><div><span>Worker API</span><strong id="worker-url">—</strong></div><div><span>GitHub repository</span><strong id="repo-name">—</strong></div><div><span>Security</span><strong class="good">Protected session</strong></div><p class="muted small">API keys stay on the Cloudflare Worker and are never shown here.</p></div></section>
+    </main>
+  </div>
   <script src="admin.js" defer></script>
 </body>
 </html>

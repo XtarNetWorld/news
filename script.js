@@ -623,7 +623,13 @@ async function loadArticleData() {
         const response = await fetch(articleDataUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Article data failed: ${response.status}`);
         const data = await response.json();
-        articles = Array.isArray(data.articles) ? data.articles : [];
+        const source = Array.isArray(data) ? data : data.articles;
+        const unique = new Map();
+        (Array.isArray(source) ? source : []).forEach(article => {
+            if (!article || !article.id || !article.url || !article.title) return;
+            if (!unique.has(article.id)) unique.set(article.id, article);
+        });
+        articles = [...unique.values()];
     } catch (error) {
         console.error(error);
         articles = [];
