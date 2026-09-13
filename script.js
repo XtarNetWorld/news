@@ -532,8 +532,9 @@ const articleSearchScore = (article, query) => {
     for (let i = 0; i < phraseWords.length - 1; i += 1) if (`${phraseWords[i]} ${phraseWords[i + 1]}`.includes(compact)) score += 90;
     return score / Math.max(1, tokens.length);
 };
-const rankArticles = (query, items = articles) => [...items].map(article => ({ article, score: articleSearchScore(article, query) })).filter(item => item.score > 0).sort((a, b) => b.score - a.score || Date.parse(b.article.updatedAt || b.article.publishedAt || '') - Date.parse(a.article.updatedAt || a.article.publishedAt || '')).map(item => item.article);
-const submitSearch = value => { const query = String(value || '').trim(); if (!query) return showToast('Type something to search'); window.location.href = `/results?search_query=${encodeURIComponent(query)}`; };
+const rankArticles = (query, items = articles) => { const tokens = searchTokens(query); return [...items].map(article => { const title = cleanCardText(article.title).toLowerCase(); const text = articleSearchText(article).toLowerCase(); const slug = String(article.slug || article.id || '').toLowerCase(); const phrase = title.includes(String(query || '').trim().toLowerCase()) || slug.includes(String(query || '').trim().toLowerCase().replace(/\s+/g, '-')); const matched = tokens.filter(token => title.includes(token) || text.includes(token) || slug.includes(token)).length; return { article, score: articleSearchScore(article, query), valid: phrase || matched >= Math.max(1, Math.ceil(tokens.length * 0.5)) }; }).filter(item => item.valid && item.score > 0).sort((a, b) => b.score - a.score || Date.parse(b.article.updatedAt || b.article.publishedAt || '') - Date.parse(a.article.updatedAt || a.article.publishedAt || '')).map(item => item.article); };
+const encodeSearchQuery = value => encodeURIComponent(String(value || '').trim()).replace(/%20/g, '+');
+const submitSearch = value => { const query = String(value || '').trim(); if (!query) return showToast('Type something to search'); window.location.href = `/results?search_query=${encodeSearchQuery(query)}`; };
 
 const articleCardTemplate = (article, index = 0) => `
     <article class="story-card ${index === 0 ? 'card-dark' : ''}" data-topic="${escapeHtml(article.category)}" data-search="${escapeHtml(articleSearchText(article))}">
@@ -706,16 +707,6 @@ async function loadArticleData() {
         const needsImmediateHydration = body.dataset.errorPage === 'true' || body.classList.contains('results-page');
         articles = needsImmediateHydration ? await hydrateArticleCardData(initialArticles) : initialArticles;
         if (body.dataset.errorPage === 'true') {
-            const params = new URLSearchParams(window.location.search);
-            const failedPath = decodeURIComponent(window.location.pathname).replace(/^\/+|\/+$/g, '').replace(/\/$/, '').replace(/[-_]+/g, ' ');
-            const query = params.get('search_query')?.trim() || failedPath;
-            const matches = rankArticles(query, articles).slice(0, 6);
-            const output = document.querySelector('#not-found-results');
-            const heading = document.querySelector('#not-found-heading');
-            const message = document.querySelector('#not-found-message');
-            if (heading) heading.textContent = params.has('search_query') ? `Results for “${query}”` : 'Did you mean one of these signals?';
-            if (message) message.textContent = matches.length ? 'The closest matching stories are shown first.' : 'No close match was found. Try a new search from the signal desk.';
-            if (output) output.innerHTML = matches.length ? matches.map(articleCardTemplate).join('') : '<p class="result-empty">No matching story found.</p>';
             return;
         }
     } catch (error) {
@@ -756,6 +747,14 @@ document.querySelector('#close-search')?.addEventListener('click', closeSearch);
 
 search?.addEventListener('input', () => {
     body.classList.add('search-dropdown-open');
+    if (body.classList.contains('results-page')) {
+        const matches = rankArticles(search.value, articles);
+        renderStoryGrid(matches);
+        setCount(matches.length);
+        const empty = document.querySelector('#empty-state');
+        if (empty) empty.hidden = matches.length > 0;
+        return;
+    }
     filterStories();
 });
 
