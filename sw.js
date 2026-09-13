@@ -1,4 +1,4 @@
-const CACHE = 'newsxphere-static-v3';
+const CACHE = 'newsxphere-static-v4';
 const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css', '/script.js', '/public/favicon-32.png', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
