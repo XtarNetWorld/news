@@ -56,6 +56,7 @@ const weatherTabs = [...document.querySelectorAll('.weather-tab')];
 
 let articles = [];
 let visibleArticles = [];
+let committedSearchQuery = '';
 let weatherSnapshot = null;
 let activeWeatherMode = 'temperature';
 let selectedWeatherDay = 0;
@@ -513,6 +514,21 @@ const hydrateArticleCardData = async (items) => {
 const articleCardExcerpt = (article) => cleanCardText(article.excerpt || article.description || article.dek || article.summary) || `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
 
 const searchTokens = value => String(value || '').toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s-]/gu, ' ').split(/\s+/).filter(token => token.length > 1);
+// Private, on-device intent classifier used to improve natural-language search.
+const intentFeatures = {
+    World: ['world', 'iran', 'war', 'oil', 'maritime', 'security', 'global', 'geopolitics', 'hormuz', 'tanker'],
+    Startups: ['startup', 'founder', 'funding', 'venture', 'vc', 'valuation', 'company', 'business'],
+    Tech: ['tech', 'technology', 'ai', 'artificial', 'software', 'iphone', 'cloud', 'model', 'robot', 'app'],
+    Culture: ['culture', 'design', 'film', 'music', 'city', 'architecture', 'community'],
+    Job: ['job', 'jobs', 'career', 'hiring', 'work', 'salary', 'employment']
+};
+const inferSearchIntent = query => {
+    const tokens = searchTokens(query);
+    return Object.entries(intentFeatures).map(([category, words]) => ({
+        category,
+        score: tokens.reduce((sum, token) => sum + (words.some(word => word === token || word.includes(token) || token.includes(word)) ? 1 : 0), 0)
+    })).filter(item => item.score > 0).sort((a, b) => b.score - a.score);
+};
 const articleSearchScore = (article, query) => {
     const q = String(query || '').trim().toLowerCase();
     const tokens = searchTokens(q);
@@ -520,6 +536,7 @@ const articleSearchScore = (article, query) => {
     const title = cleanCardText(article.title).toLowerCase();
     const text = articleSearchText(article).toLowerCase();
     const slug = String(article.slug || article.id || '').toLowerCase();
+    const intent = inferSearchIntent(q).find(item => item.category === article.category);
     let score = title === q ? 1000 : title.includes(q) ? 280 : 0;
     if (slug === q || slug.includes(q.replace(/\s+/g, '-'))) score += 220;
     for (const token of tokens) {
@@ -527,6 +544,7 @@ const articleSearchScore = (article, query) => {
         if (text.includes(token)) score += 24;
         if (slug.includes(token)) score += 35;
     }
+    if (intent) score += intent.score * 55;
     const compact = tokens.join(' ');
     const phraseWords = title.split(/\s+/);
     for (let i = 0; i < phraseWords.length - 1; i += 1) if (`${phraseWords[i]} ${phraseWords[i + 1]}`.includes(compact)) score += 90;
@@ -639,7 +657,7 @@ function renderSearchState(value = '') {
     if (!searchSuggestions || !searchResults || !searchHint) return;
 
     const query = value.trim().toLowerCase();
-    const matches = getFilteredArticles(value);
+    const matches = rankArticles(value, articles);
     const hasQuery = query.length > 0;
 
     searchSuggestions.hidden = hasQuery;
@@ -648,7 +666,7 @@ function renderSearchState(value = '') {
     searchResults.innerHTML = hasQuery
         ? matches.length
             ? matches.map(article => `
-                <a class="result-item" href="/results?search_query=${encodeURIComponent(article.title)}">
+                <a class="result-item" href="/results?search_query=${encodeSearchQuery(article.title)}">
                     <small>${escapeHtml(article.category)}</small>
                     <strong>${escapeHtml(article.title)}</strong>
                 </a>
@@ -717,6 +735,7 @@ async function loadArticleData() {
     if (body.classList.contains('results-page')) {
         const query = new URLSearchParams(window.location.search).get('search_query')?.trim() || '';
         if (!query) { window.location.replace('/404.html'); return; }
+        committedSearchQuery = query;
         if (search) search.value = query;
         visibleArticles = query ? rankArticles(query, articles) : [];
         renderStoryGrid(visibleArticles);
@@ -748,11 +767,9 @@ document.querySelector('#close-search')?.addEventListener('click', closeSearch);
 search?.addEventListener('input', () => {
     body.classList.add('search-dropdown-open');
     if (body.classList.contains('results-page')) {
-        const matches = rankArticles(search.value, articles);
-        renderStoryGrid(matches);
-        setCount(matches.length);
-        const empty = document.querySelector('#empty-state');
-        if (empty) empty.hidden = matches.length > 0;
+        // The result grid uses the last submitted query. Typing only updates
+        // the dropdown preview until Search or Enter commits a new query.
+        renderSearchState(search.value);
         return;
     }
     filterStories();
@@ -788,12 +805,14 @@ menuToggle?.addEventListener('click', () => {
 document.querySelector('#saved-toggle')?.addEventListener('click', () => {
     savedDrawer?.classList.add('open');
     savedDrawer?.setAttribute('aria-hidden', 'false');
+    savedDrawer?.removeAttribute('inert');
     updateSaved();
 });
 
 document.querySelector('#close-saved')?.addEventListener('click', () => {
     savedDrawer?.classList.remove('open');
     savedDrawer?.setAttribute('aria-hidden', 'true');
+    savedDrawer?.setAttribute('inert', '');
 });
 
 themeToggle?.addEventListener('click', () => {
@@ -879,7 +898,7 @@ document.addEventListener('keydown', event => {
 });
 
 document.querySelector('#search-refresh')?.addEventListener('click', () => {
-    submitSearch(search?.value || '');
+    submitSearch(search?.value || committedSearchQuery);
 });
 
 document.querySelector('#search-suggestions')?.addEventListener('click', event => {
@@ -947,6 +966,9 @@ if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
 
     function hide() {
         if (hidden) return;
+        // A hidden header must also dismiss any open search UI. Otherwise the
+        // dropdown can remain logically open and reappear when the header returns.
+        if (body.classList.contains('search-open')) closeSearch();
         header.classList.add('is-hidden');
         hidden = true;
     }
