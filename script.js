@@ -470,7 +470,7 @@ const articleCardTemplate = (article, index = 0) => `
     <article class="story-card ${index === 0 ? 'card-dark' : ''}" data-topic="${escapeHtml(article.category)}" data-search="${escapeHtml(articleSearchText(article))}">
         <a class="story-card-link" href="${escapeHtml(article.url)}" aria-label="Read ${escapeHtml(article.title)}">
             <div class="card-visual image-card">
-                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" loading="${index === 0 ? 'eager' : 'lazy'}">
+                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" width="1200" height="800" sizes="(max-width: 700px) 92vw, 560px" decoding="async" loading="${index === 0 ? 'eager' : 'lazy'}">
                 <span>${escapeHtml(article.label || article.category)}</span>
                 <b>↗</b>
             </div>
@@ -623,7 +623,13 @@ async function loadArticleData() {
         const response = await fetch(articleDataUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Article data failed: ${response.status}`);
         const data = await response.json();
-        articles = Array.isArray(data.articles) ? data.articles : [];
+        const source = Array.isArray(data) ? data : data.articles;
+        const unique = new Map();
+        (Array.isArray(source) ? source : []).forEach(article => {
+            if (!article || !article.id || !article.url || !article.title) return;
+            if (!unique.has(article.id)) unique.set(article.id, article);
+        });
+        articles = [...unique.values()];
     } catch (error) {
         console.error(error);
         articles = [];
