@@ -12,24 +12,26 @@
     <script defer src="script.js"></script>
 </head>
 <body class="results-page">
-    <header class="site-header">
-        <div class="header-inner wrapper">
-            <a class="brand" href="/" aria-label="NewsXphere home">
-                <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
-                <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
-            </a>
-            <a class="text-link" href="/">← Signal desk</a>
+    <header class="site-header wrapper">
+        <div class="utility">
+            <span id="live-date">Loading date</span>
+            <span class="utility-center"><i class="live-separator" aria-hidden="true"></i><span id="live-time">--:--:--</span><i class="live-separator" aria-hidden="true"></i><span class="live-bond">FOR YOU</span></span>
+            <div class="utility-actions"><button id="saved-toggle" type="button">Saved <b id="saved-count">0</b></button><button id="reading-mode" type="button">Reader</button><button id="theme-toggle" type="button" aria-label="Switch to paper theme"><span class="theme-toggle-icon">◐</span><span class="theme-toggle-label">Light</span></button></div>
+        </div>
+        <div class="nav-shell">
+            <a class="brand" href="/" aria-label="NewsXphere home" title="NewsXphere"><img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light"><img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark"></a>
+            <span class="brand-promise">NX · A calmer signal<br>for what's next.</span>
+            <nav id="primary-nav" aria-label="Primary navigation"><div class="header-weather header-weather-desktop" id="desktop-weather" aria-label="Current weather"><span class="header-weather-icon" id="desktop-weather-icon" aria-hidden="true">☀</span><span class="header-weather-temp" id="desktop-weather-temp">--°</span></div><button class="topic active" data-topic="All" type="button">All signals</button><button class="topic" data-topic="World" type="button">World</button><button class="topic" data-topic="Startups" type="button">Startups</button><button class="topic" data-topic="Tech" type="button">Tech</button><button class="topic" data-topic="Culture" type="button">Culture</button><button class="topic" data-topic="Job" type="button">Job</button></nav>
+            <div class="header-controls"><div class="header-weather header-weather-mobile" id="mobile-weather" aria-label="Current weather"><span class="header-weather-icon" id="mobile-weather-icon" aria-hidden="true">☀</span><span class="header-weather-temp" id="mobile-weather-temp">--°</span></div><button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu <span></span></button><button class="search-trigger" id="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="Search"><span class="search-trigger-icon" aria-hidden="true"></span></button></div>
+        </div>
+        <div class="search-panel" id="search-panel" hidden>
+            <div class="search-panel-inner"><div class="search-sheet"><div class="search-bar"><span class="search-icon" aria-hidden="true">⌕</span><label class="sr-only" for="site-search">Search stories</label><input id="site-search" type="search" placeholder="Search stories &amp; signals" autocomplete="off"><button id="close-search" type="button" aria-label="Close search"></button></div><button class="search-refresh" id="search-refresh" type="button">⌕ Search</button><div class="search-meta"><span id="search-hint">Search the signal desk</span><span id="search-result-count">Loading stories</span></div><div class="search-suggestions" id="search-suggestions"><section class="search-group"><h3>Suggested</h3><button type="button" class="suggestion-item">Technology trends</button><button type="button" class="suggestion-item">Business signals</button></section></div><div class="search-results" id="search-results" hidden></div></div></div>
         </div>
     </header>
     <main class="wrapper results-main">
         <p class="eyebrow"><span class="live-pulse"></span> Search the signal desk</p>
-        <h1>Find the story<br>behind the signal.</h1>
-        <div class="results-search-bar">
-            <label class="sr-only" for="site-search">Search stories</label>
-            <input id="site-search" type="search" placeholder="Search stories &amp; signals" autocomplete="off" autofocus>
-            <button class="search-refresh" id="search-refresh" type="button">⌕ Search</button>
-        </div>
-        <p class="search-meta"><span id="search-hint">Ranked matches</span><span id="search-result-count">Loading stories</span></p>
+        <h1>Relevant stories</h1>
+        <p class="results-note">Use the search icon in the header to search the signal desk. Relevant stories appear below.</p>
         <div class="story-grid" id="story-grid"></div>
         <p class="result-empty" id="empty-state" hidden>No matching story found. Try another search.</p>
     </main>
