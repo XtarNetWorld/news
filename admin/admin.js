@@ -1,6 +1,7 @@
 const API_BASE = 'https://newsxphere.xtarnet.us.to';
 const $ = selector => document.querySelector(selector);
-const api = (path, options = {}) => fetch(`${API_BASE}/api/admin${path}`, { credentials: 'include', ...options, headers: { 'Content-Type': 'application/json', ...(options.headers || {}) } });
+let sessionToken = sessionStorage.getItem('newsxphere-admin-token') || '';
+const api = (path, options = {}) => fetch(`${API_BASE}/api/admin${path}`, { credentials: 'include', ...options, headers: { 'Content-Type': 'application/json', ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}), ...(options.headers || {}) } });
 const responseData = async response => { const text = await response.text(); try { return JSON.parse(text); } catch { return { error: text || `Request failed with HTTP ${response.status}` }; } };
 const indexHistoryKey = 'newsxphere-index-history';
 let liveIndexResults = null;
@@ -11,6 +12,7 @@ async function checkLiveIndex() { const button = $('#refresh-index-status'); if 
 let generatedPage = null;
 let generatedHtml = '';
 let articles = [];
+let articleInventory = null;
 let uploadedHero = null;
 
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
@@ -58,20 +60,28 @@ async function loadArticles() {
   try {
     const response = await api('/articles');
     const data = response.ok ? await response.json() : {};
+    articleInventory = Array.isArray(data) ? { articles: data } : data;
     articles = Array.isArray(data) ? data : (Array.isArray(data.articles) ? data.articles : []);
-  } catch { articles = []; }
+  } catch { articles = []; articleInventory = null; }
   $('#article-count').textContent = articles.length || '0';
+  let sourceNote = $('#article-source-note');
+  if (!sourceNote) { sourceNote = document.createElement('p'); sourceNote.id = 'article-source-note'; sourceNote.className = 'muted small article-source-note'; $('#article-search')?.after(sourceNote); }
+  const counts = articleInventory?.counts;
+  sourceNote.textContent = counts ? `Loaded ${counts.pages} article pages directly from category folders${counts.missingFromCatalog ? ` · ${counts.missingFromCatalog} recovered outside allnewsdata.json` : ''}. Saving an article also repairs allnewsdata.json, sitemap.xml, and feed.xml.` : 'Loaded directly from the article source.';
   renderArticles();
 }
 
 function renderArticles() {
   const query = ($('#article-search')?.value || '').toLowerCase();
   const list = articles.filter(article => JSON.stringify(article).toLowerCase().includes(query));
-  $('#article-list').innerHTML = list.length ? list.slice(0, 40).map(article => {
+  $('#article-list').innerHTML = list.length ? list.map(article => {
     const title = article.title || article.headline || 'Untitled article';
     const url = article.url || article.href || '#';
-    const path = `${String(url).replace(/^\//, '').replace(/\/$/, '')}/index.html`;
-    return `<div class="article-row"><a href="${escapeHtml(url)}" target="_blank" rel="noopener"><span><b>${escapeHtml(title)}</b><small>${escapeHtml(article.category || article.section || 'News')}</small></span><span>↗</span></a><div class="article-actions"><button type="button" class="text-button" data-index-url="${escapeHtml(url)}">Index</button><button type="button" class="text-button" data-edit-path="${escapeHtml(path)}">Edit</button><button type="button" class="text-button danger" data-delete-id="${escapeHtml(article.id)}" data-delete-path="${escapeHtml(path)}" data-delete-url="${escapeHtml(url)}">Delete</button></div></div>`;
+    const path = article.sourcePath || `${String(url).replace(/^\//, '').replace(/\/$/, '')}/index.html`;
+    const folderName = article.folderName || article.category || article.section || 'Unknown';
+    const sourceLabel = article.source === 'category-page' ? 'GitHub folder · missing from JSON/XML' : article.source === 'catalog+category-page' ? 'GitHub folder · linked to JSON/XML' : 'JSON/XML catalog';
+    const detail = `${folderName} · ${path}`;
+    return `<div class="article-row"><a href="${escapeHtml(url)}" target="_blank" rel="noopener"><span><b>${escapeHtml(title)}</b><small>${escapeHtml(sourceLabel)}</small><small class="article-path">${escapeHtml(detail)}</small></span><span>↗</span></a><div class="article-actions"><button type="button" class="text-button" data-index-url="${escapeHtml(url)}">Index</button><button type="button" class="text-button" data-edit-path="${escapeHtml(path)}">Edit</button><button type="button" class="text-button danger" data-delete-id="${escapeHtml(article.id || article.slug)}" data-delete-path="${escapeHtml(path)}" data-delete-url="${escapeHtml(url)}">Delete</button></div></div>`;
   }).join('') : '<p class="muted">No articles found.</p>';
   document.querySelectorAll('[data-edit-path]').forEach(button => button.addEventListener('click', () => editArticle(button.dataset.editPath)));
   document.querySelectorAll('[data-delete-id]').forEach(button => button.addEventListener('click', () => deleteArticle(button.dataset.deleteId, button.dataset.deletePath, button.dataset.deleteUrl)));
@@ -86,7 +96,7 @@ async function indexArticle(path, button) {
 
 async function editArticle(path) {
   showNotice('Loading article editor…');
-  try { const response = await api(`/article?path=${encodeURIComponent(path)}`); const data = await response.json(); if (!response.ok) throw Error(data.error || 'Article could not be loaded.'); generatedPage = null; generatedHtml = ''; const cleanPath = path.replace(/^\/+/, '').replace(/\/index\.html$/, '/'); const parts = cleanPath.split('/'); const normalizedContent = String(data.content).replace(/(?:\.\.\/)+public\//g, '/public/'); $('#github-form').dataset.originalPath = path; $('#github-form').dataset.originalContent = data.content; $('#publish-category').value = parts[0] || 'world'; $('#publish-slug').value = parts[1] || 'article'; syncPublishPath(); $('#github-form [name="content"]').value = normalizedContent; $('#github-form [name="message"]').value = 'Fix article image path'; const parsed = new DOMParser().parseFromString(normalizedContent, 'text/html'); const image = parsed.querySelector('.post-hero img'); const pageUrl = `https://www.newsxphere.com/${cleanPath}`; if (image?.getAttribute('src')) { const imageUrl = new URL(image.getAttribute('src'), pageUrl).href; previousImageBox.innerHTML = `<span>Previous hero image</span><img src="${escapeHtml(imageUrl)}" alt="Previous hero image" loading="lazy">`; previousImageBox.hidden = false; } else previousImageBox.hidden = true; navigate('publish'); showNotice(normalizedContent !== data.content ? 'The old image path was corrected to /public/. Submit to repair this article.' : 'Article loaded. Previous image is shown below; choose a new image if needed.'); } catch (error) { showNotice(error.message, true); }
+  try { const response = await api(`/article?path=${encodeURIComponent(path)}`); const data = await response.json(); if (!response.ok) throw Error(data.error || 'Article could not be loaded.'); generatedPage = null; generatedHtml = ''; const cleanPath = path.replace(/^\/+/, '').replace(/\/index\.html$/, '/'); const parts = cleanPath.split('/'); const normalizedContent = String(data.content).replace(/(?:\.\.\/)+public\//g, '/public/'); $('#github-form').dataset.originalPath = path; $('#github-form').dataset.originalContent = data.content; $('#publish-category').value = parts[0] || 'world'; $('#publish-slug').value = parts[1] || 'article'; syncPublishPath(); $('#github-form [name="content"]').value = normalizedContent; $('#github-form [name="message"]').value = 'Fix article image path'; const parsed = new DOMParser().parseFromString(normalizedContent, 'text/html'); const image = parsed.querySelector('.post-hero img'); $('#github-form').dataset.articleMeta = JSON.stringify({ title: parsed.querySelector('.post-title')?.textContent?.trim() || '', excerpt: parsed.querySelector('.post-dek')?.textContent?.trim() || '', author: parsed.querySelector('[itemprop="name"]')?.textContent?.trim() || '', category: parts[0] || 'world', slug: parts[1] || 'article', heroAlt: image?.getAttribute('alt') || '' }); const pageUrl = `https://www.newsxphere.com/${cleanPath}`; if (image?.getAttribute('src')) { const imageUrl = new URL(image.getAttribute('src'), pageUrl).href; previousImageBox.innerHTML = `<span>Previous hero image</span><img src="${escapeHtml(imageUrl)}" alt="Previous hero image" loading="lazy">`; previousImageBox.hidden = false; } else previousImageBox.hidden = true; navigate('publish'); showNotice(normalizedContent !== data.content ? 'The old image path was corrected to /public/. Submit to repair this article.' : 'Article loaded. Previous image is shown below; choose a new image if needed.'); } catch (error) { showNotice(error.message, true); }
 }
 
 async function deleteArticle(id, path, articleUrl) {
@@ -133,6 +143,7 @@ async function buildPageFromTemplate(page) {
   doc.title = page.seoTitle || `${page.title} | NewsXphere`;
   setMeta(doc, 'meta[name="description"]', page.metaDescription || page.excerpt);
   setMeta(doc, 'meta[property="og:description"]', page.metaDescription || page.excerpt);
+  setMeta(doc, 'meta[name="twitter:creator"]', '@XtarNetCORP');
   const canonicalNode = doc.querySelector('link[rel="canonical"]'); if (canonicalNode) canonicalNode.href = canonical;
   setText(doc, '.post-tag', page.label || category.toUpperCase());
   setText(doc, '.post-title', page.title);
@@ -158,8 +169,8 @@ async function buildPageFromTemplate(page) {
   return `<!doctype html>\n${doc.documentElement.outerHTML}`;
 }
 
-$('#login-form').addEventListener('submit', async event => { event.preventDefault(); const body = Object.fromEntries(new FormData(event.currentTarget)); const response = await api('/login', { method: 'POST', body: JSON.stringify(body) }); if (!response.ok) { $('#login-error').textContent = 'Login failed. Check your credentials.'; return; } $('#login-error').textContent = ''; await checkSession(); });
-$('#logout').addEventListener('click', async () => { await api('/logout', { method: 'POST' }); location.reload(); });
+$('#login-form').addEventListener('submit', async event => { event.preventDefault(); const body = Object.fromEntries(new FormData(event.currentTarget)); try { const response = await api('/login', { method: 'POST', body: JSON.stringify(body) }); const data = await responseData(response); if (!response.ok) { $('#login-error').textContent = data.error || 'Login failed. Check your credentials.'; return; } sessionToken = data.token || ''; if (sessionToken) sessionStorage.setItem('newsxphere-admin-token', sessionToken); $('#login-error').textContent = ''; await checkSession(); } catch { $('#login-error').textContent = 'The admin API could not be reached. Try again.'; } });
+$('#logout').addEventListener('click', async () => { await api('/logout', { method: 'POST' }); sessionToken = ''; sessionStorage.removeItem('newsxphere-admin-token'); location.reload(); });
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => navigate(button.dataset.view)));
 document.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => navigate(button.dataset.go)));
 $('#mobile-menu').addEventListener('click', () => $('#app-view').classList.toggle('menu-open'));
@@ -185,3 +196,56 @@ $('#use-page').addEventListener('click', () => { if (!generatedPage || !generate
 $('#github-form').addEventListener('submit', async event => { event.preventDefault(); const form = event.currentTarget; const body = Object.fromEntries(new FormData(form)); syncPublishPath(); const newPath = body.path; const originalPath = form.dataset.originalPath || ''; const originalContent = form.dataset.originalContent || ''; const result = $('#github-result'); if (originalPath && originalContent === body.content && originalPath.replace(/^\/+/, '').replace(/\/index\.html$/, '/') === newPath) { result.textContent = 'No changes detected. Nothing was sent to the API.'; showNotice('No changes detected.', false); return; } result.textContent = 'Publishing article, image, cards data, sitemap, and feed…'; try { let response; if (generatedPage && generatedHtml) { const slug = slugify(generatedPage.slug || generatedPage.title); const category = slugify(generatedPage.category || 'news'); const externalImage = $('#hero-image-url').value.trim(); if (uploadedHero) { generatedPage.heroImageUrl = ''; generatedPage.heroImageExtension = uploadedHero.extension; generatedHtml = await buildPageFromTemplate(generatedPage); } else if (externalImage) { if (!/^https:\/\//i.test(externalImage)) throw Error('Image URL must start with HTTPS.'); generatedPage.heroImageUrl = externalImage; generatedPage.heroImageExtension = /\.png(?:\?|$)/i.test(externalImage) ? 'png' : /\.webp(?:\?|$)/i.test(externalImage) ? 'webp' : 'jpg'; generatedPage.heroImageSource = externalImage; generatedHtml = await buildPageFromTemplate(generatedPage); } const extension = uploadedHero ? uploadedHero.extension : (generatedPage.heroImageUrl ? (generatedPage.heroImageExtension || 'jpg') : 'svg'); const assetPath = `public/${slug}-hero.${extension}`; response = await api('/publish', { method: 'POST', body: JSON.stringify({ articlePath: newPath, articleContent: generatedHtml, assetPath, assetContent: uploadedHero || generatedPage.heroImageUrl ? '' : coverSvg(generatedPage), uploadedImageBase64: uploadedHero?.base64 || '', sourceImageUrl: uploadedHero ? '' : (generatedPage.heroImageUrl || ''), article: generatedPage }) }); } else if (originalPath && originalPath.replace(/^\/+/, '').replace(/\/index\.html$/, '/') !== newPath) { response = await api('/move', { method: 'POST', body: JSON.stringify({ oldPath: originalPath, newPath, content: body.content, id: form.dataset.originalPath.split('/')[1]?.replace(/\/index\.html$/, ''), oldUrl: `/${form.dataset.originalPath.replace(/^\/+/, '').replace(/\/index\.html$/, '')}/` }) }); } else response = await api('/github/commit', { method: 'POST', body: JSON.stringify({ path: newPath.replace(/\/$/, '') + (newPath.endsWith('/') ? 'index.html' : ''), message: body.message, content: body.content }) }); const message = await response.text(); if (!response.ok) throw Error(`Publish failed: ${message}`); result.textContent = generatedPage ? 'Published article and SEO-renamed hero image, then updated cards, sitemap, and feed.' : originalPath ? 'Article updated successfully.' : 'Published successfully.'; form.dataset.originalPath = newPath; form.dataset.originalContent = body.content; } catch (error) { result.textContent = error.message || 'Publish failed.'; } });
 $('#index-form').addEventListener('submit', async event => { event.preventDefault(); const body = Object.fromEntries(new FormData(event.currentTarget)); const result = $('#index-result'); result.textContent = 'Submitting…'; const response = await api('/index', { method: 'POST', body: JSON.stringify(body) }); const data = await responseData(response); if (response.ok) { recordIndex(body.url, 'success', data.message || 'Submitted'); result.textContent = 'Indexing request submitted successfully.'; } else { recordIndex(body.url, 'failed', data.error || 'Indexing failed'); result.textContent = `Indexing failed: ${data.error || 'Unknown error'}`; } });
 checkSession();
+
+/* Keep the selected publish category authoritative and handle image replacement
+   when an existing article is being edited. */
+document.addEventListener('change', async event => {
+  if (event.target?.id !== 'publish-category' || !generatedPage || !generatedHtml) return;
+  generatedPage.category = event.target.value;
+  generatedPage.section = event.target.value;
+  try { generatedHtml = await buildPageFromTemplate(generatedPage); $('#github-form [name="content"]').value = generatedHtml; } catch (error) { showNotice(error.message || 'Could not rebuild the article for this category.', true); }
+}, true);
+
+document.addEventListener('submit', async event => {
+  const form = event.target;
+  if (!form || form.id !== 'github-form') return;
+  const originalPath = form.dataset.originalPath || '';
+  const uploaded = uploadedHero;
+  const externalImage = $('#hero-image-url')?.value.trim() || '';
+  if (!originalPath || (!uploaded && !externalImage)) {
+    if (generatedPage && $('#publish-category')) generatedPage.category = $('#publish-category').value;
+    return;
+  }
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  syncPublishPath();
+  const body = Object.fromEntries(new FormData(form));
+  const newPath = body.path;
+  const slug = slugify($('#publish-slug').value);
+  const extension = uploaded ? uploaded.extension : (/\.png(?:\?|$)/i.test(externalImage) ? 'png' : /\.webp(?:\?|$)/i.test(externalImage) ? 'webp' : 'jpg');
+  const assetPath = `public/${slug}-hero.${extension}`;
+  const doc = new DOMParser().parseFromString(body.content, 'text/html');
+  const image = doc.querySelector('.post-hero img, [itemprop="image"], main img');
+  const result = $('#github-result');
+  if (!image) { showNotice('This article has no hero image element to update.', true); return; }
+  image.src = `/${assetPath}`;
+  body.content = `<!doctype html>\n${doc.documentElement.outerHTML}`;
+  result.textContent = 'Uploading image and updating the article…';
+  try {
+    const meta = JSON.parse(form.dataset.articleMeta || '{}');
+    const response = await api('/publish', { method: 'POST', body: JSON.stringify({ articlePath: newPath, articleContent: body.content, assetPath, assetContent: '', uploadedImageBase64: uploaded?.base64 || '', sourceImageUrl: uploaded ? '' : externalImage, article: { ...meta, title: meta.title || slug, slug, category: $('#publish-category').value, heroAlt: image.alt || meta.heroAlt || meta.title || slug, heroImageSource: externalImage } }) });
+    if (!response.ok) throw Error(`Image update failed: ${await response.text()}`);
+    const routeChanged = originalPath.replace(/^\/+/, '').replace(/\/index\.html$/, '/') !== newPath;
+    if (routeChanged) {
+      const moved = await api('/move', { method: 'POST', body: JSON.stringify({ oldPath: originalPath, newPath, content: body.content, id: slug, oldUrl: `/${originalPath.replace(/^\/+/, '').replace(/\/index\.html$/, '')}/` }) });
+      if (!moved.ok) throw Error(`Article route update failed: ${await moved.text()}`);
+    }
+    form.dataset.originalPath = newPath;
+    form.dataset.originalContent = body.content;
+    form.querySelector('[name="content"]').value = body.content;
+    uploadedHero = null;
+    result.textContent = 'New image uploaded and connected to the article successfully.';
+    showNotice('Image updated successfully. The article, cards, sitemap, and feed were synchronized.');
+  } catch (error) { result.textContent = error.message || 'Image update failed.'; showNotice(result.textContent, true); }
+}, true);

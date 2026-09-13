@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"); :root {
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap");
+:root {
     --bg: #f4efe6;
     --surface: #fbf8f1;
     --surface-2: #e8e0d2;
@@ -2752,9 +2753,6 @@ h1 em {
     padding: 100px 0 80px;
 }
 
-
-
-
 .error-page .error-code {
     font: 500 clamp(72px, 16vw, 160px) / 0.95 "Playfair Display", serif;
     letter-spacing: -0.06em;
@@ -2918,6 +2916,10 @@ p, li, .legal-body p, .hero-copy > p, .card-body > p {
 @media (max-width: 900px) and (min-width: 561px) {
     .nav-shell {
         padding: 12px 16px 14px;
+    }
+    .header-controls {
+        order: 1;
+        margin-left: auto;
     }
     .menu-toggle {
         margin-left: auto;
@@ -3537,7 +3539,7 @@ img, video, canvas, svg {
 }
 
 /* Short viewports (landscape phones / small height) */
-@media (max-height: 700px) {
+@media (max-width: 900px) and (max-height: 700px) {
     .hero {
         padding: 36px 0 32px;
         gap: 28px;
@@ -3555,7 +3557,7 @@ img, video, canvas, svg {
     }
 }
 
-@media (max-height: 560px) {
+@media (max-width: 900px) and (max-height: 560px) {
     .hero {
         padding: 24px 0 20px;
     }
@@ -3885,4 +3887,116 @@ img, video, canvas, svg {
         font-size: 8px !important;
         letter-spacing: 0.03em !important;
     }
+}
+
+/* Final homepage alignment fixes: keep the desktop hero visually grouped. */
+@media (min-width: 901px) {
+    .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, clamp(320px, 34vw, 420px));
+        align-items: center;
+        justify-content: initial;
+        gap: clamp(28px, 4vw, 64px);
+        padding-block: clamp(64px, 8vh, 96px) clamp(48px, 6vh, 72px);
+        padding-inline: clamp(18px, 3vw, 48px);
+    }
+
+    .hero-copy,
+    .hero-orbit {
+        min-width: 0;
+    }
+
+    .hero-copy {
+        max-width: 680px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(56px, 7vw, 96px);
+        line-height: 1.02;
+    }
+
+    .hero-orbit {
+        width: 100%;
+        max-width: 420px;
+        justify-self: end;
+    }
+}
+
+/* Reader Mode: the manifesto quote becomes a single readable column. */
+.reading-mode .manifesto {
+    display: block;
+    max-width: 760px;
+    padding: 56px 24px;
+}
+
+.reading-mode .manifesto blockquote {
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(26px, 4vw, 48px);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+}
+
+.reading-mode .manifesto .section-number,
+.reading-mode .manifesto-orb {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .reading-mode .manifesto {
+        padding: 42px 20px;
+    }
+}
+.results-main {
+    padding-top: clamp(3rem, 8vw, 7rem);
+    padding-bottom: 5rem;
+}
+
+.results-main h1 {
+    margin: .4rem 0 2rem;
+    max-width: 760px;
+}
+
+.results-search-bar {
+    display: flex;
+    gap: .7rem;
+    max-width: 760px;
+    margin-bottom: 1rem;
+}
+
+.results-search-bar input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--line, #c8c2b5);
+    border-radius: 999px;
+    padding: .95rem 1.1rem;
+    background: var(--surface, #fffaf1);
+    color: inherit;
+    font: inherit;
+}
+
+.results-search-bar .search-refresh {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    white-space: nowrap;
+}
+
+.results-main > .search-meta {
+    display: flex;
+    justify-content: space-between;
+    max-width: 760px;
+    margin-bottom: 2rem;
+}
+
+.not-found-results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    .not-found-results { grid-template-columns: 1fr; }
 }

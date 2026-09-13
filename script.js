@@ -466,11 +466,80 @@ const formatDate = (dateValue) => {
     }).format(new Date(dateValue));
 };
 
+const cleanCardText = (value) => String(value || '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/\s+/g, ' ').trim();
+const weakArticleTitle = (article) => {
+    const title = cleanCardText(article.title);
+    const slug = String(article.slug || article.id || '').toLowerCase();
+    return !title || title.toLowerCase() === slug || title.replace(/[^a-z0-9]+/gi, '-').toLowerCase() === slug;
+};
+const pageCardSummary = (doc) => {
+    const candidates = [
+        doc.querySelector('.post-dek'),
+        doc.querySelector('.post-copy p.hook'),
+        doc.querySelector('.post-copy p'),
+        doc.querySelector('main article p'),
+        doc.querySelector('article p')
+    ];
+    return cleanCardText(candidates.find(node => cleanCardText(node?.textContent).length > 24)?.textContent || '');
+};
+const hydrateArticleCardData = async (items) => {
+    const result = [...items];
+    let cursor = 0;
+    const worker = async () => {
+        while (cursor < result.length) {
+            const index = cursor++;
+            const article = result[index];
+            const hasSummary = cleanCardText(article.excerpt || article.description || article.dek || article.summary).length > 24;
+            if ((!weakArticleTitle(article) && hasSummary) || !String(article.url || '').startsWith('/')) {
+                if (!hasSummary) article.excerpt = `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
+                continue;
+            }
+            try {
+                const response = await fetch(article.url, { cache: 'no-store' });
+                if (response.ok) {
+                    const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+                    const pageTitle = cleanCardText(doc.querySelector('.post-title')?.textContent || doc.querySelector('h1')?.textContent);
+                    const pageSummary = pageCardSummary(doc);
+                    if (weakArticleTitle(article) && pageTitle) article.title = pageTitle;
+                    if (!hasSummary) article.excerpt = pageSummary || `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
+                }
+            } catch {}
+            if (!cleanCardText(article.excerpt || article.description || article.dek || article.summary)) article.excerpt = `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
+        }
+    };
+    await Promise.all(Array.from({ length: Math.min(8, result.length) }, worker));
+    return result;
+};
+const articleCardExcerpt = (article) => cleanCardText(article.excerpt || article.description || article.dek || article.summary) || `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
+
+const searchTokens = value => String(value || '').toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s-]/gu, ' ').split(/\s+/).filter(token => token.length > 1);
+const articleSearchScore = (article, query) => {
+    const q = String(query || '').trim().toLowerCase();
+    const tokens = searchTokens(q);
+    if (!q || !tokens.length) return 0;
+    const title = cleanCardText(article.title).toLowerCase();
+    const text = articleSearchText(article).toLowerCase();
+    const slug = String(article.slug || article.id || '').toLowerCase();
+    let score = title === q ? 1000 : title.includes(q) ? 280 : 0;
+    if (slug === q || slug.includes(q.replace(/\s+/g, '-'))) score += 220;
+    for (const token of tokens) {
+        if (title.includes(token)) score += 75;
+        if (text.includes(token)) score += 24;
+        if (slug.includes(token)) score += 35;
+    }
+    const compact = tokens.join(' ');
+    const phraseWords = title.split(/\s+/);
+    for (let i = 0; i < phraseWords.length - 1; i += 1) if (`${phraseWords[i]} ${phraseWords[i + 1]}`.includes(compact)) score += 90;
+    return score / Math.max(1, tokens.length);
+};
+const rankArticles = (query, items = articles) => [...items].map(article => ({ article, score: articleSearchScore(article, query) })).filter(item => item.score > 0).sort((a, b) => b.score - a.score || Date.parse(b.article.updatedAt || b.article.publishedAt || '') - Date.parse(a.article.updatedAt || a.article.publishedAt || '')).map(item => item.article);
+const submitSearch = value => { const query = String(value || '').trim(); if (!query) return showToast('Type something to search'); window.location.href = `/results?search_query=${encodeURIComponent(query)}`; };
+
 const articleCardTemplate = (article, index = 0) => `
     <article class="story-card ${index === 0 ? 'card-dark' : ''}" data-topic="${escapeHtml(article.category)}" data-search="${escapeHtml(articleSearchText(article))}">
         <a class="story-card-link" href="${escapeHtml(article.url)}" aria-label="Read ${escapeHtml(article.title)}">
             <div class="card-visual image-card">
-                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" width="1200" height="800" sizes="(max-width: 700px) 92vw, 560px" decoding="async" loading="${index === 0 ? 'eager' : 'lazy'}">
+                <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async" fetchpriority="${index === 0 ? 'high' : 'low'}">
                 <span>${escapeHtml(article.label || article.category)}</span>
                 <b>↗</b>
             </div>
@@ -480,7 +549,7 @@ const articleCardTemplate = (article, index = 0) => `
                     ${escapeHtml(article.readTime || 'Quick read')}
                 </p>
                 <h3>${escapeHtml(article.title)}</h3>
-                <p>${escapeHtml(article.excerpt)}</p>
+                <p>${escapeHtml(articleCardExcerpt(article))}</p>
             </div>
         </a>
         <div class="card-footer">
@@ -578,7 +647,7 @@ function renderSearchState(value = '') {
     searchResults.innerHTML = hasQuery
         ? matches.length
             ? matches.map(article => `
-                <a class="result-item" href="${escapeHtml(article.url)}">
+                <a class="result-item" href="/results?search_query=${encodeURIComponent(article.title)}">
                     <small>${escapeHtml(article.category)}</small>
                     <strong>${escapeHtml(article.title)}</strong>
                 </a>
@@ -629,18 +698,56 @@ async function loadArticleData() {
             if (!article || !article.id || !article.url || !article.title) return;
             if (!unique.has(article.id)) unique.set(article.id, article);
         });
-        articles = [...unique.values()];
+        const initialArticles = [...unique.values()].sort((a, b) => {
+            const left = Date.parse(a.updatedAt || a.publishedAt || '') || 0;
+            const right = Date.parse(b.updatedAt || b.publishedAt || '') || 0;
+            return right - left;
+        });
+        const needsImmediateHydration = body.dataset.errorPage === 'true' || body.classList.contains('results-page');
+        articles = needsImmediateHydration ? await hydrateArticleCardData(initialArticles) : initialArticles;
+        if (body.dataset.errorPage === 'true') {
+            const params = new URLSearchParams(window.location.search);
+            const failedPath = decodeURIComponent(window.location.pathname).replace(/^\/+|\/+$/g, '').replace(/\/$/, '').replace(/[-_]+/g, ' ');
+            const query = params.get('search_query')?.trim() || failedPath;
+            const matches = rankArticles(query, articles).slice(0, 6);
+            const output = document.querySelector('#not-found-results');
+            const heading = document.querySelector('#not-found-heading');
+            const message = document.querySelector('#not-found-message');
+            if (heading) heading.textContent = params.has('search_query') ? `Results for “${query}”` : 'Did you mean one of these signals?';
+            if (message) message.textContent = matches.length ? 'The closest matching stories are shown first.' : 'No close match was found. Try a new search from the signal desk.';
+            if (output) output.innerHTML = matches.length ? matches.map(articleCardTemplate).join('') : '<p class="result-empty">No matching story found.</p>';
+            return;
+        }
     } catch (error) {
         console.error(error);
         articles = [];
     }
 
+    if (body.classList.contains('results-page')) {
+        const query = new URLSearchParams(window.location.search).get('search_query')?.trim() || '';
+        if (!query) { window.location.replace('/404.html'); return; }
+        if (search) search.value = query;
+        visibleArticles = query ? rankArticles(query, articles) : [];
+        renderStoryGrid(visibleArticles);
+        setCount(visibleArticles.length);
+        const empty = document.querySelector('#empty-state');
+        if (empty) empty.hidden = visibleArticles.length > 0;
+        return;
+    }
     visibleArticles = [...articles];
     renderStoryGrid(visibleArticles);
     renderRelatedArticles();
     setCount(visibleArticles.length);
     syncSaveButtons();
     filterStories(search ? search.value : '');
+    if (!body.dataset.errorPage && !body.classList.contains('results-page')) {
+        const hydrate = () => hydrateArticleCardData(articles).then(updated => {
+            articles = updated;
+            filterStories(search ? search.value : '');
+        }).catch(() => {});
+        if ('requestIdleCallback' in window) window.requestIdleCallback(hydrate, { timeout: 1800 });
+        else window.setTimeout(hydrate, 900);
+    }
 }
 
 document.querySelector('#search-trigger')?.addEventListener('click', openSearch);
@@ -656,6 +763,7 @@ search?.addEventListener('focus', () => {
     body.classList.add('search-dropdown-open');
     renderSearchState(search.value);
 });
+search?.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); submitSearch(search.value); } });
 
 topics.forEach(topic => topic.addEventListener('click', () => {
     topics.forEach(item => item.classList.remove('active'));
@@ -772,22 +880,20 @@ document.addEventListener('keydown', event => {
 });
 
 document.querySelector('#search-refresh')?.addEventListener('click', () => {
-    if (search) search.value = '';
-    filterStories('');
-    search?.focus();
-    showToast('Search refreshed');
+    submitSearch(search?.value || '');
 });
 
 document.querySelector('#search-suggestions')?.addEventListener('click', event => {
     const button = event.target.closest('.suggestion-item');
     if (!button || !search) return;
-    search.value = button.textContent.trim();
-    filterStories(search.value);
-    closeSearch();
+    submitSearch(button.textContent.trim());
 });
 
 document.querySelector('#search-results')?.addEventListener('click', event => {
-    if (event.target.closest('.result-item')) closeSearch();
+    const result = event.target.closest('.result-item');
+    if (!result) return;
+    event.preventDefault();
+    submitSearch(result.querySelector('strong')?.textContent || result.textContent);
 });
 
 const maybeClosePrimaryNav = (event) => {
@@ -808,6 +914,9 @@ window.addEventListener('resize', () => {
 }, { passive: true });
 
 loadArticleData();
+if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(() => {});
+}
 
 /* YouTube-style header hide / show */
 (function () {

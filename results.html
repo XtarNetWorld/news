@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#142322">
+    <meta name="description" content="Search NewsXphere stories and signals.">
+    <meta name="twitter:creator" content="@XtarNetCORP">
+    <title>Search results | NewsXphere</title>
+    <link rel="canonical" href="https://www.newsxphere.com/results">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body class="results-page">
+    <header class="site-header">
+        <div class="header-inner wrapper">
+            <a class="brand" href="/" aria-label="NewsXphere home">
+                <img src="/public/newsxphere-light-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-light">
+                <img src="/public/newsxphere-dark-mode-logo.png" alt="NewsXphere" class="brand-logo brand-logo-dark">
+            </a>
+            <a class="text-link" href="/">← Signal desk</a>
+        </div>
+    </header>
+    <main class="wrapper results-main">
+        <p class="eyebrow"><span class="live-pulse"></span> Search the signal desk</p>
+        <h1>Find the story<br>behind the signal.</h1>
+        <div class="results-search-bar">
+            <label class="sr-only" for="site-search">Search stories</label>
+            <input id="site-search" type="search" placeholder="Search stories &amp; signals" autocomplete="off" autofocus>
+            <button class="search-refresh" id="search-refresh" type="button">⌕ Search</button>
+        </div>
+        <p class="search-meta"><span id="search-hint">Ranked matches</span><span id="search-result-count">Loading stories</span></p>
+        <div class="story-grid" id="story-grid"></div>
+        <p class="result-empty" id="empty-state" hidden>No matching story found. Try another search.</p>
+    </main>
+</body>
+</html>
