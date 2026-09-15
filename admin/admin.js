@@ -16,7 +16,13 @@ let articleInventory = null;
 let uploadedHero = null;
 
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-const cleanJson = text => { const value = String(text || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, ''); return JSON.parse(value); };
+const cleanJson = text => {
+  let value = String(text || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+  try { return JSON.parse(value); } catch {}
+  const start = value.indexOf('{'); const end = value.lastIndexOf('}');
+  if (start >= 0 && end > start) return JSON.parse(value.slice(start, end + 1));
+  throw new Error('AI returned an invalid article package. Please run the command again.');
+};
 const slugify = value => String(value || 'article').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 90) || 'article';
 const blockGroups = { 'Core story': ['takeaways','checklist','quote','comparison','faq','sources','video','timeline','key-numbers','pros-cons','what-we-know','what-we-dont-know','why-it-matters','what-next','context-box'], 'SEO and trust': ['seo-title','meta-description','keyword-map','canonical-check','schema-newsarticle','author-box','fact-check','source-quality','correction-note','reading-time','image-alt','image-credit','internal-links','external-links','related-stories'], 'Analysis': ['expert-angle','timeline-analysis','cause-effect','stakeholder-map','risk-analysis','scenario-analysis','market-impact','policy-impact','technology-impact','regional-impact','comparison-matrix','data-breakdown','myth-vs-fact','definition-box','glossary'], 'Reader experience': ['quick-summary','key-questions','faq-expanded','pull-quote','highlight-box','numbered-steps','checklist-expanded','callout-warning','callout-context','pros-cons-table','quote-card','source-notes','author-note','editor-note','newsletter-cta'], 'Media and distribution': ['youtube-embed','vimeo-embed','podcast-embed','image-gallery','captioned-image','social-embed','document-link','download-box','print-summary','share-card'] };
 const blockLabels = value => value.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
@@ -25,9 +31,16 @@ buildBlockSelector();
 const sourceNotes = $('#writer-form textarea[name="source"]'); if (sourceNotes) { sourceNotes.required = false; sourceNotes.placeholder = 'Optional: paste verified notes or links. For live research, describe the topic and angle in the Super AI editorial command box.'; }
 const customLengthLabel = document.createElement('label'); customLengthLabel.innerHTML = 'Custom target length <input name="customLength" type="number" min="300" max="10000" step="50" placeholder="Example: 1800"><small class="muted">Words. Leave empty to use the selected preset.</small>'; const lengthSelect = $('#writer-form select[name="length"]'); lengthSelect?.closest('label')?.after(customLengthLabel);
 const bytesToBase64 = bytes => { let binary = ''; for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000)); return btoa(binary); };
-async function attachOpenImage(page) { if (page.heroImageUrl) return; try { const query = [page.title, page.category, ...(page.keywords || []).slice(0, 3)].filter(Boolean).join(' '); const response = await api(`/image/search?q=${encodeURIComponent(query)}`); if (!response.ok) return; const data = await response.json(); const image = data.candidates?.[0]; if (!image) return; page.heroImageUrl = image.url; page.heroImageExtension = image.mime.includes('png') ? 'png' : image.mime.includes('webp') ? 'webp' : 'jpg'; page.heroImageSource = image.sourceUrl; page.heroImageLicense = image.license; page.heroImageArtist = image.artist; page.sources = [...(page.sources || []), { title: `Hero image: ${image.title} — ${image.license}${image.artist ? ` — ${image.artist}` : ''}`, url: image.sourceUrl }]; } catch {} }
+async function attachOpenImage(page) { if (page.heroImageUrl) return; try { const query = [page.title, page.category, ...(page.keywords || []).slice(0, 3)].filter(Boolean).join(' '); const response = await api(`/image/search?q=${encodeURIComponent(query)}`); if (!response.ok) return; const data = await response.json(); const image = data.candidates?.[0]; if (!image?.url) return; const mime = String(image.mime || '').toLowerCase(); page.heroImageUrl = image.url; page.heroImageExtension = mime.includes('png') ? 'png' : mime.includes('webp') ? 'webp' : mime.includes('svg') ? 'svg' : 'jpg'; page.heroImageSource = image.sourceUrl || ''; page.heroImageLicense = image.license || ''; page.heroImageArtist = image.artist || ''; page.sources = [...(page.sources || []), { title: `Hero image: ${image.title || page.title} — ${image.license || 'license noted'}${image.artist ? ` — ${image.artist}` : ''}`, url: image.sourceUrl || image.url }]; } catch (error) { console.warn('Image search failed', error); } }
 const coverSvg = page => { const title = escapeHtml(page.title || 'NewsXphere'); const category = escapeHtml(page.category || 'News'); const words = String(page.title || 'NewsXphere').split(/\s+/); const lines = []; for (let i = 0; i < words.length && lines.length < 4; i += 4) lines.push(words.slice(i, i + 4).join(' ')); return `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102f32"/><stop offset="1" stop-color="#0b1618"/></linearGradient><pattern id="p" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M0 80L80 0M-20 20L20-20M60 100L100 60" stroke="#d66b4e" stroke-opacity=".16" stroke-width="2"/></pattern></defs><rect width="1600" height="900" fill="url(#g)"/><rect width="1600" height="900" fill="url(#p)"/><circle cx="1270" cy="220" r="210" fill="#d66b4e" opacity=".18"/><circle cx="1370" cy="320" r="120" fill="none" stroke="#f2eee6" stroke-opacity=".35" stroke-width="2"/><text x="100" y="130" fill="#f2eee6" font-family="Arial,sans-serif" font-size="28" letter-spacing="7">NEWSXPHERE / ${category.toUpperCase()}</text><text x="100" y="650" fill="#f2eee6" font-family="Georgia,serif" font-size="76" font-weight="700">${lines.map((line, i) => `<tspan x="100" dy="${i ? 92 : 0}">${escapeHtml(line)}</tspan>`).join('')}</text><text x="100" y="820" fill="#d66b4e" font-family="Arial,sans-serif" font-size="25" letter-spacing="4">SIGNAL DESK · VERIFIED EDITORIAL COVER</text></svg>`; };
 const showNotice = (message, error = false) => { const node = $('#notice'); node.textContent = message || ''; node.className = `notice ${error ? 'error' : 'success'}`; };
+const explainGenerationError = value => {
+  const message = String(value || 'Generation failed.');
+  if (/user location is not supported|failed_precondition/i.test(message)) return 'Gemini rejected this Worker location. India is supported, so check the Google Cloud project billing and the Worker egress/IP region. If billing is already active, report the Worker IP to Google or use Vertex AI in a supported Cloud region.';
+  if (/quota|rate.?limit|resource.?exhausted/i.test(message)) return 'Gemini quota was reached. Wait for the quota window or connect a paid/billed Gemini project.';
+  if (/api key|unauthenticated|permission denied/i.test(message)) return 'Gemini credentials are invalid or do not have model access. Update GEMINI_API_KEY and confirm the project permissions.';
+  return message;
+};
 
 function navigate(view) {
   document.querySelectorAll('[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === view));
@@ -140,17 +153,29 @@ async function buildPageFromTemplate(page) {
   const heroAsset = `/public/${slug}-hero.${heroExtension}`;
   doc.body.dataset.articleId = slug;
   const articleIdMeta = doc.querySelector('meta[name="newsxphere-article-id"]'); if (articleIdMeta) articleIdMeta.setAttribute('content', slug);
+  const date = new Date().toISOString();
   doc.title = page.seoTitle || `${page.title} | NewsXphere`;
   setMeta(doc, 'meta[name="description"]', page.metaDescription || page.excerpt);
+  setMeta(doc, 'meta[name="keywords"]', (page.keywords || []).join(', '));
+  setMeta(doc, 'meta[property="og:title"]', page.title);
   setMeta(doc, 'meta[property="og:description"]', page.metaDescription || page.excerpt);
+  setMeta(doc, 'meta[property="og:url"]', canonical);
+  setMeta(doc, 'meta[property="og:image"]', `https://www.newsxphere.com${heroAsset}`);
   setMeta(doc, 'meta[name="twitter:creator"]', '@XtarNetCORP');
+  setMeta(doc, 'meta[name="twitter:title"]', page.title);
+  setMeta(doc, 'meta[name="twitter:description"]', page.metaDescription || page.excerpt);
+  setMeta(doc, 'meta[name="twitter:image"]', `https://www.newsxphere.com${heroAsset}`);
+  setMeta(doc, 'meta[property="article:section"]', category);
+  setMeta(doc, 'meta[property="article:published_time"]', date);
+  setMeta(doc, 'meta[property="article:modified_time"]', date);
+  const alternate = doc.querySelector('link[hreflang="en"]'); if (alternate) alternate.href = canonical;
   const canonicalNode = doc.querySelector('link[rel="canonical"]'); if (canonicalNode) canonicalNode.href = canonical;
   setText(doc, '.post-tag', page.label || category.toUpperCase());
   setText(doc, '.post-title', page.title);
   setText(doc, '.post-dek', page.excerpt);
   setText(doc, '.byline [itemprop="name"]', page.author || 'Monu Sharma');
   setText(doc, '[itemprop="articleSection"]', category);
-  const date = new Date().toISOString(); const time = doc.querySelector('time[itemprop="datePublished"]');
+  const time = doc.querySelector('time[itemprop="datePublished"]');
   if (time) { time.setAttribute('datetime', date); time.textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
   const copy = doc.querySelector('.post-copy'); if (copy) copy.innerHTML = generatedBody(page);
   const hero = doc.querySelector('.post-hero img'); if (hero) { hero.src = heroAsset; hero.alt = page.heroAlt || `${page.title} — NewsXphere`; hero.title = page.title || ''; }
@@ -165,7 +190,7 @@ async function buildPageFromTemplate(page) {
     sources.hidden = !sourceItems.length;
   }
   const schema = doc.querySelector('script[type="application/ld+json"]');
-  if (schema) { try { const data = JSON.parse(schema.textContent); Object.assign(data, { headline: page.title, description: page.metaDescription || page.excerpt, datePublished: date, dateModified: date, articleSection: category, url: canonical, image: `https://www.newsxphere.com/public/${slug}-hero.${heroExtension}` }); schema.textContent = JSON.stringify(data); } catch {} }
+  if (schema) { try { const data = JSON.parse(schema.textContent); const target = Array.isArray(data?.['@graph']) ? (data['@graph'].find(item => /NewsArticle/i.test(item?.['@type'] || '')) || data['@graph'][0]) : data; Object.assign(target, { headline: page.title, description: page.metaDescription || page.excerpt, datePublished: date, dateModified: date, articleSection: category, url: canonical, image: [`https://www.newsxphere.com${heroAsset}`], keywords: page.keywords || [] }); schema.textContent = JSON.stringify(data); } catch {} }
   return `<!doctype html>\n${doc.documentElement.outerHTML}`;
 }
 
@@ -177,9 +202,9 @@ $('#mobile-menu').addEventListener('click', () => $('#app-view').classList.toggl
 $('#article-search').addEventListener('input', renderArticles);
 
 $('#writer-form').addEventListener('submit', async event => {
-  event.preventDefault(); const form = event.currentTarget; const body = Object.fromEntries(new FormData(form)); body.source = body.instruction; body.angle = body.instruction; body.blocks = ['auto-select','takeaways','checklist','faq','sources']; body.mode = 'page';
+  event.preventDefault(); const form = event.currentTarget; const body = Object.fromEntries(new FormData(form)); body.source = body.instruction; body.angle = body.instruction; body.blocks = [...form.querySelectorAll('input[name="blocks"]:checked')].map(input => input.value); if (form.querySelector('input[name="autoBlocks"]')?.checked) body.blocks.unshift('auto-select'); if (body.customLength) body.length = `${body.customLength} words`; body.mode = 'page';
   $('#page-summary').textContent = 'Creating the full article using your existing NewsXphere page structure…'; $('#writer-output').hidden = true; $('#page-preview').hidden = true; showNotice('Generating a complete article page…');
-  try { const response = await api('/generate', { method: 'POST', body: JSON.stringify(body) }); const raw = await response.text(); if (!response.ok) throw Error(raw); generatedPage = cleanJson(raw); generatedPage.slug = slugify(generatedPage.slug || generatedPage.title); await attachOpenImage(generatedPage); generatedHtml = await buildPageFromTemplate(generatedPage); $('#writer-output').textContent = generatedHtml; $('#page-summary').innerHTML = `<b>${escapeHtml(generatedPage.title)}</b><span>${escapeHtml(generatedPage.excerpt || '')}</span><small>${escapeHtml(generatedPage.category || body.category)} · ${escapeHtml(generatedPage.readTime || '')}${generatedPage.heroImageUrl ? ' · Open-license image attached' : ' · Branded cover attached'}</small>`; showNotice('Complete page generated. Preview it before publishing.'); } catch (error) { $('#page-summary').textContent = error.message || 'Generation failed.'; showNotice(error.message || 'Generation failed.', true); }
+  try { const response = await api('/generate', { method: 'POST', body: JSON.stringify(body) }); const raw = await response.text(); if (!response.ok) throw Error(raw || `Generation failed (${response.status})`); generatedPage = cleanJson(raw); generatedPage.slug = slugify(generatedPage.slug || generatedPage.title); await attachOpenImage(generatedPage); generatedHtml = await buildPageFromTemplate(generatedPage); $('#writer-output').textContent = generatedHtml; $('#writer-output').hidden = false; $('#page-summary').innerHTML = `<b>${escapeHtml(generatedPage.title)}</b><span>${escapeHtml(generatedPage.excerpt || '')}</span><small>${escapeHtml(generatedPage.category || body.category)} · ${escapeHtml(generatedPage.readTime || '')}${generatedPage.heroImageUrl ? ' · Open-license image attached' : ' · Branded cover attached'}</small>${generatedPage.alternativeHeadlines?.length ? `<small><b>Alternative headlines:</b> ${escapeHtml(generatedPage.alternativeHeadlines.join(' · '))}</small>` : ''}${generatedPage.hashtags?.length ? `<small><b>Hashtags:</b> ${escapeHtml(generatedPage.hashtags.join(' '))}</small>` : ''}${generatedPage.twitterThread?.length ? `<small><b>X thread:</b> ${escapeHtml(generatedPage.twitterThread.join(' · '))}</small>` : ''}${generatedPage.whyThisWillTrend ? `<small><b>Trend angle:</b> ${escapeHtml(generatedPage.whyThisWillTrend)}</small>` : ''}`; showNotice('Complete SEO article package generated. Preview it before publishing.'); } catch (error) { const message = explainGenerationError(error.message); $('#page-summary').textContent = message; showNotice(message, true); }
 });
 $('#preview-page').addEventListener('click', () => { if (!generatedHtml) return showNotice('Generate a page first.', true); const frame = $('#page-preview'); frame.srcdoc = generatedHtml.replace('<head>', '<head><base href="https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/">'); frame.hidden = false; });
 const changeImageButton = document.createElement('button'); changeImageButton.type = 'button'; changeImageButton.className = 'text-button'; changeImageButton.textContent = 'Change image'; $('#preview-page').before(changeImageButton);
