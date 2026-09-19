@@ -1,78 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    <title>NewsXphere — Latest signals</title>
+    <link>https://www.newsxphere.com/</link>
+    <description>Thoughtful reporting from NewsXphere.</description>
+    <language>en-us</language>
+    <atom:link href="https://www.newsxphere.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Generative AI Startup Funding Trends: Investment Capital, Valuations, and Market Dynamics</title>
-      <link>https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</link>
-      <guid isPermaLink="true">https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</guid>
-      <description>An in-depth analysis of investment capital distribution, valuation multiples, revenue benchmarks, and strategic funding trends across the global startup ecosystem.</description>
-      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
+      <title>Shelley Fabares, &apos;Coach&apos; &amp; &apos;Donna Reed Show&apos; Star</title>
+      <link>https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</guid>
+      <description>The Emmy-nominated actress and &quot;Johnny Angel&quot; singer passed away Saturday in Los Angeles, surrounded by husband Mike Farrell and family, who have asked for privacy as tributes arrive from co-star Craig T. Nelson and fans of classic television.</description>
+      <pubDate>Mon, 24 Aug 2026 04:30:00 GMT</pubDate>
       <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
     </item>
-
-    <item>
-      <title>Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting</title>
-      <link>https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</link>
-      <guid isPermaLink="true">https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</guid>
-      <description>An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.</description>
-      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
-    </item>
-
-    <item>
-      <title>Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting</title>
-      <link>https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</link>
-      <guid isPermaLink="true">https://www.newsxphere/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</guid>
-      <description>An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.</description>
-      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
-    </item>
-
-    <item>
-      <title>Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting</title>
-      <link>https://www.newsxphere.com/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</link>
-      <guid isPermaLink="true">https://www.newsxphere.com/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</guid>
-      <description>An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.</description>
-      <pubDate>Tue, 15 Sep 2026 08:14:56 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
-    </item>
-
     <item>
       <title>Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting</title>
       <link>https://www.newsxphere.com/business/deep-research-emerging-google-search-trends-forecasting/</link>
       <guid isPermaLink="true">https://www.newsxphere.com/business/deep-research-emerging-google-search-trends-forecasting/</guid>
       <description>An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.</description>
-      <pubDate>Tue, 15 Sep 2026 07:58:28 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
-    </item>
-
-    <title>NewsXphere — Latest signals</title>
-    <link>https://www.newsxphere.com/</link>
-    <description>Thoughtful reporting on startups, technology, culture, and the quiet shifts shaping tomorrow.</description>
-    <language>en-us</language>
-    <copyright>© 2026 NewsXphere</copyright>
-    <atom:link href="https://www.newsxphere.com/feed.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI Is Eating Software: How Agentic AI and Offline Models Are Replacing the Cloud in 2026</title>
-      <link>https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</link>
-      <guid isPermaLink="true">https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</guid>
-      <description>Developers are quietly ditching expensive cloud APIs for quantized local models running on lightweight Express.js servers.</description>
       <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
       <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
     </item>
     <item>
-      <title>Shelley Fabares Dies at 82 — Cause of Death, Mike Farrell and Craig T. Nelson Tribute</title>
-      <link>https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</link>
-      <guid isPermaLink="true">https://www.newsxphere.com/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/</guid>
-      <description>What is known about Shelley Fabares, her career, and the tributes following her death.</description>
-      <pubDate>Mon, 24 Aug 2026 04:30:00 GMT</pubDate>
+      <title>Generative AI Startup Funding Trends: Investment Capital, Valuations, and Market Dynamics</title>
+      <link>https://www.newsxphere.com/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/startups/generative-ai-startup-funding-trends-valuations-market-dynamics/</guid>
+      <description>An in-depth analysis of investment capital distribution, valuation multiples, revenue benchmarks, and strategic funding trends across the global startup ecosystem.</description>
+      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+    <item>
+      <title>AI Is Eating Software: How Agentic AI Is Quietly Replacing the Cloud</title>
+      <link>https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/tech/agentic-ai-offline-models-replacing-cloud-2026/</guid>
+      <description>Developers are pulling AI workloads off rented GPUs and back onto their own machines — trading a monthly API invoice for a quantized model that never phones home.</description>
+      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+    <item>
+      <title>The Hidden Battle Over Who Secretly Owns Your Digital Footprint</title>
+      <link>https://www.newsxphere.com/tech/the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/tech/the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life/</guid>
+      <description>While global regulators step up scrutiny on non-transparent data practices, millions of web users remain unaware of what lies inside updated terms of service.</description>
+      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
       <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
     </item>
     <item>
       <title>Strait of Hormuz Attack: Commercial Vessel Struck Amid Escalating Naval Blockade</title>
       <link>https://www.newsxphere.com/world/strait-of-hormuz-attack-iran-blockade/</link>
       <guid isPermaLink="true">https://www.newsxphere.com/world/strait-of-hormuz-attack-iran-blockade/</guid>
-      <description>A commercial tanker was struck in the Strait of Hormuz, raising questions about maritime security, oil prices, and trade corridors.</description>
+      <description>A commercial tanker was struck by an unknown projectile while transiting the Strait of Hormuz, causing a confirmed casualty and sending crude prices higher amid an escalating maritime blockade.</description>
       <pubDate>Tue, 18 Aug 2026 10:15:00 GMT</pubDate>
       <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
     </item>
