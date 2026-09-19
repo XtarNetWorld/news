@@ -76,12 +76,12 @@
         "Monu Sharma"
       ],
       "featured": true,
-      "source": "category-page",
+      "source": "catalog+category-page",
       "sourcePath": "business/deep-research-emerging-google-search-trends-forecasting/index.html",
       "folder": "business",
       "folderName": "Business",
       "folderPath": "business/deep-research-emerging-google-search-trends-forecasting/",
-      "catalogPresent": false
+      "catalogPresent": true
     },
     {
       "id": "generative-ai-startup-funding-trends-valuations-market-dynamics",
