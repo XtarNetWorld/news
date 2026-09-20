@@ -5,43 +5,6 @@
   },
   "articles": [
     {
-      "id": "deep-research-emerging-google-search-trends-forecasting",
-      "slug": "deep-research-emerging-google-search-trends-forecasting",
-      "url": "/business/deep-research-emerging-google-search-trends-forecasting/",
-      "category": "Business",
-      "section": "Tech",
-      "label": "Tech",
-      "title": "Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting",
-      "excerpt": "An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.",
-      "excerptGenerated": false,
-      "image": "/public/deep-research-emerging-google-search-trends-forecasting-hero.jpg?v=2026-09-13T15%3A06%3A56.437Z",
-      "imageAlt": "Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting — NewsXphere",
-      "author": "Monu Sharma",
-      "authorInitials": "MS",
-      "publishedAt": "2026-08-23T11:15:00+05:30",
-      "updatedAt": "2026-08-23T11:15:00+05:30",
-      "readTime": "6 min read",
-      "sourceLabel": "NewsXphere Verified Desk",
-      "keywords": [
-        "agentic AI 2026",
-        "offline AI models",
-        "local LLM deployment",
-        "quantized models",
-        "Qwen local inference",
-        "Express.js AI server",
-        "on-device inference",
-        "edge AI",
-        "cloud cost reduction",
-        "AI infrastructure",
-        "Monu Sharma"
-      ],
-      "featured": true,
-      "sourcePath": "business/deep-research-emerging-google-search-trends-forecasting/index.html",
-      "folder": "business",
-      "folderName": "Business",
-      "folderPath": "business/deep-research-emerging-google-search-trends-forecasting/"
-    },
-    {
       "id": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "slug": "shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute",
       "url": "/culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/",
@@ -77,7 +40,48 @@
       "sourcePath": "culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/index.html",
       "folder": "culture",
       "folderName": "Culture",
-      "folderPath": "culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/"
+      "folderPath": "culture/shelley-fabares-dies-at-82-cause-of-death-mike-farrell-tribute/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
+    },
+    {
+      "id": "deep-research-emerging-google-search-trends-forecasting",
+      "slug": "deep-research-emerging-google-search-trends-forecasting",
+      "url": "/business/deep-research-emerging-google-search-trends-forecasting/",
+      "category": "Business",
+      "section": "Tech",
+      "label": "Tech",
+      "title": "Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting",
+      "excerpt": "An in-depth research breakdown on how emerging news topics are identified, tracked, and projected to trend on Google Search within a 24 to 48-hour timeframe.",
+      "excerptGenerated": false,
+      "image": "/public/deep-research-emerging-google-search-trends-forecasting-hero.jpg?v=2026-09-13T15%3A06%3A56.437Z",
+      "imageAlt": "Deep Research into Emerging Google Search Trends and 24-48 Hour News Forecasting — NewsXphere",
+      "author": "Monu Sharma",
+      "authorInitials": "MS",
+      "publishedAt": "2026-08-23T11:15:00+05:30",
+      "updatedAt": "2026-08-23T11:15:00+05:30",
+      "readTime": "6 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "agentic AI 2026",
+        "offline AI models",
+        "local LLM deployment",
+        "quantized models",
+        "Qwen local inference",
+        "Express.js AI server",
+        "on-device inference",
+        "edge AI",
+        "cloud cost reduction",
+        "AI infrastructure",
+        "Monu Sharma"
+      ],
+      "featured": true,
+      "sourcePath": "business/deep-research-emerging-google-search-trends-forecasting/index.html",
+      "folder": "business",
+      "folderName": "Business",
+      "folderPath": "business/deep-research-emerging-google-search-trends-forecasting/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
     },
     {
       "id": "generative-ai-startup-funding-trends-valuations-market-dynamics",
@@ -114,7 +118,9 @@
       "sourcePath": "startups/generative-ai-startup-funding-trends-valuations-market-dynamics/index.html",
       "folder": "startups",
       "folderName": "Startups",
-      "folderPath": "startups/generative-ai-startup-funding-trends-valuations-market-dynamics/"
+      "folderPath": "startups/generative-ai-startup-funding-trends-valuations-market-dynamics/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
     },
     {
       "id": "agentic-ai-offline-models-replacing-cloud-2026",
@@ -151,7 +157,9 @@
       "sourcePath": "tech/agentic-ai-offline-models-replacing-cloud-2026/index.html",
       "folder": "tech",
       "folderName": "Tech",
-      "folderPath": "tech/agentic-ai-offline-models-replacing-cloud-2026/"
+      "folderPath": "tech/agentic-ai-offline-models-replacing-cloud-2026/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
     },
     {
       "id": "the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life",
@@ -188,7 +196,9 @@
       "sourcePath": "tech/the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life/index.html",
       "folder": "tech",
       "folderName": "Tech",
-      "folderPath": "tech/the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life/"
+      "folderPath": "tech/the-48-hour-deadline-tech-giants-are-quietly-stealing-your-digital-life/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
     },
     {
       "id": "strait-of-hormuz-attack-iran-blockade",
@@ -223,7 +233,9 @@
       "sourcePath": "world/strait-of-hormuz-attack-iran-blockade/index.html",
       "folder": "world",
       "folderName": "World",
-      "folderPath": "world/strait-of-hormuz-attack-iran-blockade/"
+      "folderPath": "world/strait-of-hormuz-attack-iran-blockade/",
+      "source": "catalog+category-page",
+      "catalogPresent": true
     }
   ]
 }
