@@ -1,0 +1,580 @@
+/* ---------- JOB CARDS: START ---------- */
+
+
+:root {
+  --nx-gap: 14px;                        /* MUST equal your article grid gap */
+  --nx-radius: 26px;
+  --nx-job-min: 182px;                   /* min height of ONE job card */
+
+  --nx-page: #f1ece3;                    /* your page background (used for ticket notches) */
+  --nx-card: #faf6ee;
+  --nx-card-line: rgba(20, 35, 34, .13);
+  --nx-ink: #142322;
+  --nx-muted: #66716f;
+  --nx-accent: #1f6b64;
+  --nx-accent-soft: rgba(31, 107, 100, .11);
+  --nx-urgent: #b4502b;
+
+  --nx-feature-bg: #142a29;              /* same deep green as your featured article */
+  --nx-feature-glow: rgba(111, 196, 185, .20);
+  --nx-feature-ink: #f4efe3;
+  --nx-feature-muted: #a9b8b4;
+  --nx-feature-label: #e6e2a8;
+  --nx-feature-line: rgba(244, 239, 227, .2);
+
+  /* Colours used for copy that sits ON the photo. Fixed, not themed —
+     the scrim below guarantees they always have something dark to sit on. */
+  --nx-on-img: #ffffff;
+  --nx-on-img-soft: rgba(255, 255, 255, .78);
+  --nx-on-img-dim: rgba(255, 255, 255, .70);
+  --nx-on-img-line: rgba(255, 255, 255, .26);
+  --nx-on-img-accent: #a7e6da;
+  --nx-on-img-urgent: #ffb79c;
+
+  /* ONE DIAL FOR THE WHOLE SYSTEM.
+     1 = the researched balance shipped here. Lower it (.8) and more photo
+     comes through; raise it (1.15) if your photo library is very bright.
+     Override it on a single card with style="--nx-veil:1.1". */
+  --nx-veil: 1;
+
+  --nx-font-serif: "Playfair Display", Georgia, serif;
+  --nx-font-sans: "DM Sans", system-ui, sans-serif;
+  --nx-font-mono: "Space Mono", ui-monospace, monospace;
+
+  /* Default job-card background image (shown behind every card unless a
+     card sets its own --job-img inline, e.g. style="--job-img:url('...')"). */
+  --nx-default-job-img: url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80");
+}
+
+:root[data-theme="dark"],
+:root[data-theme="dim"] {
+  --nx-page: #0e1918;
+  --nx-card: #172625;
+  --nx-card-line: rgba(244, 239, 227, .12);
+  --nx-ink: #f4efe3;
+  --nx-muted: #93a4a0;
+  --nx-accent: #6fc4b9;
+  --nx-accent-soft: rgba(111, 196, 185, .14);
+  --nx-urgent: #f0a487;
+  --nx-feature-bg: #efe9da;              /* in dark mode the featured card flips to cream */
+  --nx-feature-glow: rgba(31, 107, 100, .16);
+  --nx-feature-ink: #142322;
+  --nx-feature-muted: #5c6866;
+  --nx-feature-label: #1f6b64;
+  --nx-feature-line: rgba(20, 35, 34, .18);
+}
+
+/* ── The stack (one grid cell = one article card) ───────────────────── */
+.nx-jobstack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--nx-gap);
+  min-height: calc(var(--nx-job-min) * 2 + var(--nx-gap));  /* fallback if no article in the row */
+  contain: size;                          /* the article card alone decides the row height */
+  container: nxjob / inline-size;         /* cards adapt to column width */
+}
+
+/* ── One job card ───────────────────────────────────────────────────── */
+.nx-job {
+  --tint: #d9e6df;
+  --tint-ink: #1f6b64;
+  --_line: var(--nx-card-line);
+  --perf: 58px;                           /* move the left/right curves further above the footer */
+  --notch: 8px;
+  --job-img: var(--nx-default-job-img);   /* per-card override: style="--job-img:url('...')" */
+  --nx-scrim: var(--nx-card);             /* the solid tone the photo melts into at the footer */
+  --_v: var(--nx-veil);                   /* resolved veil strength for this card */
+
+  position: relative;
+  isolation: isolate;                     /* keeps the bg image's z-index scoped to this card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 0;
+  padding: 13px 16px 10px;
+  border: 1px solid var(--_line);
+  border-radius: var(--nx-radius);
+  border-top-right-radius: 10px;          /* the sharper corner = "this is a job" */
+  background: var(--nx-card);
+  color: var(--nx-ink);
+  font-family: var(--nx-font-sans);
+  overflow: hidden;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1), border-color .2s ease;
+
+  /* ticket notches on both sides of the perforation */
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 calc(100% - var(--perf)), #0000 calc(var(--notch) - .6px), #000 var(--notch)) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - var(--perf)), #0000 calc(var(--notch) - .6px), #000 var(--notch)) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle var(--notch) at 0 calc(100% - var(--perf)), #0000 calc(var(--notch) - .6px), #000 var(--notch)) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - var(--perf)), #0000 calc(var(--notch) - .6px), #000 var(--notch)) right / 51% 100% no-repeat;
+}
+.nx-job > * { flex-shrink: 0; }
+.nx-job:hover { transform: translateY(-2px); --_line: var(--nx-accent); }
+.nx-job:focus-within { outline: 2px solid var(--nx-accent); outline-offset: -5px; }
+
+/* ── Background image (sits only in the zone above the footer) ──────── */
+.nx-job__bgimg {
+  position: absolute;
+  top: -8px; left: -8px; right: -8px;
+  bottom: var(--perf);                    /* stops exactly where the footer/perforation begins */
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--job-img);
+  background-size: cover;
+  background-position: center;
+  /* Barely any blur — just enough to stop pixel-level noise chewing at
+     9px type. At 2px (v5) faces and objects turned to mush; at 0.6px the
+     photo still reads as a photo. Saturation and contrast are nudged up
+     to pay back what the veil takes away. */
+  filter: blur(.6px) saturate(1.18) contrast(1.05);
+  transform: scale(1.04);                 /* hides the soft blurred fringe past the card edge */
+  background-color: #253634;              /* shown while the photo is still loading */
+}
+
+/* THE SCRIM — the whole fix lives here.
+   Layer 2 is a constant dark veil across the entire photo zone. At its
+   lightest it is 60% black, so even a pure-white photo lands around
+   #6b6b6b, which clears WCAG AA against white text at every size we use.
+   Layer 1 only melts the last few pixels into the footer's solid colour
+   so the two halves of the ticket join cleanly. */
+.nx-job__bgimg::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  background:
+    /* 1. footer melt — the last few pixels join the solid footer colour */
+    linear-gradient(180deg,
+      transparent 84%,
+      color-mix(in srgb, var(--nx-scrim) 55%, transparent) 93%,
+      var(--nx-scrim) 100%),
+
+    /* 2. BOTTOM BAND — under the title and the three fact columns.
+       Holds full strength across the facts, then eases away upward so
+       there is no visible edge. Stop positions come from the standard
+       scrim-gradient easing table. */
+    linear-gradient(0deg,
+      rgba(8, 17, 16, calc(var(--_v) * .72)) 0%,
+      rgba(8, 17, 16, calc(var(--_v) * .72)) 30%,
+      rgba(8, 17, 16, calc(var(--_v) * .53)) 38%,
+      rgba(8, 17, 16, calc(var(--_v) * .39)) 44.3%,
+      rgba(8, 17, 16, calc(var(--_v) * .275)) 49.7%,
+      rgba(8, 17, 16, calc(var(--_v) * .20)) 53.7%,
+      rgba(8, 17, 16, calc(var(--_v) * .14)) 57.3%,
+      rgba(8, 17, 16, calc(var(--_v) * .09)) 60.7%,
+      rgba(8, 17, 16, calc(var(--_v) * .054)) 63.7%,
+      rgba(8, 17, 16, calc(var(--_v) * .03)) 66.2%,
+      rgba(8, 17, 16, calc(var(--_v) * .015)) 68.2%,
+      rgba(8, 17, 16, calc(var(--_v) * .006)) 70%,
+      rgba(8, 17, 16, 0) 72%),
+
+    /* 3. TOP BAND — under the logo row, company name and timestamp. */
+    linear-gradient(180deg,
+      rgba(8, 17, 16, calc(var(--_v) * .58)) 0%,
+      rgba(8, 17, 16, calc(var(--_v) * .58)) 34%,
+      rgba(8, 17, 16, calc(var(--_v) * .43)) 39.7%,
+      rgba(8, 17, 16, calc(var(--_v) * .31)) 44.2%,
+      rgba(8, 17, 16, calc(var(--_v) * .22)) 48.1%,
+      rgba(8, 17, 16, calc(var(--_v) * .16)) 51%,
+      rgba(8, 17, 16, calc(var(--_v) * .11)) 53.5%,
+      rgba(8, 17, 16, calc(var(--_v) * .073)) 55.9%,
+      rgba(8, 17, 16, calc(var(--_v) * .043)) 58.1%,
+      rgba(8, 17, 16, calc(var(--_v) * .024)) 59.8%,
+      rgba(8, 17, 16, calc(var(--_v) * .012)) 61.3%,
+      rgba(8, 17, 16, calc(var(--_v) * .005)) 62.6%,
+      rgba(8, 17, 16, 0) 64%),
+
+    /* 4. BASE WASH — a thin, even veil so no photo is ever raw. */
+    linear-gradient(180deg,
+      rgba(8, 17, 16, calc(var(--_v) * .17)) 0%,
+      rgba(8, 17, 16, calc(var(--_v) * .22)) 100%);
+}
+.nx-job--feature { --nx-scrim: var(--nx-feature-bg); }
+
+/* everything else rides above the background image */
+.nx-job__top, .nx-job__title, .nx-job__facts {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 1+2. Top row: logo, company, status badge ─────────────────────── */
+.nx-job__top { display: flex; align-items: center; gap: 10px; }
+.nx-job__logo {
+  flex: none; display: grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 10px;
+  background: var(--tint); color: var(--tint-ink);
+  font: 600 15px/1 var(--nx-font-serif);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--tint-ink) 16%, transparent),
+    0 2px 10px rgba(0, 0, 0, .22);
+}
+.nx-job__who { display: flex; flex-direction: column; min-width: 0; flex: 1; gap: 1px; }
+.nx-job__co { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.nx-job__company {
+  font-size: 12.5px; font-weight: 600; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nx-job__verified { flex: none; width: 13px; height: 13px; fill: var(--nx-accent); }
+.nx-job__verified .tick { fill: none; stroke: var(--nx-card); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.nx-job__time {
+  font: 400 10.5px/1.3 var(--nx-font-mono); color: var(--nx-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.nx-job__badge {
+  flex: none; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border-radius: 99px;
+  background: var(--nx-accent-soft); color: var(--nx-accent);
+  font: 700 9.5px/1 var(--nx-font-mono);
+  letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+}
+.nx-job__badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.nx-job__badge[data-badge="urgent"] {
+  background: color-mix(in srgb, var(--nx-urgent) 13%, transparent);
+  color: var(--nx-urgent);
+}
+
+/* ── 3. Title (2 lines max). Whole card is clickable through this link */
+.nx-job__title {
+  margin: 0;
+  font: 500 clamp(16px, 6.5cqi, 20px)/1.16 var(--nx-font-serif);
+  letter-spacing: -.005em;
+  text-wrap: balance;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  flex-shrink: 1;
+}
+.nx-job__title a { color: inherit; text-decoration: none; }
+.nx-job__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+
+/* High-intent details: a short role promise and searchable skill chips make
+   the card understandable before the reader decides to open it. */
+.nx-job__pitch {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--nx-on-img-soft);
+  font: 400 10.5px/1.35 var(--nx-font-sans);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 1.5px rgba(8, 17, 16, .85);
+}
+.nx-job__tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+}
+.nx-job__tags span {
+  min-width: 0;
+  max-width: 33%;
+  overflow: hidden;
+  padding: 3px 6px;
+  border: 1px solid var(--nx-on-img-line);
+  border-radius: 99px;
+  color: var(--nx-on-img);
+  background: rgba(8, 17, 16, .3);
+  font: 400 8.5px/1 var(--nx-font-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(8, 17, 16, .7);
+}
+
+/* ── 4+5+6. Facts: Location · Experience · Job type ────────────────── */
+.nx-job__facts {
+  display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, .9fr);
+  margin: 0; padding: 0;
+}
+.nx-job__facts > div { min-width: 0; padding-left: 8px; border-left: 1px solid var(--nx-card-line); }
+.nx-job__facts > div:first-child { padding-left: 0; border-left: 0; }
+.nx-job__facts dt {
+  margin: 0; font: 400 8.5px/1.25 var(--nx-font-mono);
+  letter-spacing: .04em; text-transform: uppercase; color: var(--nx-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nx-job__facts dd {
+  margin: 2px 0 0; font: 500 11.5px/1.25 var(--nx-font-sans);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nx-job__facts em {
+  margin-left: 4px; font: 400 9px/1 var(--nx-font-mono); font-style: normal; color: var(--nx-accent);
+}
+
+/* ── 7. Footer: salary + deadline, then Save + Apply ───────────────── */
+.nx-job__foot {
+  position: relative;
+  z-index: 2;                             /* stays above the bg image, always on solid ground */
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  min-height: 48px;
+  margin-inline: -16px; padding: 10px 16px 6px;
+  background-color: var(--nx-scrim);
+  background-image:
+    repeating-linear-gradient(90deg, var(--nx-card-line) 0 4px, transparent 4px 8px);
+  background-position: 16px 0;
+  background-size: calc(100% - 32px) 1px;
+  background-repeat: no-repeat;
+}
+.nx-job__foot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  z-index: 3;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--nx-card-line) 0 4px, transparent 4px 8px);
+}
+.nx-job:hover .nx-job__foot {
+  background-image: repeating-linear-gradient(90deg, var(--nx-accent) 0 4px, transparent 4px 8px);
+}
+.nx-job:hover .nx-job__foot::before {
+  background: repeating-linear-gradient(90deg, var(--nx-accent) 0 4px, transparent 4px 8px);
+}
+.nx-job__offer { display: flex; flex-direction: column; justify-content: center; gap: 3px; min-width: 0; height: 28px; }
+.nx-job__pay { font: 700 13px/1 var(--nx-font-mono); letter-spacing: -.02em; white-space: nowrap; }
+.nx-job__pay small { font-weight: 400; font-size: 10px; letter-spacing: 0; color: var(--nx-muted); }
+.nx-job__deadline { font: 400 10px/1.1 var(--nx-font-mono); color: var(--nx-muted); white-space: nowrap; }
+.nx-job__deadline[data-urgent] { color: var(--nx-urgent); font-weight: 700; }
+
+.nx-job__acts { position: relative; display: flex; align-items: center; gap: 6px; flex: none; }
+.nx-job__send {
+  position: relative; z-index: 2; flex: none;
+  display: grid; place-items: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 99px;
+  border: 1px solid var(--nx-card-line); background: transparent; color: var(--nx-muted);
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.nx-job__send:hover, .nx-job__send:focus-visible { background: var(--nx-accent-soft); border-color: var(--nx-accent); color: var(--nx-accent); }
+.nx-job__send:focus-visible { outline: 2px solid var(--nx-accent); outline-offset: 2px; }
+.nx-job__send svg {
+  width: 15px; height: 15px;
+  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.nx-job__send[aria-pressed="true"] { color: var(--nx-urgent); border-color: var(--nx-urgent); background: color-mix(in srgb, var(--nx-urgent) 12%, transparent); }
+.nx-job__send[aria-pressed="true"] svg .nx-heart { fill: currentColor; }
+.nx-job__send.is-pop svg { animation: nx-pop .4s ease; }
+@keyframes nx-pop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.3); }
+  55%  { transform: scale(.9); }
+  100% { transform: scale(1); }
+}
+
+/* small confirmation bubble above the buttons */
+.nx-job__acts[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute; right: 0; bottom: calc(100% + 8px); z-index: 4;
+  padding: 5px 9px; border-radius: 99px;
+  background: var(--nx-ink); color: var(--nx-card);
+  font: 700 10px/1 var(--nx-font-mono); white-space: nowrap; pointer-events: none;
+}
+
+.nx-job__apply {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px;
+  height: 28px; padding: 0 4px 0 12px; border-radius: 99px;
+  background: var(--nx-ink); color: var(--nx-card);
+  font-size: 12px; font-weight: 600; text-decoration: none;
+  transition: background .2s ease;
+}
+.nx-job__apply i {
+  position: relative; display: grid; place-items: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--nx-card); color: var(--nx-ink);
+  overflow: hidden;                        /* clips the plane while it flies out */
+}
+.nx-job__apply .nx-plane {
+  width: 13px; height: 9px; overflow: visible;
+  fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  transform-origin: 50% 60%;
+}
+.nx-job__apply .nx-plane-body { transition: fill .2s ease; }
+.nx-job__apply .nx-trail { opacity: 0; }
+.nx-job__apply:hover { background: var(--nx-accent); }
+.nx-job__apply:focus-visible { outline: 2px solid var(--nx-accent); outline-offset: 2px; }
+
+/* pointing at Apply makes the plane inside it take off, fly out and glide back in */
+.nx-job:hover .nx-job__apply .nx-plane,
+.nx-job__apply:focus-visible .nx-plane { animation: nx-fly-mini 1.45s cubic-bezier(.45, 0, .35, 1) infinite; }
+.nx-job:hover .nx-job__apply .nx-trail,
+.nx-job__apply:focus-visible .nx-trail { animation: nx-trail-mini 1.45s ease-in-out infinite; }
+
+@keyframes nx-fly-mini {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  14%  { transform: translate(0, 0) rotate(0deg); opacity: 1; }                          /* taxi */
+  34%  { transform: translate(1.5px, -1.7px) rotate(-48deg); opacity: 1; }                /* nose tilts to 48°, already moving that way */
+  58%  { transform: translate(9px, -10px) rotate(-48deg); opacity: 0; }                   /* flies out along the same 48° line */
+  59%  { transform: translate(-10px, 4px) rotate(0deg); opacity: 0; }                      /* re-enters level, from the left */
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }                           /* land, flat */
+}
+@keyframes nx-trail-mini {
+  0%, 14%   { opacity: 0; }
+  36%       { opacity: .8; }
+  56%, 100% { opacity: 0; }
+}
+
+/* ── Featured version (deep green, matches your featured article) ────── */
+.nx-job--feature {
+  --tint: rgba(244, 239, 227, .12);
+  --tint-ink: var(--nx-feature-label);
+  --_line: transparent;
+  background:
+    radial-gradient(120% 85% at 100% 0%, var(--nx-feature-glow), transparent 60%),
+    var(--nx-feature-bg);
+  color: var(--nx-feature-ink);
+}
+.nx-job--feature:hover { --_line: var(--nx-feature-label); }
+/* only the FOOTER half of a featured card is themed — everything above it
+   sits on the photo and is handled by the on-image rules further down */
+.nx-job--feature .nx-job__pay small,
+.nx-job--feature .nx-job__deadline { color: var(--nx-feature-muted); }
+.nx-job--feature .nx-job__send { border-color: var(--nx-feature-line); color: var(--nx-feature-muted); }
+.nx-job--feature .nx-job__send:hover,
+.nx-job--feature .nx-job__send:focus-visible { background: rgba(244, 239, 227, .1); border-color: var(--nx-feature-label); color: var(--nx-feature-label); }
+.nx-job--feature .nx-job__acts[data-tip]::after { background: var(--nx-feature-ink); color: var(--nx-feature-bg); }
+.nx-job--feature .nx-job__foot,
+.nx-job--feature:hover .nx-job__foot {
+  background-image: repeating-linear-gradient(90deg, var(--nx-feature-line) 0 4px, transparent 4px 8px);
+}
+.nx-job--feature .nx-job__apply { background: var(--nx-feature-ink); color: var(--nx-feature-bg); }
+.nx-job--feature .nx-job__apply i { background: var(--nx-feature-bg); color: var(--nx-feature-ink); }
+.nx-job--feature .nx-job__apply:hover { background: var(--nx-feature-label); }
+:root[data-theme="dark"] .nx-job--feature .nx-job__apply:hover,
+:root[data-theme="dim"] .nx-job--feature .nx-job__apply:hover { color: #fff; }
+
+/* ══ TEXT ON THE PHOTO ════════════════════════════════════════════════
+   Every card above the perforation is light-on-dark, always, in both
+   themes and on both the normal and featured card. Nothing here depends
+   on which photo loaded, whether it loaded at all, or whether the server
+   sent CORS headers — the card is legible before a single byte of the
+   image arrives and stays legible after.
+
+   The text-shadows are deliberately small: they sharpen the edges of
+   9–20px type against whatever texture survives the blur, they are not
+   doing the contrast work. Add `nx-job--noimg` to a card to turn the
+   photo off and hand the card back to the theme colours. */
+.nx-job:not(.nx-job--noimg) .nx-job__company,
+.nx-job:not(.nx-job--noimg) .nx-job__title,
+.nx-job:not(.nx-job--noimg) .nx-job__facts dd {
+  color: var(--nx-on-img);
+  /* tight shadow hugging the letterform + a wide, very soft halo.
+     Sharp enough to separate from texture, soft enough not to emboss. */
+  text-shadow: 0 1px 1.5px rgba(8, 17, 16, .85), 0 0 10px rgba(8, 17, 16, .45);
+}
+.nx-job:not(.nx-job--noimg) .nx-job__time { color: var(--nx-on-img-soft); text-shadow: 0 1px 1.5px rgba(8, 17, 16, .85); }
+.nx-job:not(.nx-job--noimg) .nx-job__facts dt { color: var(--nx-on-img-dim); text-shadow: 0 1px 1.5px rgba(8, 17, 16, .85); }
+.nx-job:not(.nx-job--noimg) .nx-job__facts > div { border-left-color: var(--nx-on-img-line); }
+.nx-job:not(.nx-job--noimg) .nx-job__facts em { color: var(--nx-on-img-accent); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+.nx-job:not(.nx-job--noimg) .nx-job__verified { fill: var(--nx-on-img); }
+.nx-job:not(.nx-job--noimg) .nx-job__verified .tick { stroke: #0f1c1b; }
+
+/* the badge gets its own frosted chip so it reads on any photo */
+.nx-job:not(.nx-job--noimg) .nx-job__badge {
+  background: rgba(255, 255, 255, .17);
+  color: var(--nx-on-img);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+}
+.nx-job:not(.nx-job--noimg) .nx-job__badge[data-badge="urgent"] {
+  background: rgba(180, 70, 40, .55);
+  color: var(--nx-on-img-urgent);
+  box-shadow: inset 0 0 0 1px rgba(255, 183, 156, .4);
+}
+
+/* a card with the photo switched off */
+.nx-job--noimg .nx-job__bgimg { display: none; }
+
+/* ── Logo tints ─────────────────────────────────────────────────────── */
+.nx-job[data-tint="sand"] { --tint: #eadfc4; --tint-ink: #7a5a1c; }
+.nx-job[data-tint="sage"] { --tint: #d9e6df; --tint-ink: #1f6b64; }
+.nx-job[data-tint="clay"] { --tint: #f0d9cf; --tint-ink: #8a4529; }
+.nx-job[data-tint="sky"]  { --tint: #d8e3ee; --tint-ink: #2b5678; }
+:root[data-theme="dark"] .nx-job--noimg[data-tint="sand"], :root[data-theme="dim"] .nx-job--noimg[data-tint="sand"] { --tint: #3a3422; --tint-ink: #e6cf8c; }
+:root[data-theme="dark"] .nx-job--noimg[data-tint="sage"], :root[data-theme="dim"] .nx-job--noimg[data-tint="sage"] { --tint: #1f3a37; --tint-ink: #8fd6cb; }
+:root[data-theme="dark"] .nx-job--noimg[data-tint="clay"], :root[data-theme="dim"] .nx-job--noimg[data-tint="clay"] { --tint: #3b2a24; --tint-ink: #eeab8f; }
+:root[data-theme="dark"] .nx-job--noimg[data-tint="sky"], :root[data-theme="dim"] .nx-job--noimg[data-tint="sky"] { --tint: #24323f; --tint-ink: #9cc4e6; }
+.nx-job--feature.nx-job--noimg[data-tint] { --tint: rgba(244, 239, 227, .12); --tint-ink: var(--nx-feature-label); }
+
+/* ── Adapts to column width (container queries) ─────────────────────── */
+.nx-job__facts .nx-short { display: none; }
+
+@container nxjob (max-width: 236px) {
+  .nx-job { padding-inline: 14px; }
+  .nx-job__facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nx-job__facts .nx-long { display: none; }
+  .nx-job__facts .nx-short { display: inline; }
+  .nx-job__company { font-size: 12px; }
+  .nx-job__badge { padding-inline: 6px; }
+  .nx-job__foot { margin-inline: -14px; padding-inline: 14px; background-position: 14px 0; background-size: calc(100% - 28px) 1px; }
+  .nx-job__foot::before { left: 14px; right: 14px; }
+  .nx-job__facts em { display: none; }
+  .nx-job__facts > div { padding-left: 6px; }
+  .nx-job__facts dd { font-size: 11px; }
+  .nx-job__badge::before { display: none; }
+  .nx-job__send { display: none; }       /* keep Apply prominent when space is tight */
+}
+@container nxjob (min-width: 330px) {
+  .nx-job { padding-inline: 20px; }
+  .nx-job__foot { margin-inline: -20px; padding-inline: 20px; background-position: 20px 0; background-size: calc(100% - 40px) 1px; }
+  .nx-job__foot::before { left: 20px; right: 20px; }
+  .nx-job__pay { font-size: 14px; }
+  .nx-job__facts dd { font-size: 12.5px; }
+  .nx-job__facts dt { font-size: 9px; }
+}
+
+/* ── Loading state ──────────────────────────────────────────────────── */
+.nx-sk {
+  display: block; border-radius: 6px; overflow: hidden; position: relative;
+  background: color-mix(in srgb, var(--nx-ink) 8%, transparent);
+}
+.nx-sk::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--nx-ink) 9%, transparent) 50%, transparent 80%);
+  transform: translateX(-100%); animation: nx-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes nx-shimmer { to { transform: translateX(100%); } }
+.nx-job--skeleton:hover { transform: none; --_line: var(--nx-card-line); }
+.nx-job--skeleton .nx-job__foot { background-image: repeating-linear-gradient(90deg, var(--nx-card-line) 0 4px, transparent 4px 8px); }
+
+/* Windows High Contrast / forced colours: drop the photo entirely */
+@media (forced-colors: active) {
+  .nx-job__bgimg { display: none; }
+  .nx-job:not(.nx-job--noimg) .nx-job__company,
+  .nx-job:not(.nx-job--noimg) .nx-job__title,
+  .nx-job:not(.nx-job--noimg) .nx-job__time,
+  .nx-job:not(.nx-job--noimg) .nx-job__facts dt,
+  .nx-job:not(.nx-job--noimg) .nx-job__facts dd { color: CanvasText; text-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-job, .nx-job__apply i, .nx-job__apply, .nx-job__send svg { transition: none; }
+  .nx-job:hover { transform: none; }
+  .nx-job__apply .nx-plane, .nx-job__apply .nx-trail, .nx-job__send.is-pop svg, .nx-sk::after { animation: none !important; }
+}
+
+/* Footer-only emphasis: keep the job body unchanged while making the
+   compensation and primary actions easier to scan and tap. */
+#story-grid > .nx-jobstack .nx-job__pay { font-size: 14px; }
+#story-grid > .nx-jobstack .nx-job__pay small { font-size: 10px; }
+#story-grid > .nx-jobstack .nx-job__deadline { font-size: 10px; }
+#story-grid > .nx-jobstack .nx-job__send { width: 30px; height: 30px; }
+#story-grid > .nx-jobstack .nx-job__apply { height: 30px; padding-left: 13px; font-size: 12px; }
+#story-grid > .nx-jobstack .nx-job__apply i { width: 21px; height: 21px; }
+#story-grid > .nx-jobstack .nx-job__pitch { font-size: 11.5px; line-height: 1.4; }
+#story-grid > .nx-jobstack .nx-job__tags { gap: 6px; }
+#story-grid > .nx-jobstack .nx-job__tags span { padding: 4px 7px; font-size: 10px; }
+
+
+
+/* ---------- JOB CARDS: END ---------- */

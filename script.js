@@ -2,6 +2,10 @@ const root = document.documentElement;
 
 const body = document.body;
 const articleDataUrl = '/allnewsdata.json';
+const recentSearchesKey = 'newsxphere-recent-searches';
+const recentSearchIcon = '<svg class="recent-search-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.515 1.019A7 7 0 0 0 1.83 6.5H.5a.5.5 0 0 0 0 1H3a.5.5 0 0 0 .5-.5V4.5a.5.5 0 0 0-1 0v1.308A6 6 0 1 1 8 14a.5.5 0 0 0 0 1A7 7 0 1 0 8.515 1.019z"></path><path d="M8 3.5a.5.5 0 0 1 .5.5v4.25l3.5 2.1a.5.5 0 0 1-.5.866l-3.75-2.25A.5.5 0 0 1 7.5 8.5V4a.5.5 0 0 1 .5-.5z"></path></svg>';
+const searchIcon = '<svg class="search-result-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"></circle><path d="m16 16 4.2 4.2"></path></svg>';
+const jobDataUrl = '/jobdata.json';
 
 const storyGrid = document.querySelector('#story-grid');
 const relatedGrid = document.querySelector('#related-story-grid');
@@ -60,6 +64,10 @@ let committedSearchQuery = '';
 let weatherSnapshot = null;
 let activeWeatherMode = 'temperature';
 let selectedWeatherDay = 0;
+let jobs = [];
+let savedFilter = 'all';
+let savedSearchQuery = '';
+let savedSearchActive = false;
 
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, char => ({
     '&': '&amp;',
@@ -514,6 +522,28 @@ const hydrateArticleCardData = async (items) => {
 const articleCardExcerpt = (article) => cleanCardText(article.excerpt || article.description || article.dek || article.summary) || `Read the full ${String(article.category || 'news').toLowerCase()} signal from NewsXphere.`;
 
 const searchTokens = value => String(value || '').toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s-]/gu, ' ').split(/\s+/).filter(token => token.length > 1);
+const searchWords = value => [...new Set(searchTokens(value).flatMap(token => token.split('-')).filter(Boolean))];
+const editDistance = (left, right) => {
+    const a = String(left || ''), b = String(right || '');
+    if (a === b) return 0;
+    let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+    for (let row = 1; row <= a.length; row += 1) {
+        const current = [row];
+        for (let column = 1; column <= b.length; column += 1) current[column] = Math.min(current[column - 1] + 1, previous[column] + 1, previous[column - 1] + (a[row - 1] === b[column - 1] ? 0 : 1));
+        previous = current;
+    }
+    return previous[b.length];
+};
+// Private, on-device fuzzy matching handles typos and imperfect wording.
+const fuzzyTokenMatch = (queryToken, candidateWords) => {
+    let best = 0;
+    candidateWords.forEach(word => {
+        if (word === queryToken) best = Math.max(best, 1);
+        else if (word.includes(queryToken) || queryToken.includes(word)) best = Math.max(best, 0.86);
+        else if (queryToken.length >= 3 && word.length >= 3 && editDistance(queryToken, word) <= (queryToken.length >= 5 ? 2 : 1)) best = Math.max(best, 0.68);
+    });
+    return { matched: best > 0, strength: best };
+};
 // Private, on-device intent classifier used to improve natural-language search.
 const intentFeatures = {
     World: ['world', 'iran', 'war', 'oil', 'maritime', 'security', 'global', 'geopolitics', 'hormuz', 'tanker'],
@@ -536,6 +566,9 @@ const articleSearchScore = (article, query) => {
     const title = cleanCardText(article.title).toLowerCase();
     const text = articleSearchText(article).toLowerCase();
     const slug = String(article.slug || article.id || '').toLowerCase();
+    const titleWords = searchWords(title);
+    const textWords = searchWords(text);
+    const slugWords = searchWords(slug);
     const intent = inferSearchIntent(q).find(item => item.category === article.category);
     let score = title === q ? 1000 : title.includes(q) ? 280 : 0;
     if (slug === q || slug.includes(q.replace(/\s+/g, '-'))) score += 220;
@@ -543,6 +576,9 @@ const articleSearchScore = (article, query) => {
         if (title.includes(token)) score += 75;
         if (text.includes(token)) score += 24;
         if (slug.includes(token)) score += 35;
+        score += fuzzyTokenMatch(token, titleWords).strength * 58;
+        score += fuzzyTokenMatch(token, textWords).strength * 18;
+        score += fuzzyTokenMatch(token, slugWords).strength * 28;
     }
     if (intent) score += intent.score * 55;
     const compact = tokens.join(' ');
@@ -550,9 +586,11 @@ const articleSearchScore = (article, query) => {
     for (let i = 0; i < phraseWords.length - 1; i += 1) if (`${phraseWords[i]} ${phraseWords[i + 1]}`.includes(compact)) score += 90;
     return score / Math.max(1, tokens.length);
 };
-const rankArticles = (query, items = articles) => { const tokens = searchTokens(query); return [...items].map(article => { const title = cleanCardText(article.title).toLowerCase(); const text = articleSearchText(article).toLowerCase(); const slug = String(article.slug || article.id || '').toLowerCase(); const phrase = title.includes(String(query || '').trim().toLowerCase()) || slug.includes(String(query || '').trim().toLowerCase().replace(/\s+/g, '-')); const matched = tokens.filter(token => title.includes(token) || text.includes(token) || slug.includes(token)).length; return { article, score: articleSearchScore(article, query), valid: phrase || matched >= Math.max(1, Math.ceil(tokens.length * 0.5)) }; }).filter(item => item.valid && item.score > 0).sort((a, b) => b.score - a.score || Date.parse(b.article.updatedAt || b.article.publishedAt || '') - Date.parse(a.article.updatedAt || a.article.publishedAt || '')).map(item => item.article); };
+const rankArticles = (query, items = articles) => { const tokens = searchTokens(query); return [...items].map(article => { const title = cleanCardText(article.title).toLowerCase(); const text = articleSearchText(article).toLowerCase(); const slug = String(article.slug || article.id || '').toLowerCase(); const phrase = title.includes(String(query || '').trim().toLowerCase()) || slug.includes(String(query || '').trim().toLowerCase().replace(/\s+/g, '-')); const candidateWords = searchWords(`${title} ${text} ${slug}`); const matched = tokens.filter(token => fuzzyTokenMatch(token, candidateWords).matched).length; return { article, score: articleSearchScore(article, query), valid: phrase || matched >= Math.max(1, Math.ceil(tokens.length * 0.5)) }; }).filter(item => item.valid && item.score > 0).sort((a, b) => b.score - a.score || Date.parse(b.article.updatedAt || b.article.publishedAt || '') - Date.parse(a.article.updatedAt || a.article.publishedAt || '')).map(item => item.article); };
 const encodeSearchQuery = value => encodeURIComponent(String(value || '').trim()).replace(/%20/g, '+');
-const submitSearch = value => { const query = String(value || '').trim(); if (!query) return showToast('Type something to search'); window.location.href = `/results?search_query=${encodeSearchQuery(query)}`; };
+const getRecentSearches = () => { try { const items = JSON.parse(localStorage.getItem(recentSearchesKey) || '[]'); return Array.isArray(items) ? items.filter(Boolean).slice(0, 5) : []; } catch { return []; } };
+const rememberSearch = query => { const normalized = String(query || '').trim().replace(/\s+/g, ' '); if (!normalized) return; const next = [normalized, ...getRecentSearches().filter(item => item.toLowerCase() !== normalized.toLowerCase())].slice(0, 5); localStorage.setItem(recentSearchesKey, JSON.stringify(next)); };
+const submitSearch = value => { const query = String(value || '').trim(); if (!query) return showToast('Type something to search'); rememberSearch(query); window.location.href = `/results?search_query=${encodeSearchQuery(query)}`; };
 
 const articleCardTemplate = (article, index = 0) => `
     <article class="story-card ${index === 0 ? 'card-dark' : ''}" data-topic="${escapeHtml(article.category)}" data-search="${escapeHtml(articleSearchText(article))}">
@@ -578,6 +616,32 @@ const articleCardTemplate = (article, index = 0) => `
     </article>
 `;
 
+const jobPlane = `<svg class="nx-plane" viewBox="0 0 26 16" aria-hidden="true"><g class="nx-trail"><path d="M0 5H-6M1 9H-8M-1 12H-4"/></g><path d="M4 10 2 2h3l4.5 8"/><path class="nx-plane-body" d="M3.5 10H20c2.8 0 4.6 1.1 4.6 2.2S22.8 14.4 20 14.4H7c-1.9 0-3.1-1.6-3.5-4.4z"/><path d="M16.8 14.4 12.6 17h-3l2.4-2.8"/><path d="M9 12.4h10.5" stroke-dasharray=".01 2.2"/></svg>`;
+const jobCardTemplate = job => `<article class="nx-job${job.featured ? ' nx-job--feature' : ''}" data-tint="${escapeHtml(job.tint || 'sage')}" style="--job-img:url('${escapeHtml(job.image || '')}')"><span class="nx-job__bgimg" aria-hidden="true"></span><header class="nx-job__top"><span class="nx-job__logo" aria-hidden="true">${escapeHtml(job.logo || job.company?.[0] || 'J')}</span><div class="nx-job__who"><span class="nx-job__co"><span class="nx-job__company">${escapeHtml(job.company)}</span><svg class="nx-job__verified" viewBox="0 0 24 24" role="img" aria-label="Verified employer"><path d="M12 2.5l2.4 1.7 2.9-.1 1 2.7 2.4 1.7-.9 2.8.9 2.8-2.4 1.7-1 2.7-2.9-.1L12 21.5l-2.4-1.7-2.9.1-1-2.7-2.4-1.7.9-2.8.9 2.8 2.4 1.7 1 2.7 2.9-.1z"/><path d="M8.5 12.2l2.5 2.5 4.5-4.9" class="tick"/></svg></span><span class="nx-job__time">${escapeHtml(job.posted || '')}</span></div><span class="nx-job__badge" data-badge="${job.urgent ? 'urgent' : String(job.badge || 'Hiring').toLowerCase()}">${escapeHtml(job.badge || 'Hiring')}</span></header><h3 class="nx-job__title"><a href="${escapeHtml(job.applyUrl || '#')}">${escapeHtml(job.title)}</a></h3><p class="nx-job__pitch">${escapeHtml(job.summary || '')}</p><div class="nx-job__tags">${(job.skills || []).slice(0, 3).map(skill => `<span>${escapeHtml(skill)}</span>`).join('')}</div><dl class="nx-job__facts"><div><dt>Location</dt><dd>${escapeHtml(job.location)}${job.mode ? `<em>${escapeHtml(job.mode)}</em>` : ''}</dd></div><div><dt><span class="nx-long">Experience</span><span class="nx-short">Exp.</span></dt><dd>${escapeHtml(job.experience)}</dd></div><div><dt>Job type</dt><dd>${escapeHtml(job.type)}</dd></div></dl><footer class="nx-job__foot"><div class="nx-job__offer"><span class="nx-job__pay">${escapeHtml(job.salary)} <small>${escapeHtml(job.unit || '')}</small></span><span class="nx-job__deadline"${job.urgent ? ' data-urgent="true"' : ''}>${escapeHtml(job.deadline || '')}</span></div><div class="nx-job__acts"><button class="nx-job__send" type="button" aria-pressed="false" aria-label="Save ${escapeHtml(job.title)}" title="Save this job" data-job-save="${escapeHtml(job.id)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="nx-heart" d="M12 20.3s-7.3-4.4-9.7-8.9C.9 8 2.3 4.7 5.6 4.2a5 5 0 0 1 6.4 2 5 5 0 0 1 6.4-2c3.3.5 4.7 3.8 3.3 7.2-2.4 4.5-9.7 8.9-9.7 8.9z"/></svg></button><a class="nx-job__apply" href="${escapeHtml(job.applyUrl || '#')}" target="_blank" rel="noopener" aria-label="Apply for ${escapeHtml(job.title)} at ${escapeHtml(job.company)}">Apply <i>${jobPlane}</i></a></div></footer></article>`;
+const randomJobPair = () => { const picked = [...jobs].sort(() => Math.random() - 0.5).slice(0, 2); return picked.length === 2 ? `<section class="nx-jobstack" aria-label="Featured jobs">${picked.map(jobCardTemplate).join('')}</section>` : ''; };
+const syncJobStackHeight = () => {
+    if (!storyGrid || body.classList.contains('results-page')) return;
+    const stack = storyGrid.querySelector('.nx-jobstack');
+    const references = [...storyGrid.querySelectorAll('.story-card')];
+    if (!stack || !references.length) return;
+    references.forEach(reference => reference.style.removeProperty('min-height'));
+    stack.style.removeProperty('--nx-job-pair-height');
+    stack.style.removeProperty('height');
+    const articleHeight = Math.max(...references.map(reference => reference.getBoundingClientRect().height));
+    const jobPairHeight = stack.scrollHeight;
+    const height = Math.ceil(Math.max(articleHeight, jobPairHeight));
+    if (height > 0) {
+        stack.style.setProperty('--nx-job-pair-height', `${height}px`);
+    }
+};
+let jobStackResizeTimer;
+const scheduleJobStackHeight = () => { clearTimeout(jobStackResizeTimer); jobStackResizeTimer = setTimeout(() => requestAnimationFrame(syncJobStackHeight), 80); };
+window.addEventListener('resize', scheduleJobStackHeight, { passive: true });
+window.addEventListener('orientationchange', scheduleJobStackHeight, { passive: true });
+window.addEventListener('load', scheduleJobStackHeight, { once: true });
+const syncJobSaveButtons = () => document.querySelectorAll('[data-job-save]').forEach(button => { const key = `newsxphere-job-${button.dataset.jobSave}`; const sync = () => { const saved = localStorage.getItem(key) === 'true'; button.setAttribute('aria-pressed', String(saved)); }; sync(); if (button.dataset.bound === 'true') return; button.dataset.bound = 'true'; button.addEventListener('click', event => { event.preventDefault(); const nextSaved = localStorage.getItem(key) !== 'true'; localStorage.setItem(key, String(nextSaved)); if (nextSaved) localStorage.setItem(savedTimeKey(`job-${button.dataset.jobSave}`), String(Date.now())); else localStorage.removeItem(savedTimeKey(`job-${button.dataset.jobSave}`)); updateSaved(); button.classList.remove('is-pop'); void button.offsetWidth; button.classList.add('is-pop'); const acts = button.parentNode; acts.setAttribute('data-tip', nextSaved ? 'Saved' : 'Removed'); clearTimeout(acts._jobTip); acts._jobTip = setTimeout(() => acts.removeAttribute('data-tip'), 1300); sync(); }); });
+const loadJobs = async () => { try { const response = await fetch(jobDataUrl, { cache: 'no-store' }); if (!response.ok) throw Error('Jobs unavailable'); const data = await response.json(); jobs = Array.isArray(data) ? data : data.jobs || []; } catch { jobs = []; } };
+
 const setCount = (count) => {
     const label = `${count} ${count === 1 ? 'story' : 'stories'}`;
     const status = document.querySelector('#result-status');
@@ -587,11 +651,12 @@ const setCount = (count) => {
 };
 
 const getFilteredArticles = (value = search ? search.value : '') => {
-    const query = (value || '').trim().toLowerCase();
+    const query = (value || '').trim();
     const active = document.querySelector('.topic.active')?.dataset.topic || 'All';
+    const matches = query ? new Set(rankArticles(query, articles).map(article => article.id)) : null;
     return articles.filter(article => {
         const matchTopic = active === 'All' || article.category === active;
-        const matchSearch = !query || articleSearchText(article).includes(query);
+        const matchSearch = !query || matches.has(article.id);
         return matchTopic && matchSearch;
     });
 };
@@ -599,8 +664,12 @@ const getFilteredArticles = (value = search ? search.value : '') => {
 const renderStoryGrid = (items) => {
     if (!storyGrid) return;
     storyGrid.dataset.ready = 'true';
-    storyGrid.innerHTML = items.map(articleCardTemplate).join('');
+    const cards = items.map(articleCardTemplate);
+    if (!body.classList.contains('results-page') && jobs.length >= 2) cards.splice(Math.min(2, cards.length), 0, randomJobPair());
+    storyGrid.innerHTML = cards.join('');
     syncSaveButtons();
+    syncJobSaveButtons();
+    scheduleJobStackHeight();
 };
 
 const renderRelatedArticles = () => {
@@ -613,17 +682,44 @@ const renderRelatedArticles = () => {
     syncSaveButtons();
 };
 
-const getSavedArticles = () => articles.filter(article => localStorage.getItem(`newsxphere-save-${article.id}`) === 'true');
+const savedTimeKey = key => `newsxphere-save-at-${key}`;
+const getSavedAt = key => Number(localStorage.getItem(savedTimeKey(key)) || 0);
+const formatSavedAt = value => value ? new Intl.DateTimeFormat(navigator.language || 'en-US', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : 'recently';
+const getSavedArticles = () => articles.filter(article => localStorage.getItem(`newsxphere-save-${article.id}`) === 'true').map(item => ({ type: 'story', item, savedAt: getSavedAt(item.id) }));
+const getSavedJobs = () => jobs.filter(job => localStorage.getItem(`newsxphere-job-${job.id}`) === 'true').map(item => ({ type: 'job', item, savedAt: getSavedAt(`job-${item.id}`) }));
+const savedEntrySearchText = ({ type, item }) => type === 'job'
+    ? `${item.title || ''} ${item.company || ''} ${item.summary || ''} ${item.location || ''} ${item.mode || ''} ${(item.skills || []).join(' ')} ${item.type || ''}`
+    : articleSearchText(item);
+const rankSavedEntries = (entries, query) => {
+    const tokens = searchTokens(query);
+    if (!tokens.length) return entries;
+    return entries.map(entry => {
+        const words = searchWords(savedEntrySearchText(entry));
+        const matches = tokens.map(token => fuzzyTokenMatch(token, words));
+        const matched = matches.filter(result => result.matched).length;
+        const score = matches.reduce((sum, result) => sum + result.strength, 0) / Math.max(1, tokens.length);
+        return { entry, matched, score };
+    }).filter(result => result.matched >= Math.max(1, Math.ceil(tokens.length * 0.45))).sort((a, b) => b.score - a.score || b.entry.savedAt - a.entry.savedAt).map(result => result.entry);
+};
 
 function updateSaved() {
-    const saved = getSavedArticles();
+    const allSaved = [...getSavedArticles(), ...getSavedJobs()].sort((a, b) => b.savedAt - a.savedAt);
+    const filtered = savedFilter === 'all' ? allSaved : allSaved.filter(entry => savedFilter === 'jobs' ? entry.type === 'job' : entry.type === 'story');
+    const saved = savedSearchActive ? rankSavedEntries(filtered, savedSearchQuery) : filtered;
     const savedCount = document.querySelector('#saved-count');
     const list = document.querySelector('#saved-list');
-    if (savedCount) savedCount.textContent = saved.length;
+    if (savedCount) savedCount.textContent = allSaved.length;
+    document.querySelectorAll('[data-saved-filter]').forEach(button => {
+        const active = button.dataset.savedFilter === savedFilter;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+    });
     if (!list) return;
     list.innerHTML = saved.length
-        ? saved.map(article => `<article class="saved-item"><small>${escapeHtml(article.category)}</small><h3><a href="${escapeHtml(article.url)}">${escapeHtml(article.title)}</a></h3></article>`).join('')
-        : '<p class="saved-empty">No saved stories yet. Tap the heart on a story to keep it close.</p>';
+        ? saved.map(({ type, item, savedAt }) => type === 'job'
+            ? `<article class="saved-item saved-job"><small>JOB · ${escapeHtml(item.company || 'Employer')}</small><h3><a href="${escapeHtml(item.applyUrl || '#')}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(item.location || '')}${item.location && item.mode ? ' · ' : ''}${escapeHtml(item.mode || '')}</p><time datetime="${savedAt ? new Date(savedAt).toISOString() : ''}">Saved ${escapeHtml(formatSavedAt(savedAt))}</time></article>`
+            : `<article class="saved-item"><small>${escapeHtml(item.category)}</small><h3><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(articleCardExcerpt(item))}</p><time datetime="${savedAt ? new Date(savedAt).toISOString() : ''}">Saved ${escapeHtml(formatSavedAt(savedAt))}</time></article>`).join('')
+        : `<p class="saved-empty">${savedFilter === 'jobs' ? 'No saved jobs yet.' : savedFilter === 'articles' ? 'No saved articles yet.' : 'No saved stories yet. Tap the heart on a story to keep it close.'}</p>`;
 }
 
 function syncSaveButtons() {
@@ -644,7 +740,10 @@ function syncSaveButtons() {
         if (button.dataset.bound === 'true') return;
         button.dataset.bound = 'true';
         button.addEventListener('click', () => {
-            localStorage.setItem(storageKey, String(localStorage.getItem(storageKey) !== 'true'));
+            const nextSaved = localStorage.getItem(storageKey) !== 'true';
+            localStorage.setItem(storageKey, String(nextSaved));
+            if (nextSaved) localStorage.setItem(savedTimeKey(key), String(Date.now()));
+            else localStorage.removeItem(savedTimeKey(key));
             sync();
             updateSaved();
             showToast(localStorage.getItem(storageKey) === 'true' ? 'Story saved to your reading list' : 'Story removed from your reading list');
@@ -660,13 +759,24 @@ function renderSearchState(value = '') {
     const matches = rankArticles(value, articles);
     const hasQuery = query.length > 0;
 
+    if (!hasQuery) {
+        const recentGroup = searchSuggestions.querySelector('.search-group');
+        if (recentGroup) {
+            const recent = getRecentSearches();
+            const items = recent.length ? recent : ['Strait of Hormuz', 'maritime security', 'oil tanker'];
+            const icon = recent.length ? recentSearchIcon : searchIcon;
+            recentGroup.innerHTML = `<h3>Recent</h3>${items.map(item => `<button type="button" class="suggestion-item recent-search" data-query="${escapeHtml(item)}">${icon}<span>${escapeHtml(item)}</span></button>`).join('')}`;
+        }
+    }
+
     searchSuggestions.hidden = hasQuery;
     searchResults.hidden = !hasQuery;
-    searchHint.textContent = hasQuery ? 'Matching stories and recent signals' : 'Recent searches and trending signals';
+    searchHint.textContent = hasQuery ? 'Smart matching — typos and related words included' : 'Recent searches and trending signals';
     searchResults.innerHTML = hasQuery
         ? matches.length
             ? matches.map(article => `
                 <a class="result-item" href="/results?search_query=${encodeSearchQuery(article.title)}">
+                    ${searchIcon}
                     <small>${escapeHtml(article.category)}</small>
                     <strong>${escapeHtml(article.title)}</strong>
                 </a>
@@ -708,7 +818,7 @@ const closeSearch = () => {
 
 async function loadArticleData() {
     try {
-        const response = await fetch(articleDataUrl, { cache: 'no-store' });
+        const [response] = await Promise.all([fetch(articleDataUrl, { cache: 'no-store' }), loadJobs()]);
         if (!response.ok) throw new Error(`Article data failed: ${response.status}`);
         const data = await response.json();
         const source = Array.isArray(data) ? data : data.articles;
@@ -809,11 +919,55 @@ document.querySelector('#saved-toggle')?.addEventListener('click', () => {
     updateSaved();
 });
 
-document.querySelector('#close-saved')?.addEventListener('click', () => {
+const setSavedSearchOpen = (open) => {
+    const filters = document.querySelector('.saved-filters');
+    const toggle = document.querySelector('.saved-search-toggle');
+    const box = document.querySelector('#saved-search-box');
+    const input = document.querySelector('#saved-search-input');
+    if (!filters || !toggle || !box) return;
+    savedSearchActive = open;
+    filters.hidden = open;
+    toggle.hidden = open;
+    box.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if (open) window.setTimeout(() => input?.focus(), 0);
+    else {
+        savedSearchQuery = '';
+        if (input) input.value = '';
+        updateSaved();
+    }
+};
+
+document.querySelector('.saved-search-toggle')?.addEventListener('click', () => setSavedSearchOpen(true));
+document.querySelector('.saved-search-close')?.addEventListener('click', () => setSavedSearchOpen(false));
+document.querySelector('#saved-search-input')?.addEventListener('input', event => {
+    savedSearchQuery = event.currentTarget.value;
+    updateSaved();
+});
+
+document.querySelectorAll('[data-saved-filter]').forEach(button => button.addEventListener('click', () => {
+    savedFilter = button.dataset.savedFilter || 'all';
+    updateSaved();
+}));
+
+const closeSaved = () => {
     savedDrawer?.classList.remove('open');
     savedDrawer?.setAttribute('aria-hidden', 'true');
     savedDrawer?.setAttribute('inert', '');
+};
+
+document.querySelector('#close-saved')?.addEventListener('click', closeSaved);
+document.addEventListener('click', event => {
+    if (!savedDrawer?.classList.contains('open')) return;
+    if (savedDrawer.contains(event.target) || event.target.closest('#saved-toggle')) return;
+    closeSaved();
 });
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && savedDrawer?.classList.contains('open')) closeSaved();
+});
+window.addEventListener('scroll', () => {
+    if (window.innerWidth > 900 && savedDrawer?.classList.contains('open')) closeSaved();
+}, { passive: true });
 
 themeToggle?.addEventListener('click', () => {
     const nextTheme = root.dataset.theme === 'dim' ? 'paper' : 'dim';
@@ -904,7 +1058,7 @@ document.querySelector('#search-refresh')?.addEventListener('click', () => {
 document.querySelector('#search-suggestions')?.addEventListener('click', event => {
     const button = event.target.closest('.suggestion-item');
     if (!button || !search) return;
-    submitSearch(button.textContent.trim());
+    submitSearch(button.dataset.query || button.textContent.trim());
 });
 
 document.querySelector('#search-results')?.addEventListener('click', event => {

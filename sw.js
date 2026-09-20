@@ -1,5 +1,32 @@
-const CACHE = 'newsxphere-static-v4';
-const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css', '/script.js', '/public/favicon-32.png', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
+const CACHE = 'newsxphere-static-v5';
+const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css', '/script.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192.png', '/public/icon-512.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
-self.addEventListener('fetch', event => { const request = event.request; if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) return; const url = new URL(request.url); if (url.pathname === '/allnewsdata.json' || url.pathname === '/feed.xml' || url.pathname === '/sitemap.xml') { event.respondWith(fetch(request).then(response => { const copy = response.clone(); caches.open(CACHE).then(cache => cache.put(request, copy)); return response; }).catch(() => caches.match(request))); return; } if (request.destination === 'style' || request.destination === 'script' || request.destination === 'image' || request.destination === 'font') event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => { const copy = response.clone(); caches.open(CACHE).then(cache => cache.put(request, copy)); return response; })) });
+self.addEventListener('fetch', event => {
+    const request = event.request;
+    if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) return;
+
+    const url = new URL(request.url);
+    if (url.pathname === '/allnewsdata.json' || url.pathname === '/feed.xml' || url.pathname === '/sitemap.xml') {
+        event.respondWith(
+            fetch(request)
+                .then(response => {
+                    const copy = response.clone();
+                    caches.open(CACHE).then(cache => cache.put(request, copy));
+                    return response;
+                })
+                .catch(() => caches.match(request))
+        );
+        return;
+    }
+
+    if (request.destination === 'style' || request.destination === 'script' || request.destination === 'image' || request.destination === 'font') {
+        event.respondWith(
+            caches.match(request).then(cached => cached || fetch(request).then(response => {
+                const copy = response.clone();
+                caches.open(CACHE).then(cache => cache.put(request, copy));
+                return response;
+            }))
+        );
+    }
+});
