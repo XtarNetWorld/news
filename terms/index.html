@@ -88,7 +88,7 @@
                         <span class="header-weather-icon" id="desktop-weather-icon" aria-hidden="true">☀</span>
                         <span class="header-weather-temp" id="desktop-weather-temp">--°</span>
                     </div>
-                    <button class="topic" data-topic="All" type="button">All signals</button>
+                    <button class="topic active" data-topic="All" type="button">All signals</button>
                     <button class="topic" data-topic="World" type="button">World</button>
                     <button class="topic" data-topic="Startups" type="button">Startups</button>
                     <button class="topic" data-topic="Tech" type="button">Tech</button>
@@ -180,7 +180,7 @@
                                 <input id="site-search" type="search" placeholder="Search stories &amp; signals" autocomplete="off">
                                 <button id="close-search" type="button" aria-label="Close search"></button>
                             </div>
-                            <button class="search-refresh" id="search-refresh" type="button">↻ Refresh stories</button>
+                            <button class="search-refresh" id="search-refresh" type="button">⌕ Search</button>
                             <div class="search-meta">
                                 <span id="search-hint">Recent searches and trending signals</span>
                                 <span id="search-result-count">Loading stories</span>
@@ -259,7 +259,7 @@
                 <p style="margin-top:40px"><a class="text-link" href="/">← Back to the signal desk</a></p>
             </section>
         </main>
-        <aside class="saved-drawer" id="saved-drawer" aria-label="Saved stories" aria-hidden="true">
+        <aside class="saved-drawer" id="saved-drawer" aria-label="Saved stories" aria-hidden="true" inert>
             <div class="drawer-head">
                 <div>
                     <span class="section-number">05</span>
