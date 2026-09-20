@@ -39,7 +39,7 @@
       <section data-view-panel="dashboard" class="view-panel">
         <div class="welcome"><div><p class="eyebrow">GOOD TO SEE YOU</p><h2>Keep the signal clear.</h2><p class="muted">Create, review, publish, and request indexing from one place.</p></div><button class="button primary" data-go="writer">Create with AI</button></div>
         <div class="stat-grid"><article class="stat"><span>Articles</span><strong id="article-count">—</strong></article><article class="stat"><span>Gemini</span><strong id="gemini-status">—</strong></article><article class="stat"><span>GitHub</span><strong id="github-status">—</strong></article><article class="stat"><span>Indexing</span><strong id="indexing-status">—</strong></article></div>
-        <div class="quick-grid"><button class="quick" data-go="articles"><b>▤</b><span>Browse articles<small>View your published stories</small></span></button><button class="quick" data-go="writer"><b>✦</b><span>Write with AI<small>Turn verified notes into a draft</small></span></button><button class="quick" data-go="publish"><b>↗</b><span>Publish or index<small>Commit and request Google indexing</small></span></button></div>
+        <div class="quick-grid"><button class="quick" data-go="articles"><b>▤</b><span>Browse articles<small>View your published stories</small></span></button><button class="quick" data-go="writer"><b>✦</b><span>Write with AI<small>Turn verified notes into a draft</small></span></button><button class="quick" data-go="publish"><b>↗</b><span>Publish or index<small>Commit and request Google indexing</small></span></button><button class="quick quick-site-update" id="site-update"><b>↻</b><span>Update whole site<small>Refresh shared headers, drawers, and pages</small></span></button></div>
       </section>
 
       <section data-view-panel="articles" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">CONTENT</p><h2>Your articles</h2></div><button class="button primary" data-go="writer">New draft</button></div><input id="article-search" class="search" placeholder="Search articles…"><div id="article-list" class="article-list"><p class="muted">Loading articles…</p></div></section>
@@ -50,6 +50,16 @@
 
       <section data-view-panel="settings" class="view-panel" hidden><div class="section-head"><div><p class="eyebrow">SYSTEM</p><h2>Settings</h2></div></div><div class="card settings-card"><div><span>Worker API</span><strong id="worker-url">—</strong></div><div><span>GitHub repository</span><strong id="repo-name">—</strong></div><div><span>Security</span><strong class="good">Protected session</strong></div><p class="muted small">API keys stay on the Cloudflare Worker and are never shown here.</p></div></section>
     </main>
+  </div>
+  <div id="site-update-modal" class="admin-modal" hidden>
+    <form id="site-update-form" class="login-card admin-modal-card">
+      <p class="eyebrow">PROTECTED SITE UPDATE</p>
+      <h2>Update the whole site</h2>
+      <p class="muted small">Enter your admin login password to synchronize the shared header and saved drawer across published pages.</p>
+      <label>Password<input id="site-update-password" name="password" type="password" autocomplete="current-password" required></label>
+      <div class="admin-modal-actions"><button id="site-update-cancel" class="button" type="button">Cancel</button><button class="button primary" type="submit">Update site</button></div>
+      <p id="site-update-error" class="error"></p>
+    </form>
   </div>
   <script src="admin.js" defer></script>
 </body>

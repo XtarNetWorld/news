@@ -15,3 +15,8 @@ body[data-admin-theme="paper"]{--bg:#f4efe6;--surface:#fffdf8;--surface2:#eee8dc
 .article-source-note{margin:10px 0 0;padding:10px 12px;border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:0 8px 8px 0}
 .article-path{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px!important;overflow-wrap:anywhere}
 @media(min-width:851px){.sidebar{position:sticky;top:0;height:100vh;align-self:start;overflow-y:auto;overscroll-behavior:contain}.main{min-width:0}}
+.admin-modal{position:fixed;z-index:50;inset:0;display:grid;place-items:center;padding:20px;background:#06100ecc;backdrop-filter:blur(8px)}
+.admin-modal[hidden]{display:none}
+.admin-modal-card{width:min(460px,100%);margin:0}
+.admin-modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+.quick-site-update{border-color:#e9b96d66;background:linear-gradient(145deg,#2a3026,var(--surface))}

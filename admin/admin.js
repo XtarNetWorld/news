@@ -1,4 +1,4 @@
-const API_BASE = 'https://newsxphere.xtarnet.us.to';
+const API_BASE = 'https://newsxphere-admin.mk-sharma77329.workers.dev';
 const $ = selector => document.querySelector(selector);
 let sessionToken = sessionStorage.getItem('newsxphere-admin-token') || '';
 const api = (path, options = {}) => fetch(`${API_BASE}/api/admin${path}`, { credentials: 'include', ...options, headers: { 'Content-Type': 'application/json', ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}), ...(options.headers || {}) } });
@@ -28,11 +28,6 @@ const blockGroups = { 'Core story': ['takeaways','checklist','quote','comparison
 const blockLabels = value => value.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
 function buildBlockSelector() { const fieldset = $('#writer-form fieldset'); if (!fieldset) return; fieldset.innerHTML = '<legend>Special page blocks · AI can auto-select</legend><label class="check auto-block"><input type="checkbox" name="autoBlocks" checked> Let AI choose the useful blocks from the story</label><div class="block-grid">' + Object.entries(blockGroups).map(([group, values]) => `<details class="block-group" open><summary>${group}<span>${values.length} options</span></summary>${values.map(value => `<label class="block-option"><input type="checkbox" name="blocks" value="${value}"><span>${blockLabels(value)}</span></label>`).join('')}</details>`).join('') + '</div>'; }
 buildBlockSelector();
-const connectGeminiButton = document.createElement('button'); connectGeminiButton.id = 'connect-gemini'; connectGeminiButton.type = 'button'; connectGeminiButton.className = 'button'; connectGeminiButton.textContent = 'Connect Google for Gemini';
-const geminiAccountStatus = document.createElement('small'); geminiAccountStatus.id = 'gemini-account-status'; geminiAccountStatus.className = 'muted'; geminiAccountStatus.textContent = 'Existing admin login remains unchanged. Google access is only for Gemini API.';
-$('#writer-form')?.before(connectGeminiButton, geminiAccountStatus);
-connectGeminiButton.addEventListener('click', async () => { connectGeminiButton.disabled = true; connectGeminiButton.textContent = 'Opening Google…'; try { const response = await api('/oauth/google/start'); const data = await responseData(response); if (!response.ok || !data.url) throw Error(data.error || 'Google Gemini connection could not start.'); window.location.href = data.url; } catch (error) { connectGeminiButton.disabled = false; connectGeminiButton.textContent = 'Connect Google for Gemini'; geminiAccountStatus.textContent = error.message || 'Google connection failed.'; showNotice(geminiAccountStatus.textContent, true); } });
-const googleResult = new URLSearchParams(window.location.search).get('google'); if (googleResult === 'connected') { geminiAccountStatus.textContent = 'Google account connected for Gemini API.'; showNotice('Google Gemini API access connected.'); window.history.replaceState({}, document.title, window.location.pathname); } else if (googleResult === 'error') { geminiAccountStatus.textContent = 'Google connection failed.'; showNotice(geminiAccountStatus.textContent, true); window.history.replaceState({}, document.title, window.location.pathname); }
 const sourceNotes = $('#writer-form textarea[name="source"]'); if (sourceNotes) { sourceNotes.required = false; sourceNotes.placeholder = 'Optional: paste verified notes or links. For live research, describe the topic and angle in the Super AI editorial command box.'; }
 const customLengthLabel = document.createElement('label'); customLengthLabel.innerHTML = 'Custom target length <input name="customLength" type="number" min="300" max="10000" step="50" placeholder="Example: 1800"><small class="muted">Words. Leave empty to use the selected preset.</small>'; const lengthSelect = $('#writer-form select[name="length"]'); lengthSelect?.closest('label')?.after(customLengthLabel);
 const bytesToBase64 = bytes => { let binary = ''; for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000)); return btoa(binary); };
@@ -65,7 +60,6 @@ async function checkSession() {
     if (!status.authenticated) { $('#login-view').hidden = false; $('#app-view').hidden = true; return; }
     $('#login-view').hidden = true; $('#app-view').hidden = false;
     $('#gemini-status').textContent = status.gemini ? 'Ready' : 'Missing';
-    if (status.geminiOAuth) { connectGeminiButton.textContent = 'Reconnect Google for Gemini'; geminiAccountStatus.textContent = 'Google account connected for Gemini API.'; }
     $('#github-status').textContent = status.github ? 'Ready' : 'Missing';
     $('#indexing-status').textContent = status.indexing ? 'Ready' : 'Missing';
     $('#worker-url').textContent = API_BASE;
@@ -76,6 +70,32 @@ async function checkSession() {
 }
 
 async function repairIndexes() { const button = $('#repair-indexes'); if (button) { button.disabled = true; button.textContent = 'Verifying…'; } showNotice('Verifying articles, JSON, sitemap, and RSS feed…'); try { const response = await api('/repair-indexes', { method: 'POST' }); const data = await responseData(response); if (!response.ok || !data.ok) throw Error(data.error || 'Index repair failed.'); showNotice(`Indexes repaired: ${data.counts?.articles || 0} articles, ${data.counts?.sitemapUrls || 0} sitemap URLs, ${data.counts?.feedItems || 0} feed items.`); await loadArticles(); } catch (error) { showNotice(error.message || 'Index repair failed.', true); } finally { if (button) { button.disabled = false; button.textContent = 'Verify & Fix Indexes'; } } }
+const siteUpdateModal = $('#site-update-modal');
+$('#site-update')?.addEventListener('click', () => { if (siteUpdateModal) { siteUpdateModal.hidden = false; $('#site-update-error').textContent = ''; $('#site-update-password').value = ''; $('#site-update-password').focus(); } });
+$('#site-update-cancel')?.addEventListener('click', () => { if (siteUpdateModal) siteUpdateModal.hidden = true; });
+$('#site-update-form')?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const form = event.currentTarget; const submit = form.querySelector('button[type="submit"]'); const error = $('#site-update-error');
+  submit.disabled = true; submit.textContent = 'Updating…'; error.textContent = ''; showNotice('Updating shared site components across published pages…');
+  try {
+    const password = new FormData(form).get('password');
+    let offset = 0; let checked = 0; let updated = 0; let complete = false;
+    while (!complete) {
+      const response = await api('/site-update', { method: 'POST', body: JSON.stringify({ password, offset }) });
+      const data = await responseData(response);
+      if (!response.ok || !data.ok) { const detail = data.failed?.map(item => `${item.path}: ${item.error || 'update rejected'}`).join(' · '); throw Error(data.error || detail || 'Site-wide update failed.'); }
+      offset = data.nextOffset || offset;
+      checked += data.checked || 0;
+      updated += (data.updated || []).length;
+      complete = Boolean(data.complete);
+      submit.textContent = complete ? 'Finishing…' : `Updating ${Math.min(offset, data.total || offset)}/${data.total || '…'}…`;
+    }
+    siteUpdateModal.hidden = true;
+    showNotice(updated ? `Site updated successfully. Checked ${checked} pages and updated ${updated}.` : 'No live page changes found. Publish the new local files to GitHub main first, then run this update again.');
+    await loadArticles();
+  } catch (updateError) { error.textContent = updateError.message || 'Site-wide update failed.'; showNotice(error.textContent, true); }
+  finally { submit.disabled = false; submit.textContent = 'Update site'; }
+});
 async function loadArticles() {
   try {
     const response = await api('/articles');
