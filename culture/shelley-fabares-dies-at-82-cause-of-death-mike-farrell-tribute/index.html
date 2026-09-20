@@ -478,11 +478,11 @@
                         <span class="header-weather-icon" id="desktop-weather-icon" aria-hidden="true">☀</span>
                         <span class="header-weather-temp" id="desktop-weather-temp">--°</span>
                     </div>
-                    <button class="topic" data-topic="All" type="button">All signals</button>
+                    <button class="topic active" data-topic="All" type="button">All signals</button>
                     <button class="topic" data-topic="World" type="button">World</button>
                     <button class="topic" data-topic="Startups" type="button">Startups</button>
                     <button class="topic" data-topic="Tech" type="button">Tech</button>
-                    <button class="topic active" data-topic="Culture" type="button">Culture</button>
+                    <button class="topic" data-topic="Culture" type="button">Culture</button>
                     <button class="topic" data-topic="Job" type="button">Job</button>
                 </nav>
                 <div class="header-controls">
@@ -570,7 +570,7 @@
                                 <input id="site-search" type="search" placeholder="Search stories &amp; signals" autocomplete="off">
                                 <button id="close-search" type="button" aria-label="Close search"></button>
                             </div>
-                            <button class="search-refresh" id="search-refresh" type="button">↻ Refresh stories</button>
+                            <button class="search-refresh" id="search-refresh" type="button">⌕ Search</button>
                             <div class="search-meta">
                                 <span id="search-hint">Recent searches and trending signals</span>
                                 <span id="search-result-count">Loading stories</span>
@@ -822,17 +822,17 @@
     </main>
 
     <!-- Reading List Drawer -->
-    <aside class="saved-drawer" id="saved-drawer" aria-label="Saved stories" aria-hidden="true">
-        <div class="drawer-head">
-            <div>
-                <span class="section-number">05</span>
-                <h2>My reading</h2>
+    <aside class="saved-drawer" id="saved-drawer" aria-label="Saved stories" aria-hidden="true" inert>
+            <div class="drawer-head">
+                <div>
+                    <span class="section-number">05</span>
+                    <h2>My reading</h2>
+                </div>
+                <button id="close-saved" type="button" aria-label="Close saved stories">×</button>
             </div>
-            <button id="close-saved" type="button" aria-label="Close saved stories">×</button>
-        </div>
-        <p>Your saved signals will appear here.</p>
-        <div id="saved-list"><p class="saved-empty">No saved stories yet. Tap the heart on a story to keep it close.</p></div>
-    </aside>
+            <p>Your saved signals will appear here.</p>
+            <div id="saved-list"><p class="saved-empty">No saved stories yet. Tap the heart on a story to keep it close.</p></div>
+        </aside>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
