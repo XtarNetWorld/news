@@ -59,6 +59,8 @@
         })();
     </script>
     <script defer src="script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="orbit-bot.js"></script>
     <!-- High-quality JSON-LD Structured Data: Organization, Founder, WebSite, WebPage -->
     <script type="application/ld+json">
     {
@@ -350,8 +352,28 @@
                     <div class="orbit-ring ring-two"></div>
                     <div class="orbit-ring ring-three"></div>
                     <div class="orbit-core" title="NewsXphere NX">
-                        <span>NX</span>
-                        <small>014</small>
+                        <div class="nx-mark" aria-hidden="true">
+                            <span>NX</span>
+                            <small>014</small>
+                        </div>
+                        <div class="orbit-bot-host" aria-label="NewsXphere AI assistant">
+                            <div id="stage"></div>
+                            <div id="shadow"></div>
+                            <div id="label">click the bot</div>
+                            <div class="orbit-bot-controls" aria-hidden="true">
+                                <input id="speakText" value="Hello! I am your talking robot.">
+                                <button id="speakBtn" type="button">Speak</button>
+                                <select id="voiceEngine"><option value="browser">Browser voice</option></select>
+                                <div id="cloudRow"><select id="cloudLangSelect"></select><select id="cloudVoiceSelect"></select></div>
+                                <div id="browserRow"><select id="langSelect"></select><select id="voiceSelect"></select></div>
+                                <input id="rate" type="range" value="1">
+                                <span id="rateVal">1.00×</span>
+                                <input id="syncOff" type="range" value="0">
+                                <span id="syncVal">0 ms</span>
+                                <div id="status"></div>
+                                <div id="dbg"></div>
+                            </div>
+                        </div>
                     </div>
                     <span class="orbit-label label-one">IDEAS</span>
                     <span class="orbit-label label-two">PEOPLE</span>

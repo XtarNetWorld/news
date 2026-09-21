@@ -1309,15 +1309,66 @@ h1 em {
     color: var(--bg);
     box-shadow: 0 0 0 13px color-mix(in srgb,var(--teal) 15%,transparent);
     transform: rotate(-7deg);
+    isolation: isolate;
+    overflow: visible;
 }
 
-.orbit-core span {
+.nx-mark {
+    position: relative;
+    z-index: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    opacity: 0.72;
+    transition: opacity .45s ease, transform .45s ease;
+}
+
+.nx-mark span {
     font: 600 24px "Playfair Display", serif;
 }
 
-.orbit-core small {
+.nx-mark small {
     font: 9px "DM Mono", monospace;
 }
+
+.orbit-bot-host {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 360px;
+    height: 360px;
+    z-index: 2;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(.31);
+    transform-origin: center;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.orbit-bot-host #stage {
+    width: 360px;
+    height: 360px;
+    position: relative;
+}
+
+.orbit-bot-host #stage canvas {
+    display: block;
+}
+
+.orbit-bot-host #shadow,
+.orbit-bot-host #label,
+.orbit-bot-controls {
+    display: none;
+}
+
+.hero-orbit.ai-docked { position: fixed; z-index: 10000; isolation: isolate; right: clamp(16px, 3vw, 42px); bottom: clamp(16px, 3vw, 38px); width: 82px; height: 82px; aspect-ratio: auto; border-radius: 50%; transform: rotate(0) translateY(0); box-shadow: 0 18px 45px color-mix(in srgb, var(--ink) 18%, transparent); animation: orbit-dock-in .65s cubic-bezier(.2, 1.4, .4, 1) both; }
+.hero-orbit.ai-docked::after { inset: 8%; }
+.hero-orbit.ai-docked .orbit-ring, .hero-orbit.ai-docked .orbit-label, .hero-orbit.ai-docked .nx-mark { opacity: 0; pointer-events: none; }
+.hero-orbit.ai-docked .orbit-core { inset: 11%; z-index: 2; transform: rotate(0deg); transform-origin: center center; box-shadow: 0 0 0 5px color-mix(in srgb, var(--teal) 15%, transparent); }
+.hero-orbit.ai-docked .orbit-bot-host { z-index: 5; transform: translate(-50%, -50%) scale(.23); }
+
+@keyframes orbit-dock-in { from { opacity: 0; transform: rotate(7deg) translate(70px, 70px) scale(.35); } to { opacity: 1; transform: rotate(0) translate(0) scale(1); } }
 
 .orbit-label {
     position: absolute;
@@ -4368,4 +4419,190 @@ img, video, canvas, svg {
     .results-search-bar { align-items: stretch; }
     .results-search-bar .search-refresh { padding-inline: 14px; }
     .not-found-results { grid-template-columns: 1fr; }
+}
+
+/* Keep the floating hero orbit perfectly circular on every mobile breakpoint. */
+.hero-orbit.ai-docked {
+    box-sizing: border-box;
+    width: 82px !important;
+    height: 82px !important;
+    min-width: 82px !important;
+    max-width: 82px !important;
+    min-height: 82px !important;
+    max-height: 82px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+}
+
+.hero-orbit.ai-docked::before,
+.hero-orbit.ai-docked::after,
+.hero-orbit.ai-docked .orbit-core {
+    border-radius: 50% !important;
+}
+
+/* The docked state should show only the bot, without the orbit backdrop. */
+.hero-orbit.ai-docked {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.hero-orbit.ai-docked::before,
+.hero-orbit.ai-docked::after,
+.hero-orbit.ai-docked .orbit-ring {
+    display: none !important;
+}
+
+.hero-orbit.ai-docked .orbit-core {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Give the floating bot a little more room without changing its corner position. */
+.hero-orbit.ai-docked {
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+    min-height: 100px !important;
+    max-height: 100px !important;
+}
+
+.hero-orbit.ai-docked .orbit-bot-host {
+    transform: translate(-50%, -50%) scale(.27) !important;
+}
+
+/* Dock only the bot layer; keep the original hero orbit anchored in the hero. */
+.hero-orbit.ai-docked {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(40vw, 420px) !important;
+    height: auto !important;
+    min-width: 0 !important;
+    max-width: 420px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 49% 51% 44% 56% !important;
+    background: var(--surface-2) !important;
+    box-shadow: var(--soft-shadow) !important;
+    overflow: hidden !important;
+    transform: rotate(7deg) !important;
+}
+
+.hero-orbit.ai-docked::after {
+    display: block !important;
+    inset: 14% !important;
+    border: 1px solid var(--line) !important;
+}
+
+.hero-orbit.ai-docked .orbit-ring,
+.hero-orbit.ai-docked .orbit-label,
+.hero-orbit.ai-docked .nx-mark {
+    opacity: .72 !important;
+    pointer-events: auto;
+}
+
+.hero-orbit.ai-docked .orbit-core {
+    inset: 36% !important;
+    background: var(--teal) !important;
+    box-shadow: 0 0 0 13px color-mix(in srgb, var(--teal) 15%, transparent) !important;
+    transform: rotate(-7deg) !important;
+}
+
+.bot-dock-layer {
+    position: fixed;
+    right: clamp(16px, 3vw, 42px);
+    bottom: clamp(16px, 3vw, 38px);
+    width: 100px;
+    height: 100px;
+    z-index: 100000 !important;
+    pointer-events: auto;
+    overflow: visible;
+}
+
+.bot-dock-layer .orbit-bot-host {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 360px;
+    height: 360px;
+    z-index: 2;
+    transform: translate(-50%, -50%) scale(.27) !important;
+}
+
+.bot-dock-layer::before {
+    content: "";
+    position: absolute;
+    inset: -48%;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: 50%;
+    background: linear-gradient(118deg,
+        transparent 38%,
+        color-mix(in srgb, var(--teal) 12%, transparent) 47%,
+        color-mix(in srgb, white 78%, var(--teal)) 50%,
+        color-mix(in srgb, var(--coral) 18%, transparent) 53%,
+        transparent 62%);
+    filter: blur(3px) drop-shadow(0 0 12px color-mix(in srgb, var(--teal) 65%, transparent));
+    animation: orbit-flash-travel .72s cubic-bezier(.2, .8, .25, 1) both;
+}
+
+/* Brief light streak used while the bot travels to or from its docked position. */
+.hero-orbit.ai-docked::before,
+.hero-orbit.ai-returning::before {
+    content: "";
+    display: block !important;
+    position: absolute;
+    inset: -48%;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 50%;
+    background: linear-gradient(118deg,
+        transparent 38%,
+        color-mix(in srgb, var(--teal) 12%, transparent) 47%,
+        color-mix(in srgb, white 78%, var(--teal)) 50%,
+        color-mix(in srgb, var(--coral) 18%, transparent) 53%,
+        transparent 62%);
+    filter: blur(3px) drop-shadow(0 0 12px color-mix(in srgb, var(--teal) 65%, transparent));
+    animation: orbit-flash-travel .72s cubic-bezier(.2, .8, .25, 1) both;
+}
+
+.hero-orbit.ai-returning::before {
+    animation-direction: reverse;
+}
+
+@keyframes orbit-flash-travel {
+    from { opacity: 0; transform: translate3d(-34%, -34%, 0) rotate(-18deg) scale(.55); }
+    24% { opacity: 1; }
+    72% { opacity: .82; }
+    to { opacity: 0; transform: translate3d(34%, 34%, 0) rotate(18deg) scale(1.1); }
+}
+
+/* Position travel is driven by the measured screen-to-screen motion in script.js. */
+.hero-orbit.ai-docked,
+.hero-orbit.ai-returning {
+    animation: none !important;
+}
+
+/* Reader mode removes the hero artwork, but the AI bot remains docked and usable. */
+.reading-mode .hero-orbit.ai-docked {
+    display: block !important;
+}
+
+/* Keep the docked wrapper and bot visible while scrolling; only decoration is hidden. */
+.hero-orbit.ai-docked {
+    display: block !important;
+    position: fixed !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10000 !important;
+    pointer-events: auto;
+}
+
+.hero-orbit.ai-docked .orbit-core,
+.hero-orbit.ai-docked .orbit-bot-host,
+.hero-orbit.ai-docked #stage,
+.hero-orbit.ai-docked canvas {
+    visibility: visible !important;
+    opacity: 1 !important;
 }

@@ -57,6 +57,7 @@ const mobileWeatherPopoverHi = document.querySelector('#mobile-weather-popover-h
 const mobileWeatherPopoverLo = document.querySelector('#mobile-weather-popover-lo');
 const mobileWeatherPopoverDay = document.querySelector('#mobile-weather-popover-day');
 const weatherTabs = [...document.querySelectorAll('.weather-tab')];
+const orbitHero = document.querySelector('.hero-orbit');
 
 let articles = [];
 let visibleArticles = [];
@@ -68,6 +69,96 @@ let jobs = [];
 let savedFilter = 'all';
 let savedSearchQuery = '';
 let savedSearchActive = false;
+
+// NX-014's AI companion starts inside the orbit, then docks as a playful
+// bottom-right assistant once the reader leaves the hero area.
+if (orbitHero) {
+    const orbitBotHost = orbitHero.querySelector('.orbit-bot-host');
+    const orbitBotHome = orbitBotHost?.parentElement;
+    const orbitBotAnchor = orbitBotHost ? document.createComment('orbit-bot-home') : null;
+    if (orbitBotHost && orbitBotAnchor) orbitBotHome.insertBefore(orbitBotAnchor, orbitBotHost);
+    let botDockLayer = null;
+    let botMotion = null;
+    const updateOrbitAi = () => {
+        const shouldDock = body.classList.contains('reading-mode') || window.scrollY > 110;
+
+        if (orbitHero.classList.contains('bot-docked-state') === shouldDock) return;
+        if (!orbitBotHost || !orbitBotHome || !orbitBotAnchor) return;
+        if (botMotion) botMotion.cancel();
+
+        const startRect = orbitBotHost.getBoundingClientRect();
+        orbitHero.classList.remove('ai-returning');
+        if (shouldDock) {
+            orbitHero.classList.add('bot-docked-state');
+            if (botDockLayer) {
+                botDockLayer.remove();
+                botDockLayer = null;
+            }
+            botDockLayer = document.createElement('div');
+            botDockLayer.className = 'bot-dock-layer';
+            document.body.appendChild(botDockLayer);
+            botDockLayer.appendChild(orbitBotHost);
+            orbitBotHost.classList.add('bot-docked');
+        } else {
+            orbitHero.classList.remove('bot-docked-state');
+            orbitHero.classList.add('ai-returning');
+            orbitBotHome.insertBefore(orbitBotHost, orbitBotAnchor.nextSibling);
+            orbitBotHost.classList.remove('bot-docked');
+        }
+
+        const endRect = shouldDock
+            ? botDockLayer.getBoundingClientRect()
+            : orbitBotHost.getBoundingClientRect();
+        const startCenterX = startRect.left + startRect.width / 2;
+        const startCenterY = startRect.top + startRect.height / 2;
+        const endCenterX = endRect.left + endRect.width / 2;
+        const endCenterY = endRect.top + endRect.height / 2;
+        const deltaX = startCenterX - endCenterX;
+        const deltaY = startCenterY - endCenterY;
+        const botTravelTarget = shouldDock ? botDockLayer : orbitBotHost;
+        const startTransform = shouldDock
+            ? `translate3d(${deltaX}px, ${deltaY}px, 0) scale(.58)`
+            : `translate3d(${deltaX}px, ${deltaY}px, 0) translate(-50%, -50%) scale(.27)`;
+        const endTransform = shouldDock
+            ? 'translate3d(0, 0, 0) scale(1)'
+            : 'translate3d(0, 0, 0) translate(-50%, -50%) scale(.31)';
+
+        botMotion = botTravelTarget.animate([
+            {
+                transform: startTransform,
+                opacity: .72
+            },
+            { offset: .2, opacity: 1 },
+            {
+                transform: endTransform,
+                opacity: 1
+            }
+        ], {
+            duration: 820,
+            easing: 'cubic-bezier(.16, 1, .3, 1)',
+            fill: 'both'
+        });
+
+        botMotion.onfinish = () => {
+            botMotion = null;
+            if (!shouldDock && botDockLayer) {
+                botDockLayer.remove();
+                botDockLayer = null;
+            }
+            orbitHero.classList.remove('ai-returning');
+        };
+    };
+    window.addEventListener('reader-mode-change', updateOrbitAi);
+    let orbitScrollFrame = null;
+    window.addEventListener('scroll', () => {
+        if (orbitScrollFrame) return;
+        orbitScrollFrame = requestAnimationFrame(() => {
+            updateOrbitAi();
+            orbitScrollFrame = null;
+        });
+    }, { passive: true });
+    updateOrbitAi();
+}
 
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, char => ({
     '&': '&amp;',
@@ -1009,6 +1100,7 @@ document.querySelector('#reading-mode')?.addEventListener('click', event => {
     const on = body.classList.toggle('reading-mode');
     event.currentTarget.textContent = on ? 'Exit reader' : 'Reader';
     localStorage.setItem('newsxphere-reader', String(on));
+    window.dispatchEvent(new Event('reader-mode-change'));
     showToast(on ? 'Reader mode on' : 'Reader mode off');
 });
 
@@ -1016,12 +1108,14 @@ if (localStorage.getItem('newsxphere-reader') === 'true') {
     body.classList.add('reading-mode');
     const readingMode = document.querySelector('#reading-mode');
     if (readingMode) readingMode.textContent = 'Exit reader';
+    window.dispatchEvent(new Event('reader-mode-change'));
 }
 
 document.querySelectorAll('[data-read]').forEach(button => button.addEventListener('click', () => {
     body.classList.add('reading-mode');
     const readingMode = document.querySelector('#reading-mode');
     if (readingMode) readingMode.textContent = 'Exit reader';
+    window.dispatchEvent(new Event('reader-mode-change'));
     showToast('Reader mode on');
     const feature = document.querySelector('.feature');
     if (feature) {
