@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <item>
-      <title>Hurricane Polo Explodes to Category 5</title>
-      <link>https://www.newsxphere/world/hurricane-polo-category-5-mexico/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/hurricane-polo-category-5-mexico/</guid>
-      <description>In under 24 hours the system went from tropical storm to a 180 mph monster with 892 mb pressure. Live track, rainfall threats for Mexico, and the next 48 hours.</description>
-      <pubDate>Wed, 23 Sep 2026 02:30:00 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
-    </item>
-
     <title>NewsXphere — Latest signals</title>
     <link>https://www.newsxphere.com/</link>
     <description>Thoughtful reporting from NewsXphere.</description>
