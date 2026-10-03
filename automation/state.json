@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "seen": [],
+  "runs": [
+    {
+      "at": "2026-10-03T08:01:07.109Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
+    }
+  ],
+  "updatedAt": "2026-10-03T08:01:07.109Z"
+}
