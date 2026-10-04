@@ -241,7 +241,17 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-04T08:01:07.499Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-04T07:01:10.795Z"
+  "updatedAt": "2026-10-04T08:01:07.499Z"
 }
