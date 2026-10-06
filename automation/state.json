@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-04T05:01:10.644Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-04T06:01:10.379Z",
       "query": "latest news",
       "found": 10,
@@ -532,7 +522,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-06T08:00:34.177Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump says his super PAC will start paying for controversial taxpayer-funded ads - CBS News",
+          "stage": "source-verification",
+          "reason": "Verifier returned no valid result.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "facebook.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Verifier returned no valid result."
+          }
+        },
+        {
+          "title": "Trump suggests letting Iran 'take out' Los Angeles, San Diego at campaign rally - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "Verifier returned no valid result.",
+          "evidence": {
+            "domains": [
+              "latimes.com",
+              "facebook.com",
+              "cbsnews.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Verifier returned no valid result."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-06T07:00:46.730Z"
+  "updatedAt": "2026-10-06T08:00:34.177Z"
 }
