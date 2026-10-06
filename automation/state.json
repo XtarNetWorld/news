@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-04T17:01:11.007Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-04T18:01:10.698Z",
       "query": "latest news",
       "found": 10,
@@ -1004,7 +994,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-06T20:00:28.261Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-06T19:00:32.619Z"
+  "updatedAt": "2026-10-06T20:00:28.261Z"
 }
