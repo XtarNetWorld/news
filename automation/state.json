@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T17:01:08.192Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T18:01:05.939Z",
       "query": "latest news",
       "found": 10,
@@ -1855,7 +1845,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T20:00:38.224Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Minnesota man accused of plotting Mall of America attack, pledging allegiance to ISIS: FBI | Fox News",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "adl.org",
+              "davar.net"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.07207207207207207
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "Christa Pike severely unwell, ‘angry and confused’, says lawyer, after judge orders all execution evidence preserved – latest",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "npr.org",
+              "cbsnews.com",
+              "bostonherald.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.20683111954459202
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T19:00:33.745Z"
+  "updatedAt": "2026-10-07T20:00:38.224Z"
 }
