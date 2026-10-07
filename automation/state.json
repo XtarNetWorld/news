@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T11:01:09.971Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T12:01:11.156Z",
       "query": "latest news",
       "found": 10,
@@ -1644,7 +1634,50 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T14:00:42.703Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "‘We’re short of resources’: France’s student protesters, in their own words | Protests News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.2080536912751678
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Pullout of B-1 bombers shows how an outgunned Iran is keeping the U.S. on edge - The Washington Post",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T13:00:44.088Z"
+  "updatedAt": "2026-10-07T14:00:42.703Z"
 }
