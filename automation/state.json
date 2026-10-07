@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T05:01:10.742Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T06:01:17.329Z",
       "query": "latest news",
       "found": 10,
@@ -1419,7 +1409,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T08:00:36.044Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Israel marks three years since Hamas-led 7 October 2023 attacks - BBC News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "bbc.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.14479638009049775
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Cargo ship sinks after drone attack in Black Sea near NATO Bulgaria | Fox News",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "marinelink.com",
+              "euronews.com",
+              "bbc.com",
+              "ynetnews.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.19301470588235295
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T07:00:35.823Z"
+  "updatedAt": "2026-10-07T08:00:36.044Z"
 }
