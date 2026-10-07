@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T20:01:07.413Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T21:01:12.626Z",
       "query": "latest news",
       "found": 10,
@@ -1974,7 +1964,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T23:00:36.070Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Rubio calls for \"unapologetic pursuit of national power,\" invoking ancient Greece in Acropolis speech - CBS News",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "newrepublic.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.09657701711491443
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "FBI arrests man who planned to shoot up Mall of America in support of Islamic State group - KSTP.com 5 Eyewitness News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "kstp.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T22:00:39.936Z"
+  "updatedAt": "2026-10-07T23:00:36.070Z"
 }
