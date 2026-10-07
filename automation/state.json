@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T14:01:05.896Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T15:01:07.320Z",
       "query": "latest news",
       "found": 10,
@@ -1743,7 +1733,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T17:00:59.270Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "The latest headlines - as world marks third anniversary of October 7th attacks - Latest From ITV News - ITVX",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "haaretz.com",
+              "cnn.com",
+              "jpost.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.7014925373134329
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "Iran war news LIVE: Iran threatens to shut ‘illegal’ Strait of Hormuz routes as oil flows recover - Livemint",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "nypost.com",
+              "insurancejournal.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.31211180124223603
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T16:00:36.337Z"
+  "updatedAt": "2026-10-07T17:00:59.270Z"
 }
