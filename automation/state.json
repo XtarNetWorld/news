@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T09:01:14.066Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T10:01:10.917Z",
       "query": "latest news",
       "found": 10,
@@ -1574,7 +1564,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-07T12:00:32.803Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Nobel Prize in Chemistry awarded to Kagan and Soai",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "edition.cnn.com",
+              "france24.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.16399286987522282
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "Florida poll: Republicans lead in the races for governor and Senate",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "nbcmiami.com",
+              "orlandosentinel.com",
+              "decisiondeskhq.substack.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.15064102564102563
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T11:00:31.235Z"
+  "updatedAt": "2026-10-07T12:00:32.803Z"
 }
