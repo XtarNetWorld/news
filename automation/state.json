@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-06T20:00:28.261Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-06T21:00:36.093Z",
       "query": "latest news",
       "found": 10,
@@ -2316,7 +2306,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-08T22:00:36.719Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Thousands turn out to welcome weary USS Lincoln sailors after record-breaking deployment",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "deseret.com",
+              "bbc.com",
+              "aol.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.16166666666666665
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "Trump Says U.S. Will Not Strike Iran Again Before Midterms as Military Draws Up New Plans - The New York Times",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "haaretz.com",
+              "time.com",
+              "iranintl.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.08928571428571429
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-08T21:00:40.510Z"
+  "updatedAt": "2026-10-08T22:00:36.719Z"
 }
