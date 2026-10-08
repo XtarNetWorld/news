@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-05T21:01:12.626Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-05T22:01:15.136Z",
       "query": "latest news",
       "found": 10,
@@ -2010,7 +2000,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-08T00:00:34.543Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Week 5 Tracker: Latest news, notes & roster moves",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "giants.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.2777777777777778
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Christa Pike 'angry and confused' about Tennessee's failed execution effort, lawyers say",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "amp.dw.com",
+              "theguardian.com",
+              "aljazeera.com",
+              "sentinelcolorado.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.22273781902552203
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-07T23:00:36.070Z"
+  "updatedAt": "2026-10-08T00:00:34.543Z"
 }
