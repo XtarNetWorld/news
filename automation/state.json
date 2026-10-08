@@ -3,16 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-06T06:00:59.389Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-06T07:00:46.730Z",
       "query": "latest news",
       "found": 10,
@@ -2310,7 +2300,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-08T08:00:36.203Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "India news Live Updates, 8 October 2026: INDIA bloc MPs gather for second big meeting, to march to Rajghat - The Indian Express",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "indiatoday.in",
+              "timesofindia.indiatimes.com",
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.21201413427561838
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "Conclave Mumbai 2026 Latest News, Conclave Mumbai 2026 Top Stories, Updates, Photos, Videos - India Today",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "indiatoday.in",
+              "timesofindia.indiatimes.com",
+              "hindustantimes.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.08536585365853659
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-08T07:00:30.007Z"
+  "updatedAt": "2026-10-08T08:00:36.203Z"
 }
