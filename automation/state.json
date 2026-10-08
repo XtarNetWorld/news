@@ -3,55 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-06T13:00:42.397Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Alito critical of emergency docket surge and Trump's rhetoric | AP News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\nPlease retry in 10h59m22.91274627s.",
-          "evidence": {
-            "domains": [
-              "sfchronicle.com",
-              "greenwichtime.com",
-              "newsweek.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\nPlease retry in 10h59m22.91274627s."
-          }
-        },
-        {
-          "title": "Fort Hood shooter to be executed by firing squad: All to know | Crime News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 10h59m17.590743179s.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "ua.news",
-              "san.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 10h59m17.590743179s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-06T14:00:38.420Z",
       "query": "latest news",
       "found": 10,
@@ -2344,7 +2295,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-08T15:00:44.069Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Nana Patekar Death | Goa News; Actor Last Interview Father Sorrow - Bhaskar English",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "timesofindia.indiatimes.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.2013888888888889
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        },
+        {
+          "title": "'EC at centre of assault': 42 ex-judges defend India's poll process in open letter amid protest against Gyanesh Kumar | India News - Hindustan Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "hindustantimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.6153846153846154
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-08T14:00:39.235Z"
+  "updatedAt": "2026-10-08T15:00:44.069Z"
 }
