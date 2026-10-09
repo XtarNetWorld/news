@@ -57,7 +57,44 @@ const mobileWeatherPopoverHi = document.querySelector('#mobile-weather-popover-h
 const mobileWeatherPopoverLo = document.querySelector('#mobile-weather-popover-lo');
 const mobileWeatherPopoverDay = document.querySelector('#mobile-weather-popover-day');
 const weatherTabs = [...document.querySelectorAll('.weather-tab')];
-const orbitHero = document.querySelector('.hero-orbit');
+let orbitHero = document.querySelector('.hero-orbit');
+
+// The assistant is owned by this shared script. Pages without the homepage
+// orbit still get the same bot, without needing a placeholder in their HTML.
+const universalBotPage = !orbitHero;
+let orbitBotHost = orbitHero?.querySelector('.orbit-bot-host') || null;
+let orbitBotHome = orbitBotHost?.parentElement || null;
+let orbitBotAnchor = orbitBotHost ? document.createComment('orbit-bot-home') : null;
+
+if (universalBotPage) {
+    orbitHero = document.createElement('div');
+    orbitHero.className = 'hero-orbit universal-bot-orbit';
+    orbitBotHome = document.createElement('div');
+    orbitBotHome.hidden = true;
+    orbitBotHome.setAttribute('aria-hidden', 'true');
+    orbitBotAnchor = document.createComment('orbit-bot-home');
+    orbitBotHost = document.createElement('div');
+    orbitBotHost.className = 'orbit-bot-host universal-bot-host';
+    orbitBotHost.setAttribute('aria-label', 'NewsXphere AI assistant');
+    orbitBotHost.innerHTML = '<div id="stage"></div><div id="shadow"></div><div id="label">click the bot</div><div class="orbit-bot-controls" aria-hidden="true"><input id="speakText" value="Hello! I am your talking robot."><button id="speakBtn" type="button">Speak</button><select id="voiceEngine"><option value="browser">Browser voice</option></select><div id="cloudRow"><select id="cloudLangSelect"></select><select id="cloudVoiceSelect"></select></div><div id="browserRow"><select id="langSelect"></select><select id="voiceSelect"></select></div><input id="rate" type="range" value="1"><span id="rateVal">1.00×</span><input id="syncOff" type="range" value="0"><span id="syncVal">0 ms</span><div id="status"></div><div id="dbg"></div></div>';
+    orbitBotHome.appendChild(orbitBotAnchor);
+    orbitBotHome.appendChild(orbitBotHost);
+    document.body.appendChild(orbitBotHome);
+
+    const loadScript = (src) => new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+    const botEngineReady = window.THREE
+        ? Promise.resolve()
+        : loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js');
+    botEngineReady
+        .then(() => loadScript('/orbit-bot.js'))
+        .catch(error => console.error('[orbit-bot] Unable to load assistant:', error));
+}
 
 let articles = [];
 let visibleArticles = [];
@@ -72,15 +109,13 @@ let savedSearchActive = false;
 
 // NX-014's AI companion starts inside the orbit, then docks as a playful
 // bottom-right assistant once the reader leaves the hero area.
-if (orbitHero) {
-    const orbitBotHost = orbitHero.querySelector('.orbit-bot-host');
-    const orbitBotHome = orbitBotHost?.parentElement;
-    const orbitBotAnchor = orbitBotHost ? document.createComment('orbit-bot-home') : null;
+if (orbitBotHost) {
     if (orbitBotHost && orbitBotAnchor) orbitBotHome.insertBefore(orbitBotAnchor, orbitBotHost);
     let botDockLayer = null;
     let botMotion = null;
     const updateOrbitAi = () => {
-        const shouldDock = body.classList.contains('reading-mode') || window.scrollY > 110;
+        if (document.body.classList.contains('bot-chat-open')) return;
+        const shouldDock = universalBotPage || body.classList.contains('reading-mode') || window.scrollY > 110;
 
         if (orbitHero.classList.contains('bot-docked-state') === shouldDock) return;
         if (!orbitBotHost || !orbitBotHome || !orbitBotAnchor) return;
@@ -158,6 +193,974 @@ if (orbitHero) {
         });
     }, { passive: true });
     updateOrbitAi();
+
+    const chatPanel = document.createElement('aside');
+    chatPanel.className = 'orbit-chat-panel';
+    chatPanel.setAttribute('aria-label', 'NewsXphere AI assistant panel');
+    chatPanel.hidden = true;
+    chatPanel.innerHTML = `<div class="orbit-chat-head"><div class="orbit-chat-brand"><span class="orbit-chat-kicker">NEWSXPHERE AI</span><small class="orbit-chat-powered">Powered by XtarNet AI</small></div><button class="orbit-chat-close" type="button" aria-label="Close assistant panel">×</button></div><div class="orbit-chat-bot-slot"><button class="orbit-chat-control orbit-chat-mic" type="button" aria-label="Turn microphone on" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"></path><path class="icon-slash" d="M4 4l16 16"></path></svg></button><button class="orbit-chat-control orbit-chat-speaker" type="button" aria-label="Turn speaker off" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h4l5-4v12l-5-4H4z"></path><path class="icon-waves" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"></path><path class="icon-slash" d="M4 4l16 16"></path></svg></button></div><div class="orbit-chat-space"><div class="orbit-chat-log" aria-live="polite" aria-label="Assistant conversation"></div><div class="orbit-chat-empty"><div class="orbit-chat-welcome"><strong>What are you curious about today?</strong><span>Pick a signal and let’s explore it together.</span></div><div class="orbit-chat-suggestions" aria-label="Suggested questions"></div></div></div><div class="orbit-chat-history-nav"><button type="button" class="orbit-chat-history-btn" data-history="previous" aria-label="Show previous message" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12H7m0 0 4-4m-4 4 4 4"></path></svg></button><span class="orbit-chat-history-label">Messages</span><button type="button" class="orbit-chat-history-btn" data-history="next" aria-label="Show next message" disabled><svg viewBox="0 0 24 24"><path d="M7 12h10m0 0-4-4m4 4-4 4"></path></svg></button></div><form class="orbit-chat-form"><input class="orbit-chat-input" type="text" autocomplete="off" placeholder="Type your question…" aria-label="Type your question"><button type="submit" aria-label="Send question">↗</button></form>`;
+    chatPanel.innerHTML = chatPanel.innerHTML.replace('NEWSXPHERE AI', 'Max Ai');
+    const chatHead = chatPanel.querySelector('.orbit-chat-head');
+    const historyHead = document.createElement('button');
+    historyHead.className = 'orbit-chat-history-head';
+    historyHead.type = 'button';
+    historyHead.setAttribute('aria-label', 'Show previous message');
+    historyHead.disabled = true;
+    historyHead.innerHTML = '<img src="/public/history.png" alt="" aria-hidden="true">';
+    chatHead?.prepend(historyHead);
+    const historyMenu = document.createElement('div');
+    historyMenu.className = 'orbit-chat-history-menu';
+    historyMenu.hidden = true;
+    historyMenu.innerHTML = '<div class="orbit-chat-history-menu-title"><span>Previous chats</span><button type="button" class="orbit-chat-new-button"><span>New chat</span><b aria-hidden="true">+</b></button></div><div class="orbit-chat-history-menu-list"></div>';
+    chatPanel.appendChild(historyMenu);
+    const historyDialog = document.createElement('div');
+    historyDialog.className = 'orbit-chat-history-dialog';
+    historyDialog.hidden = true;
+    historyDialog.innerHTML = '<div class="orbit-chat-history-dialog-card"><strong class="orbit-chat-history-dialog-title"></strong><input class="orbit-chat-history-dialog-input" type="text" maxlength="80"><p class="orbit-chat-history-dialog-message"></p><div class="orbit-chat-history-dialog-actions"><button type="button" class="orbit-chat-history-dialog-cancel">Cancel</button><button type="button" class="orbit-chat-history-dialog-confirm">Confirm</button></div></div>';
+    chatPanel.appendChild(historyDialog);
+    document.body.appendChild(chatPanel);
+    const chatSlot = chatPanel.querySelector('.orbit-chat-bot-slot');
+    const micControl = chatPanel.querySelector('.orbit-chat-mic');
+    const speakerControl = chatPanel.querySelector('.orbit-chat-speaker');
+    const chatForm = chatPanel.querySelector('.orbit-chat-form');
+    const chatInput = chatPanel.querySelector('.orbit-chat-input');
+    const chatLog = chatPanel.querySelector('.orbit-chat-log');
+    const chatEmpty = chatPanel.querySelector('.orbit-chat-empty');
+    const chatSuggestions = chatPanel.querySelector('.orbit-chat-suggestions');
+    const historyPrev = chatPanel.querySelector('[data-history="previous"]');
+    const historyNext = chatPanel.querySelector('[data-history="next"]');
+    const historyLabel = chatPanel.querySelector('.orbit-chat-history-label');
+    const chatSend = chatPanel.querySelector('.orbit-chat-form button[type="submit"]');
+    const closeChat = chatPanel.querySelector('.orbit-chat-close');
+    const newChatButton = historyMenu.querySelector('.orbit-chat-new-button');
+    const historyMenuList = historyMenu.querySelector('.orbit-chat-history-menu-list');
+    const historyDialogTitle = historyDialog.querySelector('.orbit-chat-history-dialog-title');
+    const historyDialogInput = historyDialog.querySelector('.orbit-chat-history-dialog-input');
+    const historyDialogMessage = historyDialog.querySelector('.orbit-chat-history-dialog-message');
+    const historyDialogCancel = historyDialog.querySelector('.orbit-chat-history-dialog-cancel');
+    const historyDialogConfirm = historyDialog.querySelector('.orbit-chat-history-dialog-confirm');
+    let historyDialogResolve = null;
+    const closeHistoryDialog = result => {
+        historyDialog.hidden = true;
+        const resolve = historyDialogResolve;
+        historyDialogResolve = null;
+        resolve?.(result);
+    };
+    const showHistoryDialog = (mode, session) => new Promise(resolve => {
+        historyDialogResolve = resolve;
+        const isRename = mode === 'rename';
+        historyDialogTitle.textContent = isRename ? 'Rename chat' : 'Delete chat';
+        historyDialogMessage.textContent = isRename ? '' : `Delete “${session.title}”? This cannot be undone.`;
+        historyDialogInput.hidden = !isRename;
+        historyDialogInput.value = isRename ? session.title : '';
+        historyDialogConfirm.textContent = isRename ? 'Save' : 'Delete';
+        historyDialogConfirm.classList.toggle('is-danger', !isRename);
+        historyDialog.hidden = false;
+        window.setTimeout(() => (isRename ? historyDialogInput : historyDialogConfirm).focus(), 0);
+    });
+    historyDialogCancel.addEventListener('click', () => closeHistoryDialog(null));
+    historyDialogConfirm.addEventListener('click', () => {
+        if (historyDialogInput.hidden) closeHistoryDialog(true);
+        else closeHistoryDialog(historyDialogInput.value.trim());
+    });
+    historyDialog.addEventListener('click', event => {
+        if (event.target === historyDialog) closeHistoryDialog(null);
+    });
+    historyDialogInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') historyDialogConfirm.click();
+        if (event.key === 'Escape') historyDialogCancel.click();
+    });
+    let assistantRecognition = null;
+    let assistantMicActive = false;
+    let assistantMicTimeout = null;
+    let chatProcessing = false;
+    let chatAbortController = null;
+    let speechUtterance = null;
+    let speechWordSpans = [];
+    let speechWordMap = [];
+    let speechSpokenWordRanges = [];
+    let speechSpokenText = '';
+    let activeSpeechWordIndex = -1;
+    let speechScrollRaf = null;
+    let speechScrollWord = null;
+    let speechScrollDueAt = 0;
+    let speechBoundarySeen = false;
+    let speechBoundaryCharIndex = -1;
+    let speechFallbackTimeout = null;
+    let speechFallbackInterval = null;
+    let speechHighlightTimer = null;
+    let speechAudio = null;
+    let speechAudioUrl = '';
+    let speechRequestId = 0;
+    const SPEECH_HIGHLIGHT_DELAY_MS = 35;
+    let lastPollinationsRequestAt = 0;
+    const POLLINATIONS_REQUEST_GAP_MS = 9000;
+    let pollinationsCooldownUntil = 0;
+    let pollinationsCooldownTimer = null;
+    const refreshPollinationsCooldown = () => {
+        const remaining = Math.max(0, pollinationsCooldownUntil - performance.now());
+        if (remaining > 0) {
+            if (chatSend) {
+                chatSend.disabled = true;
+                chatSend.classList.add('is-cooldown');
+                chatSend.textContent = `Wait ${Math.ceil(remaining / 1000)}s`;
+            }
+            return;
+        }
+        if (pollinationsCooldownTimer) {
+            window.clearInterval(pollinationsCooldownTimer);
+            pollinationsCooldownTimer = null;
+        }
+        if (chatSend) {
+            chatSend.disabled = false;
+            chatSend.classList.remove('is-cooldown');
+            chatSend.textContent = chatProcessing ? '×' : '↗';
+        }
+    };
+    const startPollinationsCooldown = () => {
+        pollinationsCooldownUntil = performance.now() + POLLINATIONS_REQUEST_GAP_MS;
+        if (pollinationsCooldownTimer) window.clearInterval(pollinationsCooldownTimer);
+        refreshPollinationsCooldown();
+        pollinationsCooldownTimer = window.setInterval(refreshPollinationsCooldown, 250);
+    };
+    const conversationHistory = [];
+    const chatSessions = [];
+    const chatHistoryStorageKey = 'maxai-chat-history';
+    const suggestionStorageKey = 'maxai-used-suggestions';
+    const suggestedQuestions = [
+        'What story could change the world this week?',
+        'Which technology trend is quietly becoming important?',
+        'What should I understand about today’s biggest headline?',
+        'Show me a surprising connection between science and society.',
+        'What is one idea everyone will be discussing soon?',
+        'Which startup is solving a problem people overlook?',
+        'What does today’s economy mean for ordinary people?',
+        'Explain a global event in simple words.',
+        'What future technology already feels like science fiction?',
+        'Which climate signal deserves more attention?',
+        'What is a smart question to ask about artificial intelligence?',
+        'Tell me about a place changing faster than expected.',
+        'What recent discovery could improve everyday life?',
+        'Which business story has a hidden human angle?',
+        'What are experts watching over the next few days?',
+        'What overlooked fact changes how we see this issue?',
+        'Which cultural trend is spreading under the radar?',
+        'What is the most misunderstood story today?',
+        'Show me a useful lesson from history for today.',
+        'What could make the internet safer this year?',
+        'Which energy breakthrough is worth watching?',
+        'What does this news mean for young people?',
+        'What is one optimistic story I should know?',
+        'Which country is making an unexpected move?',
+        'What question would reveal the real story here?',
+        'Explain a complex topic without jargon.',
+        'What could disrupt an industry in the next five years?',
+        'Which health innovation has real potential?',
+        'What is a fact about space that feels impossible?',
+        'What are people getting wrong about the future of work?',
+        'Which local story deserves global attention?',
+        'What can we learn from today’s biggest mistake?',
+        'What is the most useful news to share with a friend?',
+        'Which invention changed life more than expected?',
+        'What trend connects entertainment, technology, and culture?',
+        'What should I watch before making a big decision?',
+        'Which scientific mystery is closest to being solved?',
+        'What small change could improve society significantly?',
+        'What is a bold prediction about the next decade?',
+        'Give me a story that will make me think differently.'
+    ];
+    const loadUsedSuggestions = () => {
+        try {
+            const used = JSON.parse(localStorage.getItem(suggestionStorageKey) || '[]');
+            return new Set(Array.isArray(used) ? used : []);
+        } catch (_) { return new Set(); }
+    };
+    const saveUsedSuggestions = used => {
+        try { localStorage.setItem(suggestionStorageKey, JSON.stringify([...used])); } catch (_) { /* storage is optional */ }
+    };
+    const renderSuggestions = () => {
+        if (!chatSuggestions) return;
+        chatSuggestions.replaceChildren();
+        const used = loadUsedSuggestions();
+        const available = suggestedQuestions.filter(question => !used.has(question)).sort(() => Math.random() - .5);
+        available.slice(0, Math.min(2, available.length)).forEach(question => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'orbit-chat-suggestion';
+            button.textContent = question;
+            button.addEventListener('click', () => {
+                used.add(question);
+                saveUsedSuggestions(used);
+                removeChatWelcome();
+                if (chatInput) chatInput.value = question;
+                updateChatSendState();
+                chatForm?.requestSubmit();
+            });
+            chatSuggestions.appendChild(button);
+        });
+    };
+    const removeChatWelcome = () => {
+        chatEmpty?.remove();
+        chatSuggestions?.remove();
+    };
+    const restoreChatWelcome = () => {
+        const chatSpace = chatPanel.querySelector('.orbit-chat-space');
+        if (chatSpace && chatEmpty && !chatEmpty.isConnected) chatSpace.appendChild(chatEmpty);
+        if (chatSpace && chatSuggestions && !chatSuggestions.isConnected) chatSpace.appendChild(chatSuggestions);
+        if (chatEmpty) chatEmpty.hidden = false;
+        renderSuggestions();
+    };
+    let activeSessionIndex = -1;
+    let activeExchangeIndex = -1;
+    try {
+        const cachedChats = JSON.parse(localStorage.getItem(chatHistoryStorageKey) || '[]');
+        if (Array.isArray(cachedChats)) {
+            if (cachedChats.some(session => Array.isArray(session?.exchanges))) {
+                cachedChats.slice(-20).forEach(session => {
+                    const exchanges = Array.isArray(session.exchanges)
+                        ? session.exchanges.filter(exchange => exchange && typeof exchange.user === 'string' && typeof exchange.answer === 'string')
+                        : [];
+                    if (exchanges.length) chatSessions.push({
+                        title: typeof session.title === 'string' ? session.title : exchanges[0].user,
+                        createdAt: session.createdAt || Date.now(),
+                        exchanges
+                    });
+                });
+            } else {
+                const exchanges = cachedChats.filter(exchange => exchange && typeof exchange.user === 'string' && typeof exchange.answer === 'string');
+                if (exchanges.length) chatSessions.push({ title: exchanges[0].user, createdAt: Date.now(), exchanges });
+            }
+        }
+        if (chatSessions.length) {
+            activeSessionIndex = chatSessions.length - 1;
+            activeExchangeIndex = chatSessions[activeSessionIndex].exchanges.length - 1;
+        }
+    } catch (_) { /* cached history is optional */ }
+    const getSystemPrompt = () => `You are Max Ai, an AI assistant created by Monu Sharma, born in 2010 and founder of XtarNet. Monu studies at Little Angels Public School. His father's name is NandLal Sharma. He has a brother, Vikash Sharma, and two sisters, Tannu Sharma and Nilu Sharma. His school friends are Sumit Sharma, Yash Sharma, and Ayush Singh.
+
+Respond directly, naturally, and helpfully. No filler, no unnecessary greetings, no repetition, no vague explanations, and no bakwas. Give the answer first in short, clear sentences. Prefer 1–4 concise sentences or a compact list; give longer detail only when the user asks for it or the task truly requires it. Use common sense to understand intent, maintain context, and stay accurate. If interrupted by words such as stop, ruko, cancel, or a new request, stop the current response and address the new request immediately. Match the user's language, including Hindi or English, unless asked otherwise. Ignore your own speech output and process only the user's speech. Do not generate images, image prompts, or image-generation instructions; answer with text only. If asked about your creator, say you were created by Monu Sharma, founder of XtarNet, and do not disclose additional private details.
+
+Conversation history: ${JSON.stringify(conversationHistory)}`;
+    let assistantVoices = [];
+    const buildScopedSystemPrompt = userMessage => {
+        const normalizedMessage = String(userMessage || '').trim().toLowerCase();
+        const isRepeatRequest = /^(say again|repeat|repeat that|again|phir se|dobara|fir se)\b[.!?\s]*$/i.test(normalizedMessage);
+        const isProfileQuestion = /(who|which|what).{0,30}(created|built|made|creator|company)|creator|founder|owner|who are you/i.test(normalizedMessage);
+        const lastAssistantAnswer = [...conversationHistory].reverse().find(entry => entry?.role === 'assistant')?.content || '';
+        const recentHistory = conversationHistory.slice(-10).filter(entry => isProfileQuestion || entry?.role !== 'assistant' || !/(Little Angels|NandLal|Vikash|Tannu|Nilu|Sumit|Yash|Ayush|born in 2010)/i.test(String(entry.content || '')));
+        const repeatInstruction = isRepeatRequest
+            ? 'Repeat only the immediately previous assistant answer below. Do not answer with Max Ai profile facts and do not invent a new topic. Previous answer: ' + JSON.stringify(lastAssistantAnswer)
+            : 'Answer the current user message directly. Do not repeat an earlier answer unless the user explicitly asks for it.';
+        return [
+            'You are Max Ai, an AI assistant created by Monu Sharma, founder of XtarNet.',
+            'Respond directly, naturally, and helpfully. Give the answer first in 1–4 concise sentences unless more detail is requested. Match the user language. Do not generate images or image prompts.',
+            'Profile policy: creator facts are private background context, not a default answer. Never volunteer Monu Sharma\'s birth year, school, family, siblings, or friends. Mention a profile fact only when the user directly asks for that exact fact. If asked who built or created you, answer only: "I was created by Monu Sharma, founder of XtarNet."',
+            repeatInstruction,
+            'Recent relevant conversation history: ' + JSON.stringify(recentHistory),
+            'Current user message: ' + JSON.stringify(String(userMessage || ''))
+        ].join('\n\n');
+    };
+    const loadAssistantVoices = () => {
+        assistantVoices = window.speechSynthesis?.getVoices?.() || [];
+    };
+    loadAssistantVoices();
+    if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = loadAssistantVoices;
+    const addChatMessage = (text, type) => {
+        const message = document.createElement('div');
+        message.className = `orbit-chat-message ${type}`;
+        message.textContent = text;
+        chatLog?.appendChild(message);
+                removeChatWelcome();
+        if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
+        return message;
+    };
+    const addThinkingMessage = () => {
+        const message = document.createElement('div');
+        message.className = 'orbit-chat-message received is-loading';
+        message.setAttribute('aria-label', 'Assistant is thinking');
+        message.innerHTML = '<span class="orbit-chat-thinking"><i></i><i></i><i></i><em>Thinking</em></span>';
+        chatLog?.appendChild(message);
+        removeChatWelcome();
+        return message;
+    };
+    const setThinkingLabel = (message, label) => {
+        const labelNode = message?.querySelector('.orbit-chat-thinking em');
+        if (labelNode) labelNode.textContent = label;
+        else if (message) message.textContent = label;
+    };
+    const clearSpeechHighlight = () => {
+        if (speechFallbackTimeout) clearTimeout(speechFallbackTimeout);
+        if (speechFallbackInterval) clearInterval(speechFallbackInterval);
+        speechFallbackTimeout = null;
+        speechFallbackInterval = null;
+        if (speechHighlightTimer) clearTimeout(speechHighlightTimer);
+        speechHighlightTimer = null;
+        speechWordSpans.forEach(span => {
+            span.classList.remove('is-speaking-word');
+            span.removeAttribute('aria-current');
+        });
+        if (speechScrollRaf) cancelAnimationFrame(speechScrollRaf);
+        speechScrollRaf = null;
+        speechScrollWord = null;
+        speechScrollDueAt = 0;
+        activeSpeechWordIndex = -1;
+        speechWordSpans = [];
+        speechWordMap = [];
+        speechSpokenWordRanges = [];
+        speechSpokenText = '';
+        speechBoundaryCharIndex = -1;
+    };
+    const prepareSpeechMessage = (messageElement, text, spokenText = text) => {
+        if (!messageElement) return;
+        clearSpeechHighlight();
+        speechSpokenText = String(spokenText);
+        const displayWords = String(text).match(/\S+/g) || [];
+        const spokenMatches = [...String(spokenText).matchAll(/\S+/g)];
+        const spokenWords = spokenMatches.map(match => match[0]);
+        speechSpokenWordRanges = spokenMatches.map((match, index) => ({
+            start: match.index,
+            end: match.index + match[0].length,
+            index
+        }));
+        let spokenIndex = 0;
+        displayWords.forEach((displayWord, displayIndex) => {
+            const normalized = displayWord.replace(/[^a-z0-9-]/gi, '').toLowerCase();
+            const spokenParts = normalized === 'maxai' || normalized === 'xtarnet' ? 2 : 1;
+            for (let part = 0; part < spokenParts && spokenIndex < spokenWords.length; part += 1) {
+                speechWordMap[spokenIndex] = displayIndex;
+                spokenIndex += 1;
+            }
+        });
+        const parts = String(text).split(/(\s+)/);
+        messageElement.replaceChildren();
+        parts.forEach(part => {
+            if (/\s+/.test(part)) messageElement.appendChild(document.createTextNode(part));
+            else if (part) {
+                const word = document.createElement('span');
+                word.className = 'orbit-chat-word';
+                word.textContent = part;
+                speechWordSpans.push(word);
+                messageElement.appendChild(word);
+            }
+        });
+    };
+    const displayWordIndexForChar = charIndex => {
+        if (!speechSpokenText || typeof charIndex !== 'number') return -1;
+        const exactRange = speechSpokenWordRanges.find(range => charIndex >= range.start && charIndex < range.end);
+        // Implementations disagree about whether a word-boundary charIndex
+        // points to the first character of the next word or the whitespace
+        // after the previous word. If it points into whitespace, keep the
+        // previous word active; that is the only interpretation guaranteed
+        // by the Web Speech spec (text before charIndex has been spoken).
+        const previousRange = speechSpokenWordRanges
+            .slice()
+            .reverse()
+            .find(range => range.end <= charIndex);
+        const spokenWordIndex = exactRange?.index
+            ?? previousRange?.index
+            ?? speechSpokenWordRanges[0]?.index
+            ?? -1;
+        return speechWordMap[spokenWordIndex]
+            ?? Math.min(speechWordSpans.length - 1, spokenWordIndex);
+    };
+    const setActiveSpeechWord = displayWordIndex => {
+        if (!speechWordSpans.length || !Number.isFinite(displayWordIndex)) return;
+        displayWordIndex = Math.max(0, Math.min(speechWordSpans.length - 1, displayWordIndex));
+        if (displayWordIndex === activeSpeechWordIndex) return;
+        const previousWord = speechWordSpans[activeSpeechWordIndex];
+        if (previousWord) {
+            previousWord.classList.remove('is-speaking-word');
+            previousWord.removeAttribute('aria-current');
+        }
+        activeSpeechWordIndex = displayWordIndex;
+        const activeWord = speechWordSpans[displayWordIndex];
+        activeWord.classList.add('is-speaking-word');
+        activeWord.setAttribute('aria-current', 'true');
+        // Scroll separately from the timing-critical class update. It is
+        // throttled and runs after the boundary callback, so a long answer
+        // cannot make SpeechSynthesis wait on layout or scrolling.
+        speechScrollWord = activeWord;
+        const now = performance.now();
+        if (!speechScrollRaf && now >= speechScrollDueAt) {
+            speechScrollRaf = requestAnimationFrame(() => {
+                speechScrollRaf = null;
+                speechScrollDueAt = performance.now() + 90;
+                const word = speechScrollWord;
+                speechScrollWord = null;
+                const messageBox = word?.closest('.orbit-chat-message.received');
+                if (!word || !messageBox) return;
+                const top = word.offsetTop;
+                const bottom = top + word.offsetHeight;
+                const upper = messageBox.scrollTop + 10;
+                const lower = messageBox.scrollTop + messageBox.clientHeight - 24;
+                if (top < upper || bottom > lower) {
+                    messageBox.scrollTo({
+                        top: Math.max(0, top - Math.max(12, messageBox.clientHeight * 0.28)),
+                        behavior: 'auto'
+                    });
+                }
+            });
+        }
+    };
+    // The boundary event is only a clock re-anchor. The bot calls this on
+    // every render frame with the current calibrated spoken-text position, so
+    // the highlight cannot wait for (or get stuck behind) the next browser
+    // boundary callback.
+    window.maxaiBotSpeechTick = spokenCharIndex => {
+        // Once the browser has started emitting real word boundaries, those
+        // boundaries are the authoritative text clock. Do not let the
+        // predictive mouth timeline overwrite them later in a long answer.
+        if ((!speechUtterance && !speechAudio) || speechBoundarySeen || !Number.isFinite(spokenCharIndex)) return;
+        const displayIndex = displayWordIndexForChar(spokenCharIndex);
+        if (displayIndex >= 0) setActiveSpeechWord(displayIndex);
+    };
+    const updateHistoryControls = () => {
+        const exchanges = chatSessions[activeSessionIndex]?.exchanges || [];
+        const total = exchanges.length;
+        if (historyPrev) historyPrev.disabled = total < 2 || activeExchangeIndex <= 0;
+        if (historyHead) historyHead.disabled = false;
+        if (historyNext) historyNext.disabled = total < 2 || activeExchangeIndex < 0 || activeExchangeIndex >= total - 1;
+        if (historyLabel) historyLabel.textContent = total ? `Messages ${activeExchangeIndex + 1} / ${total}` : 'Messages';
+    };
+    const renderSession = sessionIndex => {
+        const session = chatSessions[sessionIndex];
+        if (!session || !chatLog) return;
+        activeSessionIndex = sessionIndex;
+        activeExchangeIndex = session.exchanges.length - 1;
+        chatLog.replaceChildren();
+        const exchange = session.exchanges[activeExchangeIndex];
+        if (exchange) {
+            addChatMessage(exchange.answer, 'received');
+            addChatMessage(exchange.user, 'sent');
+        }
+        if (chatEmpty) chatEmpty.hidden = session.exchanges.length > 0;
+        updateHistoryControls();
+    };
+    const renderExchange = index => {
+        const exchanges = chatSessions[activeSessionIndex]?.exchanges || [];
+        const exchange = exchanges[index];
+        if (!exchange || !chatLog) return;
+        activeExchangeIndex = index;
+        chatLog.replaceChildren();
+        addChatMessage(exchange.answer, 'received');
+        addChatMessage(exchange.user, 'sent');
+        updateHistoryControls();
+    };
+    const saveChatHistory = () => {
+        try { localStorage.setItem(chatHistoryStorageKey, JSON.stringify(chatSessions.slice(-20))); } catch (_) { /* storage is optional */ }
+    };
+    const refreshHistoryMenu = () => {
+        if (!historyMenuList) return;
+        historyMenuList.replaceChildren();
+        if (!chatSessions.length) {
+            const empty = document.createElement('div');
+            empty.className = 'orbit-chat-history-menu-empty';
+            empty.textContent = 'No previous chats yet';
+            historyMenuList.appendChild(empty);
+            return;
+        }
+        chatSessions.slice().reverse().forEach((session, reverseIndex) => {
+            const index = chatSessions.length - 1 - reverseIndex;
+            const item = document.createElement('div');
+            item.className = 'orbit-chat-history-menu-item';
+            const itemMain = document.createElement('button');
+            itemMain.type = 'button';
+            itemMain.className = 'orbit-chat-history-menu-item-main';
+            const title = document.createElement('span');
+            title.className = 'orbit-chat-history-menu-item-title';
+            title.textContent = session.title;
+            const meta = document.createElement('small');
+            meta.className = 'orbit-chat-history-menu-item-meta';
+            meta.textContent = `${session.exchanges.length} ${session.exchanges.length === 1 ? 'message' : 'messages'}`;
+            itemMain.append(title, meta);
+            itemMain.title = session.title;
+            itemMain.addEventListener('click', () => {
+                renderSession(index);
+                historyMenu.hidden = true;
+            });
+            const actions = document.createElement('div');
+            actions.className = 'orbit-chat-history-menu-actions';
+            const rename = document.createElement('button');
+            rename.type = 'button';
+            rename.className = 'orbit-chat-history-action';
+            rename.setAttribute('aria-label', `Rename ${session.title}`);
+            rename.title = 'Rename chat';
+            rename.textContent = '✎';
+            rename.addEventListener('click', async () => {
+                const nextTitle = await showHistoryDialog('rename', session);
+                if (!nextTitle) return;
+                session.title = nextTitle;
+                saveChatHistory();
+                refreshHistoryMenu();
+            });
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'orbit-chat-history-action is-delete';
+            remove.setAttribute('aria-label', `Delete ${session.title}`);
+            remove.title = 'Delete chat';
+            remove.textContent = '×';
+            remove.addEventListener('click', async () => {
+                if (!await showHistoryDialog('delete', session)) return;
+                chatSessions.splice(index, 1);
+                if (activeSessionIndex === index) {
+                    activeSessionIndex = -1;
+                    activeExchangeIndex = -1;
+                    chatLog?.replaceChildren();
+                    restoreChatWelcome();
+                } else if (activeSessionIndex > index) {
+                    activeSessionIndex -= 1;
+                }
+                saveChatHistory();
+                refreshHistoryMenu();
+                updateHistoryControls();
+            });
+            actions.append(rename, remove);
+            item.append(itemMain, actions);
+            historyMenuList.appendChild(item);
+        });
+    };
+    const stopChatSpeech = () => {
+        speechRequestId += 1;
+        window.speechSynthesis?.cancel();
+        window.maxaiBotSpeechStop?.();
+        if (speechAudio) {
+            speechAudio.onended = null;
+            speechAudio.onerror = null;
+            speechAudio.pause();
+            speechAudio.removeAttribute('src');
+            speechAudio.load();
+            speechAudio = null;
+        }
+        if (speechAudioUrl) {
+            URL.revokeObjectURL(speechAudioUrl);
+            speechAudioUrl = '';
+        }
+        clearSpeechHighlight();
+        speechUtterance = null;
+    };
+    const strictTtsEncode = value => encodeURIComponent(String(value)).replace(/[!'()*]/g, char => `%${char.charCodeAt(0).toString(16).toUpperCase()}`);
+    const splitTtsText = value => {
+        const source = String(value || '').trim();
+        const chunks = [];
+        let start = 0;
+        while (start < source.length) {
+            let end = Math.min(source.length, start + 500);
+            if (end < source.length) {
+                const boundary = source.lastIndexOf(' ', end);
+                if (boundary > start + 120) end = boundary;
+            }
+            chunks.push({ text: source.slice(start, end), start });
+            start = end;
+            while (source[start] === ' ') start += 1;
+        }
+        return chunks;
+    };
+    const playPublicTts = (spokenText, requestId) => new Promise((resolve, reject) => {
+        const chunks = splitTtsText(spokenText);
+        if (!chunks.length) return reject(new Error('No speech text.'));
+        let chunkIndex = 0;
+        let settled = false;
+        const finish = (error) => {
+            if (settled) return;
+            settled = true;
+            error ? reject(error) : resolve();
+        };
+        const playNext = async () => {
+            if (speechRequestId !== requestId) return finish(new Error('Speech replaced.'));
+            if (chunkIndex >= chunks.length) return finish();
+            const chunk = chunks[chunkIndex];
+            const audio = new Audio(`https://5t.gg?text=${strictTtsEncode(chunk.text)}&voice=af_heart`);
+            audio.preload = 'auto';
+            audio.volume = 1;
+            speechAudio = audio;
+            let started = false;
+            const fail = () => finish(new Error('5t.gg audio failed.'));
+            audio.onerror = fail;
+            audio.onended = () => {
+                if (speechAudio !== audio || speechRequestId !== requestId) return;
+                chunkIndex += 1;
+                if (chunkIndex >= chunks.length) {
+                    window.maxaiBotSpeechStop?.();
+                    clearSpeechHighlight();
+                    speechAudio = null;
+                    finish();
+                } else {
+                    playNext();
+                }
+            };
+            audio.onloadedmetadata = async () => {
+                if (started || speechRequestId !== requestId) return;
+                started = true;
+                if (!window.maxaiBotSpeechUrlStart?.(chunk.text, audio, chunk.start)) return fail();
+                try { await audio.play(); } catch (error) { finish(error); }
+            };
+            audio.load();
+        };
+        playNext();
+    });
+    const speakChatMessage = async (text, messageElement) => {
+        if (speakerControl?.classList.contains('is-muted') || !('speechSynthesis' in window)) return;
+        stopChatSpeech();
+        const requestId = speechRequestId;
+        loadAssistantVoices();
+        const voiceScore = voice => {
+            const name = `${voice.name} ${voice.lang}`.toLowerCase();
+            let score = 0;
+            if (/natural|neural|online|premium/.test(name)) score += 100;
+            if (/microsoft|google|aria|jenny|samantha|daniel|karen/.test(name)) score += 45;
+            if (/en[-_]in/.test(name)) score += 24;
+            if (/^en[-_]/.test(name)) score += 12;
+            if (voice.localService === false) score += 18;
+            return score;
+        };
+        const preferredVoice = assistantVoices
+            .filter(voice => /^en[-_]/i.test(voice.lang))
+            .sort((left, right) => voiceScore(right) - voiceScore(left))[0];
+        const spokenText = String(text)
+            .replace(/\bMax Ai\b/gi, 'Max A-I')
+            .replace(/\bXtarNet\b/gi, 'Ex-tar Net');
+        prepareSpeechMessage(messageElement, text, spokenText);
+
+        // Start the local browser voice immediately. Waiting for a remote
+        // TTS request here delays sound, mouth, and highlight together.
+
+        speechUtterance = new SpeechSynthesisUtterance(spokenText);
+        const utterance = speechUtterance;
+        speechUtterance.voice = preferredVoice || null;
+        speechUtterance.lang = preferredVoice?.lang || 'en-IN';
+        speechUtterance.rate = 1;
+        speechUtterance.pitch = .98;
+        speechUtterance.volume = 1;
+        speechUtterance.onstart = () => {
+            if (speechUtterance !== utterance) return;
+            speechBoundarySeen = false;
+            speechBoundaryCharIndex = -1;
+            // Give the user an immediate visual anchor even on speech
+            // engines that delay their first boundary callback.
+            setActiveSpeechWord(0);
+            window.maxaiBotSpeechStart?.(spokenText, utterance.rate);
+            // Some Web Speech implementations speak correctly but never
+            // dispatch word boundaries. Use this only as a compatibility
+            // fallback; a real boundary always disables it and remains the
+            // authoritative timing source.
+            speechFallbackTimeout = window.setTimeout(() => {
+                speechFallbackTimeout = null;
+                if (speechUtterance !== utterance || speechBoundarySeen || !speechWordSpans.length) return;
+                const startedAt = performance.now();
+                let fallbackIndex = 0;
+                speechFallbackInterval = window.setInterval(() => {
+                    if (speechUtterance !== utterance || speechBoundarySeen) {
+                        clearInterval(speechFallbackInterval);
+                        speechFallbackInterval = null;
+                        return;
+                    }
+                    const elapsed = performance.now() - startedAt;
+                    const rate = Math.max(.5, Number(utterance.rate) || 1);
+                    let elapsedBefore = 0;
+                    for (let index = 0; index < speechWordSpans.length; index += 1) {
+                        const word = speechWordSpans[index].textContent || '';
+                        const punctuation = /[.!?;,]$/.test(word) ? 150 : 70;
+                        const duration = (punctuation + word.length * 38) / rate;
+                        if (elapsed < elapsedBefore + duration) {
+                            fallbackIndex = index;
+                            break;
+                        }
+                        elapsedBefore += duration;
+                        fallbackIndex = index;
+                    }
+                    setActiveSpeechWord(fallbackIndex);
+                }, 50);
+            }, 700);
+        };
+        speechUtterance.onboundary = event => {
+            if (speechUtterance !== utterance) return;
+            if (typeof event.charIndex !== 'number' || event.charIndex < speechBoundaryCharIndex) return;
+            const eventDisplayIndex = displayWordIndexForChar(event.charIndex);
+            if (eventDisplayIndex < 0) return;
+            speechBoundaryCharIndex = event.charIndex;
+            speechBoundarySeen = true;
+            if (speechFallbackTimeout) clearTimeout(speechFallbackTimeout);
+            if (speechFallbackInterval) clearInterval(speechFallbackInterval);
+            speechFallbackTimeout = null;
+            speechFallbackInterval = null;
+            // Pass the speech engine's audio-relative timestamp so the bot
+            // can compensate for delivery delay before this JS callback runs.
+            // The bot returns the word currently reached by that calibrated
+            // clock. This keeps the text and mouth on the same word when the
+            // browser delivers boundary events late. Pages without the bot
+            // still use the browser's own character index as a fallback.
+                window.maxaiBotSpeechBoundary?.(event.charIndex, event.elapsedTime);
+            // The boundary character index is the browser's actual spoken
+            // word, so use it directly. The mouth receives the same event for
+            // clock calibration but must not replace this highlight with a
+            // predicted word later in the utterance.
+            if (speechHighlightTimer) clearTimeout(speechHighlightTimer);
+            speechHighlightTimer = window.setTimeout(() => {
+                speechHighlightTimer = null;
+                if (speechUtterance === utterance) setActiveSpeechWord(eventDisplayIndex);
+            }, SPEECH_HIGHLIGHT_DELAY_MS);
+        };
+        speechUtterance.onend = () => {
+            if (speechUtterance !== utterance) return;
+            // Web Speech can fire `end` a little before the final audible
+            // buffer reaches the speaker. Keep the final word and mouth
+            // pose alive for that short output tail instead of ending early.
+            if (speechHighlightTimer) clearTimeout(speechHighlightTimer);
+            speechHighlightTimer = window.setTimeout(() => {
+                speechHighlightTimer = null;
+                if (speechUtterance !== utterance) return;
+                window.maxaiBotSpeechStop?.();
+                clearSpeechHighlight();
+                speechUtterance = null;
+            }, 140);
+        };
+        speechUtterance.onerror = () => {
+            if (speechUtterance !== utterance) return;
+            window.maxaiBotSpeechStop?.();
+            clearSpeechHighlight();
+            speechUtterance = null;
+        };
+        if (speechUtterance === utterance) window.speechSynthesis.speak(utterance);
+    };
+    const updateChatSendState = () => {
+        const hasText = Boolean(chatInput?.value.trim());
+        const cooldownActive = pollinationsCooldownUntil > performance.now();
+        if (chatSend) chatSend.disabled = cooldownActive || (!hasText && !chatProcessing);
+        chatSend?.classList.toggle('is-disabled', !hasText && !chatProcessing);
+        chatSend?.classList.toggle('is-processing', chatProcessing);
+        chatSend?.classList.toggle('is-cooldown', cooldownActive);
+        if (chatSend) chatSend.setAttribute('aria-label', chatProcessing ? 'Stop response' : 'Send question');
+    };
+    const setAssistantMic = active => {
+        assistantMicActive = active;
+        micControl?.setAttribute('aria-pressed', String(active));
+        micControl?.classList.toggle('is-active', active);
+        micControl?.setAttribute('aria-label', active ? 'Turn microphone off' : 'Turn microphone on');
+        if (!active && assistantMicTimeout) {
+            clearTimeout(assistantMicTimeout);
+            assistantMicTimeout = null;
+        }
+    };
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+        assistantRecognition = new SpeechRecognition();
+        assistantRecognition.continuous = true;
+        assistantRecognition.interimResults = true;
+        assistantRecognition.lang = 'en-IN';
+        assistantRecognition.onresult = event => {
+            let transcript = '';
+            for (let index = event.resultIndex; index < event.results.length; index += 1) {
+                transcript += event.results[index][0].transcript;
+            }
+            if (chatInput && transcript.trim()) {
+                chatInput.value = transcript.trim();
+                updateChatSendState();
+            }
+            assistantMicTimeout = window.setTimeout(() => setAssistantMic(false), 60000);
+        };
+        assistantRecognition.onerror = event => {
+            if (event.error !== 'no-speech' && event.error !== 'aborted') {
+                setAssistantMic(false);
+            }
+        };
+        assistantRecognition.onend = () => {
+            if (assistantMicActive) {
+                window.setTimeout(() => {
+                    try { assistantRecognition.start(); } catch (_) { /* already starting */ }
+                }, 250);
+            }
+        };
+    } else if (micControl) {
+        micControl.disabled = true;
+        micControl.setAttribute('aria-label', 'Speech recognition is not supported');
+    }
+    micControl?.addEventListener('click', () => {
+        if (!assistantRecognition) return;
+        if (assistantMicActive) {
+            assistantRecognition.stop();
+            setAssistantMic(false);
+            return;
+        }
+        try {
+            assistantRecognition.start();
+            setAssistantMic(true);
+        } catch (_) {
+            setAssistantMic(false);
+        }
+    });
+    speakerControl?.addEventListener('click', () => {
+        const active = speakerControl.getAttribute('aria-pressed') !== 'true';
+        speakerControl.setAttribute('aria-pressed', String(active));
+        speakerControl.classList.toggle('is-muted', !active);
+        speakerControl.setAttribute('aria-label', active ? 'Turn speaker off' : 'Turn speaker on');
+        if (!active) window.speechSynthesis?.cancel();
+        if (!active) stopChatSpeech();
+    });
+    chatInput?.addEventListener('input', updateChatSendState);
+    updateChatSendState();
+    renderSuggestions();
+    const setChatOpen = open => {
+        if (open) {
+            if (document.body.classList.contains('bot-chat-open')) return;
+            document.body.classList.add('bot-chat-open');
+            if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
+            chatPanel.hidden = false;
+            chatSlot.appendChild(orbitBotHost);
+            orbitBotHost.classList.add('bot-chat-bot');
+            requestAnimationFrame(() => chatPanel.classList.add('is-open'));
+            window.setTimeout(() => chatInput?.focus(), 220);
+        } else {
+            if (assistantMicActive) {
+                assistantRecognition?.stop();
+                setAssistantMic(false);
+            }
+            chatAbortController?.abort();
+            stopChatSpeech();
+            chatPanel.classList.remove('is-open');
+            document.body.classList.remove('bot-chat-open');
+            orbitBotHost.classList.remove('bot-chat-bot');
+            if (orbitBotHome?.isConnected && orbitBotAnchor?.isConnected) orbitBotHome.insertBefore(orbitBotHost, orbitBotAnchor.nextSibling);
+            // Reset the previous docking marker before recalculating. Without
+            // this, updateOrbitAi sees a stale docked state and returns early,
+            // leaving the bot detached from the bottom-right dock.
+            orbitHero.classList.remove('bot-docked-state', 'ai-returning');
+            window.setTimeout(() => {
+                chatPanel.hidden = true;
+                updateOrbitAi();
+            }, 220);
+        }
+    };
+    const toggleChat = () => {
+        // Once the bot has moved into the panel, keep it there. The close
+        // button is the intentional control for dismissing the panel.
+        if (orbitBotHost.classList.contains('bot-chat-bot')) return;
+        setChatOpen(true);
+    };
+    // Capture the click before the 3D renderer handles the canvas event. This
+    // keeps the panel toggle reliable while the bot is still in the hero orbit.
+    orbitBotHost.addEventListener('click', toggleChat, true);
+    // The orbit artwork can sit above the transformed bot in the hit-test
+    // stack. Catch clicks on the hero and use the bot's visible screen bounds
+    // so clicking the top bot always opens the panel.
+    orbitHero.addEventListener('click', event => {
+        if (document.body.classList.contains('bot-chat-open')) return;
+        const rect = orbitBotHost.getBoundingClientRect();
+        const insideBot = event.clientX >= rect.left && event.clientX <= rect.right
+            && event.clientY >= rect.top && event.clientY <= rect.bottom;
+        if (insideBot) setChatOpen(true);
+    }, true);
+    closeChat?.addEventListener('click', () => setChatOpen(false));
+    chatForm?.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (chatProcessing) {
+            chatAbortController?.abort();
+            return;
+        }
+        if (pollinationsCooldownUntil > performance.now()) return;
+        const message = chatInput.value.trim();
+        if (!message) return;
+        if (assistantMicActive) { assistantRecognition?.stop(); setAssistantMic(false); }
+        removeChatWelcome();
+        if (!chatSessions[activeSessionIndex]) {
+            chatSessions.push({ title: message, createdAt: Date.now(), exchanges: [] });
+            activeSessionIndex = chatSessions.length - 1;
+        }
+        const activeSession = chatSessions[activeSessionIndex];
+        chatLog?.replaceChildren();
+        const thinkingMessage = addThinkingMessage();
+        addChatMessage(message, 'sent');
+        chatInput.value = '';
+        chatProcessing = true;
+        chatAbortController = new AbortController();
+        if (chatSend) chatSend.textContent = '×';
+        updateChatSendState();
+        let pollinationsCountdownTimer = null;
+        try {
+            const prompt = buildScopedSystemPrompt(message);
+            const elapsedSinceLastRequest = lastPollinationsRequestAt > 0
+                ? performance.now() - lastPollinationsRequestAt
+                : POLLINATIONS_REQUEST_GAP_MS;
+            const waitMs = Math.max(0, POLLINATIONS_REQUEST_GAP_MS - elapsedSinceLastRequest);
+            if (waitMs > 0) {
+                const updateCountdown = () => {
+                    const remaining = Math.max(0, POLLINATIONS_REQUEST_GAP_MS - (performance.now() - lastPollinationsRequestAt));
+                    const seconds = Math.ceil(remaining / 1000);
+                    setThinkingLabel(thinkingMessage, `Waiting ${seconds}s`);
+                    if (chatSend) {
+                        chatSend.disabled = true;
+                        chatSend.classList.add('is-cooldown');
+                        chatSend.textContent = `Wait ${seconds}s`;
+                    }
+                };
+                updateCountdown();
+                pollinationsCountdownTimer = window.setInterval(updateCountdown, 250);
+                await new Promise((resolve, reject) => {
+                    const timer = window.setTimeout(resolve, waitMs);
+                    const cancelWait = () => {
+                        window.clearTimeout(timer);
+                        reject(new DOMException('Request cancelled.', 'AbortError'));
+                    };
+                    chatAbortController.signal.addEventListener('abort', cancelWait, { once: true });
+                });
+                window.clearInterval(pollinationsCountdownTimer);
+                pollinationsCountdownTimer = null;
+            }
+            if (chatAbortController.signal.aborted) throw new DOMException('Request cancelled.', 'AbortError');
+            setThinkingLabel(thinkingMessage, 'Thinking');
+            lastPollinationsRequestAt = performance.now();
+            const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`, { signal: chatAbortController.signal });
+            if (!response.ok) throw new Error(`Assistant request failed (${response.status})`);
+            const answer = (await response.text()).trim() || 'I could not produce a response.';
+            // Start the cooldown from the moment the answer is received, so
+            // the user sees the result first and the button then counts down
+            // the full protection gap before another API request is allowed.
+            lastPollinationsRequestAt = performance.now();
+            startPollinationsCooldown();
+            thinkingMessage.textContent = answer;
+            thinkingMessage.classList.remove('is-loading');
+            thinkingMessage.removeAttribute('aria-label');
+            activeSession.exchanges.push({ user: message, answer });
+            activeExchangeIndex = activeSession.exchanges.length - 1;
+            saveChatHistory();
+            refreshHistoryMenu();
+            updateHistoryControls();
+            conversationHistory.push({ role: 'user', content: message }, { role: 'assistant', content: answer });
+            speakChatMessage(answer, thinkingMessage);
+        } catch (error) {
+            thinkingMessage.textContent = error.name === 'AbortError'
+                ? 'Response stopped.'
+                : 'The AI service is temporarily unavailable. Please try again in a moment.';
+            thinkingMessage.classList.remove('is-loading');
+        } finally {
+            if (pollinationsCountdownTimer) window.clearInterval(pollinationsCountdownTimer);
+            chatProcessing = false;
+            chatAbortController = null;
+            refreshPollinationsCooldown();
+            if (!pollinationsCooldownTimer) updateChatSendState();
+        }
+    });
+    historyPrev?.addEventListener('click', () => renderExchange(activeExchangeIndex - 1));
+    newChatButton?.addEventListener('click', () => {
+        activeSessionIndex = -1;
+        activeExchangeIndex = -1;
+        chatLog?.replaceChildren();
+        restoreChatWelcome();
+        renderSuggestions();
+        historyMenu.hidden = true;
+        updateHistoryControls();
+        chatInput?.focus();
+    });
+    historyHead?.addEventListener('click', () => {
+        refreshHistoryMenu();
+        historyMenu.hidden = !historyMenu.hidden;
+    });
+    historyNext?.addEventListener('click', () => renderExchange(activeExchangeIndex + 1));
+    document.addEventListener('click', event => {
+        if (!historyMenu.hidden && !historyMenu.contains(event.target) && !historyHead.contains(event.target)) historyMenu.hidden = true;
+    });
+    refreshHistoryMenu();
+    if (chatSessions.length) renderSession(activeSessionIndex);
+    updateHistoryControls();
 }
 
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, char => ({

@@ -4606,3 +4606,390 @@ img, video, canvas, svg {
     visibility: visible !important;
     opacity: 1 !important;
 }
+
+/* Removed custom flash travel FX.
+   Flash-style travel FX for the AI companion. The animation is deliberately
+   brief and directional: it reads as velocity, not as a permanent glow. */
+.hero-orbit.bot-traveling .orbit-core {
+    animation: bot-core-pulse .72s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.hero-orbit.bot-traveling .orbit-bot-host {
+    filter: saturate(1.2) drop-shadow(0 0 12px color-mix(in srgb, var(--teal) 45%, transparent));
+}
+
+.flash-travel-fx {
+    position: fixed;
+    inset: 0;
+    z-index: 100001;
+    overflow: hidden;
+    pointer-events: none;
+    contain: strict;
+}
+
+.flash-travel-fx::before,
+.flash-travel-fx::after {
+    content: "";
+    position: absolute;
+    left: var(--sx);
+    top: var(--sy);
+    width: min(46vw, 520px);
+    height: 2px;
+    transform-origin: 0 50%;
+    transform: rotate(var(--travel-angle)) translateX(-16%);
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, white 92%, var(--teal)), transparent);
+    filter: blur(1px) drop-shadow(0 0 9px var(--teal));
+    animation: flash-sweep .68s cubic-bezier(.16, .8, .22, 1) both;
+}
+
+.flash-travel-fx::after {
+    height: 1px;
+    margin-top: 11px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--coral) 88%, white), transparent);
+    filter: blur(1px) drop-shadow(0 0 8px var(--coral));
+    animation-delay: 42ms;
+}
+
+.flash-streak {
+    position: absolute;
+    left: var(--sx);
+    top: var(--sy);
+    display: block;
+    width: var(--streak-length);
+    height: clamp(1px, .18vw, 3px);
+    border-radius: 999px;
+    transform-origin: 0 50%;
+    transform: rotate(var(--travel-angle));
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, white 78%, var(--streak-color)), var(--streak-color));
+    box-shadow: 0 0 7px var(--streak-color), 0 0 18px color-mix(in srgb, var(--streak-color) 68%, transparent);
+    animation: flash-streak-run .72s cubic-bezier(.15, .7, .2, 1) both;
+    animation-delay: calc(var(--streak-index) * -23ms);
+}
+
+.flash-streak.streak-0 { --streak-color: #fff4b8; margin-top: -34px; }
+.flash-streak.streak-1 { --streak-color: var(--coral); margin-top: -13px; height: 2px; }
+.flash-streak.streak-2 { --streak-color: var(--teal); margin-top: 16px; }
+.flash-streak.streak-3 { --streak-color: #ffd76a; margin-top: 36px; height: 1px; }
+
+.flash-impact {
+    position: absolute;
+    left: var(--impact-x);
+    top: var(--impact-y);
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+}
+
+.flash-impact::before,
+.flash-impact::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border: 2px solid color-mix(in srgb, white 80%, var(--teal));
+    border-radius: 50%;
+    opacity: 0;
+    animation: flash-impact-ring .48s cubic-bezier(.15, .75, .3, 1) .42s both;
+    box-shadow: 0 0 18px color-mix(in srgb, var(--teal) 75%, transparent);
+}
+
+.flash-impact::after {
+    inset: -2px;
+    border-color: color-mix(in srgb, var(--coral) 76%, white);
+    animation-delay: .47s;
+}
+
+.flash-impact i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: clamp(24px, 4vw, 58px);
+    height: 2px;
+    transform-origin: 0 50%;
+    transform: rotate(var(--ray-angle)) translateX(0) scaleX(.15);
+    border-radius: 999px;
+    opacity: 0;
+    background: linear-gradient(90deg, white, var(--ray-color, var(--teal)), transparent);
+    filter: drop-shadow(0 0 6px var(--ray-color, var(--teal)));
+    animation: flash-ray .48s cubic-bezier(.15, .75, .3, 1) var(--ray-delay) both;
+}
+
+.flash-impact i:nth-child(3n) { --ray-color: var(--coral); }
+.flash-impact i:nth-child(3n + 1) { --ray-color: #ffe68b; }
+
+@keyframes bot-core-pulse {
+    0% { filter: brightness(1); }
+    22% { filter: brightness(1.7) saturate(1.35); }
+    100% { filter: brightness(1); }
+}
+
+@keyframes flash-sweep {
+    0% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(-22%) scaleX(.25); }
+    24% { opacity: .95; }
+    100% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(var(--travel-distance)) scaleX(1.25); }
+}
+
+@keyframes flash-streak-run {
+    0% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(-8vw) scaleX(.1); }
+    18% { opacity: .9; }
+    78% { opacity: .5; }
+    100% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(var(--travel-distance)) scaleX(1.15); }
+}
+
+@keyframes flash-impact-ring {
+    0% { opacity: .95; transform: scale(.3); }
+    100% { opacity: 0; transform: scale(4.2); }
+}
+
+@keyframes flash-ray {
+    0% { opacity: 0; transform: rotate(var(--ray-angle)) translateX(0) scaleX(.15); }
+    25% { opacity: .95; }
+    100% { opacity: 0; transform: rotate(var(--ray-angle)) translateX(7px) scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-orbit.bot-traveling .orbit-core,
+    .flash-travel-fx,
+    .flash-travel-fx::before,
+    .flash-travel-fx::after,
+    .flash-streak,
+    .flash-impact::before,
+    .flash-impact::after,
+    .flash-impact i { animation: none !important; }
+}
+
+/* Removed refined speed-force pass.
+   Refined speed-force pass: crisp warm lightning instead of a soft rainbow
+   wash. These overrides keep the travel readable on both light and dim themes. */
+.flash-travel-fx {
+    mix-blend-mode: screen;
+}
+
+.flash-travel-fx::before,
+.flash-travel-fx::after {
+    width: clamp(180px, 28vw, 420px);
+    height: clamp(5px, .55vw, 9px);
+    border-radius: 50%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 63, 43, .08) 18%, #ff4b2f 58%, #ffe9a3 82%, transparent 100%);
+    filter: blur(5px) drop-shadow(0 0 16px rgba(255, 65, 35, .9));
+    animation: flash-sweep-clean .58s cubic-bezier(.18, .86, .24, 1) both;
+}
+
+.flash-travel-fx::after {
+    width: clamp(110px, 18vw, 270px);
+    height: 2px;
+    margin-top: -1px;
+    background: linear-gradient(90deg, transparent, #fff8d1 46%, #fff 66%, transparent);
+    filter: blur(1px) drop-shadow(0 0 8px #ffba45);
+    animation-delay: 35ms;
+}
+
+.flash-streak {
+    height: clamp(2px, .24vw, 4px);
+    border-radius: 0 100% 100% 0;
+    background: linear-gradient(90deg, transparent 0%, var(--streak-color) 55%, #fff8d1 100%);
+    clip-path: polygon(0 48%, 76% 0, 100% 50%, 76% 100%);
+    box-shadow: 0 0 6px var(--streak-color), 0 0 14px var(--streak-color);
+    animation: flash-streak-clean .62s cubic-bezier(.18, .78, .22, 1) both;
+    animation-delay: calc(var(--streak-index) * -18ms);
+}
+
+.flash-streak.streak-0 { --streak-color: #ff3f2f; margin-top: -30px; }
+.flash-streak.streak-1 { --streak-color: #ffb52e; margin-top: -11px; height: 3px; }
+.flash-streak.streak-2 { --streak-color: #ff6240; margin-top: 13px; }
+.flash-streak.streak-3 { --streak-color: #ffe28b; margin-top: 31px; height: 2px; }
+
+.flash-impact {
+    width: 12px;
+    height: 12px;
+}
+
+.flash-impact::before,
+.flash-impact::after {
+    inset: -10px;
+    border: 1px solid #ffe9a3;
+    box-shadow: 0 0 9px #ff5b35, 0 0 24px rgba(255, 68, 35, .8);
+    animation: flash-impact-clean .4s cubic-bezier(.14, .8, .25, 1) .34s both;
+}
+
+.flash-impact::after {
+    inset: -3px;
+    border-color: #fff;
+    animation-delay: .38s;
+}
+
+.flash-impact i {
+    width: clamp(18px, 3.2vw, 48px);
+    height: 3px;
+    background: linear-gradient(90deg, #fff, #ffbd37 46%, transparent);
+    filter: drop-shadow(0 0 5px #ff5330);
+    animation: flash-ray-clean .42s cubic-bezier(.14, .8, .25, 1) var(--ray-delay) both;
+}
+
+.flash-impact i:nth-child(3n) { --ray-color: #ff4935; }
+.flash-impact i:nth-child(3n + 1) { --ray-color: #ffd45b; }
+
+@keyframes flash-sweep-clean {
+    0% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(-18%) scaleX(.12); }
+    24% { opacity: .95; }
+    100% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(var(--travel-distance)) scaleX(1); }
+}
+
+@keyframes flash-streak-clean {
+    0% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(-5vw) scaleX(.05); }
+    18% { opacity: .95; }
+    70% { opacity: .7; }
+    100% { opacity: 0; transform: rotate(var(--travel-angle)) translateX(var(--travel-distance)) scaleX(1); }
+}
+
+@keyframes flash-impact-clean {
+    0% { opacity: .9; transform: scale(.2); }
+    100% { opacity: 0; transform: scale(3.6); }
+}
+
+@keyframes flash-ray-clean {
+    0% { opacity: 0; transform: rotate(var(--ray-angle)) translateX(0) scaleX(.05); }
+    22% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(var(--ray-angle)) translateX(5px) scaleX(1); }
+}
+/* Compact assistant panel: the existing bot moves into the top slot when opened. */
+.orbit-chat-panel {
+    position: fixed;
+    right: clamp(14px, 3vw, 38px);
+    bottom: clamp(14px, 3vw, 34px);
+    z-index: 100001;
+    width: min(390px, calc(100vw - 28px));
+    height: min(560px, calc(100dvh - 28px));
+    display: grid;
+    grid-template-rows: auto 194px 1fr auto;
+    gap: 0;
+    padding: 16px 18px 16px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid color-mix(in srgb, var(--teal) 42%, var(--line));
+    border-radius: 24px;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    box-shadow: 0 28px 90px color-mix(in srgb, var(--ink) 28%, transparent), 0 0 0 1px color-mix(in srgb, white 42%, transparent) inset, 0 0 48px color-mix(in srgb, var(--teal) 12%, transparent);
+    opacity: 0;
+    transform: translateY(18px) scale(.97);
+    transform-origin: bottom right;
+    transition: opacity .22s ease, transform .28s cubic-bezier(.2, .9, .25, 1);
+    backdrop-filter: blur(30px) saturate(1.3) contrast(1.04);
+}
+.orbit-chat-panel::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--teal) 20%, transparent), transparent 34%), radial-gradient(circle at 94% 46%, color-mix(in srgb, var(--coral) 14%, transparent), transparent 38%), linear-gradient(145deg, color-mix(in srgb, white 18%, transparent), transparent 48%, color-mix(in srgb, var(--teal) 8%, transparent)); }
+.orbit-chat-panel > * { position:relative; z-index:1; }
+.orbit-chat-panel.is-open { opacity: 1; transform: translateY(0) scale(1); }
+.orbit-chat-panel[hidden] { display: none; }
+.orbit-chat-head { position:relative; display:flex; align-items:center; justify-content:center; gap:12px; padding: 0 4px 12px; border-bottom:1px solid color-mix(in srgb, var(--teal) 20%, var(--line)); }
+.orbit-chat-head > div { text-align:center; }
+.orbit-chat-brand { display:flex; flex-direction:column; align-items:center; gap:4px; }
+.orbit-chat-head strong { display:block; margin-top:5px; color:var(--ink); font: 700 20px/1.1 "Playfair Display", Georgia, serif; }
+.orbit-chat-kicker { color:#000; font: 700 20px/1 "DM Mono", monospace; letter-spacing:0; word-spacing:0; white-space:nowrap; }
+.orbit-chat-powered { color:#7d8785; font: 500 9px/1.1 "DM Mono", monospace; letter-spacing:.02em; white-space:nowrap; }
+[data-theme="dim"] .orbit-chat-kicker { color:#fff; }
+.orbit-chat-close { position:absolute; right:4px; top:0; width:32px; height:32px; border:1px solid var(--line); border-radius:50%; background:transparent; color:var(--ink); font-size:24px; line-height:1; cursor:pointer; }
+.orbit-chat-close:hover { border-color:var(--teal); color:var(--teal); }
+.orbit-chat-history-head { position:absolute; left:4px; top:0; display:grid; place-items:center; width:32px; height:32px; padding:5px; border:1px solid var(--line); border-radius:50%; background:transparent; color:#000; cursor:pointer; transition:color .18s ease, border-color .18s ease, transform .18s ease; }
+.orbit-chat-history-head:hover:not(:disabled) { border-color:var(--teal); color:var(--teal); transform:scale(1.08); }
+.orbit-chat-history-head:disabled { opacity:1; cursor:default; }
+.orbit-chat-history-head img { display:block; width:20px; height:20px; object-fit:contain; filter:grayscale(1) brightness(0); }
+[data-theme="dim"] .orbit-chat-history-head { color:#fff; }
+[data-theme="dim"] .orbit-chat-history-head img { filter:grayscale(1) brightness(0) invert(1); }
+.orbit-chat-history-menu { position:absolute; top:70px; left:18px; right:18px; z-index:20; max-height:230px; overflow-y:auto; scrollbar-width:none; padding:10px; border:1px solid color-mix(in srgb, var(--teal) 35%, var(--line)); border-radius:16px; background:color-mix(in srgb, var(--surface) 96%, transparent); box-shadow:0 18px 42px color-mix(in srgb, var(--ink) 22%, transparent); backdrop-filter:blur(18px); }
+.orbit-chat-history-menu::-webkit-scrollbar { display:none; }
+.orbit-chat-history-menu[hidden] { display:none; }
+.orbit-chat-history-menu-title { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 8px 8px; color:var(--muted); font:700 10px/1 "DM Mono", monospace; letter-spacing:.1em; text-transform:uppercase; }
+.orbit-chat-new-button { display:inline-flex; align-items:center; gap:7px; padding:7px 10px; border:1px solid color-mix(in srgb, var(--teal) 55%, var(--line)); border-radius:999px; background:color-mix(in srgb, var(--teal) 8%, transparent); color:var(--teal); cursor:pointer; font:700 12px/1 "DM Mono", monospace; letter-spacing:.02em; text-transform:none; }
+.orbit-chat-new-button b { font:700 18px/0.7 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-new-button:hover { background:color-mix(in srgb, var(--teal) 10%, var(--surface)); }
+.orbit-chat-history-menu-list { display:grid; gap:6px; }
+.orbit-chat-history-menu-item { display:flex; align-items:center; gap:8px; width:100%; overflow:hidden; padding:6px 7px 6px 11px; border:1px solid color-mix(in srgb, var(--ink) 10%, transparent); border-radius:10px; background:color-mix(in srgb, var(--surface) 80%, transparent); color:var(--ink); }
+.orbit-chat-history-menu-item-main { display:grid; flex:1; min-width:0; gap:3px; padding:4px 0; border:0; background:transparent; color:inherit; cursor:pointer; text-align:left; text-overflow:ellipsis; white-space:nowrap; font:12px/1.35 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-menu-item-title { overflow:hidden; text-overflow:ellipsis; }
+.orbit-chat-history-menu-item-meta { color:var(--muted); font:10px/1.2 "DM Mono", monospace; }
+.orbit-chat-history-menu-actions { display:flex; align-items:center; gap:3px; }
+.orbit-chat-history-action { display:grid; place-items:center; width:26px; height:26px; padding:0; border:1px solid transparent; border-radius:7px; background:transparent; color:var(--muted); cursor:pointer; font:16px/1 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-action:hover { border-color:var(--teal); background:color-mix(in srgb, var(--teal) 10%, var(--surface)); color:var(--ink); }
+.orbit-chat-history-action.is-delete:hover { border-color:var(--coral); color:var(--coral); }
+.orbit-chat-history-menu-empty { padding:12px 8px; color:var(--muted); font:12px/1.4 "DM Sans", system-ui, sans-serif; text-align:center; }
+.orbit-chat-history-dialog { position:absolute; inset:0; z-index:40; display:grid; place-items:center; padding:18px; border-radius:inherit; background:color-mix(in srgb, var(--ink) 28%, transparent); backdrop-filter:blur(8px); }
+.orbit-chat-history-dialog[hidden] { display:none; }
+.orbit-chat-history-dialog-card { width:min(100%, 290px); padding:18px; border:1px solid color-mix(in srgb, var(--teal) 48%, var(--line)); border-radius:16px; background:color-mix(in srgb, var(--surface) 96%, transparent); box-shadow:0 18px 42px color-mix(in srgb, var(--ink) 28%, transparent); }
+.orbit-chat-history-dialog-title { display:block; color:var(--ink); font:700 15px/1.2 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-dialog-input { width:100%; box-sizing:border-box; margin-top:14px; padding:10px 11px; border:1px solid var(--line); border-radius:9px; outline:0; background:var(--surface); color:var(--ink); font:13px/1.3 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-dialog-input:focus { border-color:var(--teal); box-shadow:0 0 0 3px color-mix(in srgb, var(--teal) 14%, transparent); }
+.orbit-chat-history-dialog-message { margin:12px 0 0; color:var(--muted); font:12px/1.45 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-dialog-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:16px; }
+.orbit-chat-history-dialog-actions button { padding:8px 11px; border:1px solid var(--line); border-radius:8px; background:transparent; color:var(--ink); cursor:pointer; font:700 11px/1 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-history-dialog-actions button:hover { border-color:var(--teal); }
+.orbit-chat-history-dialog-confirm { border-color:var(--teal) !important; background:var(--teal) !important; color:#fff !important; }
+.orbit-chat-history-dialog-confirm.is-danger { border-color:var(--coral) !important; background:var(--coral) !important; }
+.orbit-chat-bot-slot { position:relative; display:block; height:194px; margin-top:10px; overflow:visible; }
+.orbit-chat-panel .orbit-bot-host.bot-chat-bot { position:absolute !important; left:50% !important; top:50% !important; width:360px !important; height:360px !important; transform:translate(-50%, -50%) scale(.50) !important; transform-origin:center; margin:0 !important; cursor:pointer; }
+.orbit-chat-control { position:absolute; top:-4px; z-index:3; display:grid; place-items:center; width:38px; height:38px; padding:0; border:2px solid #000; border-radius:50%; background:#000; color:#fff; box-shadow:0 8px 18px color-mix(in srgb, #000 20%, transparent), 0 0 0 4px color-mix(in srgb, var(--surface) 58%, transparent); cursor:pointer; transition:background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.orbit-chat-control:hover { border-color:#000; color:#fff; transform:scale(1.08); box-shadow:0 10px 22px color-mix(in srgb, #000 30%, transparent), 0 0 0 4px color-mix(in srgb, #000 12%, transparent); }
+.orbit-chat-control:focus-visible { outline:3px solid color-mix(in srgb, var(--teal) 35%, transparent); outline-offset:3px; }
+.orbit-chat-control svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; }
+.orbit-chat-control .icon-slash { display:none; stroke-width:2.2; }
+.orbit-chat-control.orbit-chat-mic:not(.is-active) { background:#000; color:#fff; border-color:#000; }
+.orbit-chat-control.orbit-chat-mic:not(.is-active) .icon-slash, .orbit-chat-control.orbit-chat-speaker.is-muted .icon-slash { display:block; }
+.orbit-chat-control.orbit-chat-speaker.is-muted { background:#000; color:#fff; border-color:#000; }
+.orbit-chat-control.orbit-chat-speaker.is-muted .icon-waves { opacity:.12; }
+.orbit-chat-control.orbit-chat-mic { left:12px; }
+.orbit-chat-control.orbit-chat-speaker { right:12px; }
+.orbit-chat-control.is-active, .orbit-chat-control:not(.is-muted)[aria-pressed="true"] { background:var(--surface); color:var(--ink); border-color:var(--ink); box-shadow:0 8px 20px color-mix(in srgb, #000 18%, transparent), 0 0 0 4px color-mix(in srgb, var(--ink) 10%, transparent); }
+.orbit-chat-control.is-muted { background:#000; color:#fff; border-color:#000; opacity:.82; }
+.orbit-chat-space { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:0; overflow:hidden; color:color-mix(in srgb, var(--ink) 58%, var(--muted)); font:11px "DM Mono", monospace; letter-spacing:.04em; }
+.orbit-chat-log { display:flex; flex:1 1 auto; align-items:center; justify-content:center; width:100%; height:auto; min-height:0; max-height:100%; box-sizing:border-box; flex-direction:column; gap:12px; overflow-y:auto; padding:18px 10px; }
+.orbit-chat-log:empty { flex:0 0 0; padding:0; }
+.orbit-chat-message { align-self:center !important; width:min(88%, 320px); max-width:88%; margin-inline:auto; padding:11px 14px; border:1px solid color-mix(in srgb, var(--ink) 11%, transparent); border-radius:18px; color:var(--ink); font:13px/1.52 "DM Sans", system-ui, sans-serif; text-align:center; white-space:pre-wrap; overflow-wrap:anywhere; box-shadow:0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
+.orbit-chat-message.sent { width:fit-content; max-width:min(88%, 320px); border-color:color-mix(in srgb, var(--ink) 18%, transparent); background:linear-gradient(145deg, color-mix(in srgb, var(--ink) 14%, var(--surface)), color-mix(in srgb, var(--surface) 92%, transparent)); }
+.orbit-chat-message.received { width:min(88%, 320px); max-height:360px; overflow-y:auto; scrollbar-width:none; background:linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 76%, transparent)); box-shadow:inset 0 12px 18px -18px color-mix(in srgb, var(--ink) 55%, transparent), inset 0 -14px 20px -19px color-mix(in srgb, var(--ink) 55%, transparent), 0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
+.orbit-chat-message.received::-webkit-scrollbar { display:none; }
+.orbit-chat-word { transition:none; }
+.orbit-chat-word.is-speaking-word {
+    color:#fff;
+    background:#d94b4b;
+    border-radius:5px;
+    box-shadow:inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
+    text-shadow:none;
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+}
+.orbit-chat-message.is-loading { width:fit-content; max-width:88%; max-height:none; overflow:visible; padding:8px 13px; border:1px solid color-mix(in srgb, var(--teal) 28%, var(--line)); border-radius:14px; background:color-mix(in srgb, var(--surface) 86%, transparent); box-shadow:0 6px 16px color-mix(in srgb, var(--ink) 8%, transparent); }
+.orbit-chat-thinking { display:inline-flex; align-items:center; justify-content:center; gap:5px; min-height:20px; color:var(--muted); }
+.orbit-chat-thinking i { width:6px; height:6px; border-radius:50%; background:var(--ink); animation:orbit-chat-dot 1.05s ease-in-out infinite; }
+.orbit-chat-thinking i:nth-child(2) { animation-delay:.14s; }
+.orbit-chat-thinking i:nth-child(3) { animation-delay:.28s; }
+.orbit-chat-thinking em { margin-left:4px; font-style:normal; font-size:10px; letter-spacing:.05em; }
+@keyframes orbit-chat-dot { 0%,60%,100% { opacity:.28; transform:translateY(0); } 30% { opacity:1; transform:translateY(-3px); } }
+.orbit-chat-empty { display:flex; flex:1 1 auto; flex-direction:column; align-items:center; justify-content:center; gap:6px; width:100%; box-sizing:border-box; padding:10px 14px; text-align:center; }
+.orbit-chat-welcome { display:flex; flex-direction:column; align-items:center; gap:6px; width:min(94%, 350px); margin:0 auto 8px; padding:10px 14px; text-align:center; }
+.orbit-chat-welcome strong { color:var(--ink); font:700 15px/1.2 "DM Sans", system-ui, sans-serif; }
+.orbit-chat-welcome > span { padding:0; border:0; background:transparent; box-shadow:none; color:var(--muted); font:10px/1.35 "DM Mono", monospace; }
+.orbit-chat-suggestions { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:7px; width:100%; margin-top:5px; }
+.orbit-chat-suggestion { min-height:45px; padding:8px 9px; border:1px solid color-mix(in srgb, var(--teal) 28%, var(--line)); border-radius:12px; background:color-mix(in srgb, var(--surface) 72%, transparent); color:var(--ink); cursor:pointer; text-align:left; font:11px/1.25 "DM Sans", system-ui, sans-serif; transition:transform .18s ease, border-color .18s ease, background .18s ease; }
+.orbit-chat-suggestion:hover { border-color:var(--teal); background:color-mix(in srgb, var(--teal) 10%, var(--surface)); transform:translateY(-2px); }
+.orbit-chat-space > span { padding:8px 12px; border:1px solid color-mix(in srgb, var(--teal) 18%, transparent); border-radius:999px; background:color-mix(in srgb, var(--surface) 32%, transparent); box-shadow:0 8px 20px color-mix(in srgb, var(--ink) 6%, transparent); }
+.orbit-chat-history-nav { position:relative; z-index:3; display:block; height:30px; min-height:30px; margin:0 6px 10px; padding:0; border:0; overflow:visible; }
+.orbit-chat-history-nav::before { content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:color-mix(in srgb, var(--teal) 28%, var(--line)); }
+.orbit-chat-history-btn { position:absolute; bottom:-1px; z-index:2; display:grid; place-items:center; width:30px; height:22px; padding:0; border:1px solid color-mix(in srgb, var(--teal) 58%, var(--line)); border-bottom:0; border-radius:999px 999px 0 0; appearance:none; background:color-mix(in srgb, var(--surface) 92%, transparent); color:var(--muted); cursor:pointer; box-shadow:0 -2px 8px color-mix(in srgb, var(--ink) 10%, transparent); transition:color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease; }
+.orbit-chat-history-btn[data-history="previous"] { left:0; }
+.orbit-chat-history-btn[data-history="next"] { right:0; }
+.orbit-chat-history-btn svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.5; }
+.orbit-chat-history-btn:hover:not(:disabled) { background:var(--surface); border-color:var(--teal); color:var(--ink); transform:translateY(-2px); box-shadow:0 -4px 12px color-mix(in srgb, var(--ink) 18%, transparent); }
+.orbit-chat-history-btn:disabled { opacity:.72; cursor:default; }
+.orbit-chat-history-btn:focus-visible { outline:1px solid color-mix(in srgb, var(--teal) 72%, var(--ink)); outline-offset:3px; }
+.orbit-chat-history-label { position:absolute; top:calc(100% - 10px); left:50%; z-index:2; transform:translate(-50%, -50%); padding:0; border:0; border-radius:0; background:transparent; color:var(--muted); box-shadow:none; text-align:center; white-space:nowrap; font:9px/1 "DM Mono", monospace; letter-spacing:.08em; text-transform:uppercase; }
+.orbit-chat-form { display:flex; align-items:center; gap:8px; padding-top:10px; border-top:0; }
+.orbit-chat-input { min-width:0; flex:1; height:44px; padding:0 14px; border:1px solid color-mix(in srgb, var(--teal) 42%, var(--line)); border-radius:14px; background:color-mix(in srgb, var(--surface) 78%, transparent); color:var(--ink); outline:none; box-shadow:0 8px 24px color-mix(in srgb, var(--ink) 7%, transparent) inset; font: 14px "DM Sans", system-ui, sans-serif; }
+.orbit-chat-input:focus { border-color:var(--teal); box-shadow:0 0 0 3px color-mix(in srgb, var(--teal) 15%, transparent); }
+.orbit-chat-form button { min-width:44px; width:auto; height:44px; padding:0 12px; border:1px solid #000; border-radius:14px; background:#000; color:#fff; font-size:20px; cursor:pointer; white-space:nowrap; font-variant-numeric:tabular-nums; box-shadow:0 10px 22px color-mix(in srgb, #000 24%, transparent); transition:transform .18s ease, filter .18s ease, box-shadow .18s ease; }
+.orbit-chat-form button.is-cooldown { min-width:76px; padding-inline:10px; font-size:12px; font-weight:700; letter-spacing:.02em; }
+.orbit-chat-form button:hover { filter:brightness(1.2); transform:translateY(-2px); box-shadow:0 12px 26px color-mix(in srgb, #000 34%, transparent); }
+.orbit-chat-form button:disabled { opacity:.42; cursor:not-allowed; transform:none; box-shadow:none; }
+.orbit-chat-form button.is-processing { opacity:1; background:#000; color:#fff; }
+body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { pointer-events:none; }
+@media (max-width:520px) { .orbit-chat-panel { right:10px; bottom:10px; width:calc(100vw - 20px); height:min(540px, calc(100dvh - 20px)); border-radius:20px; } }

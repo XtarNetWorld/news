@@ -869,10 +869,50 @@ const stage = document.getElementById('stage');
   let lastWordIdx = -2;
   let currentAudioEl = null;
   let speaking = false;
+  let externalChatSpeech = false;
   let cancelled = false;
   let lastPhoneme = 'sil';
 
-  const bp = { anchorReal: 0, anchorRel: 0, scale: 1, startReal: 0, boundaries: 0 };
+  const bp = {
+    anchorReal: 0, anchorRel: 0, scale: 1, startReal: 0,
+    boundaries: 0, elapsedUnit: null,
+    lastBoundaryReal: 0, lastBoundaryRel: -Infinity, paceSamples: []
+  };
+  const median = values => {
+    if (!values.length) return null;
+    const sorted = values.slice().sort((a, b) => a - b);
+    const middle = sorted.length >> 1;
+    return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
+  };
+  const speechElapsedMs = value => {
+    const raw = Number(value);
+    if (!Number.isFinite(raw) || raw < 0) return null;
+    // The current Web Speech API defines elapsedTime in seconds, while some
+    // older implementations exposed milliseconds. Detect the unit once per
+    // utterance from the wall-clock distance to the first boundary. This is
+    // safer than the old `raw > 100` rule, which misread long utterances.
+    if (!bp.elapsedUnit && bp.startReal) {
+      const wallMs = Math.max(1, performance.now() - bp.startReal);
+      const secondsError = Math.abs(raw * 1000 - wallMs);
+      const millisecondsError = Math.abs(raw - wallMs);
+      bp.elapsedUnit = secondsError <= millisecondsError ? 'seconds' : 'milliseconds';
+    }
+    if (bp.elapsedUnit === 'milliseconds') return raw;
+    return raw * 1000;
+  };
+  // Rendering and audio do not share the same clock. Read the predicted pose
+  // slightly ahead so the mouth's visual response lands on the sound instead
+  // of trailing it by one render step.
+  // Do not guess an audio lead. Native SpeechSynthesis does not expose the
+  // speaker output clock, so an arbitrary lead makes the mouth visibly run
+  // ahead on some devices and behind on others. User syncOffsetMs remains the
+  // only intentional output-latency correction.
+  const MOUTH_RENDER_LEAD_MS = 0;
+  // Keep visuals slightly behind the media clock to account for the output
+  // buffer between an audio element's currentTime and the speaker output.
+  // Keep the visual clock slightly behind browser speech delivery. This
+  // prevents the mouth from completing a phoneme before it is audible.
+  const VISUAL_OUTPUT_DELAY_MS = 260;
 
   function setupAnalyser(audioEl) {
     try {
@@ -1066,6 +1106,142 @@ const stage = document.getElementById('stage');
     }
   }
 
+  // Allow the Max Ai chat voice to drive the same lip-sync animation as the
+  // bot's built-in speech controls.
+  window.maxaiBotSpeechStart = (text, rate = 1) => {
+    externalChatSpeech = true;
+    const tl = LS.buildPredicted(text);
+    activeVoicePath = 'browser';
+    timeline = tl;
+    bp.scale = 1 / (Number(rate) || 1);
+    bp.anchorReal = bp.startReal = performance.now();
+    bp.anchorRel = 0;
+    bp.boundaries = 0;
+    bp.elapsedUnit = null;
+    bp.lastBoundaryReal = 0;
+    bp.lastBoundaryRel = -Infinity;
+    bp.paceSamples.length = 0;
+    playhead = () => Math.max(0, bp.anchorRel + (performance.now() - bp.anchorReal) / bp.scale - VISUAL_OUTPUT_DELAY_MS);
+    setSpeakingState(true);
+    return tl;
+  };
+
+  // Timestamped audio path: the HTMLAudioElement is the single source of
+  // truth for both the mouth and the chat highlight. Unlike SpeechSynthesis,
+  // currentTime is the actual playback clock, and buildAligned() carries the
+  // provider's character timestamps into the same phoneme renderer.
+  window.maxaiBotSpeechAudioStart = (text, alignment, audioEl) => {
+    const chars = alignment?.characters;
+    const starts = alignment?.character_start_times_seconds;
+    const ends = alignment?.character_end_times_seconds;
+    if (!audioEl || !Array.isArray(chars) || !Array.isArray(starts) || !Array.isArray(ends) || !chars.length) return false;
+    const tl = LS.buildAligned(chars, starts, ends);
+    if (!tl.words.length) return false;
+    externalChatSpeech = true;
+    activeVoicePath = 'audio';
+    timeline = tl;
+    currentAudioEl = audioEl;
+    setupAnalyser(audioEl);
+    playhead = () => Math.max(0, (Number(audioEl.currentTime) || 0) * 1000 - VISUAL_OUTPUT_DELAY_MS);
+    setSpeakingState(true);
+    return true;
+  };
+
+  // Public Kokoro URL path. The audio duration is the clock; the predicted
+  // phoneme timeline is stretched once to that duration, so it cannot drift
+  // progressively toward the end of a chunk.
+  window.maxaiBotSpeechUrlStart = (text, audioEl, charOffset = 0) => {
+    if (!audioEl || !String(text || '').trim()) return false;
+    const tl = LS.buildPredicted(String(text));
+    externalChatSpeech = true;
+    activeVoicePath = 'audio';
+    timeline = tl;
+    currentAudioEl = audioEl;
+    playhead = () => {
+      const duration = Number(audioEl.duration);
+      const current = Math.max(0, Number(audioEl.currentTime) || 0) * 1000;
+      const progress = Number.isFinite(duration) && duration > 0 ? current / (duration * 1000) : current / Math.max(tl.speechEnd, 1);
+      return Math.max(0, Math.min(tl.speechEnd, progress * tl.speechEnd - VISUAL_OUTPUT_DELAY_MS));
+    };
+    window.maxaiBotSpeechTickOffset = charOffset;
+    setSpeakingState(true);
+    return true;
+  };
+
+  // Browser speech synthesis does not expose phoneme timestamps, but it does
+  // expose reliable word-boundary timestamps on the utterance. Re-anchor the
+  // predicted phoneme clock at each boundary so every word starts on the
+  // exact word the voice is currently producing. The interpolation between
+  // boundaries preserves the phoneme-level mouth shapes inside that word.
+  function calibrateBrowserClock(charIndex, elapsedTimeMs) {
+    if (!timeline || typeof charIndex !== 'number') return;
+    const wordIndex = LS.wordIndexForChar(timeline, charIndex);
+    const word = timeline.words[wordIndex];
+    if (!word) return;
+
+    // elapsedTime is measured by the speech engine from the utterance's
+    // actual audio clock. Using it instead of the callback arrival time
+    // removes main-thread/event-loop latency from the calibration.
+    const now = performance.now();
+    const beforeReanchor = bp.anchorRel + (now - bp.anchorReal) / bp.scale;
+    const audioMs = speechElapsedMs(elapsedTimeMs);
+    const hasAudioTime = audioMs !== null && Number.isFinite(bp.startReal);
+    const rawBoundaryReal = hasAudioTime ? Math.min(bp.startReal + audioMs, now) : now;
+    const boundaryReal = Math.max(bp.lastBoundaryReal, rawBoundaryReal);
+    // Some engines repeat boundary events for the same word. Re-anchoring on
+    // those duplicates would make the next interval look artificially short
+    // and would create the exact fast/slow oscillation we are avoiding.
+    if (bp.boundaries > 0 && word.s <= bp.lastBoundaryRel) return;
+    const realDelta = boundaryReal - bp.lastBoundaryReal;
+    const timelineDelta = word.s - bp.lastBoundaryRel;
+    if (bp.boundaries > 0 && word.s > bp.lastBoundaryRel && timelineDelta > 80 && realDelta > 45) {
+      // A single word is a noisy pace measurement: a long vowel or a short
+      // function word can be several times faster/slower than its modelled
+      // duration. Keep a short rolling median instead of letting each word
+      // jerk the whole clock forward and backward.
+      const measuredScale = clamp(realDelta / timelineDelta, 0.45, 2.4);
+      bp.paceSamples.push(measuredScale);
+      if (bp.paceSamples.length > 9) bp.paceSamples.shift();
+      const stableScale = median(bp.paceSamples);
+      if (stableScale !== null) {
+        // Limit each correction as well. This prevents a delayed or batched
+        // browser callback from creating a sudden fast/slow jump.
+        const maxCorrection = Math.max(0.02, bp.scale * 0.06);
+        const correction = clamp(stableScale - bp.scale, -maxCorrection, maxCorrection);
+        bp.scale = clamp(bp.scale + correction * 0.12, 0.45, 2.4);
+      }
+    }
+    bp.anchorReal = boundaryReal;
+    bp.anchorRel = word.s;
+    bp.lastBoundaryReal = boundaryReal;
+    bp.lastBoundaryRel = word.s;
+    // With a real audio-relative timestamp, the boundary is authoritative:
+    // allow the predictor to correct backward if it drifted ahead over a long
+    // utterance. If elapsedTime is unavailable, preserve monotonic motion
+    // because the callback arrival time itself may be late.
+    const afterReanchor = bp.anchorRel + (now - bp.anchorReal) / bp.scale;
+    if (!hasAudioTime && afterReanchor < beforeReanchor) {
+      bp.anchorReal = now;
+      bp.anchorRel = beforeReanchor;
+    }
+    bp.boundaries++;
+  }
+
+  window.maxaiBotSpeechBoundary = (charIndex, elapsedTime) => {
+    calibrateBrowserClock(charIndex, elapsedTime);
+    // Return the spoken-text character position of the word that the
+    // calibrated audio clock is on right now. Character positions also keep
+    // number/symbol expansions aligned with the chat panel's source text.
+    if (!timeline || !playhead) return -1;
+    const currentWord = timeline.words[LS.wordIndexAt(timeline, playhead())];
+    return currentWord ? currentWord.cs : -1;
+  };
+  window.maxaiBotSpeechStop = () => {
+    externalChatSpeech = false;
+    window.maxaiBotSpeechTickOffset = 0;
+    setSpeakingState(false);
+  };
+
   function stopSpeaking() {
     cancelled = true;
     try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
@@ -1099,7 +1275,8 @@ const stage = document.getElementById('stage');
       bp.anchorReal = bp.startReal = performance.now();
       bp.anchorRel = 0;
       bp.boundaries = 0;
-      playhead = () => bp.anchorRel + (performance.now() - bp.anchorReal) / bp.scale;
+      bp.elapsedUnit = null;
+      playhead = () => Math.max(0, bp.anchorRel + (performance.now() - bp.anchorReal) / bp.scale - VISUAL_OUTPUT_DELAY_MS);
       setStatus('', false);
       setSpeakingState(true);
     };
@@ -1109,16 +1286,7 @@ const stage = document.getElementById('stage');
     utter.onboundary = (e) => {
       if (e.name && e.name !== 'word') return;
       if (typeof e.charIndex !== 'number' || timeline !== tl) return;
-      const w = tl.words[LS.wordIndexForChar(tl, e.charIndex)];
-      if (!w) return;
-      const now = performance.now();
-      const dReal = now - bp.anchorReal, dRel = w.s - bp.anchorRel;
-      if (bp.boundaries > 0 && dRel > 120 && dReal > 60) {
-        bp.scale = clamp(0.55 * bp.scale + 0.45 * (dReal / dRel), 0.35, 3);
-      }
-      bp.anchorReal = now;
-      bp.anchorRel = w.s;
-      bp.boundaries++;
+      calibrateBrowserClock(e.charIndex, e.elapsedTime);
     };
 
     utter.onend = () => {
@@ -1209,12 +1377,50 @@ const stage = document.getElementById('stage');
 
     // ---------------- LIP-SYNC: read the mouth pose for "now" ----------------
     if (speaking && timeline && playhead) {
-      let tMs = playhead() + syncOffsetMs;
+      // Boundary calibration uses SpeechSynthesisEvent.elapsedTime, so the
+      // clock itself is audio-relative. The small render lead only offsets
+      // the mouth's visual response time; it does not guess callback delay.
+      let tMs = playhead() + syncOffsetMs + MOUTH_RENDER_LEAD_MS;
+      let predictedSpeechTail = false;
       // browser clock only: if our pace estimate runs ahead of the real voice,
       // hold on the last word instead of closing the mouth while sound continues
-      if (activeVoicePath === 'browser') tMs = clamp(tMs, 0, timeline.speechEnd - 100);
+      if (activeVoicePath === 'browser') {
+        predictedSpeechTail = tMs >= timeline.speechEnd - 180;
+        tMs = clamp(tMs, 0, Math.max(0, timeline.speechEnd - 1));
+      }
       const pose = LS.evalAt(timeline, tMs);
       let open = pose.open;
+      let round = pose.round;
+
+      // Viseme contrast layer. Research on visual speech shows that viewers
+      // read a few strong mouth families more reliably than tiny phoneme
+      // differences: bilabial closures (P/B/M), narrow fricatives (F/V/S/Z),
+      // wide vowels (AH/AE/IY), and rounded vowels (OW/UW/OO). The underlying
+      // dominance blend stays smooth, while this makes those word-defining
+      // shapes legible on the small robot mouth.
+      const viseme = LS.PH[pose.ph] || {};
+      if (pose.ph === 'p' || pose.ph === 'b' || pose.ph === 'm') {
+        open *= 0.16;              // lips visibly meet
+        round = Math.min(round, 0.10);
+      } else if (pose.ph === 'f' || pose.ph === 'v') {
+        open *= 0.68;              // teeth/lip contact, not a full jaw open
+        round = Math.min(round, -0.18);
+      } else if (pose.ph === 's' || pose.ph === 'z') {
+        open *= 0.58;              // narrow channel
+        round = Math.min(round, -0.45);
+      } else if (pose.ph === 'sh' || pose.ph === 'zh' || pose.ph === 'ch' || pose.ph === 'jh') {
+        open *= 0.76;
+        round = Math.max(round, 0.38);
+      } else if (viseme.v) {
+        open *= 1.08;              // vowels carry the jaw movement
+        if (pose.ph === 'uw' || pose.ph === 'uh' || pose.ph === 'ao' || pose.ph === 'ow') {
+          round = Math.min(1, round + 0.10);
+        } else if (pose.ph === 'iy' || pose.ph === 'ih' || pose.ph === 'ae' || pose.ph === 'eh') {
+          round = Math.max(-1, round - 0.08);
+        }
+      }
+      open = Math.min(1.15, Math.max(0, open));
+      round = Math.min(1, Math.max(-1, round));
 
       if (activeVoicePath === 'waveform' && analyser) {
         // real loudness scales the phonetic shape: quiet syllables open less,
@@ -1231,31 +1437,48 @@ const stage = document.getElementById('stage');
       }
 
       dropState.targetOpen = Math.min(open, 1.15) * mouthState.curTalkOpen;
-      shapeMixTarget = pose.round;
+      // The predicted phoneme schedule is only an estimate of the final
+      // syllable length. Once it reaches its end, keep the last spoken pose
+      // alive until SpeechSynthesis fires the real utterance `end` event.
+      // This prevents the mouth from visibly finishing before the audio.
+      if (predictedSpeechTail) dropState.targetOpen = Math.max(dropState.targetOpen, 0.24);
+      shapeMixTarget = round;
       lastPhoneme = pose.ph;
 
-      const wi = LS.wordIndexAt(timeline, tMs + 40);
+      const wi = LS.wordIndexAt(timeline, tMs);
       if (wi !== lastWordIdx && wi >= 0) {
         lastWordIdx = wi;
         const w = timeline.words[wi];
         labelEl.textContent = (timeline.text || '').slice(w.cs, w.ce) || 'talking…';
       }
+      // Keep the chat highlight on the same live clock as the mouth. This is
+      // intentionally per-frame: Web Speech boundary callbacks can be late,
+      // sparse, or batched by the browser under load.
+      const currentWord = timeline.words[wi];
+      if (currentWord) window.maxaiBotSpeechTick?.(currentWord.cs + (window.maxaiBotSpeechTickOffset || 0));
     } else {
       dropState.targetOpen = 0;
       shapeMixTarget = 0;
     }
 
-    // Spring on the opening — stiff and near critically damped, so it hits
-    // full opens/closures on each phoneme and still settles naturally.
-    const mouthSpringStiffness = 900, mouthSpringDamping = 42;
-    const dropAccel = mouthSpringStiffness * (dropState.targetOpen - dropState.curOpen) - mouthSpringDamping * dropState.curVel;
-    dropState.curVel += dropAccel * dt;
-    dropState.curOpen += dropState.curVel * dt;
-    if (dropState.curOpen < 0) { dropState.curOpen = 0; dropState.curVel *= -0.25; }
+    // Stable critically-damped spring integration. The previous explicit
+    // Euler spring added a visible 80–120 ms tail and could become frame-rate
+    // dependent. This closed-form step is responsive to short consonants,
+    // remains stable on a dropped frame, and does not overshoot closures.
+    // Keep the physical-looking motion, but shorten the spring tail. A long
+    // tail makes closures and short consonants visibly trail the spoken sound.
+    const mouthResponse = 175;
+    const mouthError = dropState.curOpen - dropState.targetOpen;
+    const mouthDecay = Math.exp(-mouthResponse * dt);
+    const mouthStep = (dropState.curVel + mouthResponse * mouthError) * dt;
+    dropState.curOpen = dropState.targetOpen + (mouthError + mouthStep) * mouthDecay;
+    dropState.curVel = (dropState.curVel - mouthResponse * mouthStep) * mouthDecay;
+    if (dropState.curOpen < 0) { dropState.curOpen = 0; dropState.curVel = 0; }
+    if (dropState.curOpen > 1.2) { dropState.curOpen = 1.2; dropState.curVel = 0; }
 
     // lip shape (spread ↔ pursed) follows quickly enough to track single phonemes
-    shapeMix += (shapeMixTarget - shapeMix) * (1 - Math.exp(-dt * 28));
-    talkBlend += ((speaking ? 1 : 0) - talkBlend) * (1 - Math.exp(-dt * 12));
+    shapeMix += (shapeMixTarget - shapeMix) * (1 - Math.exp(-dt * 90));
+    talkBlend += ((speaking ? 1 : 0) - talkBlend) * (1 - Math.exp(-dt * 16));
 
     // Effective mouth width: talking makes the mouth bigger, and lip shape
     // widens it (spread) or narrows it (pursed). Applied to the line AND the
