@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-09T20:03:12.145Z",
+  "candidate": {
+    "title": "Trump says Putin will release diesel fuel into global market",
+    "url": "https://www.nbcnews.com/business/energy/trump-putin-diesel-prices-rcna602566",
+    "publishedAt": "2026-10-09T18:56:21.000Z",
+    "description": "It was not immediately clear how this would work, however, given wide-ranging sanctions that have been applied to Russia since its illegal invasion of Ukraine.\n\n### FOR SUBSCRIBERSCentrist think tank warns 2028 Democrats against swinging too far left on immigration\n\n### FOR SUBSCRIBERSRussia’s secrecy after a mysterious plague lab death raises global alarm\n\n### FOR SUBSCRIBERSAfter surviving a botched lethal injection, Christa Pike faces unprecedented legal battle [...] ### FOR SUBSCRIBERSDiddy ",
+    "provider": "Tavily",
+    "source": "nbcnews.com",
+    "providers": [
+      "Tavily"
+    ],
+    "sources": [
+      {
+        "title": "Trump says Putin will release diesel fuel into global market",
+        "url": "https://www.nbcnews.com/business/energy/trump-putin-diesel-prices-rcna602566",
+        "source": "nbcnews.com",
+        "publishedAt": "2026-10-09T18:56:21.000Z",
+        "provider": "Tavily",
+        "description": "It was not immediately clear how this would work, however, given wide-ranging sanctions that have been applied to Russia since its illegal invasion of Ukraine.\n\n### FOR SUBSCRIBERSCentrist think tank warns 2028 Democrats against swinging too far left on immigration\n\n### FOR SUBSCRIBERSRussia’s secrecy after a mysterious plague lab death raises global alarm\n\n### FOR SUBSCRIBERSAfter surviving a botched lethal injection, Christa Pike faces unprecedented legal battle [...] ### FOR SUBSCRIBERSDiddy "
+      }
+    ],
+    "evidenceCount": 1,
+    "score": 130.6,
+    "freshnessHours": 1.1,
+    "confidence": "low",
+    "searchDemand": {
+      "matchingQueries": [
+        {
+          "query": "impact of rising costs and market shifts on global ai startup funding today?",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 1
+        }
+      ],
+      "impressions": 1,
+      "clicks": 0,
+      "demandBoost": 2.8
+    },
+    "forecast": {
+      "score": 130.6,
+      "basis": "freshness, source velocity, cross-source evidence, and matching Search Console demand",
+      "searchDemandConfigured": true
+    }
+  },
+  "evidence": {
+    "domains": [
+      "cnbc.com",
+      "jpost.com",
+      "newsweek.com"
+    ],
+    "independentSources": 3,
+    "maxTextOverlap": 0.11764705882352941,
+    "sources": [
+      {
+        "title": "Trump strikes deal with Putin to supply Russian diesel to U.S. and global markets",
+        "url": "https://www.cnbc.com/2026/10/09/trump-putin-russian-diesel-us-global-markets.html",
+        "source": "cnbc.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-09T18:57:43.000Z"
+      },
+      {
+        "title": "Moscow to provide tons of diesel fuel to US, global markets, Donald Trump announces | The Jerusalem Post",
+        "url": "https://www.jpost.com/international/article-911187",
+        "source": "jpost.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-09T19:02:24.000Z"
+      },
+      {
+        "title": "Donald Trump Takes a Walk in Putin&#x27;s Diesel-Stained Shoes - Newsweek",
+        "url": "https://www.newsweek.com/trump-putin-diesel-export-ban-fuel-prices-12497496",
+        "source": "newsweek.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-09-28T17:18:00.000Z"
+      }
+    ]
+  },
+  "sourceVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "claims": [
+      {
+        "claim": "Trump says Putin agreed to release diesel fuel into global markets.",
+        "sourceUrls": [
+          "https://www.cnbc.com/2026/10/09/trump-putin-russian-diesel-us-global-markets.html",
+          "https://www.jpost.com/international/article-911187"
+        ],
+        "status": "supported",
+        "reason": "Both CNBC and The Jerusalem Post independently report that Donald Trump announced an agreement with Vladimir Putin for Russia to supply diesel fuel to the US and global markets."
+      }
+    ],
+    "conflicts": [],
+    "copyRisk": "low",
+    "reason": "The signal is corroborated by two independent reporting domains (CNBC and The Jerusalem Post)."
+  },
+  "deterministicGate": {
+    "pass": true,
+    "reasons": [],
+    "foreignUrls": [],
+    "bodyCharacters": 5634
+  },
+  "articleVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "unsupportedClaims": [],
+    "sourceCoverage": 98,
+    "titleAssessment": "accurate",
+    "reason": "The article accurately summarizes the reported deal between Trump and Putin regarding Russian diesel exports, correctly citing details from the sources including delivery tranches, the Treasury sanctions waiver, quotes from Trump and Dmitriev, and background context on fuel prices and previous policy discussions."
+  },
+  "article": {
+    "title": "Trump Announces Deal with Putin to Release Russian Diesel Globally",
+    "slug": "trump-putin-russian-diesel-global-market-deal",
+    "category": "News"
+  }
+}
