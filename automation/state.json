@@ -5,49 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-07T19:00:33.745Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Man arrested in foiled mass shooting plot at Mall of America, federal officials say - ABC News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "abcnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.13866666666666666
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Rubio to lay out sweeping vision for U.S. in speech atop Athens hill - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T20:00:38.224Z",
       "query": "latest news",
       "found": 10,
@@ -2354,7 +2311,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T21:01:50.251Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Arsenal XI vs Leeds: Confirmed team news, predicted lineup, injury latest for Premier League - Yahoo Sports",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "sports.yahoo.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.23732718894009217
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "The Nobel Peace Prize was awarded Friday to the South African jurist Navanethem “Navi” Pillay. - NBC News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m9.748619424s.",
+          "evidence": {
+            "domains": [
+              "democracynow.org",
+              "time.com",
+              "spectrumlocalnews.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.2065378900445765
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m9.748619424s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T20:03:23.715Z"
+  "updatedAt": "2026-10-09T21:01:50.251Z"
 }
