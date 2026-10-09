@@ -3,55 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T08:00:36.044Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Israel marks three years since Hamas-led 7 October 2023 attacks - BBC News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "bbc.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.14479638009049775
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Cargo ship sinks after drone attack in Black Sea near NATO Bulgaria | Fox News",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "marinelink.com",
-              "euronews.com",
-              "bbc.com",
-              "ynetnews.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.19301470588235295
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T09:00:32.923Z",
       "query": "latest news",
       "found": 10,
@@ -2362,7 +2313,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T10:02:33.758Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Key takeaways from US Senate debate in Michigan between El-Sayed, Rogers | US Midterm Elections 2026 News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.2054380664652568
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Nobel Peace Prize favorites include Yulia Navalnaya as Donald Trump downplays his chances",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "newsweek.com",
+              "mediaplayer.whro.org",
+              "therussianreader.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.06064880112834979
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T09:01:40.098Z"
+  "updatedAt": "2026-10-09T10:02:33.758Z"
 }
