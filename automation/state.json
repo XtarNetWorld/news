@@ -3,55 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T04:00:31.823Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "With end of hurricane season weeks away, tropical threat brewing in Gulf could impact U.S. this weekend - CBS News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 19h59m29.96128847s.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com",
-              "newsweek.com",
-              "foxweather.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1518624641833811
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 19h59m29.96128847s."
-          }
-        },
-        {
-          "title": "Fuel industry warns against red dye diesel after Trump order",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 19h59m28.177361792s.",
-          "evidence": {
-            "domains": [
-              "ibtimes.com",
-              "whec.com",
-              "cbs6albany.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.09727626459143969
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\nPlease retry in 19h59m28.177361792s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T05:00:39.407Z",
       "query": "latest news",
       "found": 10,
@@ -2354,7 +2305,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T06:02:38.636Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Key takeaways from US Senate debate in Michigan between El-Sayed, Rogers | US Midterm Elections 2026 News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "The central event (the Michigan US Senate debate between Abdul El-Sayed and Mike Rogers) is covered by only one domain (aljazeera.com). A minimum of two independent domains is required to verify the central event.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "newscord.org"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.21847246891651864
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Abdul El-Sayed and Mike Rogers met for a televised US Senate debate in Michigan ahead of the 2026 midterm elections.",
+                "sourceUrls": [
+                  "https://www.aljazeera.com/news/2026/10/9/key-takeaways-from-us-senate-debate-in-michigan-between-el-sayed-rogers"
+                ],
+                "status": "supported",
+                "reason": "Supported by Source 1, but no other independent domain corroborates the debate event."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event (the Michigan US Senate debate between Abdul El-Sayed and Mike Rogers) is covered by only one domain (aljazeera.com). A minimum of two independent domains is required to verify the central event."
+          }
+        },
+        {
+          "title": "Vance, Rubio brush off questions about claim that Guilfoyle asked donor to pay $100K Amex bill - The Washington Post",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com",
+              "latimes.com",
+              "greenwichtime.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T05:00:32.691Z"
+  "updatedAt": "2026-10-09T06:02:38.636Z"
 }
