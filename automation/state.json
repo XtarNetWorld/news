@@ -3,47 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T13:00:44.088Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Pullout of B-1 bombers shows how an outgunned Iran is keeping the U.S. on edge - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Half a billion dollars in GOP spending does little to move polls - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T14:00:42.703Z",
       "query": "latest news",
       "found": 10,
@@ -2342,7 +2301,42 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T15:02:34.130Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump appoints committee to investigate statements by the Fed's Lisa Cook",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cnbc.com",
+              "pluang.com",
+              "theglobeandmail.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.4090909090909091
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "EXCLUSIVE US imposes sanctions on International Criminal Court, hours after former judge wins Nobel",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T14:02:18.809Z"
+  "updatedAt": "2026-10-09T15:02:34.130Z"
 }
