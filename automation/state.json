@@ -1,58 +1,9 @@
 {
   "version": 1,
-  "seen": [],
+  "seen": [
+    "trump says putin will release diesel fuel into global market"
+  ],
   "runs": [
-    {
-      "at": "2026-10-07T18:00:37.007Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Marco Rubio delivers Western civilization speech in Athens' ancient ruins | Fox News",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "abcnews.com",
-              "thenews.com.pk",
-              "aol.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "(1) Christa Pike’s lawyers in court after she regains consciousness in hospital – latest updates",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "wsmv.com",
-              "aljazeera.com",
-              "pbs.org"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.20476190476190476
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
     {
       "at": "2026-10-07T19:00:33.745Z",
       "query": "latest news",
@@ -2377,7 +2328,33 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T20:03:23.715Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 1,
+      "rejected": 1,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Powerful quake hits Panama, damages homes; canal operations normal",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T19:02:30.934Z"
+  "updatedAt": "2026-10-09T20:03:23.715Z"
 }
