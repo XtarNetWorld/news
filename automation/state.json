@@ -3,54 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T17:00:59.270Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "The latest headlines - as world marks third anniversary of October 7th attacks - Latest From ITV News - ITVX",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "haaretz.com",
-              "cnn.com",
-              "jpost.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.7014925373134329
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Iran war news LIVE: Iran threatens to shut ‘illegal’ Strait of Hormuz routes as oil flows recover - Livemint",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "nypost.com",
-              "insurancejournal.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.31211180124223603
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T18:00:37.007Z",
       "query": "latest news",
       "found": 10,
@@ -2349,7 +2301,83 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T19:02:30.934Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ro Khanna hears Fuyao workers claim unsafe conditions, union threats | Fox News",
+          "stage": "source-verification",
+          "reason": "The story fails the requirement of having at least two independent domains confirming the central event, as Source 2 is secondary aggregation solely derived from and attributing Source 1 (Fox News).",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "wnd.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.178335535006605
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Rep. Ro Khanna convened a roundtable where former Fuyao Glass America workers alleged hazardous working conditions and union-related issues.",
+                "sourceUrls": [
+                  "https://www.foxnews.com/politics/expect-deaths-factory-former-employees-describe-hazardous-conditions-chinese-owned-ohio-plant"
+                ],
+                "status": "supported",
+                "reason": "Source 1 details the event and quotes former employees directly. However, Source 2 is merely an aggregation citing Source 1 directly, failing the requirement for two independent domains."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The story fails the requirement of having at least two independent domains confirming the central event, as Source 2 is secondary aggregation solely derived from and attributing Source 1 (Fox News)."
+          }
+        },
+        {
+          "title": "Katie Zacharia will be the next White House press secretary",
+          "stage": "source-verification",
+          "reason": "The signal asserts as fact that Katie Zacharia will be the next White House press secretary, but the sources report that she has only been offered the job and has not yet accepted.",
+          "evidence": {
+            "domains": [
+              "time.com",
+              "edition.cnn.com",
+              "foxnews.com",
+              "bbc.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.24607329842931938
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Katie Zacharia will be the next White House press secretary",
+                "sourceUrls": [
+                  "https://time.com/article/2026/10/09/katie-zacharia-white-house-press-secretary-leavitt-trump/",
+                  "https://edition.cnn.com/2026/10/09/politics/katie-zacharia-white-house-press-secretary",
+                  "https://www.foxnews.com/politics/katie-zacharia-offered-role-white-house-press-secretary",
+                  "https://www.bbc.com/news/articles/c5rmy73zr0rro"
+                ],
+                "status": "unsupported",
+                "reason": "Sources confirm that Zacharia has been selected and offered the role of White House press secretary, but both Time and Fox News explicitly report that it remains unclear whether she has accepted the offer. Stating definitively that she will be the next press secretary is premature and unsupported."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal asserts as fact that Katie Zacharia will be the next White House press secretary, but the sources report that she has only been offered the job and has not yet accepted."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T18:01:49.400Z"
+  "updatedAt": "2026-10-09T19:02:30.934Z"
 }
