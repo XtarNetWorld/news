@@ -3,49 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T16:00:36.337Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Lawyers for Christa Pike appear in court after failed execution of the US death row inmate - live updates - BBC News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "bbc.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.45161290322580644
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Three years after Oct. 7, Israeli strikes in Gaza grind on and deaths climb - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T17:00:59.270Z",
       "query": "latest news",
       "found": 50,
@@ -2346,7 +2303,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T18:01:49.400Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Hurricane Isaias takes aim at Florida panhandle - ABC News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "wcjb.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.19638242894056848
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Ro Khanna hears Fuyao workers claim unsafe conditions, union threats | Fox News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "foxnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T17:02:09.280Z"
+  "updatedAt": "2026-10-09T18:01:49.400Z"
 }
