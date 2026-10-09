@@ -3,49 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T03:00:47.105Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Justice Dept. Turns to Partisans and Conspiracists to Fill Depleted Ranks",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Susan Collins and Troy Jackson clash over Trump and seniority in Maine’s first Senate debate",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "news.ssbcrack.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T04:00:31.823Z",
       "query": "latest news",
       "found": 10,
@@ -2353,7 +2310,51 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T05:00:32.691Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kimberly Guilfoyle associate says when she asked him for $100K, it was \"quid pro quo\" - CBS News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Key Moments From the Georgia Senate Debate Beween Ossoff and Collins - The New York Times",
+          "stage": "source-verification",
+          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
+          "evidence": {
+            "domains": [
+              "atlantanewsfirst.com",
+              "ajc.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1051930758988016
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T04:00:32.181Z"
+  "updatedAt": "2026-10-09T05:00:32.691Z"
 }
