@@ -5,58 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-07T21:00:35.087Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Western civilisation is 'at an inflection point' Rubio says in speech overloooking Acropolis",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "theblaze.com",
-              "foxnews.com",
-              "ca.news.yahoo.com",
-              "oann.com"
-            ],
-            "independentSources": 6,
-            "maxTextOverlap": 0.39068825910931176
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Tennessee must preserve evidence related to Christa Pike’s failed execution, judge rules",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "komu.com",
-              "npr.org",
-              "nashvillebanner.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.17896678966789667
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T22:00:39.936Z",
       "query": "latest news",
       "found": 10,
@@ -2351,7 +2299,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T23:02:24.942Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Katie Zacharia ‘offered’ position as White House press secretary | Donald Trump News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.14201183431952663
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Powerful 7.6 earthquake rocks Panama, prompts evacuations | AP News",
+          "stage": "source-verification",
+          "reason": "Only one accessible domain (arabtimesonline.com) reported on the central event, failing the requirement of at least two independent domains.",
+          "evidence": {
+            "domains": [
+              "wpxi.com",
+              "actionnewsjax.com",
+              "arabtimesonline.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.9375
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A powerful earthquake rocked Panama and prompted evacuations.",
+                "sourceUrls": [
+                  "https://www.arabtimesonline.com/news/77-magnitude-earthquake-rocks-panama-second-powerful-quake-triggers-evacuations/"
+                ],
+                "status": "supported",
+                "reason": "Source 3 reports the earthquake and evacuations, but Sources 1 and 2 are error pages and do not provide usable text."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "Only one accessible domain (arabtimesonline.com) reported on the central event, failing the requirement of at least two independent domains."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T22:01:48.752Z"
+  "updatedAt": "2026-10-09T23:02:24.942Z"
 }
