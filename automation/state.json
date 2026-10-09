@@ -3,49 +3,6 @@
   "seen": [],
   "runs": [
     {
-      "at": "2026-10-07T15:00:45.137Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "‘We’re short of resources’: France’s student protesters, in their own words | Protests News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.21513002364066194
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Three years after Oct. 7, Israeli strikes in Gaza grind on and deaths climb - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-07T16:00:36.337Z",
       "query": "latest news",
       "found": 10,
@@ -2337,7 +2294,59 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-09T17:02:09.280Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "EXCLUSIVE: US imposes sanctions on ICC hours after former judge wins Nobel Peace Prize",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "internazionale.it",
+              "consent.yahoo.com",
+              "thenews.com.pk",
+              "saharareporters.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.2639138240574506
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Legendary coach, Hall of Fame TE Mike Ditka dies at age 86 - ESPN",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "espn.com",
+              "kxxv.com",
+              "scrippsnews.com",
+              "espn.ph",
+              "bleedcubbieblue.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.96875
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-09T16:02:13.314Z"
+  "updatedAt": "2026-10-09T17:02:09.280Z"
 }
