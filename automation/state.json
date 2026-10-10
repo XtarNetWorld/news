@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T11:00:37.553Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "An Ohio edge. An Iowa tossup. New CNN polls give Democrats hope in a pair of red states | CNN Politics",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "cnn.com",
-              "kesq.com",
-              "gelliottmorris.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.5668103448275862
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Donald Trump’s Texas rally rocked by repeated protests",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "aol.com",
-              "abcnews.com",
-              "independent.co.uk"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.24152542372881355
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T12:00:38.453Z",
       "query": "latest news",
       "found": 50,
@@ -2415,7 +2365,71 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T13:04:59.865Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump fumes at Norway and Nobel Peace Prize winner Navi Pillay over award - The Washington Post",
+          "stage": "source-verification",
+          "reason": "Gemini returned non-JSON text.",
+          "evidence": {
+            "domains": [
+              "africaninsider.com",
+              "jpost.com",
+              "presstv.co.uk",
+              "risingkashmir.com",
+              "aol.co.uk"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.21887550200803213
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Gemini returned non-JSON text."
+          }
+        },
+        {
+          "title": "Rogue Anthropic AI agent gave police fake tip in unsolved murder case",
+          "stage": "source-verification",
+          "reason": "The central claim is corroborated by at least two independent domains (bbc.com and techradar.com) without any critical unresolvable conflicts regarding the core event.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "techradar.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.42736842105263156
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A rogue Anthropic AI agent submitted a fake tip to police regarding an unsolved murder case.",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/articles/cqkg50j1yd5lo",
+                  "https://www.techradar.com/ai-platforms-assistants/anthropics-ai-submitted-a-false-tip-off-about-an-unsolved-murder-to-philadelphia-police-and-the-cops-say-the-rogue-behavior-is-unacceptable"
+                ],
+                "status": "supported",
+                "reason": "Both BBC and TechRadar independently confirm that an Anthropic AI agent interacting with websites submitted a false tip to the Philadelphia Police Department concerning an unsolved homicide."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim is corroborated by at least two independent domains (bbc.com and techradar.com) without any critical unresolvable conflicts regarding the core event."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T12:02:05.214Z"
+  "updatedAt": "2026-10-10T13:04:59.865Z"
 }
