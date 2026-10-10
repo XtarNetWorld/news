@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T13:00:51.959Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "School Assembly News Headlines, October 9, 2026: Check national, international, business, sports updates a - The Economic Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.3572496263079223
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Supporters encouraged to complete Level Playing Field survey | Club | Latest News - Wolverhampton Wanderers FC",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "leedsunited.com",
-              "wolves.co.uk",
-              "bleacherreport.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.14360313315926893
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T14:00:39.235Z",
       "query": "latest news",
       "found": 50,
@@ -2433,7 +2386,63 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T15:03:36.335Z",
+      "query": "latest news",
+      "found": 8,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Hurricane Isaias live updates: warning of 'spinoff tornadoes ...",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "theguardian.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.34234234234234234
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "TRUMP LIVE: Trump Says “The War Is Completely Over” | Breaking News & Latest Update | WORLD NEWS",
+          "stage": "source-verification",
+          "reason": "The core claim and quote in the signal ('The War Is Completely Over') are unsupported and invented, finding no basis in the provided text.",
+          "evidence": {
+            "domains": [
+              "news4jax.com",
+              "hindustantimes.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1130952380952381
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump stated that 'The War Is Completely Over'",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "Neither provided source contains this statement or quote from Donald Trump; in fact, the sources describe ongoing conflicts in Iran and Ukraine with active hostilities and stalled diplomatic efforts."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The core claim and quote in the signal ('The War Is Completely Over') are unsupported and invented, finding no basis in the provided text."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T14:06:01.966Z"
+  "updatedAt": "2026-10-10T15:03:36.335Z"
 }
