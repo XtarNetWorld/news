@@ -5,49 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T16:01:12.663Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "The latest headlines - as Andrew Mountbatten-Windsor wins legal challenge against police - Latest From ITV News - ITVX",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Indian embassy warns nationals in Saudi: 'Stay indoors, refrain from sharing videos' | India News - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "moneycontrol.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T17:00:33.606Z",
       "query": "latest news",
       "found": 10,
@@ -2464,7 +2421,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T18:01:50.200Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "What has Trump’s Board of Peace achieved in a year since Gaza ‘ceasefire’? | Israel-Palestine conflict News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.1829787234042553
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Several wounded in Riyadh airport attack, operations suspended, Saudi aviation authority says",
+          "stage": "source-verification",
+          "reason": "The central event (the Saturday attack leading the Saudi civil aviation authority to suspend airport operations) is reported by only one domain (DW). The other sources report on an earlier attack on Thursday and syndicated wire coverage. The requirement for at least two independent domains confirming the central event is not met.",
+          "evidence": {
+            "domains": [
+              "amp.dw.com",
+              "fortune.com",
+              "arkansasonline.com",
+              "cbc.ca"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.4810126582278481
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Several people were wounded in an attack on Riyadh airport and operations were suspended by the Saudi civil aviation authority",
+                "sourceUrls": [
+                  "https://amp.dw.com/en/saudi-arabia-suspends-operations-at-riyadh-airport-after-an-attack-causes-multiple-injuries/a-79628862"
+                ],
+                "status": "supported",
+                "reason": "DW reports that the General Authority of Civil Aviation confirmed an attack on Saturday resulting in multiple injuries and announced that airport operations were suspended until further notice."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event (the Saturday attack leading the Saudi civil aviation authority to suspend airport operations) is reported by only one domain (DW). The other sources report on an earlier attack on Thursday and syndicated wire coverage. The requirement for at least two independent domains confirming the central event is not met."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T17:02:42.293Z"
+  "updatedAt": "2026-10-10T18:01:50.200Z"
 }
