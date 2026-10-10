@@ -5,55 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T08:00:36.203Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "India news Live Updates, 8 October 2026: INDIA bloc MPs gather for second big meeting, to march to Rajghat - The Indian Express",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "indiatoday.in",
-              "timesofindia.indiatimes.com",
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.21201413427561838
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Conclave Mumbai 2026 Latest News, Conclave Mumbai 2026 Top Stories, Updates, Photos, Videos - India Today",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "indiatoday.in",
-              "timesofindia.indiatimes.com",
-              "hindustantimes.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.08536585365853659
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T09:00:33.414Z",
       "query": "latest news",
       "found": 50,
@@ -2397,7 +2348,77 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T10:02:59.011Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
+          "stage": "source-verification",
+          "reason": "The signal matches the exact headline of the CBS News report and is corroborated by a second independent domain (NewsCord). Copy risk is high due to verbatim headline matching.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "newscord.org"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.23893805309734514
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Three men were found guilty of killing an American and two Australian brothers on a surfing trip in Mexico.",
+                "sourceUrls": [
+                  "https://www.cbsnews.com/news/men-guilty-mexico-australian-american-surfer-murders/",
+                  "https://newscord.org/article/mexican-judge-convicts-jess-gerardo-garcia-el-kekas-of-killing-australian-brothe--Story_20261009_3menfoundguiltyofkil692866f6"
+                ],
+                "status": "supported",
+                "reason": "Both sources confirm that a judge in Ensenada, Baja California found three men guilty of the murders of Australian brothers Callum and Jake Robinson and American Jack Carter Rhoad during a surfing trip."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "The signal matches the exact headline of the CBS News report and is corroborated by a second independent domain (NewsCord). Copy risk is high due to verbatim headline matching."
+          }
+        },
+        {
+          "title": "Winston Lee, Accused in Cornell Sexual Assault Case, Is Related to Former South Korean Prime Minister",
+          "stage": "source-verification",
+          "reason": "The signal's claims are completely unsupported by the provided source texts.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "ntd.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.032520325203252036
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Winston Lee is accused in the Cornell sexual assault case and is related to a former South Korean Prime Minister",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "Neither source mentions Winston Lee or any relationship between an individual accused in a Cornell case and a former South Korean Prime Minister."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal's claims are completely unsupported by the provided source texts."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T09:05:09.861Z"
+  "updatedAt": "2026-10-10T10:02:59.011Z"
 }
