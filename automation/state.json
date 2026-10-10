@@ -5,50 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T20:00:34.090Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Nana Patekar Dies At 75: Five-Decade Film Legacy Comes To An End | Bollywood | LATEST BREAKING NEWS - News18",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Premier League injury update: Latest news and return dates for all 20 clubs - Yahoo Sports",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "sports.yahoo.com",
-              "uk.sports.yahoo.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.2850678733031674
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T21:00:40.510Z",
       "query": "latest news",
       "found": 50,
@@ -2477,7 +2433,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T22:01:48.804Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Attack on Saudi airport leaves 12 dead, dozens wounded, sources say",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m14.491987248s.",
+          "evidence": {
+            "domains": [
+              "newscord.org",
+              "aroundprague.cz"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.17147192716236723
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m14.491987248s."
+          }
+        },
+        {
+          "title": "Four dead and thousands without power after Hurricane Isaias lashes US",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "bbc.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.2533589251439539
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T21:03:55.498Z"
+  "updatedAt": "2026-10-10T22:01:48.804Z"
 }
