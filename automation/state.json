@@ -5,52 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T18:00:40.725Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Premier League injury update: Latest news and return dates for all 20 clubs - Yahoo Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "sports.yahoo.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2850678733031674
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "India News Highlights, 8 October 2026: Rahul Gandhi and Co. leave Delhi’s Raj Ghat after Day 3 of EC protest - The Indian Express",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "npr.org",
-              "aljazeera.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.15211970074812967
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T19:00:41.396Z",
       "query": "latest news",
       "found": 50,
@@ -2469,7 +2423,55 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-10T20:02:35.190Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Pope Leo declares death penalty 'inadmissible' as his native US plans to livestream execution | AP News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m31.219943111s.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "cbsnews.com",
+              "newsweek.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.32653061224489793
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m31.219943111s."
+          }
+        },
+        {
+          "title": "What has Trump’s Board of Peace achieved in a year since Gaza ‘ceasefire’? | Israel-Palestine conflict News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m24.800108494s.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "theautomaticearth.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m24.800108494s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T19:02:04.531Z"
+  "updatedAt": "2026-10-10T20:02:35.190Z"
 }
