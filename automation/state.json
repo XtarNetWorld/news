@@ -5,52 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T15:00:44.069Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Nana Patekar Death | Goa News; Actor Last Interview Father Sorrow - Bhaskar English",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "timesofindia.indiatimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.2013888888888889
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "'EC at centre of assault': 42 ex-judges defend India's poll process in open letter amid protest against Gyanesh Kumar | India News - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.6153846153846154
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T16:01:12.663Z",
       "query": "latest news",
       "found": 50,
@@ -2447,7 +2401,70 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T17:02:42.293Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "What has Trump’s Board of Peace achieved in a year since Gaza ‘ceasefire’? | Israel-Palestine conflict News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.22586520947176686
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Christa Pike discharged from hospital and returned to prison, her lawyers say",
+          "stage": "source-verification",
+          "reason": "The signal is directly confirmed by multiple independent reporting outlets citing official statements released by Pike's legal team.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "wvlt.tv",
+              "bbc.co.uk",
+              "wbko.com",
+              "en.royanews.tv"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.38315217391304346
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Christa Pike was discharged from the hospital and returned to prison according to statements from her lawyers.",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/articles/cmlyle97pqd7o",
+                  "https://www.wvlt.tv/2026/10/10/pike-released-hospital-recovery-continues-rehab-center/",
+                  "https://en.royanews.tv/news/74761"
+                ],
+                "status": "supported",
+                "reason": "Multiple independent sources report that Christa Pike's attorneys confirmed she was discharged from the hospital and returned to prison following her botched execution."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal is directly confirmed by multiple independent reporting outlets citing official statements released by Pike's legal team."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T16:05:42.609Z"
+  "updatedAt": "2026-10-10T17:02:42.293Z"
 }
