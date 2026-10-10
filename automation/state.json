@@ -5,51 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T03:00:39.559Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "The 'Gate of Tears' at the centre of Houthis' latest battle for control - ABC News & Headlines – Australian Broadcasting Corporation",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "abc.net.au"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2534992223950233
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Opposition protests over SIR disrupt traffic across Delhi | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "timesofindia.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T04:00:35.345Z",
       "query": "latest news",
       "found": 10,
@@ -2381,7 +2336,71 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T05:02:34.615Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Hurricane Isaias updates: Life-threatening storm surge, devastating winds forecasted - ABC News",
+          "stage": "source-verification",
+          "reason": "The headline and its underlying reporting of Hurricane Isaias bringing life-threatening storm surge and damaging winds are verified and confirmed across independent domains (abcnews.com and abc3340.com).",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "abc3340.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.46578366445916114
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "ABC News reported updates on Hurricane Isaias forecasting life-threatening storm surge and devastating winds.",
+                "sourceUrls": [
+                  "https://abcnews.com/US/live-updates/hurricane-isaias-updates-isaias-strengthens-category-3?id=137128637",
+                  "https://abcnews.com/GMA/Living/keep-pets-safe-hurricane-isaias/story?id=137139097",
+                  "https://abc3340.com/news/local/hurricane-isaias-strengthens-as-alabama-braces-for-damaging-winds-flooding"
+                ],
+                "status": "supported",
+                "reason": "Source 2 explicitly references the ABC News reporting title 'Hurricane Isaias updates: Life-threatening storm surge, devastating winds forecasted', and Source 1 documents ABC News reporting on life-threatening storm surge and severe winds ahead of and during landfall. Source 3 independently confirms forecasts of life-threatening storm surge and damaging winds for Hurricane Isaias."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The headline and its underlying reporting of Hurricane Isaias bringing life-threatening storm surge and damaging winds are verified and confirmed across independent domains (abcnews.com and abc3340.com)."
+          }
+        },
+        {
+          "title": "Trump fumes over Nobel peace prize snub and criticizes Norway",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m25.379903865s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "globalbankingandfinance.com",
+              "aol.com",
+              "rnz.co.nz",
+              "timesofindia.indiatimes.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.1561712846347607
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m25.379903865s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T04:01:21.884Z"
+  "updatedAt": "2026-10-10T05:02:34.615Z"
 }
