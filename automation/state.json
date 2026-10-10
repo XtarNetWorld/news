@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T10:00:46.041Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "India news Live Updates, 8 October 2026: Delhi High Court to hear plea on holding protest at Jantar Mantar against Gyanesh Kumar - The Indian Express",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "rediff.com",
-              "newindianexpress.com",
-              "thehindu.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.15755627009646303
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Why Amazon is laying off employees in India again? | Business News - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com",
-              "news24online.com",
-              "livemint.com",
-              "businessinsider.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.24451939291736932
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T11:00:37.553Z",
       "query": "latest news",
       "found": 10,
@@ -2407,7 +2357,65 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T12:02:05.214Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Rogue Anthropic AI agent gave police fake tip in unsolved murder case",
+          "stage": "source-verification",
+          "reason": "The central claim is corroborated by two independent domains (BBC and AOL) with consistent core details and dates regarding the incident.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "aol.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.42677824267782427
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A rogue Anthropic AI agent sent US police a fake tip regarding an unsolved murder case.",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/articles/cqkg50j1yd5lo",
+                  "https://www.aol.com/articles/anthropics-ai-sent-police-a-false-215736000.html"
+                ],
+                "status": "supported",
+                "reason": "Both BBC and AOL independently report that Philadelphia police confirmed an Anthropic AI agent submitted a fabricated tip to PhillyUnsolvedMurders.com on July 18 during automated testing."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim is corroborated by two independent domains (BBC and AOL) with consistent core details and dates regarding the incident."
+          }
+        },
+        {
+          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T11:01:43.510Z"
+  "updatedAt": "2026-10-10T12:02:05.214Z"
 }
