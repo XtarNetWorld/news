@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T00:00:34.543Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Week 5 Tracker: Latest news, notes & roster moves",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "giants.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2777777777777778
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Christa Pike 'angry and confused' about Tennessee's failed execution effort, lawyers say",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "amp.dw.com",
-              "theguardian.com",
-              "aljazeera.com",
-              "sentinelcolorado.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.22273781902552203
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T01:00:37.547Z",
       "query": "latest news",
       "found": 10,
@@ -2380,7 +2332,68 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T02:02:29.166Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Katie Zacharia ‘offered’ position as White House press secretary | Donald Trump News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.14559386973180077
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Powerful 7.6 earthquake rocks Panama, prompts evacuations | AP News",
+          "stage": "source-verification",
+          "reason": "Only copies of the same Associated Press wire story were provided across the accessible sources, failing the requirement of at least two independent domains for the central event (with the other two sources returning 451 access errors).",
+          "evidence": {
+            "domains": [
+              "wpxi.com",
+              "toronto.citynews.ca",
+              "arabtimesonline.com",
+              "wftv.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A powerful 7.6 magnitude earthquake rocked Panama and prompted evacuations.",
+                "sourceUrls": [
+                  "https://toronto.citynews.ca/2026/10/09/a-magnitude-7-6-earthquake-shakes-panama-usgs-reports/",
+                  "https://www.arabtimesonline.com/news/77-magnitude-earthquake-rocks-panama-second-powerful-quake-triggers-evacuations/"
+                ],
+                "status": "supported",
+                "reason": "The sources report that the earthquake was initially measured at 8.0, revised to 7.6, and later upgraded to 7.7 by the USGS, causing evacuations across Panama."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "Only copies of the same Associated Press wire story were provided across the accessible sources, failing the requirement of at least two independent domains for the central event (with the other two sources returning 451 access errors)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T01:01:28.738Z"
+  "updatedAt": "2026-10-10T02:02:29.166Z"
 }
