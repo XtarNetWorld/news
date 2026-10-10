@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T05:00:32.549Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Mamdani criticized by fellow Democrats for statement mourning Oct. 7 attacks while condemning Israel - CBS News",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "news.ssbcrack.com",
-              "pbs.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.08883553421368548
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Trump downplays Iran deal as U.S. readies renewed strikes",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "cnbc.com",
-              "stratnewsglobal.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.09210526315789473
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T06:00:38.076Z",
       "query": "latest news",
       "found": 10,
@@ -2400,7 +2353,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-10T07:03:33.025Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Hurricane Isaias updates: Life-threatening storm surge, devastating winds forecasted - ABC News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "abcnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "newscord.org"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.23275862068965517
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T06:01:32.968Z"
+  "updatedAt": "2026-10-10T07:03:33.025Z"
 }
