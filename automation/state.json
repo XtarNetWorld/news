@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-08T22:00:36.719Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Thousands turn out to welcome weary USS Lincoln sailors after record-breaking deployment",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "deseret.com",
-              "bbc.com",
-              "aol.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.16166666666666665
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Trump Says U.S. Will Not Strike Iran Again Before Midterms as Military Draws Up New Plans - The New York Times",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "haaretz.com",
-              "time.com",
-              "iranintl.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.08928571428571429
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-08T23:00:30.984Z",
       "query": "latest news",
       "found": 10,
@@ -2480,7 +2430,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T00:01:48.905Z",
+      "query": "latest news",
+      "found": 8,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Associated Press News: Breaking News, Latest Headlines and Videos  | AP News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "abcnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Trump LIVE: Emergency Declaration Expected? Trump's Latest Speech LIVE | US News LIVE",
+          "stage": "source-verification",
+          "reason": "The central claim that an emergency declaration was expected during Trump's live speech is unsupported by the reporting in the provided sources and lacks corroboration from two independent domains.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "pbs.org",
+              "bbc.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.16895604395604397
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "An emergency declaration is expected during Trump's latest live speech",
+                "sourceUrls": [
+                  "https://www.pbs.org/newshour/politics/watch-live-trump-to-address-nation-from-white-house"
+                ],
+                "status": "unsupported",
+                "reason": "The sources do not substantiate that an emergency declaration was officially expected during the address. While Source 4 includes a linked video title stating a former White House attorney believes Trump is setting the stage to declare an emergency around the midterms, there is no reporting confirming an expected emergency declaration, nor is there confirmation across two independent domains."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim that an emergency declaration was expected during Trump's live speech is unsupported by the reporting in the provided sources and lacks corroboration from two independent domains."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-10T23:01:40.284Z"
+  "updatedAt": "2026-10-11T00:01:48.905Z"
 }
