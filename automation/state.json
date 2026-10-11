@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T00:00:33.613Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Fort Hood shooter's execution by firing squad will be livestreamed, Pentagon says",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "fox2detroit.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.054820415879017016
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Trump Says U.S. Will Not Strike Iran Again Before Midterms as Military Draws Up New Plans - The New York Times",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "amp.dw.com",
-              "aljazeera.com",
-              "iranintl.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.11746522411128284
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T01:00:39.438Z",
       "query": "latest news",
       "found": 10,
@@ -2498,7 +2450,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T02:02:01.282Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump says 'I think it's time for Ukraine to get a new president' as he blames Zelenskyy for diesel prices - The Economic Times",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com",
+              "scrippsnews.com",
+              "turkiyetoday.com",
+              "newscord.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.22098214285714285
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Trump says Ukraine needs a new president who will agree to end the war - Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.08314087759815242
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T01:01:52.872Z"
+  "updatedAt": "2026-10-11T02:02:01.282Z"
 }
