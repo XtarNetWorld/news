@@ -5,41 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T15:02:34.130Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump appoints committee to investigate statements by the Fed's Lisa Cook",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "cnbc.com",
-              "pluang.com",
-              "theglobeandmail.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.4090909090909091
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "EXCLUSIVE US imposes sanctions on International Criminal Court, hours after former judge wins Nobel",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T16:02:13.314Z",
       "query": "latest news",
       "found": 9,
@@ -2523,7 +2488,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T17:02:07.233Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "latimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.45471014492753625
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Pope Leo to have surgery to remove nodule on his lung",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "theguardian.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T16:02:47.536Z"
+  "updatedAt": "2026-10-11T17:02:07.233Z"
 }
