@@ -5,66 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T06:02:38.636Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Key takeaways from US Senate debate in Michigan between El-Sayed, Rogers | US Midterm Elections 2026 News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "The central event (the Michigan US Senate debate between Abdul El-Sayed and Mike Rogers) is covered by only one domain (aljazeera.com). A minimum of two independent domains is required to verify the central event.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "newscord.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.21847246891651864
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Abdul El-Sayed and Mike Rogers met for a televised US Senate debate in Michigan ahead of the 2026 midterm elections.",
-                "sourceUrls": [
-                  "https://www.aljazeera.com/news/2026/10/9/key-takeaways-from-us-senate-debate-in-michigan-between-el-sayed-rogers"
-                ],
-                "status": "supported",
-                "reason": "Supported by Source 1, but no other independent domain corroborates the debate event."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event (the Michigan US Senate debate between Abdul El-Sayed and Mike Rogers) is covered by only one domain (aljazeera.com). A minimum of two independent domains is required to verify the central event."
-          }
-        },
-        {
-          "title": "Vance, Rubio brush off questions about claim that Guilfoyle asked donor to pay $100K Amex bill - The Washington Post",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com",
-              "latimes.com",
-              "greenwichtime.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T07:01:42.846Z",
       "query": "latest news",
       "found": 50,
@@ -2490,7 +2430,55 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-11T08:03:42.483Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Tropical Storm Rachel to fuel dangerous flash flood threat in the Southwest - ABC News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "aol.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.28841607565011823
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "India’s ‘Cockroach’ Leaders Released as New Delhi Braces for More Protests",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "theguardian.com",
+              "thefinancialexpress.com.bd"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.5947867298578199
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T07:05:10.265Z"
+  "updatedAt": "2026-10-11T08:03:42.483Z"
 }
