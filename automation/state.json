@@ -5,32 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T20:03:23.715Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 1,
-      "rejected": 1,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Powerful quake hits Panama, damages homes; canal operations normal",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T21:01:50.251Z",
       "query": "latest news",
       "found": 50,
@@ -2513,7 +2487,69 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T22:02:23.746Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Six senators call for Trump to abandon Russian diesel plan | AP News",
+          "stage": "source-verification",
+          "reason": "There is an unresolved conflict between the available reporting sources regarding the number of senators participating in the statement (six according to AP/LA Times vs. seven according to CNN).",
+          "evidence": {
+            "domains": [
+              "greenwichtime.com",
+              "latimes.com",
+              "edition.cnn.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.18106312292358803
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Six senators called for the Trump administration to abandon its plan to purchase and import Russian diesel.",
+                "sourceUrls": [
+                  "https://www.latimes.com/world-nation/story/2026-10-11/bipartisan-group-of-senators-calls-for-trump-to-reverse-its-russian-diesel-plan",
+                  "https://edition.cnn.com/2026/10/11/politics/us-russia-diesel-deal-bipartisan-criticism"
+                ],
+                "status": "conflict",
+                "reason": "The Los Angeles Times (carrying an AP report) states that a bipartisan group of six senators (four Republicans, two Democrats) signed the statement, whereas CNN reports that seven senators released the statement."
+              }
+            ],
+            "conflicts": [
+              "Source 2 (AP/Los Angeles Times) reports that six senators signed the joint statement urging the administration to reverse course, whereas Source 3 (CNN) reports that seven senators released the statement."
+            ],
+            "copyRisk": "low",
+            "reason": "There is an unresolved conflict between the available reporting sources regarding the number of senators participating in the statement (six according to AP/LA Times vs. seven according to CNN)."
+          }
+        },
+        {
+          "title": "Some California beaches forced to close after 'unusually high' ocean water levels from Tropical Storm Rachel - ABC News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "abcnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T21:01:58.317Z"
+  "updatedAt": "2026-10-11T22:02:23.746Z"
 }
