@@ -5,82 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T19:02:30.934Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ro Khanna hears Fuyao workers claim unsafe conditions, union threats | Fox News",
-          "stage": "source-verification",
-          "reason": "The story fails the requirement of having at least two independent domains confirming the central event, as Source 2 is secondary aggregation solely derived from and attributing Source 1 (Fox News).",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "wnd.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.178335535006605
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Rep. Ro Khanna convened a roundtable where former Fuyao Glass America workers alleged hazardous working conditions and union-related issues.",
-                "sourceUrls": [
-                  "https://www.foxnews.com/politics/expect-deaths-factory-former-employees-describe-hazardous-conditions-chinese-owned-ohio-plant"
-                ],
-                "status": "supported",
-                "reason": "Source 1 details the event and quotes former employees directly. However, Source 2 is merely an aggregation citing Source 1 directly, failing the requirement for two independent domains."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The story fails the requirement of having at least two independent domains confirming the central event, as Source 2 is secondary aggregation solely derived from and attributing Source 1 (Fox News)."
-          }
-        },
-        {
-          "title": "Katie Zacharia will be the next White House press secretary",
-          "stage": "source-verification",
-          "reason": "The signal asserts as fact that Katie Zacharia will be the next White House press secretary, but the sources report that she has only been offered the job and has not yet accepted.",
-          "evidence": {
-            "domains": [
-              "time.com",
-              "edition.cnn.com",
-              "foxnews.com",
-              "bbc.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.24607329842931938
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Katie Zacharia will be the next White House press secretary",
-                "sourceUrls": [
-                  "https://time.com/article/2026/10/09/katie-zacharia-white-house-press-secretary-leavitt-trump/",
-                  "https://edition.cnn.com/2026/10/09/politics/katie-zacharia-white-house-press-secretary",
-                  "https://www.foxnews.com/politics/katie-zacharia-offered-role-white-house-press-secretary",
-                  "https://www.bbc.com/news/articles/c5rmy73zr0rro"
-                ],
-                "status": "unsupported",
-                "reason": "Sources confirm that Zacharia has been selected and offered the role of White House press secretary, but both Time and Fox News explicitly report that it remains unclear whether she has accepted the offer. Stating definitively that she will be the next press secretary is premature and unsupported."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal asserts as fact that Katie Zacharia will be the next White House press secretary, but the sources report that she has only been offered the job and has not yet accepted."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T20:03:23.715Z",
       "query": "latest news",
       "found": 10,
@@ -2528,7 +2452,68 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T21:01:58.317Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Six senators call for Trump to abandon Russian diesel plan | AP News",
+          "stage": "source-verification",
+          "reason": "All provided sources are identical syndications of a single Associated Press wire article. Per the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, failing the requirement for at least two independent domains covering the central event.",
+          "evidence": {
+            "domains": [
+              "thestar.com",
+              "ocregister.com",
+              "bostonglobe.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.4985507246376812
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A bipartisan group of six senators called for the Trump administration to immediately reverse course on a plan to import Russian diesel.",
+                "sourceUrls": [
+                  "https://www.thestar.com/news/world/united-states/six-senators-call-for-trump-administration-to-immediately-reverse-course-on-russian-diesel-plan/article_9fc2ac05-830a-513c-8916-20e8fcf2aef2.html",
+                  "https://www.ocregister.com/2026/10/11/six-senators-call-for-trump-administration-to-immediately-reverse-course-on-russian-diesel-plan/",
+                  "https://www.bostonglobe.com/2026/10/11/business/senators-reverse-russia-diesel-plan/"
+                ],
+                "status": "supported",
+                "reason": "The claim is supported by the text across the sources, but all three sources are syndicated republications of the same Associated Press wire dispatch."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "All provided sources are identical syndications of a single Associated Press wire article. Per the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, failing the requirement for at least two independent domains covering the central event."
+          }
+        },
+        {
+          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "latimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.25990491283676703
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T20:02:55.177Z"
+  "updatedAt": "2026-10-11T21:01:58.317Z"
 }
