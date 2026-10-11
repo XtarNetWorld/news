@@ -5,52 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T18:01:49.400Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Hurricane Isaias takes aim at Florida panhandle - ABC News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "wcjb.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.19638242894056848
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Ro Khanna hears Fuyao workers claim unsafe conditions, union threats | Fox News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "foxnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T19:02:30.934Z",
       "query": "latest news",
       "found": 10,
@@ -2543,7 +2497,38 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T20:02:55.177Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "DHS secretary defends livestream of Fort Hood shooter's execution, says he doesn't see an \"elevated risk\" to U.S. - CBS News",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "Six senators call for Trump to abandon Russian diesel plan | AP News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T19:02:26.299Z"
+  "updatedAt": "2026-10-11T20:02:55.177Z"
 }
