@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T07:01:42.846Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Abhishek Sharma eyes Suryakumar Yadav’s unique 1164-ball record during India vs West Indies 2nd T20I in Ranchi - Livemint",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "outlookindia.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Christa Pike's health has seen 'profound turnaround' in last three days, lawyers say - BBC",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "kttn.com",
-              "ladbible.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.36363636363636365
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T08:01:53.298Z",
       "query": "latest news",
       "found": 10,
@@ -2478,7 +2431,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T09:02:00.196Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "World condemns deadly Houthi attack on Saudi Arabia’s Riyadh airport | Houthis News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "jpost.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.26150121065375304
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "India’s ‘Cockroach’ Leaders Released as New Delhi Braces for More Protests - The New York Times",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "bbc.co.uk",
+              "katherinetimes.com.au",
+              "bbc.com",
+              "cfr.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.33754512635379064
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T08:03:42.483Z"
+  "updatedAt": "2026-10-11T09:02:00.196Z"
 }
