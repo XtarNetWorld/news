@@ -5,39 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T11:01:42.680Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "ICE agent shoots man in car with five-year-old child in New York: Mayor | Civil Rights News | Al Jazeera",
-          "stage": "generation",
-          "reason": "Generation failed"
-        },
-        {
-          "title": "Key takeaways from US Senate debate in Michigan between El-Sayed, Rogers | US Midterm Elections 2026 News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.3509272467902996
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T12:02:31.067Z",
       "query": "latest news",
       "found": 10,
@@ -2482,7 +2449,48 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T13:04:59.992Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ukraine steps up strikes on Russia’s tech infrastructure, damaging third data center in 4 days | AP News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "dailysabah.com",
+              "ca.finance.yahoo.com",
+              "bastillepost.com",
+              "criticalthreats.org",
+              "bbc.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.7940379403794038
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Pope Leo says he will undergo surgery to remove a nodule on his lung",
+          "stage": "article-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "verifier": {
+            "decision": "reject",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T12:02:02.481Z"
+  "updatedAt": "2026-10-11T13:04:59.992Z"
 }
