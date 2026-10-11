@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T03:00:34.937Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Exclusive: House Democrats ask Kimberly Guilfoyle for records related to alleged pay-to-pay scheme | PBS News",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "pbs.org",
-              "newrepublic.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.12274959083469722
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "ICE Agent Shoots Man in New York City - The New York Times",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "gothamist.com",
-              "theguardian.com",
-              "cbsnews.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.20465890183028287
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T04:00:32.181Z",
       "query": "latest news",
       "found": 10,
@@ -2499,7 +2451,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T05:03:41.840Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump says 'I think it's time for Ukraine to get a new president' as he blames Zelenskyy for diesel prices - The Economic Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m26.763879217s.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com",
+              "adn.com",
+              "scrippsnews.com",
+              "aljazeera.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.5277777777777778
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m26.763879217s."
+          }
+        },
+        {
+          "title": "Man Utd transfer news, rumours and gossip: Live updates and latest on deals, signings, loans and contracts - Sky Sports",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "skysports.com",
+              "readcrystalpalace.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.9833333333333333
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T04:01:23.520Z"
+  "updatedAt": "2026-10-11T05:03:41.840Z"
 }
