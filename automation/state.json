@@ -5,52 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T04:00:32.181Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Key takeaways from US Senate debate in Michigan between El-Sayed, Rogers | US Midterm Elections 2026 News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "politifact.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.34602649006622516
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)."
-          }
-        },
-        {
-          "title": "Kimberly Guilfoyle associate says when she asked him for $100K, it was \"quid pro quo\" - CBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T05:00:32.691Z",
       "query": "latest news",
       "found": 10,
@@ -2500,7 +2454,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T06:01:32.427Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "World condemns deadly Houthi attack on Saudi Arabia’s Riyadh airport | Houthis News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m29.919043518s.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "globalvillagespace.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.2613065326633166
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m29.919043518s."
+          }
+        },
+        {
+          "title": "US justice department investigating TV networks over Trump pool coverage",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m27.572375508s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "bbc.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1657142857142857
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m27.572375508s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T05:03:41.840Z"
+  "updatedAt": "2026-10-11T06:01:32.427Z"
 }
