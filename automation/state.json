@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T14:02:18.809Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Former ICC judge Navi Pillay wins 2026 Nobel Peace Prize",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "al-monitor.com",
-              "thenewstribune.com",
-              "time.com",
-              "cbsnews.com",
-              "npr.org"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.810126582278481
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Poll: Democrat Troy Jackson narrowly leads Susan Collins in Maine Senate race - The Washington Post",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com",
-              "newsweek.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.053738317757009345
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T15:02:34.130Z",
       "query": "latest news",
       "found": 10,
@@ -2509,7 +2459,71 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T16:02:47.536Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ukraine steps up strikes on Russia’s tech infrastructure, damaging third data center in 4 days | AP News",
+          "stage": "source-verification",
+          "reason": "The central event is corroborated by multiple independent domains (Euronews, France 24/AFP, and UNN). All factual claims regarding the strikes on Russia's tech infrastructure and the damage to three data centers within four days are fully supported.",
+          "evidence": {
+            "domains": [
+              "vietnam.vn",
+              "euronews.com",
+              "france24.com",
+              "unn.ua",
+              "rfi.fr"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.5418326693227091
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Ukrainian drone strikes damaged a third Russian data center within four days as part of attacks targeting Russia's tech infrastructure.",
+                "sourceUrls": [
+                  "https://www.vietnam.vn/en/uav-ukraine-pha-huy-trung-tam-du-lieu-thu-ba-cua-yandex-trong-vong-4-ngay",
+                  "https://www.euronews.com/2026/10/11/russian-army-strikes-sloviansk-and-kyiv-as-ukrainian-drones-hit-third-yandex-data-centre",
+                  "https://www.france24.com/en/live-news/20261011-russian-yandex-data-centre-operations-disrupted-after-drone-strike",
+                  "https://unn.ua/en/news/three-out-of-three-ukrainian-fp-1-drones-hit-the-last-supercomputer-of-the-yandex-service-in-russia"
+                ],
+                "status": "supported",
+                "reason": "Multiple independent sources confirm that Ukrainian drone strikes struck Yandex's data center in Vladimir on October 11, following strikes on data centers in Ryazan on October 8 and Kaluga on October 9, marking three data centers targeted and damaged across a four-day span."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event is corroborated by multiple independent domains (Euronews, France 24/AFP, and UNN). All factual claims regarding the strikes on Russia's tech infrastructure and the damage to three data centers within four days are fully supported."
+          }
+        },
+        {
+          "title": "Trump claims Russia and Ukraine agree to energy ceasefire",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "jpost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T15:02:47.595Z"
+  "updatedAt": "2026-10-11T16:02:47.536Z"
 }
