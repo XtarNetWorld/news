@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T21:01:50.251Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Arsenal XI vs Leeds: Confirmed team news, predicted lineup, injury latest for Premier League - Yahoo Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "sports.yahoo.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.23732718894009217
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "The Nobel Peace Prize was awarded Friday to the South African jurist Navanethem “Navi” Pillay. - NBC News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m9.748619424s.",
-          "evidence": {
-            "domains": [
-              "democracynow.org",
-              "time.com",
-              "spectrumlocalnews.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2065378900445765
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m9.748619424s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T22:01:48.752Z",
       "query": "latest news",
       "found": 9,
@@ -2549,7 +2502,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-11T23:01:40.236Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Hurricane damage photos show flooding, debris and cleanup efforts | Fox News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m24.999975892s.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "fox6now.com",
+              "capitolnewsillinois.com",
+              "kpq.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.11031175059952038
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m24.999975892s."
+          }
+        },
+        {
+          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m19.760845768s.",
+          "evidence": {
+            "domains": [
+              "latimes.com",
+              "weatherwest.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.2445054945054945
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m19.760845768s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T22:02:23.746Z"
+  "updatedAt": "2026-10-11T23:01:40.236Z"
 }
