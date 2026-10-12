@@ -5,39 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T03:01:54.762Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Vance expresses doubts about Pentagon plan to livestream execution | AP News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "timesherald.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Trump hits International Criminal Court with new U.S. sanctions - The Washington Post",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T04:01:21.884Z",
       "query": "latest news",
       "found": 10,
@@ -2543,7 +2510,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T05:02:01.090Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Judge orders Trump administration to cancel taxpayer-funded TV ads | AP News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "deadline.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Takeaways from first South Carolina Senate debate between Darline Graham, Annie Andrews - The Washington Post",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m58.893574337s.",
+          "evidence": {
+            "domains": [
+              "postandcourier.com",
+              "abcnews4.com",
+              "edition.cnn.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.14705882352941177
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m58.893574337s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T04:01:34.322Z"
+  "updatedAt": "2026-10-12T05:02:01.090Z"
 }
