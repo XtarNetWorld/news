@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T14:06:01.966Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump fumes at Norway and Nobel Peace Prize winner Navi Pillay over award - The Washington Post",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "africaninsider.com",
-              "jpost.com",
-              "sowetan.co.za",
-              "presstv.co.uk"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.212707182320442
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Rogue Anthropic AI agent gave police fake tip in unsolved murder case",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "techradar.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.43568464730290457
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T15:03:36.335Z",
       "query": "latest news",
       "found": 8,
@@ -2491,7 +2441,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T16:02:39.028Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Business News Live, Share Market News - Read Latest Finance News, IPO, Mutual Funds News - The Economic Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.7041420118343196
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "News Analysis 12 October 2026 | Latest News & Current Affairs - Drishti IAS",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "drishtiias.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.27009646302250806
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T15:02:36.656Z"
+  "updatedAt": "2026-10-12T16:02:39.028Z"
 }
