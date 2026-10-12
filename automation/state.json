@@ -5,41 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T11:01:43.510Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
-          "stage": "generation",
-          "reason": "Generation failed"
-        },
-        {
-          "title": "ICE shooting of man in New York with child in his car sparks outrage | PBS News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "pbs.org",
-              "aljazeera.com",
-              "fox5ny.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.4768856447688564
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T12:02:05.214Z",
       "query": "latest news",
       "found": 10,
@@ -2514,7 +2479,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T13:04:03.861Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Delhi Protest News Live Updates: Rahul Gandhi’s march of thousands stopped before Supreme Court, roads being cleared - The Indian Express",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "bhaskarenglish.in",
+              "web.matrixnews.in"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.08673469387755102
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "School Assembly News Headlines, October 13, 2026: Check national, international, business, sports updates - The Economic Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.46
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T12:02:33.616Z"
+  "updatedAt": "2026-10-12T13:04:03.861Z"
 }
