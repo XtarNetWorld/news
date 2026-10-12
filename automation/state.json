@@ -5,63 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T09:05:09.861Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "cbsnews.com",
-              "newscord.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.23410404624277456
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Live Updates: Protesters Converge on New Delhi Over Cuts to India’s Voter Roll - The New York Times",
-          "stage": "source-verification",
-          "reason": "The provided sources do not contain any information supporting the signal.",
-          "evidence": {
-            "domains": [
-              "dailypioneer.com",
-              "nyupress.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Protesters converged on New Delhi over cuts to India's voter roll as reported in live updates by The New York Times.",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "None of the provided sources mention protests in New Delhi over voter roll cuts or The New York Times live updates; Source 1 is raw/unreadable PDF binary text and Source 2 is a book publisher's seasonal catalog."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The provided sources do not contain any information supporting the signal."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T10:02:59.011Z",
       "query": "latest news",
       "found": 10,
@@ -2531,7 +2474,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T11:06:23.420Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Will Tennessee try to execute Christa Pike again? Experts weigh in | CNN",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com",
+              "bbc.com",
+              "news.northeastern.edu"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.16666666666666666
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "Iran War Updates: U.S. embassy urges \"extreme caution\" using Saudi airports as Houthi attacks escalate",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "newsweek.com",
+              "foxnews.com",
+              "bluewin.ch"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.2630718954248366
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T10:04:12.675Z"
+  "updatedAt": "2026-10-12T11:06:23.420Z"
 }
