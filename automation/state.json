@@ -5,71 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T00:02:58.299Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Arsenal XI vs Leeds: Confirmed team news, predicted lineup, injury latest for Premier League - Yahoo Sports",
-          "stage": "source-verification",
-          "reason": "There are unresolvable factual conflicts between reporting sources regarding the kick-off time, the nature of player injuries, and player availability statuses.",
-          "evidence": {
-            "domains": [
-              "sports.yahoo.com",
-              "uk.sports.yahoo.com",
-              "thepressingzone.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.32452830188679244
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Arsenal will make a late fitness decision on Kai Havertz ahead of their Premier League match against Leeds United on Saturday, October 10, 2026 at 12:30pm BST.",
-                "sourceUrls": [
-                  "https://sports.yahoo.com/articles/arsenal-xi-vs-leeds-confirmed-150727081.html",
-                  "https://www.thepressingzone.com/arsenal-vs-leeds-united-prediction-2026/"
-                ],
-                "status": "conflict",
-                "reason": "Source 1 reports Havertz is a doubt with a late decision to be made and kick-off is 12:30pm BST, whereas Source 3 lists Havertz as a confirmed absence expected to miss several weeks and kick-off as 15:00 BST."
-              }
-            ],
-            "conflicts": [
-              "Source 1 lists kick-off at 12:30pm BST, while Source 3 lists kick-off at 15:00 BST.",
-              "Source 1 reports Kai Havertz as an uncertain doubt facing a late fitness test, whereas Source 3 lists him as a confirmed absence ruled out for several weeks.",
-              "Source 1 states Declan Rice missed England duty purely for load management, while Source 3 claims he is nursing a thigh issue."
-            ],
-            "copyRisk": "low",
-            "reason": "There are unresolvable factual conflicts between reporting sources regarding the kick-off time, the nature of player injuries, and player availability statuses."
-          }
-        },
-        {
-          "title": "JJ Gabriel: Manchester United could be forced to accept small fee for wantaway teen - Paper Talk | Football News - Sky Sports",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h57m1.699730176s.",
-          "evidence": {
-            "domains": [
-              "skysports.com",
-              "manchestereveningnews.co.uk"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.10955056179775281
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h57m1.699730176s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T01:01:28.738Z",
       "query": "latest news",
       "found": 10,
@@ -2549,7 +2484,78 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T02:01:45.554Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Khamenei claims US strikes failed as Army releases Iran Artesh guide | Fox News",
+          "stage": "source-verification",
+          "reason": "The central event of Khamenei claiming US strikes failed is only reported by a single domain (Fox News), failing the requirement of at least two independent domains for the central event.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "jpost.com",
+              "defensenews.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.6
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Mojtaba Khamenei claimed US and Israeli strikes failed to undermine Iran's domestic security forces",
+                "sourceUrls": [
+                  "https://www.foxnews.com/world/mojtaba-khamenei-defies-malicious-attacks-us-army-zeroes-irans-350000-troops"
+                ],
+                "status": "supported",
+                "reason": "Reported by Fox News, but lacks a second independent domain reporting this statement."
+              },
+              {
+                "claim": "The US Army released a recognition guide on the Iranian Artesh",
+                "sourceUrls": [
+                  "https://www.foxnews.com/world/mojtaba-khamenei-defies-malicious-attacks-us-army-zeroes-irans-350000-troops",
+                  "https://www.defensenews.com/news/your-military/2026/10/09/official-poster-depicts-the-us-armys-newest-threat-the-iranian-soldier/"
+                ],
+                "status": "supported",
+                "reason": "Supported by both Fox News and Defense News."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event of Khamenei claiming US strikes failed is only reported by a single domain (Fox News), failing the requirement of at least two independent domains for the central event."
+          }
+        },
+        {
+          "title": "Trump faces growing backlash over plans to import diesel from Russia",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m14.439569113s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "newscord.org",
+              "aol.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.5691699604743083
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m14.439569113s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T01:01:33.660Z"
+  "updatedAt": "2026-10-12T02:01:45.554Z"
 }
