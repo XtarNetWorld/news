@@ -5,43 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T08:02:24.388Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
-          "stage": "article-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Live Updates: Protesters Converge on New Delhi Over Cuts to India’s Voter Roll - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "dw.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T09:05:09.861Z",
       "query": "latest news",
       "found": 10,
@@ -2535,7 +2498,40 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T10:04:12.675Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Jantar Mantar off limits, these 3 venues are now designated protest sites of Delhi | India News - Hindustan Times",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "Latest Hockey News and Updates - Hockey India",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "hockeyindia.org"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.375609756097561
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T09:03:04.908Z"
+  "updatedAt": "2026-10-12T10:04:12.675Z"
 }
