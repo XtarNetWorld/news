@@ -5,65 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T23:02:24.942Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Katie Zacharia ‘offered’ position as White House press secretary | Donald Trump News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.14201183431952663
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Powerful 7.6 earthquake rocks Panama, prompts evacuations | AP News",
-          "stage": "source-verification",
-          "reason": "Only one accessible domain (arabtimesonline.com) reported on the central event, failing the requirement of at least two independent domains.",
-          "evidence": {
-            "domains": [
-              "wpxi.com",
-              "actionnewsjax.com",
-              "arabtimesonline.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.9375
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "A powerful earthquake rocked Panama and prompted evacuations.",
-                "sourceUrls": [
-                  "https://www.arabtimesonline.com/news/77-magnitude-earthquake-rocks-panama-second-powerful-quake-triggers-evacuations/"
-                ],
-                "status": "supported",
-                "reason": "Source 3 reports the earthquake and evacuations, but Sources 1 and 2 are error pages and do not provide usable text."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "Only one accessible domain (arabtimesonline.com) reported on the central event, failing the requirement of at least two independent domains."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T00:02:58.299Z",
       "query": "latest news",
       "found": 50,
@@ -2557,7 +2498,58 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T01:01:33.660Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump faces growing backlash over plans to import diesel from Russia",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.323483879s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "newscord.org",
+              "aol.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.5691699604743083
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.323483879s."
+          }
+        },
+        {
+          "title": "Hurricane damage photos show flooding, debris and cleanup efforts | Fox News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m26.3350412s.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "fox5atlanta.com",
+              "fox6now.com",
+              "komonews.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.1021671826625387
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m26.3350412s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T00:01:45.772Z"
+  "updatedAt": "2026-10-12T01:01:33.660Z"
 }
