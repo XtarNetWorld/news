@@ -5,62 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T15:03:36.335Z",
-      "query": "latest news",
-      "found": 8,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Hurricane Isaias live updates: warning of 'spinoff tornadoes ...",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "theguardian.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.34234234234234234
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "TRUMP LIVE: Trump Says “The War Is Completely Over” | Breaking News & Latest Update | WORLD NEWS",
-          "stage": "source-verification",
-          "reason": "The core claim and quote in the signal ('The War Is Completely Over') are unsupported and invented, finding no basis in the provided text.",
-          "evidence": {
-            "domains": [
-              "news4jax.com",
-              "hindustantimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1130952380952381
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Donald Trump stated that 'The War Is Completely Over'",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "Neither provided source contains this statement or quote from Donald Trump; in fact, the sources describe ongoing conflicts in Iran and Ukraine with active hostilities and stalled diplomatic efforts."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The core claim and quote in the signal ('The War Is Completely Over') are unsupported and invented, finding no basis in the provided text."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T16:05:42.609Z",
       "query": "latest news",
       "found": 10,
@@ -2486,7 +2430,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T17:01:50.230Z",
+      "query": "latest news",
+      "found": 8,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Are Dalton and Sako Still Together in 2026? Latest News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "salinecountyks.gov"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "BREAKING US NEWS: Trump’s Big Speech | Hegseth’s Future Revealed? | HEGSETH FACING FIRING?",
+          "stage": "source-verification",
+          "reason": "The signal makes speculative and unsubstantiated claims framing Trump's speech as revealing Hegseth's firing or future, which is contradicted by the source text stating Trump's speech addressed the Iran war and that there is no indication Trump intends to dismiss Hegseth.",
+          "evidence": {
+            "domains": [
+              "thedailybeast.com",
+              "nypost.com",
+              "independent.co.uk"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.11061285500747384
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Trump's speech revealed Pete Hegseth's future or announced that Hegseth is facing firing",
+                "sourceUrls": [
+                  "https://nypost.com/2026/04/03/us-news/hegseths-paranoia-over-being-replaced-explains-purge-of-top-general-as-ally-emerges-for-army-secretarys-role/",
+                  "https://www.independent.co.uk/news/world/americas/us-politics/pete-hegseth-trump-pentagon-job-security-b2969566.html"
+                ],
+                "status": "unsupported",
+                "reason": "Trump's primetime speech outlined his vision for swiftly ending the war with Iran, not Hegseth's future. Furthermore, sources explicitly state there is no indication Trump is prepared to dismiss Hegseth, and reporting indicates Hegseth has secured his standing and consolidated control."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal makes speculative and unsubstantiated claims framing Trump's speech as revealing Hegseth's firing or future, which is contradicted by the source text stating Trump's speech addressed the Iran war and that there is no indication Trump intends to dismiss Hegseth."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T16:02:39.028Z"
+  "updatedAt": "2026-10-12T17:01:50.230Z"
 }
