@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T20:02:35.190Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Pope Leo declares death penalty 'inadmissible' as his native US plans to livestream execution | AP News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m31.219943111s.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "cbsnews.com",
-              "newsweek.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.32653061224489793
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m31.219943111s."
-          }
-        },
-        {
-          "title": "What has Trump’s Board of Peace achieved in a year since Gaza ‘ceasefire’? | Israel-Palestine conflict News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m24.800108494s.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "theautomaticearth.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h57m24.800108494s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T21:03:55.498Z",
       "query": "latest news",
       "found": 10,
@@ -2532,7 +2484,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T22:04:09.256Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "RJ Mitte dies at 34: When 'Breaking Bad' star spoke about living with cerebral palsy | Hindustan Times - Hindustan Times",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "variety.com",
+              "latimes.com",
+              "edition.cnn.com",
+              "cbsnews.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.15178571428571427
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "News Analysis 12 October 2026 | Latest News & Current Affairs - Drishti IAS",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "drishtiias.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.27009646302250806
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T21:02:05.249Z"
+  "updatedAt": "2026-10-12T22:04:09.256Z"
 }
