@@ -5,49 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-09T22:01:48.752Z",
-      "query": "latest news",
-      "found": 9,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "EXCLUSIVE: US imposes sanctions on ICC hours after former judge wins Nobel Peace Prize",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "middleeasteye.net"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "High surf floods Newport Beach as Tropical Storm Rachel-driven waves pound coast | KTLA",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-09T23:02:24.942Z",
       "query": "latest news",
       "found": 10,
@@ -2551,7 +2508,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T00:01:45.772Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Khamenei claims US strikes failed as Army releases Iran Artesh guide | Fox News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m17.190342882s.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "aljazeera.com",
+              "ncr-iran.org"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.12393681652490887
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m17.190342882s."
+          }
+        },
+        {
+          "title": "Six senators call for Trump to abandon Russian diesel plan | AP News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m14.224249049s.",
+          "evidence": {
+            "domains": [
+              "aroundprague.cz",
+              "sundayguardianlive.com",
+              "newscord.org"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.1746880570409982
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m14.224249049s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-11T23:01:40.236Z"
+  "updatedAt": "2026-10-12T00:01:45.772Z"
 }
