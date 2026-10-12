@@ -5,76 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T10:02:59.011Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico - CBS News",
-          "stage": "source-verification",
-          "reason": "The signal matches the exact headline of the CBS News report and is corroborated by a second independent domain (NewsCord). Copy risk is high due to verbatim headline matching.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com",
-              "newscord.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.23893805309734514
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Three men were found guilty of killing an American and two Australian brothers on a surfing trip in Mexico.",
-                "sourceUrls": [
-                  "https://www.cbsnews.com/news/men-guilty-mexico-australian-american-surfer-murders/",
-                  "https://newscord.org/article/mexican-judge-convicts-jess-gerardo-garcia-el-kekas-of-killing-australian-brothe--Story_20261009_3menfoundguiltyofkil692866f6"
-                ],
-                "status": "supported",
-                "reason": "Both sources confirm that a judge in Ensenada, Baja California found three men guilty of the murders of Australian brothers Callum and Jake Robinson and American Jack Carter Rhoad during a surfing trip."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "The signal matches the exact headline of the CBS News report and is corroborated by a second independent domain (NewsCord). Copy risk is high due to verbatim headline matching."
-          }
-        },
-        {
-          "title": "Winston Lee, Accused in Cornell Sexual Assault Case, Is Related to Former South Korean Prime Minister",
-          "stage": "source-verification",
-          "reason": "The signal's claims are completely unsupported by the provided source texts.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "ntd.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.032520325203252036
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Winston Lee is accused in the Cornell sexual assault case and is related to a former South Korean Prime Minister",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "Neither source mentions Winston Lee or any relationship between an individual accused in a Cornell case and a former South Korean Prime Minister."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal's claims are completely unsupported by the provided source texts."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T11:01:43.510Z",
       "query": "latest news",
       "found": 10,
@@ -2524,7 +2454,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-12T12:02:33.616Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Duo Share Nobel in Economics for Work on Steering Through Booms and Busts",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Top oil executives dropped from event schedule after Riyadh attacks",
+          "stage": "source-verification",
+          "reason": "All sources reporting the central claim (Internazionale, The Independent, Middle East Eye) are syndications or direct attributions of a single Reuters wire report. Under the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, and at least two independent domains are required.",
+          "evidence": {
+            "domains": [
+              "internazionale.it",
+              "independent.co.uk",
+              "middleeasteye.net",
+              "globalbankingandfinance.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.23756906077348067
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Top oil executives were dropped from the WPC Energy Congress event schedule following attacks on Riyadh.",
+                "sourceUrls": [
+                  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/12/top-oil-executives-dropped-from-event-schedule-after-riydah-attacks",
+                  "https://www.independent.co.uk/news/world/middle-east/riyadh-airport-attack-wpc-energy-congress-b3065082.html",
+                  "https://www.middleeasteye.net/live-blog/live-blog-update/top-oil-executives-dropped-event-schedule-after-riyadh-attacks"
+                ],
+                "status": "supported",
+                "reason": "The claim appears across multiple articles, but all of them directly syndicate or cite a single Reuters wire report."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "All sources reporting the central claim (Internazionale, The Independent, Middle East Eye) are syndications or direct attributions of a single Reuters wire report. Under the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, and at least two independent domains are required."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T11:06:23.420Z"
+  "updatedAt": "2026-10-12T12:02:33.616Z"
 }
