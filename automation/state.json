@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T18:04:09.124Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Why are Houthi missiles breaking through Saudi Arabia’s air defences? | Drone Strikes News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.23636363636363636
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "latimes.com",
-              "weatherwest.com",
-              "yaleclimateconnections.org"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1777059773828756
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T19:02:26.299Z",
       "query": "latest news",
       "found": 6,
@@ -2440,7 +2393,65 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-13T22:04:00.205Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Enter the Zachbot: Trump’s new press secretary malfunctions on podium debut",
+          "stage": "source-verification",
+          "reason": "The signal text is an exact verbatim copy of the headline from The Guardian article.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "aol.com",
+              "politicalwire.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.10049423393739704
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump's new White House press secretary, Katie Zacharia, made a halting and awkward debut at the podium, drawing widespread commentary and being dubbed 'the Zachbot'.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/13/katie-zacharia-trump-press-briefing",
+                  "https://www.aol.com/articles/fox-news-finds-rosy-spin-181105000.html"
+                ],
+                "status": "supported",
+                "reason": "Both The Guardian and AOL (syndicating HuffPost) report on Katie Zacharia's clumsy 14-minute maiden press briefing on October 13, 2026, which featured stiff delivery and abrupt departure after three questions."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "The signal text is an exact verbatim copy of the headline from The Guardian article."
+          }
+        },
+        {
+          "title": "'A gift to our adversary': Bipartisan group of senators slam Trump's Russian diesel deal - Live Updates - POLITICO",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T21:04:38.100Z"
+  "updatedAt": "2026-10-13T22:04:00.205Z"
 }
