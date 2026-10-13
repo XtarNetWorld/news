@@ -5,51 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T23:01:40.284Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump says Ukraine needs a new president who will agree to end the war | Russia-Ukraine war News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.18926553672316385
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "House Republican, invoking Reagan, moves to block Trump's Russia oil deal",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "wxxinews.org"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T00:01:48.905Z",
       "query": "latest news",
       "found": 8,
@@ -2534,7 +2489,41 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T02:02:05.903Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "WATCH LIVE: Trump speaks at midterm rally in Youngstown, Ohio | PBS News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m4.072278922s.",
+          "evidence": {
+            "domains": [
+              "pbs.org",
+              "whio.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.00625
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m4.072278922s."
+          }
+        },
+        {
+          "title": "1 dead, others hurt at Six Flags Over Georgia as guests say man fell from coaster",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T01:01:50.614Z"
+  "updatedAt": "2026-10-13T02:02:05.903Z"
 }
