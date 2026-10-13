@@ -5,51 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T11:01:53.521Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "World condemns deadly Houthi attack on Saudi Arabia’s Riyadh airport | Houthis News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2725490196078431
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "India’s ‘Cockroach’ Leaders Released as New Delhi Braces for More Protests - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "bbc.co.uk"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T12:02:02.481Z",
       "query": "latest news",
       "found": 10,
@@ -2483,7 +2438,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T15:02:43.985Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "US Iran War Live Updates: Saudi-led coalition strikes oil facilities in Yemen’s capital Sanaa, Houthi-backed broadcaster says - The Times of India",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "dw.com",
+              "aljazeera.com",
+              "timesofindia.indiatimes.com",
+              "click2houston.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.20272572402044292
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Business News Live, Share Market News - Read Latest Finance News, IPO, Mutual Funds News - The Economic Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T14:02:59.506Z"
+  "updatedAt": "2026-10-13T15:02:43.985Z"
 }
