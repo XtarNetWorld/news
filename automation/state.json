@@ -5,47 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T13:04:59.992Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ukraine steps up strikes on Russia’s tech infrastructure, damaging third data center in 4 days | AP News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "dailysabah.com",
-              "ca.finance.yahoo.com",
-              "bastillepost.com",
-              "criticalthreats.org",
-              "bbc.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.7940379403794038
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Pope Leo says he will undergo surgery to remove a nodule on his lung",
-          "stage": "article-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T14:06:08.914Z",
       "query": "latest news",
       "found": 10,
@@ -2485,7 +2444,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T17:03:05.329Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kimberly Guilfoyle has been asked to resign as ambassador to Greece, White House says - CBS News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "cbs58.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.15037593984962405
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Is Zelensky right to say data centre strikes have taken down Russian bots?",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "euronews.com",
+              "indy100.com",
+              "brusselssignal.eu"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.532258064516129
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T16:02:55.195Z"
+  "updatedAt": "2026-10-13T17:03:05.329Z"
 }
