@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T08:03:42.483Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Tropical Storm Rachel to fuel dangerous flash flood threat in the Southwest - ABC News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "aol.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.28841607565011823
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "India’s ‘Cockroach’ Leaders Released as New Delhi Braces for More Protests",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "theguardian.com",
-              "thefinancialexpress.com.bd"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.5947867298578199
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T09:02:00.196Z",
       "query": "latest news",
       "found": 10,
@@ -2487,7 +2439,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T11:02:32.768Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "hindustantimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.9331742243436754
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "India news Live Updates, 13 October 2026: Jairam Ramesh asks if Centre is preparing for U-turn on UPI MDR - The Indian Express",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "global-agriculture.com",
+              "english.mathrubhumi.com",
+              "etvbharat.com",
+              "techcrunch.com",
+              "bbc.com",
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 6,
+            "maxTextOverlap": 0.25
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T10:02:40.111Z"
+  "updatedAt": "2026-10-13T11:02:32.768Z"
 }
