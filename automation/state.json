@@ -5,52 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T22:01:48.804Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Attack on Saudi airport leaves 12 dead, dozens wounded, sources say",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m14.491987248s.",
-          "evidence": {
-            "domains": [
-              "newscord.org",
-              "aroundprague.cz"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.17147192716236723
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m14.491987248s."
-          }
-        },
-        {
-          "title": "Four dead and thousands without power after Hurricane Isaias lashes US",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "bbc.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2533589251439539
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T23:01:40.284Z",
       "query": "latest news",
       "found": 10,
@@ -2529,7 +2483,58 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T01:01:50.614Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Jantar Mantar out as protest hub; 3 new venues named - The Times of India",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m12.887764484s.",
+          "evidence": {
+            "domains": [
+              "timesofindia.indiatimes.com",
+              "tribuneindia.com",
+              "deccanherald.com",
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.5560344827586207
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m12.887764484s."
+          }
+        },
+        {
+          "title": "RJ Mitte dies at 34: What happened to the Breaking Bad star who played Walter White Jr. - The Economic Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m9.377294125s.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com",
+              "hindustantimes.com",
+              "unn.ua",
+              "deadline.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.2183206106870229
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m9.377294125s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T00:01:57.374Z"
+  "updatedAt": "2026-10-13T01:01:50.614Z"
 }
