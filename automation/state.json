@@ -5,72 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T15:02:47.595Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ukraine steps up strikes on Russia’s tech infrastructure, damaging third data center in 4 days | AP News",
-          "stage": "source-verification",
-          "reason": "The central event is reported by the provided sources, but the attribution to AP News is completely absent and unsupported in the source texts.",
-          "evidence": {
-            "domains": [
-              "tech-insider.org",
-              "ground.news"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.14385964912280702
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Ukraine stepped up strikes on Russia's tech infrastructure, damaging a third data center in 4 days.",
-                "sourceUrls": [
-                  "https://tech-insider.org/ukraine-strikes-yandex-third-data-center-4-days-2026/",
-                  "https://ground.news/article/07aadd0c-05cb-42de-8c33-39ef865fc482"
-                ],
-                "status": "supported",
-                "reason": "Both sources confirm that on October 11, 2026, a Ukrainian drone strike damaged a Yandex data center in Vladimir, marking the third data center hit in four days following strikes on Sasovo (October 8) and Kaluga (October 9)."
-              },
-              {
-                "claim": "The report originates from or is confirmed by AP News.",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "Neither provided source mentions or includes reporting from AP News."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event is reported by the provided sources, but the attribution to AP News is completely absent and unsupported in the source texts."
-          }
-        },
-        {
-          "title": "Abdul El-Sayed says Democrats must ‘win by massive numbers’ to fend off GOP election denial",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "newrepublic.com",
-              "pbs.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.13333333333333333
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T16:02:47.536Z",
       "query": "latest news",
       "found": 10,
@@ -2496,7 +2430,46 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T19:05:42.128Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump fires ambassador to Greece Guilfoyle after reports of misconduct",
+          "stage": "article-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "verifier": {
+            "decision": "reject",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Cornell Bans Fraternity Parties and Adds Sexual Assault Investigators",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "uk.news.yahoo.com",
+              "independent.co.uk",
+              "bbc.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.7827715355805244
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T18:03:31.753Z"
+  "updatedAt": "2026-10-13T19:05:42.128Z"
 }
