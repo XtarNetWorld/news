@@ -5,53 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T14:06:08.914Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ukraine steps up strikes on Russia’s tech infrastructure, damaging third data center in 4 days | AP News",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "ca.finance.yahoo.com",
-              "tech-insider.org",
-              "dailysabah.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.7008797653958945
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "DOJ investigates 5 TV networks over White House coverage boycott",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "variety.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T15:02:47.595Z",
       "query": "latest news",
       "found": 10,
@@ -2494,7 +2447,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T18:03:31.753Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kimberly Guilfoyle has been asked to resign as ambassador to Greece, White House says - CBS News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "greenwichtime.com",
+              "washingtonpost.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.1222707423580786
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Trump’s new White House press secretary Katie Zacharia keeps first briefing short",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "deadline.com",
+              "edition.cnn.com",
+              "jpost.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.13050847457627118
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T17:03:05.329Z"
+  "updatedAt": "2026-10-13T18:03:31.753Z"
 }
