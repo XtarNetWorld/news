@@ -5,51 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T17:02:07.233Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "latimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.45471014492753625
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Pope Leo to have surgery to remove nodule on his lung",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "theguardian.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T18:04:09.124Z",
       "query": "latest news",
       "found": 10,
@@ -2452,7 +2407,40 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T21:04:38.100Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Katie Zacharia Ridiculed For Rocky First White House Press Briefing—Amid Questions About Law Background",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "news.meaww.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Is Zelensky right to say data centre strikes have taken down Russian bots?",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T20:02:50.599Z"
+  "updatedAt": "2026-10-13T21:04:38.100Z"
 }
