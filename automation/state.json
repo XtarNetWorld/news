@@ -5,39 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T07:05:10.265Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Man Utd transfer news, rumours and gossip: Live updates and latest on deals, signings, loans and contracts - Sky Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "skysports.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.9833333333333333
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Twelve killed and 300 injured in attack on airport in Saudi capital Riyadh - BBC",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T08:03:42.483Z",
       "query": "latest news",
       "found": 10,
@@ -2475,7 +2442,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T10:02:40.111Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "hindustantimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.9331742243436754
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "News Analysis 12 October 2026 | Latest News & Current Affairs - Drishti IAS",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "drishtiias.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.2625
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T09:02:41.798Z"
+  "updatedAt": "2026-10-13T10:02:40.111Z"
 }
