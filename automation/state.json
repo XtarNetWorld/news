@@ -5,56 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-10T21:03:55.498Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Four dead and thousands without power after Hurricane Isaias lashes US",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "aljazeera.com",
-              "nypost.com",
-              "cbsnews.com",
-              "newscord.org"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.23421588594704684
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Iran-Backed Houthis Hit Saudi Capital’s Airport in Damaging New Attack - WSJ",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h56m4.504769666s.",
-          "evidence": {
-            "domains": [
-              "en.royanews.tv",
-              "bastillepost.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.11451612903225807
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h56m4.504769666s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-10T22:01:48.804Z",
       "query": "latest news",
       "found": 10,
@@ -2532,7 +2482,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T00:01:57.374Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Jantar Mantar out as protest hub; 3 new venues named - The Times of India",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "timesofindia.indiatimes.com",
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1023142509135201
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "RJ Mitte dies at 34: What happened to the Breaking Bad star who played Walter White Jr. - The Economic Times",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com",
+              "m.economictimes.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.3861066235864297
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-12T22:04:09.256Z"
+  "updatedAt": "2026-10-13T00:01:57.374Z"
 }
