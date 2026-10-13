@@ -5,54 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T12:02:02.481Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Pope Leo XIV to have surgery after lump found on lung",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "ground.news",
-              "france24.com",
-              "consent.yahoo.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.17889908256880735
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "World condemns deadly Houthi attack on Saudi Arabia’s Riyadh airport | Houthis News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.19969278033794163
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T13:04:59.992Z",
       "query": "latest news",
       "found": 10,
@@ -2487,7 +2439,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-13T16:02:55.195Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Business News Live, Share Market News - Read Latest Finance News, IPO, Mutual Funds News - The Economic Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Kimberly Guilfoyle has been asked to resign as ambassador to Greece, White House says - CBS News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "cbs6albany.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.15718157181571815
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T15:02:43.985Z"
+  "updatedAt": "2026-10-13T16:02:55.195Z"
 }
