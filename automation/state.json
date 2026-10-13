@@ -5,65 +5,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T00:01:48.905Z",
-      "query": "latest news",
-      "found": 8,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Associated Press News: Breaking News, Latest Headlines and Videos  | AP News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "abcnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Trump LIVE: Emergency Declaration Expected? Trump's Latest Speech LIVE | US News LIVE",
-          "stage": "source-verification",
-          "reason": "The central claim that an emergency declaration was expected during Trump's live speech is unsupported by the reporting in the provided sources and lacks corroboration from two independent domains.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "pbs.org",
-              "bbc.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.16895604395604397
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "An emergency declaration is expected during Trump's latest live speech",
-                "sourceUrls": [
-                  "https://www.pbs.org/newshour/politics/watch-live-trump-to-address-nation-from-white-house"
-                ],
-                "status": "unsupported",
-                "reason": "The sources do not substantiate that an emergency declaration was officially expected during the address. While Source 4 includes a linked video title stating a former White House attorney believes Trump is setting the stage to declare an emergency around the midterms, there is no reporting confirming an expected emergency declaration, nor is there confirmation across two independent domains."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central claim that an emergency declaration was expected during Trump's live speech is unsupported by the reporting in the provided sources and lacks corroboration from two independent domains."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T01:01:52.872Z",
       "query": "latest news",
       "found": 10,
@@ -2523,7 +2464,53 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-13T03:01:44.308Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m19.286179316s.",
+          "evidence": {
+            "domains": [
+              "hindustantimes.com",
+              "dw.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.933806146572104
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m19.286179316s."
+          }
+        },
+        {
+          "title": "RJ Mitte cause of death: Breaking Bad actor who played Walter White’s son dies at 34; reason behind his d - The Economic Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "economictimes.indiatimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.4108527131782946
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-13T02:02:05.903Z"
+  "updatedAt": "2026-10-13T03:01:44.308Z"
 }
