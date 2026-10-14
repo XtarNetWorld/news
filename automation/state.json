@@ -6,66 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T17:01:50.230Z",
-      "query": "latest news",
-      "found": 8,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Are Dalton and Sako Still Together in 2026? Latest News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "salinecountyks.gov"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "BREAKING US NEWS: Trump’s Big Speech | Hegseth’s Future Revealed? | HEGSETH FACING FIRING?",
-          "stage": "source-verification",
-          "reason": "The signal makes speculative and unsubstantiated claims framing Trump's speech as revealing Hegseth's firing or future, which is contradicted by the source text stating Trump's speech addressed the Iran war and that there is no indication Trump intends to dismiss Hegseth.",
-          "evidence": {
-            "domains": [
-              "thedailybeast.com",
-              "nypost.com",
-              "independent.co.uk"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.11061285500747384
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Trump's speech revealed Pete Hegseth's future or announced that Hegseth is facing firing",
-                "sourceUrls": [
-                  "https://nypost.com/2026/04/03/us-news/hegseths-paranoia-over-being-replaced-explains-purge-of-top-general-as-ally-emerges-for-army-secretarys-role/",
-                  "https://www.independent.co.uk/news/world/americas/us-politics/pete-hegseth-trump-pentagon-job-security-b2969566.html"
-                ],
-                "status": "unsupported",
-                "reason": "Trump's primetime speech outlined his vision for swiftly ending the war with Iran, not Hegseth's future. Furthermore, sources explicitly state there is no indication Trump is prepared to dismiss Hegseth, and reporting indicates Hegseth has secured his standing and consolidated control."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal makes speculative and unsubstantiated claims framing Trump's speech as revealing Hegseth's firing or future, which is contradicted by the source text stating Trump's speech addressed the Iran war and that there is no indication Trump intends to dismiss Hegseth."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T18:02:40.855Z",
       "query": "latest news",
       "found": 10,
@@ -2233,7 +2173,58 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T21:02:13.755Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Starlink: Musk says US government may be behind slowdown of Ukraine drone speeds",
+          "stage": "article-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "verifier": {
+            "decision": "reject",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "'It's rough out here': Americans struggle to survive amid rising costs",
+          "stage": "source-verification",
+          "reason": "The signal corresponds to an individual BBC feature story that is not reported or corroborated by a second independent domain as required by verification guidelines, and the primary source lacks a full absolute publication date.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "rollingstone.com",
+              "npr.org"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.06018518518518518
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Americans are struggling to survive amid rising costs, with individuals describing conditions as 'rough out here'",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/articles/c305649p2d6o"
+                ],
+                "status": "supported",
+                "reason": "Supported by the BBC feature article which interviews Americans including Kathryn Vaughn, who explicitly states 'It's rough out here'."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal corresponds to an individual BBC feature story that is not reported or corroborated by a second independent domain as required by verification guidelines, and the primary source lacks a full absolute publication date."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T20:02:13.845Z"
+  "updatedAt": "2026-10-14T21:02:13.755Z"
 }
