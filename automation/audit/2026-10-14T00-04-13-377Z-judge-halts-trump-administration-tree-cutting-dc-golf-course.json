@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-14T00:04:13.377Z",
+  "candidate": {
+    "title": "Judge blocks Trump administration from cutting down trees at D.C. golf course for 2 weeks - CBS News",
+    "url": "https://www.cbsnews.com/news/trump-east-potomac-golf-course-judge-ana-reyes",
+    "publishedAt": "2026-10-13T17:34:03.000Z",
+    "description": "Watch CBS News\n\n# Judge blocks Trump administration from cutting down trees at D.C. golf course for 2 weeks\n\nOctober 13, 2026 / 1:34 PM EDT\n/ CBS News\n\nWashington — A federal judge on Tuesday barred the Trump administration from removing trees at East Potomac Golf Links in Washington, D.C., for another two weeks after hundreds of trees were felled at the historic public course over the weekend. [...] Reyes scheduled another hearing for Oct. 19 and ordered Jessica Bowron, acting director of the N",
+    "provider": "Tavily",
+    "source": "cbsnews.com",
+    "providers": [
+      "Tavily"
+    ],
+    "sources": [
+      {
+        "title": "Judge blocks Trump administration from cutting down trees at D.C. golf course for 2 weeks - CBS News",
+        "url": "https://www.cbsnews.com/news/trump-east-potomac-golf-course-judge-ana-reyes",
+        "source": "cbsnews.com",
+        "publishedAt": "2026-10-13T17:34:03.000Z",
+        "provider": "Tavily",
+        "description": "Watch CBS News\n\n# Judge blocks Trump administration from cutting down trees at D.C. golf course for 2 weeks\n\nOctober 13, 2026 / 1:34 PM EDT\n/ CBS News\n\nWashington — A federal judge on Tuesday barred the Trump administration from removing trees at East Potomac Golf Links in Washington, D.C., for another two weeks after hundreds of trees were felled at the historic public course over the weekend. [...] Reyes scheduled another hearing for Oct. 19 and ordered Jessica Bowron, acting director of the N"
+      }
+    ],
+    "evidenceCount": 1,
+    "score": 124.3,
+    "freshnessHours": 6.5,
+    "confidence": "low",
+    "searchDemand": {
+      "matchingQueries": [
+        {
+          "query": "newssphere",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "query": "santy sharma iphone duo news",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 14
+        }
+      ],
+      "impressions": 5,
+      "clicks": 0,
+      "demandBoost": 7.2
+    },
+    "forecast": {
+      "score": 124.3,
+      "basis": "freshness, source velocity, cross-source evidence, and matching Search Console demand",
+      "searchDemandConfigured": true
+    }
+  },
+  "evidence": {
+    "domains": [
+      "cbsnews.com",
+      "nbcmontana.com"
+    ],
+    "independentSources": 2,
+    "maxTextOverlap": 0.14646464646464646,
+    "sources": [
+      {
+        "title": "Judge blocks Trump administration from cutting down trees at D.C. golf course for 2 weeks - CBS News",
+        "url": "https://www.cbsnews.com/news/trump-east-potomac-golf-course-judge-ana-reyes/",
+        "source": "cbsnews.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-13T17:34:03.000Z"
+      },
+      {
+        "title": "Federal judge extends halt on tree cutting at DC golf course amid Trump&#x27;s renovations",
+        "url": "https://nbcmontana.com/news/nation-world/federal-judge-extends-halt-on-tree-cutting-at-dc-golf-course-amid-trumps-renovations-east-potomac-legal-battle",
+        "source": "nbcmontana.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-13T17:59:36.000Z"
+      }
+    ]
+  },
+  "sourceVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "claims": [
+      {
+        "claim": "A federal judge blocked the Trump administration from cutting down trees at East Potomac Golf Course in Washington, D.C., for two weeks.",
+        "sourceUrls": [
+          "https://www.cbsnews.com/news/trump-east-potomac-golf-course-judge-ana-reyes/",
+          "https://nbcmontana.com/news/nation-world/federal-judge-extends-halt-on-tree-cutting-at-dc-golf-course-amid-trumps-renovations-east-potomac-legal-battle"
+        ],
+        "status": "supported",
+        "reason": "Both independent sources verify that U.S. District Judge Ana Reyes issued an order barring the Trump administration and National Park Service from cutting down additional trees at East Potomac Golf Course through October 26."
+      }
+    ],
+    "conflicts": [],
+    "copyRisk": "low",
+    "reason": "The central claim is corroborated by two independent reporting domains with consistent facts and dates."
+  },
+  "deterministicGate": {
+    "pass": true,
+    "reasons": [],
+    "foreignUrls": [],
+    "bodyCharacters": 6901
+  },
+  "articleVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "unsupportedClaims": [],
+    "sourceCoverage": 98,
+    "titleAssessment": "accurate",
+    "reason": "The article is thoroughly corroborated by the provided sources. Direct quotes, procedural milestones, witness lists, case dates, and factual details accurately reflect the source reporting without fabrication or exaggeration."
+  },
+  "article": {
+    "title": "Judge Halts Trump Administration Tree Cutting at D.C. Golf Course",
+    "slug": "judge-halts-trump-administration-tree-cutting-dc-golf-course",
+    "category": "News"
+  }
+}
