@@ -6,66 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T12:02:33.616Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Duo Share Nobel in Economics for Work on Steering Through Booms and Busts",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Top oil executives dropped from event schedule after Riyadh attacks",
-          "stage": "source-verification",
-          "reason": "All sources reporting the central claim (Internazionale, The Independent, Middle East Eye) are syndications or direct attributions of a single Reuters wire report. Under the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, and at least two independent domains are required.",
-          "evidence": {
-            "domains": [
-              "internazionale.it",
-              "independent.co.uk",
-              "middleeasteye.net",
-              "globalbankingandfinance.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.23756906077348067
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Top oil executives were dropped from the WPC Energy Congress event schedule following attacks on Riyadh.",
-                "sourceUrls": [
-                  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/12/top-oil-executives-dropped-from-event-schedule-after-riydah-attacks",
-                  "https://www.independent.co.uk/news/world/middle-east/riyadh-airport-attack-wpc-energy-congress-b3065082.html",
-                  "https://www.middleeasteye.net/live-blog/live-blog-update/top-oil-executives-dropped-event-schedule-after-riyadh-attacks"
-                ],
-                "status": "supported",
-                "reason": "The claim appears across multiple articles, but all of them directly syndicate or cite a single Reuters wire report."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "All sources reporting the central claim (Internazionale, The Independent, Middle East Eye) are syndications or direct attributions of a single Reuters wire report. Under the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, and at least two independent domains are required."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T13:04:03.861Z",
       "query": "latest news",
       "found": 50,
@@ -2333,7 +2273,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T16:01:37.806Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-14T15:01:09.495Z"
+  "updatedAt": "2026-10-14T16:01:37.806Z"
 }
