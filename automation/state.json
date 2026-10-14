@@ -6,56 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T11:06:23.420Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Will Tennessee try to execute Christa Pike again? Experts weigh in | CNN",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "edition.cnn.com",
-              "bbc.com",
-              "news.northeastern.edu"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.16666666666666666
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Iran War Updates: U.S. embassy urges \"extreme caution\" using Saudi airports as Houthi attacks escalate",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "cbsnews.com",
-              "newsweek.com",
-              "foxnews.com",
-              "bluewin.ch"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.2630718954248366
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T12:02:33.616Z",
       "query": "latest news",
       "found": 10,
@@ -2338,7 +2288,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T15:01:09.495Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Social Security announces 3.6% COLA for 2027: What to know about benefits",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cnbc.com",
+              "cbsnews.com",
+              "edition.cnn.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.25903614457831325
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Sudden Starlink Restrictions Hamper Ukraine Just as Russia Escalates - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T14:01:18.167Z"
+  "updatedAt": "2026-10-14T15:01:09.495Z"
 }
