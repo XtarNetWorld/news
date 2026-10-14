@@ -6,67 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T21:01:58.317Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Six senators call for Trump to abandon Russian diesel plan | AP News",
-          "stage": "source-verification",
-          "reason": "All provided sources are identical syndications of a single Associated Press wire article. Per the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, failing the requirement for at least two independent domains covering the central event.",
-          "evidence": {
-            "domains": [
-              "thestar.com",
-              "ocregister.com",
-              "bostonglobe.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.4985507246376812
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "A bipartisan group of six senators called for the Trump administration to immediately reverse course on a plan to import Russian diesel.",
-                "sourceUrls": [
-                  "https://www.thestar.com/news/world/united-states/six-senators-call-for-trump-administration-to-immediately-reverse-course-on-russian-diesel-plan/article_9fc2ac05-830a-513c-8916-20e8fcf2aef2.html",
-                  "https://www.ocregister.com/2026/10/11/six-senators-call-for-trump-administration-to-immediately-reverse-course-on-russian-diesel-plan/",
-                  "https://www.bostonglobe.com/2026/10/11/business/senators-reverse-russia-diesel-plan/"
-                ],
-                "status": "supported",
-                "reason": "The claim is supported by the text across the sources, but all three sources are syndicated republications of the same Associated Press wire dispatch."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "All provided sources are identical syndications of a single Associated Press wire article. Per the verification guidelines, multiple copies of the same wire story do not constitute independent confirmation, failing the requirement for at least two independent domains covering the central event."
-          }
-        },
-        {
-          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "latimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.25990491283676703
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-11T22:02:23.746Z",
       "query": "latest news",
       "found": 10,
@@ -2434,7 +2373,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T01:01:09.542Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Enter the Zachbot: Trump’s new press secretary malfunctions on podium debut",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m57.94681063s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "politicalwire.com",
+              "aol.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.2915766738660907
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m57.94681063s."
+          }
+        },
+        {
+          "title": "Cornell bans frat parties in wake of gang rape allegation | AP News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m50.456561452s.",
+          "evidence": {
+            "domains": [
+              "nypost.com",
+              "cbsnews.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.35560344827586204
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m50.456561452s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T00:04:25.121Z"
+  "updatedAt": "2026-10-14T01:01:09.542Z"
 }
