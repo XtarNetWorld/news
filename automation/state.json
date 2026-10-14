@@ -6,52 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T13:04:03.861Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Delhi Protest News Live Updates: Rahul Gandhi’s march of thousands stopped before Supreme Court, roads being cleared - The Indian Express",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "bhaskarenglish.in",
-              "web.matrixnews.in"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.08673469387755102
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "School Assembly News Headlines, October 13, 2026: Check national, international, business, sports updates - The Economic Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.46
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T14:02:55.048Z",
       "query": "latest news",
       "found": 50,
@@ -2283,7 +2237,56 @@
       "dailyCap": 100,
       "usedBeforeRun": 1,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-14T17:01:16.677Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "'It's rough out here': Americans struggle to survive amid rising costs",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "pbs.org"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.5010615711252654
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Container ship sinks in Strait of Hormuz as Iran steps up attacks",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "cnbc.com",
+              "aljazeera.com",
+              "consent.yahoo.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.12367491166077739
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T16:01:37.806Z"
+  "updatedAt": "2026-10-14T17:01:16.677Z"
 }
