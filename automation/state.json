@@ -6,75 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T18:02:40.855Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Federal judge halts additional tree cutting at East Potomac Golf Links – WTOP News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com",
-              "independent.co.uk",
-              "aroundprague.cz",
-              "newscord.org",
-              "sports.yahoo.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.21182266009852216
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "US agents search Rep. Ilhan Omar's home as part of criminal probe: AP sources | AP News",
-          "stage": "source-verification",
-          "reason": "All provided sources are republishing or directly citing a single Associated Press wire report. Under the verification criteria, multiple copies of the same wire story cannot be treated as independent confirmation, and at least two independent domains are required to verify the central event.",
-          "evidence": {
-            "domains": [
-              "minnpost.com",
-              "kstp.com",
-              "wtap.com",
-              "pbs.org",
-              "aljazeera.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.5663366336633663
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "US federal agents searched Rep. Ilhan Omar's home as part of a criminal investigation according to AP sources",
-                "sourceUrls": [
-                  "https://www.minnpost.com/politics-policy/2026/10/federal-agents-search-rep-ilhan-omars-home-as-part-of-a-criminal-investigation-ap-sources-say/",
-                  "https://kstp.com/kstp-news/top-news/federal-agents-search-ilhan-omar-home/",
-                  "https://www.wtap.com/2026/10/12/federal-agents-search-rep-ilhan-omars-home-part-criminal-investigation-ap-sources-say/",
-                  "https://www.pbs.org/newshour/politics/ap-report-federal-agents-search-rep-ilhan-omars-home-as-part-of-a-criminal-investigation",
-                  "https://www.aljazeera.com/news/2026/10/12/trump-critic-democratic-rep-ilhan-omars-home-searched-by-federal-agents"
-                ],
-                "status": "supported",
-                "reason": "The text across the sources reports this claim, but all sources rely entirely on a single Associated Press wire report."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "All provided sources are republishing or directly citing a single Associated Press wire report. Under the verification criteria, multiple copies of the same wire story cannot be treated as independent confirmation, and at least two independent domains are required to verify the central event."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T19:03:00.983Z",
       "query": "latest news",
       "found": 10,
@@ -2224,7 +2155,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T22:01:05.449Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-14T21:02:13.755Z"
+  "updatedAt": "2026-10-14T22:01:05.449Z"
 }
