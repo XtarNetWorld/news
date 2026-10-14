@@ -6,66 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T08:02:51.263Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Eden Prairie high school shooting suspect freed on bail days after arrest | Fox News",
-          "stage": "source-verification",
-          "reason": "The central event is reported only by Fox News and its corporate affiliate Fox 9, failing the requirement of at least two independent domains. Furthermore, there is an unresolved factual conflict between the two sources regarding the date and time of release.",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "fox9.com",
-              "nypost.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.6156299840510366
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "The suspect in the Eden Prairie high school homecoming shooting was freed on bail days after arrest.",
-                "sourceUrls": [
-                  "https://www.foxnews.com/us/minnesota-homecoming-shooting-suspect-bond-gunfire-sends-football-fans-fleeing",
-                  "https://www.fox9.com/news/eden-prairie-homecoming-shooting-suspect-released-bond-oct-11-2026"
-                ],
-                "status": "supported",
-                "reason": "Both Fox News and Fox 9 report that 18-year-old Adam Abdihakeem Adam posted bond and was released following his arrest."
-              }
-            ],
-            "conflicts": [
-              "Source 1 reports the suspect was released at 7:04 p.m. on Oct. 10, while Source 2 reports he was released just after 6:40 p.m. on Saturday, Oct. 9."
-            ],
-            "copyRisk": "low",
-            "reason": "The central event is reported only by Fox News and its corporate affiliate Fox 9, failing the requirement of at least two independent domains. Furthermore, there is an unresolved factual conflict between the two sources regarding the date and time of release."
-          }
-        },
-        {
-          "title": "Takeaways from first South Carolina Senate debate between Darline Graham, Annie Andrews - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T09:03:04.908Z",
       "query": "latest news",
       "found": 10,
@@ -2324,7 +2264,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T12:01:41.327Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Pope Leo spends a peaceful night in the hospital after lung cancer surgery",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "wtvbam.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Russia pounds Kyiv energy sites as Ukraine reports Starlink throttling - POLITICO",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "politico.eu",
+              "greenwichtime.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.08791208791208792
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T11:01:20.298Z"
+  "updatedAt": "2026-10-14T12:01:41.327Z"
 }
