@@ -6,53 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T05:02:01.090Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Judge orders Trump administration to cancel taxpayer-funded TV ads | AP News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "deadline.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Takeaways from first South Carolina Senate debate between Darline Graham, Annie Andrews - The Washington Post",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m58.893574337s.",
-          "evidence": {
-            "domains": [
-              "postandcourier.com",
-              "abcnews4.com",
-              "edition.cnn.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.14705882352941177
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m58.893574337s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T06:02:09.089Z",
       "query": "latest news",
       "found": 10,
@@ -2334,7 +2287,32 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T09:02:54.750Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Judge extends White House access to banned media outlets CNN, MS Now and Politico",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "Rep Omar's immigration history faces new scrutiny as feds subpoena relatives | Fox News",
+          "stage": "article-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "verifier": {
+            "decision": "reject",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T08:01:33.806Z"
+  "updatedAt": "2026-10-14T09:02:54.750Z"
 }
