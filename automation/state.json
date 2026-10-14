@@ -6,77 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T02:01:45.554Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Khamenei claims US strikes failed as Army releases Iran Artesh guide | Fox News",
-          "stage": "source-verification",
-          "reason": "The central event of Khamenei claiming US strikes failed is only reported by a single domain (Fox News), failing the requirement of at least two independent domains for the central event.",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "jpost.com",
-              "defensenews.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.6
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Mojtaba Khamenei claimed US and Israeli strikes failed to undermine Iran's domestic security forces",
-                "sourceUrls": [
-                  "https://www.foxnews.com/world/mojtaba-khamenei-defies-malicious-attacks-us-army-zeroes-irans-350000-troops"
-                ],
-                "status": "supported",
-                "reason": "Reported by Fox News, but lacks a second independent domain reporting this statement."
-              },
-              {
-                "claim": "The US Army released a recognition guide on the Iranian Artesh",
-                "sourceUrls": [
-                  "https://www.foxnews.com/world/mojtaba-khamenei-defies-malicious-attacks-us-army-zeroes-irans-350000-troops",
-                  "https://www.defensenews.com/news/your-military/2026/10/09/official-poster-depicts-the-us-armys-newest-threat-the-iranian-soldier/"
-                ],
-                "status": "supported",
-                "reason": "Supported by both Fox News and Defense News."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event of Khamenei claiming US strikes failed is only reported by a single domain (Fox News), failing the requirement of at least two independent domains for the central event."
-          }
-        },
-        {
-          "title": "Trump faces growing backlash over plans to import diesel from Russia",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m14.439569113s.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "newscord.org",
-              "aol.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.5691699604743083
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m14.439569113s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T03:01:31.634Z",
       "query": "latest news",
       "found": 10,
@@ -2407,7 +2336,50 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T06:01:20.523Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "India news Live Updates, 14 October 2026: Punjab anti-drug activist murder main accused nabbed from Rajasthan in Salasar - The Indian Express",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Who is Neville Tata? Why is he in the news today? Latest developments in Tata Trust dispute explained - Livemint",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "livemint.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.15570934256055363
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T05:01:12.367Z"
+  "updatedAt": "2026-10-14T06:01:20.523Z"
 }
