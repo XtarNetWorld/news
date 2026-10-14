@@ -6,49 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T14:02:55.048Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "India news Live Updates, 12 October 2026: Supreme Court questions Centre on capping margins beyond anti-cancer drugs - The Indian Express",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Business News Live, Share Market News - Read Latest Finance News, IPO, Mutual Funds News - The Economic Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.14432989690721648
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T15:02:36.656Z",
       "query": "latest news",
       "found": 50,
@@ -2286,7 +2243,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T18:01:12.500Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-14T17:01:16.677Z"
+  "updatedAt": "2026-10-14T18:01:12.500Z"
 }
