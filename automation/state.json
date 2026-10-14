@@ -6,55 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-11T23:01:40.236Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Hurricane damage photos show flooding, debris and cleanup efforts | Fox News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m24.999975892s.",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "fox6now.com",
-              "capitolnewsillinois.com",
-              "kpq.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.11031175059952038
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m24.999975892s."
-          }
-        },
-        {
-          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m19.760845768s.",
-          "evidence": {
-            "domains": [
-              "latimes.com",
-              "weatherwest.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.2445054945054945
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m19.760845768s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T00:01:45.772Z",
       "query": "latest news",
       "found": 10,
@@ -2418,7 +2369,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T03:01:07.760Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "In heated Georgia Senate debate, Jon Ossoff says he won’t run for president in 2028",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "newrepublic.com",
+              "jta.org"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1111111111111111
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Democrats fear \"more October surprises\" after Ilhan Omar raid",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "middleeasteye.net"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T02:02:50.516Z"
+  "updatedAt": "2026-10-14T03:01:07.760Z"
 }
