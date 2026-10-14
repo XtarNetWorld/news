@@ -6,68 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T19:03:00.983Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Victims of Pennsylvania mass shooting included pregnant daughter of gunman",
-          "stage": "source-verification",
-          "reason": "The specific claim that the pregnant victim was the gunman's daughter is not explicitly confirmed in the provided text. In addition, both provided sources rely on the same Associated Press wire report, failing the requirement for two independent domains.",
-          "evidence": {
-            "domains": [
-              "abc.net.au",
-              "yourerie.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.428125
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Victims of Pennsylvania mass shooting included pregnant daughter of gunman",
-                "sourceUrls": [
-                  "https://www.abc.net.au/news/2026-10-12/father-mourns-daughter-killed-in-pennsylvania-shooting/107255530",
-                  "https://www.yourerie.com/news/national-news/shooter-who-killed-8-in-pennsylvania-was-familys-patriarch-slain-toddlers-dad-says/amp/"
-                ],
-                "status": "unsupported",
-                "reason": "While the sources mention that the victims included a pregnant woman, the gunman's grandchildren, and his children, neither source explicitly confirms that the pregnant victim was the gunman's daughter."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "The specific claim that the pregnant victim was the gunman's daughter is not explicitly confirmed in the provided text. In addition, both provided sources rely on the same Associated Press wire report, failing the requirement for two independent domains."
-          }
-        },
-        {
-          "title": "US immigration authorities raid Democratic congresswoman Ilhan Omar's home",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "cnbc.com",
-              "france24.com",
-              "bbc.com",
-              "cbsnews.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.23627287853577372
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T20:02:33.928Z",
       "query": "latest news",
       "found": 10,
@@ -2165,7 +2103,38 @@
       "dailyCap": 100,
       "usedBeforeRun": 1,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-14T23:01:25.828Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Ukraine's Starlink restrictions raise suspicions of Musk, Trump retaliation",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Trump’s new press secretary faces scrutiny over claims to be a lawyer",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T22:01:05.449Z"
+  "updatedAt": "2026-10-14T23:01:25.828Z"
 }
