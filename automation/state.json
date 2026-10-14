@@ -6,59 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T04:01:34.322Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump faces growing backlash over plans to import diesel from Russia",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m33.739373394s.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "newsquawk.com",
-              "newscord.org",
-              "aol.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.5691699604743083
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m33.739373394s."
-          }
-        },
-        {
-          "title": "Live updates: Southern California battered by high winds, rain and flooding as Rachel makes landfall - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m25.675823873s.",
-          "evidence": {
-            "domains": [
-              "latimes.com",
-              "edition.cnn.com",
-              "sfchronicle.com",
-              "kunc.org",
-              "wxxinews.org"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.6793650793650794
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m25.675823873s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T05:02:01.090Z",
       "query": "latest news",
       "found": 10,
@@ -2343,7 +2290,51 @@
       "dailyCap": 100,
       "usedBeforeRun": 1,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-14T08:01:33.806Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Judge extends White House access to banned media outlets CNN, MS Now and Politico",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "cnbc.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.22309197651663404
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Trump Adds Another Giveaway to His Midterm Pitch: Pardons. - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T07:01:06.292Z"
+  "updatedAt": "2026-10-14T08:01:33.806Z"
 }
