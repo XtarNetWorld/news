@@ -6,57 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T01:01:33.660Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump faces growing backlash over plans to import diesel from Russia",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.323483879s.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "newscord.org",
-              "aol.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.5691699604743083
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.323483879s."
-          }
-        },
-        {
-          "title": "Hurricane damage photos show flooding, debris and cleanup efforts | Fox News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m26.3350412s.",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "fox5atlanta.com",
-              "fox6now.com",
-              "komonews.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.1021671826625387
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m26.3350412s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T02:01:45.554Z",
       "query": "latest news",
       "found": 10,
@@ -2413,7 +2362,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T05:01:12.367Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Judge blocks Trump's White House ban targeting CNN, MS NOW and Politico, saying it likely violated 1st Amendment - CBS News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Rep Omar's immigration history faces new scrutiny as feds subpoena relatives | Fox News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "foxnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.6654478976234004
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T04:01:10.484Z"
+  "updatedAt": "2026-10-14T05:01:12.367Z"
 }
