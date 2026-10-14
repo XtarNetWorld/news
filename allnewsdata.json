@@ -5,6 +5,40 @@
   },
   "articles": [
     {
+      "id": "judge-halts-trump-administration-tree-cutting-dc-golf-course",
+      "slug": "judge-halts-trump-administration-tree-cutting-dc-golf-course",
+      "url": "/world/judge-halts-trump-administration-tree-cutting-dc-golf-course/",
+      "category": "World",
+      "section": "News",
+      "label": "Legal Battle",
+      "title": "Judge Halts Trump Administration Tree Cutting at D.C. Golf Course",
+      "excerpt": "A federal judge issued a restraining order against the Trump administration's East Potomac Golf Course overhaul after 430 trees were felled in a single weekend.",
+      "excerptGenerated": false,
+      "image": "/public/judge-halts-trump-administration-tree-cutting-dc-golf-course-hero.svg",
+      "imageAlt": "East Potomac Golf Course in Washington D.C. with visible tree stumps and felled timber",
+      "author": "NewsXphere Editorial Desk",
+      "authorInitials": "NE",
+      "publishedAt": "2026-10-14T00:04:15.999Z",
+      "updatedAt": "2026-10-14T00:04:15.999Z",
+      "readTime": "6 min read",
+      "sourceLabel": "NewsXphere Verified Desk",
+      "keywords": [
+        "East Potomac Golf Course",
+        "Judge Ana Reyes",
+        "Trump administration golf course",
+        "National Park Service",
+        "DC Preservation League",
+        "federal court injunction"
+      ],
+      "featured": true,
+      "source": "category-page",
+      "sourcePath": "world/judge-halts-trump-administration-tree-cutting-dc-golf-course/index.html",
+      "folder": "world",
+      "folderName": "World",
+      "folderPath": "world/judge-halts-trump-administration-tree-cutting-dc-golf-course/",
+      "catalogPresent": false
+    },
+    {
       "id": "trump-putin-russian-diesel-global-market-deal",
       "slug": "trump-putin-russian-diesel-global-market-deal",
       "url": "/world/trump-putin-russian-diesel-global-market-deal/",
@@ -37,7 +71,7 @@
       "folder": "world",
       "folderName": "World",
       "folderPath": "world/trump-putin-russian-diesel-global-market-deal/",
-      "catalogPresent": false
+      "catalogPresent": true
     },
     {
       "id": "hurricane-polo-category-5-mexico",
