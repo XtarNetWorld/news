@@ -6,53 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T07:03:43.301Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Takeaways from first South Carolina Senate debate between Darline Graham, Annie Andrews - The Washington Post",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "huffpost.com",
-              "edition.cnn.com",
-              "ms.now"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2018181818181818
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Guilfoyle accused of seeking $100K credit card bailout from donor | Fox News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "foxnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T08:02:51.263Z",
       "query": "latest news",
       "found": 10,
@@ -2321,7 +2274,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T11:01:20.298Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Bass vs. Raman: Here's who won the L.A. mayoral debate - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "latimes.com",
+              "nypost.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.17755681818181818
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Judge deals another blow to Trump’s White House media bans - The Washington Post",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "whec.com",
+              "huffingtonpost.co.uk",
+              "news3lv.com",
+              "poynter.org",
+              "alternet.org"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.17058823529411765
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T10:02:48.951Z"
+  "updatedAt": "2026-10-14T11:01:20.298Z"
 }
