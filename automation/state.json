@@ -6,37 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T09:03:04.908Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Eden Prairie high school shooting suspect freed on bail days after arrest | Fox News",
-          "stage": "generation",
-          "reason": "Generation failed"
-        },
-        {
-          "title": "Rejection of streamed execution unites Australia — but sets collision course with Trump - POLITICO",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T10:04:12.675Z",
       "query": "latest news",
       "found": 50,
@@ -2310,7 +2279,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-14T13:03:26.472Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Ukraine accuses SpaceX of crippling drone missions as ties with US worsen",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "themoscowtimes.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Pope Leo spends a peaceful night in the hospital after lung cancer surgery",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "ynetnews.com",
+              "huffpost.com",
+              "cbsnews.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.18705035971223022
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-14T12:01:41.327Z"
+  "updatedAt": "2026-10-14T13:03:26.472Z"
 }
