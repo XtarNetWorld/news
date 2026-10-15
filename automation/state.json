@@ -7,39 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T21:04:38.100Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Katie Zacharia Ridiculed For Rocky First White House Press Briefing—Amid Questions About Law Background",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "news.meaww.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Is Zelensky right to say data centre strikes have taken down Russian bots?",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T22:04:00.205Z",
       "query": "latest news",
       "found": 10,
@@ -2033,7 +2000,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T23:01:05.171Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Active shooter reported at elementary school in Bend, Oregon, school district says | CNN",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.27414330218068533
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Nvidia, Apple each gave $25 million for Trump's ballroom, Washington Post reports | Reuters",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m54.830348533s.",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com",
+              "nypost.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.050505050505050504
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m54.830348533s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T22:01:38.108Z"
+  "updatedAt": "2026-10-15T23:01:05.171Z"
 }
