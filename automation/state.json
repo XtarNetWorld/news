@@ -7,45 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T19:05:42.128Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump fires ambassador to Greece Guilfoyle after reports of misconduct",
-          "stage": "article-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Cornell Bans Fraternity Parties and Adds Sexual Assault Investigators",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "uk.news.yahoo.com",
-              "independent.co.uk",
-              "bbc.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.7827715355805244
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T20:02:50.599Z",
       "query": "latest news",
       "found": 10,
@@ -1996,7 +1957,67 @@
       "dailyCap": 100,
       "usedBeforeRun": 1,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-15T21:01:23.548Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Winter weather forecast released by NOAA for 2026-2027",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Authorities investigate ‘suspicious substances’ mailed to congressional offices - Live Updates - POLITICO",
+          "stage": "source-verification",
+          "reason": "The core event reported in the signal headline is fully corroborated by at least two independent news sources.",
+          "evidence": {
+            "domains": [
+              "npr.org",
+              "latimes.com",
+              "nypost.com",
+              "iowapublicradio.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.6326530612244898
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Federal authorities are investigating letters containing suspicious substances mailed to congressional offices.",
+                "sourceUrls": [
+                  "https://www.npr.org/2026/10/15/nx-s1-6003857/suspicious-mailings-election-congressional-offices",
+                  "https://www.latimes.com/world-nation/story/2026-10-15/authorities-investigate-letters-with-suspicious-substances-sent-to-congressional-election-offices",
+                  "https://nypost.com/2026/10/15/us-news/capitol-police-probing-suspicious-letters-mailed-with-dsa-linked-return-address/"
+                ],
+                "status": "supported",
+                "reason": "Multiple independent news organizations (NPR, Los Angeles Times, and New York Post) confirm that federal law enforcement agencies, including the FBI, U.S. Postal Inspection Service, and Capitol Police, are investigating mailings containing suspicious powdery substances sent to congressional and election offices."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The core event reported in the signal headline is fully corroborated by at least two independent news sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T20:00:56.249Z"
+  "updatedAt": "2026-10-15T21:01:23.548Z"
 }
