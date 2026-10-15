@@ -7,52 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T05:02:00.608Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.933806146572104
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "RJ Mitte cause of death: Breaking Bad actor who played Walter White’s son dies at 34; reason behind his d - The Economic Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m59.381031955s.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com",
-              "m.economictimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.30415430267062316
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h57m59.381031955s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T06:02:15.496Z",
       "query": "latest news",
       "found": 50,
@@ -2066,7 +2020,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T08:01:18.366Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Katie Zacharia Failed Bar Exam In 2011, Report Says—Amid Legal Credentials Controversy",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Trump suggests those who leak government information should ‘be shot’ | Donald Trump News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "newsweek.com",
+              "consent.yahoo.com",
+              "aol.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.11812297734627832
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T07:02:32.379Z"
+  "updatedAt": "2026-10-15T08:01:18.366Z"
 }
