@@ -7,43 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T07:07:18.634Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "WATCH LIVE: Trump speaks at midterm rally in Youngstown, Ohio | PBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "pbs.org"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "NATO commander vows to break Russia's warfighting system if attacked | Fox News",
-          "stage": "article-verification",
-          "reason": "error code: 524\n",
-          "verifier": {
-            "decision": "reject",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T08:02:34.197Z",
       "query": "latest news",
       "found": 10,
@@ -2068,7 +2031,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T10:01:43.699Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Police search home following double homicide at Great Wolf Lodge amid hunt for motive - ABC News",
+          "stage": "source-verification",
+          "reason": "The central event of the signal—police searching the home in connection with the double homicide—is reported by only one domain (abcnews.com), failing the requirement of at least two independent domains.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "aol.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.22540250447227192
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Police searched the home of the family involved in the Great Wolf Lodge double homicide amid a search for a motive.",
+                "sourceUrls": [
+                  "https://abcnews.com/US/police-search-home-double-homicide-great-wolf-lodge/story?id=137273472"
+                ],
+                "status": "unsupported",
+                "reason": "The event regarding police executing a search of the family's home is only reported by ABC News and lacks corroboration from a second independent domain."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event of the signal—police searching the home in connection with the double homicide—is reported by only one domain (abcnews.com), failing the requirement of at least two independent domains."
+          }
+        },
+        {
+          "title": "Trump suggests those who leak government information should ‘be shot’ | Donald Trump News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "time.com",
+              "newsweek.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.21095334685598377
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T09:01:04.723Z"
+  "updatedAt": "2026-10-15T10:01:43.699Z"
 }
