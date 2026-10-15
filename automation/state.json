@@ -7,49 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T08:02:34.197Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "WATCH LIVE: Trump speaks at midterm rally in Youngstown, Ohio | PBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "pbs.org"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Republicans Promoted a False Rumor That James Talarico Was in Ohio - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T09:02:41.798Z",
       "query": "latest news",
       "found": 50,
@@ -2091,7 +2048,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T11:00:51.362Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-15T10:01:43.699Z"
+  "updatedAt": "2026-10-15T11:00:51.362Z"
 }
