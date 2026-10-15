@@ -7,53 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T20:02:50.599Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Trump’s Tree Removal Plans At D.C. Golf Course Blocked 2 More Weeks—After Abruptly Downing Hundreds",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "ca.news.yahoo.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Cornell Bans Fraternity Parties and Adds Sexual Assault Investigators - The New York Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "nypost.com",
-              "bbc.com",
-              "aljazeera.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1867572156196944
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T21:04:38.100Z",
       "query": "latest news",
       "found": 10,
@@ -2017,7 +1970,70 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T22:01:38.108Z",
+      "query": "latest news",
+      "found": 5,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m38.672464105s.",
+          "evidence": {
+            "domains": [
+              "blic.rs",
+              "naslovi.net"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.7448979591836735
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m38.672464105s."
+          }
+        },
+        {
+          "title": "UK Study Visa Refusals Hit Foreign Student University Offers",
+          "stage": "source-verification",
+          "reason": "The signal is directly supported by multiple independent reports documenting British universities withdrawing admission offers due to a surge in UK student visa refusals and tightened compliance assessment thresholds.",
+          "evidence": {
+            "domains": [
+              "article.wn.com",
+              "timeshighereducation.com",
+              "africa.businessinsider.com",
+              "e.vnexpress.net"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.43872113676731794
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Rising UK study visa refusals and stricter government compliance thresholds have led British universities to withdraw or revoke admission offers to foreign students.",
+                "sourceUrls": [
+                  "https://article.wn.com/view/2026/10/15/UK_Study_Visa_Refusals_Hit_Foreign_Students_University_Offer/",
+                  "https://www.timeshighereducation.com/news/v-cs-seek-answers-over-late-surge-uk-student-visa-refusals",
+                  "https://africa.businessinsider.com/local/markets/uk-universities-withdraw-admission-offers-to-nigerian-pakistani-and-bangladeshi/wng8f8l"
+                ],
+                "status": "supported",
+                "reason": "Multiple independent sources verify that UK universities have begun withdrawing offers and pausing recruitment in specific markets to avoid breaching a 5 percent visa refusal limit that could endanger their international student sponsor licences."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal is directly supported by multiple independent reports documenting British universities withdrawing admission offers due to a surge in UK student visa refusals and tightened compliance assessment thresholds."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T21:01:23.548Z"
+  "updatedAt": "2026-10-15T22:01:38.108Z"
 }
