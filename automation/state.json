@@ -6,66 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T20:02:33.928Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "US immigration authorities raid Democratic congresswoman Ilhan Omar's home",
-          "stage": "article-verification",
-          "reason": "The article includes an unsupported claim that early voting is already underway across multiple jurisdictions, and it violates the policy against certainty language regarding future events by labeling a future campaign scenario as '(Certain)'.",
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "unsupportedClaims": [
-              "With early voting already underway in multiple jurisdictions",
-              "Scenario 3: Heightened Campaign Polarization (Certain)"
-            ],
-            "sourceCoverage": 85,
-            "titleAssessment": "accurate",
-            "reason": "The article includes an unsupported claim that early voting is already underway across multiple jurisdictions, and it violates the policy against certainty language regarding future events by labeling a future campaign scenario as '(Certain)'."
-          }
-        },
-        {
-          "title": "Archbishop of the US military says Catholic soldiers should not serve on firing squad",
-          "stage": "source-verification",
-          "reason": "All three provided sources are syndications of the same Associated Press wire article. Per the verification criteria, multiple copies of the same wire story do not count as independent confirmation, failing the requirement of at least two independent reporting domains.",
-          "evidence": {
-            "domains": [
-              "wbtw.com",
-              "washingtonsun.com",
-              "usnews.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.4268292682926829
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Archbishop of the US military says Catholic soldiers should not serve on firing squad",
-                "sourceUrls": [
-                  "https://www.wbtw.com/news/national/ap-archbishop-of-the-u-s-military-says-catholic-soldiers-should-not-serve-on-firing-squad/amp/",
-                  "https://www.washingtonsun.com/defense/us-archbishop-timothy-broglio-catholic-soldiers-pete-hegseth-firing-squad-execution-nidal-hasan?redirected=notus_org",
-                  "https://www.usnews.com/news/best-states/texas/articles/2026-10-12/archbishop-of-the-u-s-military-says-catholic-soldiers-should-not-serve-on-firing-squad"
-                ],
-                "status": "supported",
-                "reason": "The text directly reports that Archbishop Timothy Broglio stated that any Catholic soldier assigned to the firing squad should ask to be excused from that duty."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "All three provided sources are syndications of the same Associated Press wire article. Per the verification criteria, multiple copies of the same wire story do not count as independent confirmation, failing the requirement of at least two independent reporting domains."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T21:02:05.249Z",
       "query": "latest news",
       "found": 10,
@@ -2134,7 +2074,17 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-15T00:01:01.485Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-14T23:01:25.828Z"
+  "updatedAt": "2026-10-15T00:01:01.485Z"
 }
