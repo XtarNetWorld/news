@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-15T07:02:05.386Z",
+  "candidate": {
+    "title": "Musk says Trump responsible for any curbs on Ukraine's Starshield",
+    "url": "https://www.cnbc.com/2026/10/15/elon-musk-starlink-ukraine-trump-energy-ceasefire.html",
+    "publishedAt": "2026-10-15T03:24:36.000Z",
+    "description": "The developments come as tensions between Kyiv and Washington escalate over a supposed \"energy ceasefire,\" between Ukraine and Russia announced by U.S. President Donald Trump.\n\nUkraine has welcomed a deal subject to Moscow honoring its commitment, while Russian authorities said talks were ongoing, without confirming whether they had reached an agreement. On Monday, Zelenskyy accused the Russians of breaching the ceasefire. [...] Trump had also taken aim at Ukraine as it continues to strike Russi",
+    "provider": "Tavily",
+    "source": "cnbc.com",
+    "providers": [
+      "Tavily"
+    ],
+    "sources": [
+      {
+        "title": "Musk says Trump responsible for any curbs on Ukraine's Starshield",
+        "url": "https://www.cnbc.com/2026/10/15/elon-musk-starlink-ukraine-trump-energy-ceasefire.html",
+        "source": "cnbc.com",
+        "publishedAt": "2026-10-15T03:24:36.000Z",
+        "provider": "Tavily",
+        "description": "The developments come as tensions between Kyiv and Washington escalate over a supposed \"energy ceasefire,\" between Ukraine and Russia announced by U.S. President Donald Trump.\n\nUkraine has welcomed a deal subject to Moscow honoring its commitment, while Russian authorities said talks were ongoing, without confirming whether they had reached an agreement. On Monday, Zelenskyy accused the Russians of breaching the ceasefire. [...] Trump had also taken aim at Ukraine as it continues to strike Russi"
+      }
+    ],
+    "evidenceCount": 1,
+    "score": 122.8,
+    "freshnessHours": 3.6,
+    "confidence": "low",
+    "searchDemand": {
+      "matchingQueries": [],
+      "impressions": 0,
+      "clicks": 0,
+      "demandBoost": 0
+    },
+    "forecast": {
+      "score": 122.8,
+      "basis": "freshness, source velocity, cross-source evidence, and matching Search Console demand",
+      "searchDemandConfigured": true
+    }
+  },
+  "evidence": {
+    "domains": [
+      "cnbc.com",
+      "bbc.com",
+      "nypost.com",
+      "newsweek.com"
+    ],
+    "independentSources": 4,
+    "maxTextOverlap": 0.2773722627737226,
+    "sources": [
+      {
+        "title": "Musk says Trump responsible for any curbs on Ukraine&#x27;s Starshield",
+        "url": "https://www.cnbc.com/2026/10/15/elon-musk-starlink-ukraine-trump-energy-ceasefire.html",
+        "source": "cnbc.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-15T03:24:36.000Z"
+      },
+      {
+        "title": "Starlink: Musk says US government may be behind slowdown of Ukraine drone speeds",
+        "url": "https://www.bbc.com/news/articles/c8wy9veedgygo",
+        "source": "bbc.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-14T20:17:09.000Z"
+      },
+      {
+        "title": "Elon Musk blames Trump for Starshield throttling in Ukraine that Zelenksy warns will cost lives",
+        "url": "https://nypost.com/2026/10/14/world-news/elon-musk-blames-trump-for-starshield-throttling-in-ukraine-that-zelenksy-warns-will-cost-lives/",
+        "source": "nypost.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-14T19:53:37.000Z"
+      },
+      {
+        "title": "Ukraine Starlink access restricted as Musk says Zelensky \"has gone too far\" - Newsweek",
+        "url": "https://www.newsweek.com/ukraine-starlink-access-restricted-as-musk-says-zelensky-has-gone-too-far-12565652",
+        "source": "newsweek.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-14T10:21:00.000Z"
+      },
+      {
+        "title": "Ukraine’s Starlink Slowdown Is Putin’s Latest Windfall - Newsweek",
+        "url": "https://www.newsweek.com/ukraine-starlink-slowdown-putin-latest-windfall-musk-trump-12568427",
+        "source": "newsweek.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-14T16:42:00.000Z"
+      }
+    ]
+  },
+  "sourceVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "claims": [
+      {
+        "claim": "Elon Musk stated that Donald Trump and the U.S. government/military are ultimately responsible for any curbs or speed limits placed on Ukraine's Starshield systems.",
+        "sourceUrls": [
+          "https://www.cnbc.com/2026/10/15/elon-musk-starlink-ukraine-trump-energy-ceasefire.html",
+          "https://www.bbc.com/news/articles/c8wy9veedgygo",
+          "https://nypost.com/2026/10/14/world-news/elon-musk-blames-trump-for-starshield-throttling-in-ukraine-that-zelenksy-warns-will-cost-lives/",
+          "https://www.newsweek.com/ukraine-starlink-access-restricted-as-musk-says-zelensky-has-gone-too-far-12565652"
+        ],
+        "status": "supported",
+        "reason": "Directly confirmed by multiple independent reporting outlets quoting Musk's public statement that Starshield systems are owned and controlled by the U.S. government, with limits determined by the military and ultimately POTUS."
+      }
+    ],
+    "conflicts": [],
+    "copyRisk": "low",
+    "reason": "The central claim is corroborated by four major independent news domains with consistent factual details and direct quotes."
+  },
+  "deterministicGate": {
+    "pass": true,
+    "reasons": [],
+    "foreignUrls": [],
+    "bodyCharacters": 6250
+  },
+  "articleVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "unsupportedClaims": [],
+    "sourceCoverage": 100,
+    "titleAssessment": "accurate",
+    "reason": ""
+  },
+  "article": {
+    "title": "Musk Points to Trump for Sudden Starshield Limits Choking Ukraine Drones",
+    "slug": "musk-trump-ukraine-starshield-satellite-limits",
+    "category": "News"
+  }
+}
