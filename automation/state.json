@@ -7,52 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T06:02:15.496Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h57m46.188504678s.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com",
-              "thehansindia.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.9267139479905437
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h57m46.188504678s."
-          }
-        },
-        {
-          "title": "'Power to empower': Modi emphasises wider social reach of technology at Bloomberg New Economy Forum - The Economic Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T07:07:18.634Z",
       "query": "latest news",
       "found": 10,
@@ -2066,7 +2020,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T09:01:04.723Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump administration seeks to strip Ilhan Omar of US citizenship: WSJ | News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "newsweek.com",
+              "time.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.2510822510822511
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Police search home following double homicide at Great Wolf Lodge amid hunt for motive - ABC News",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "aol.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.22142857142857142
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T08:01:18.366Z"
+  "updatedAt": "2026-10-15T09:01:04.723Z"
 }
