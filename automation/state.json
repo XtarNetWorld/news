@@ -7,51 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T14:02:59.506Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Business News Live, Share Market News - Read Latest Finance News, IPO, Mutual Funds News - The Economic Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com",
-              "finance.yahoo.com",
-              "osc.ny.gov"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.08259587020648967
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Love the Outdoors in Charnwood 2026 photo competition winners announced - Latest News - News Updates - Charnwood Borough Council",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T15:02:43.985Z",
       "query": "latest news",
       "found": 50,
@@ -2057,7 +2012,71 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T16:04:31.198Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Exclusive: Ukraine runs out of Patriot defense missiles, leaving it more vulnerable to Russian attacks, source tells CNN | CNN",
+          "stage": "source-verification",
+          "reason": "The central event reported in the signal is an exclusive report published only by CNN on October 15, 2026. The other provided sources (Al Jazeera, RFE/RL, PBS) date from August 2026 and cover earlier shortages, failing to meet the requirement of at least two independent domains confirming the central event.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com",
+              "aljazeera.com",
+              "rferl.org",
+              "pbs.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.17226277372262774
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Ukraine has run out of Patriot air defense missiles, leaving it more vulnerable to Russian attacks, according to a source who spoke to CNN.",
+                "sourceUrls": [
+                  "https://edition.cnn.com/2026/10/15/europe/ukraine-us-patriot-interceptor-missiles-run-out-intl"
+                ],
+                "status": "supported",
+                "reason": "Source 1 (CNN) reports this exclusive development from October 15, 2026, citing a source familiar with the situation."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event reported in the signal is an exclusive report published only by CNN on October 15, 2026. The other provided sources (Al Jazeera, RFE/RL, PBS) date from August 2026 and cover earlier shortages, failing to meet the requirement of at least two independent domains confirming the central event."
+          }
+        },
+        {
+          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "blic.rs",
+              "pink.rs",
+              "naslovi.net",
+              "24sedam.rs",
+              "objektiv.rs"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.2571428571428571
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T15:01:14.787Z"
+  "updatedAt": "2026-10-15T16:04:31.198Z"
 }
