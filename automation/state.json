@@ -6,40 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T02:02:05.903Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "WATCH LIVE: Trump speaks at midterm rally in Youngstown, Ohio | PBS News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m4.072278922s.",
-          "evidence": {
-            "domains": [
-              "pbs.org",
-              "whio.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.00625
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m4.072278922s."
-          }
-        },
-        {
-          "title": "1 dead, others hurt at Six Flags Over Georgia as guests say man fell from coaster",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T03:01:44.308Z",
       "query": "latest news",
       "found": 50,
@@ -2093,7 +2059,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T05:01:11.373Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Retired US generals call on Pentagon to cancel livestream execution",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m56.269890258s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "expressnews.com",
+              "nationalsecurity.law.georgetown.edu"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.2482758620689655
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m56.269890258s."
+          }
+        },
+        {
+          "title": "Exclusive | White House Press Secretary Katie Zacharia Didn’t Pass Bar Exam - WSJ",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m48.627532029s.",
+          "evidence": {
+            "domains": [
+              "thewrap.com",
+              "theaustralian.com.au"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m48.627532029s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T04:01:09.704Z"
+  "updatedAt": "2026-10-15T05:01:11.373Z"
 }
