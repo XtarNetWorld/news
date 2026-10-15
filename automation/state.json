@@ -6,53 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T00:01:57.374Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Jantar Mantar out as protest hub; 3 new venues named - The Times of India",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "timesofindia.indiatimes.com",
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1023142509135201
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "RJ Mitte dies at 34: What happened to the Breaking Bad star who played Walter White Jr. - The Economic Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com",
-              "m.economictimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.3861066235864297
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T01:01:50.614Z",
       "query": "latest news",
       "found": 50,
@@ -2092,7 +2045,71 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T03:01:07.429Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ilhan Omar’s phone seized and relatives subpoenaed in criminal inquiry, source says",
+          "stage": "source-verification",
+          "reason": "The signal accurately reflects corroborated reporting from multiple independent news organizations confirming the seizure of Rep. Omar's phone and subpoenas issued to her relatives in a federal investigation.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "latimes.com",
+              "foxnews.com",
+              "ms.now",
+              "cbsnews.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.3874709976798144
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Federal authorities seized Rep. Ilhan Omar's phone and subpoenaed her relatives as part of a criminal inquiry into her immigration records.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/14/ilhan-omar-phone-seized-relatives-subpoenaed",
+                  "https://www.cbsnews.com/news/ilhan-omar-subpoenas-relatives-investigation-homeland-security/",
+                  "https://www.foxnews.com/politics/federal-agents-seize-phone-rep-ilhan-omar-raid-tied-immigration-fraud-probe"
+                ],
+                "status": "supported",
+                "reason": "Confirmed across multiple independent reporting outlets, including CBS News, Fox News, and the Associated Press (published via The Guardian)."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal accurately reflects corroborated reporting from multiple independent news organizations confirming the seizure of Rep. Omar's phone and subpoenas issued to her relatives in a federal investigation."
+          }
+        },
+        {
+          "title": "Supreme Court sides with Republicans in dispute over cost of campaign ads - Los Angeles Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m52.569408784s.",
+          "evidence": {
+            "domains": [
+              "latimes.com",
+              "newsweek.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.18167701863354038
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m52.569408784s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T02:01:06.546Z"
+  "updatedAt": "2026-10-15T03:01:07.429Z"
 }
