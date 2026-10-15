@@ -6,57 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T01:01:50.614Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Jantar Mantar out as protest hub; 3 new venues named - The Times of India",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m12.887764484s.",
-          "evidence": {
-            "domains": [
-              "timesofindia.indiatimes.com",
-              "tribuneindia.com",
-              "deccanherald.com",
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.5560344827586207
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m12.887764484s."
-          }
-        },
-        {
-          "title": "RJ Mitte dies at 34: What happened to the Breaking Bad star who played Walter White Jr. - The Economic Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m9.377294125s.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com",
-              "hindustantimes.com",
-              "unn.ua",
-              "deadline.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.2183206106870229
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m9.377294125s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T02:02:05.903Z",
       "query": "latest news",
       "found": 10,
@@ -2109,7 +2058,42 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T04:01:09.704Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "White House spokesperson Katie Zacharia’s law career faces scrutiny | Donald Trump News | Al Jazeera",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "The Trump Administration and the Shrinking Number of Women in Top Roles",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m50.296914077s.",
+          "evidence": {
+            "domains": [
+              "latimes.com",
+              "talkingpointsmemo.com",
+              "insurancejournal.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.112565445026178
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m50.296914077s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T03:01:07.429Z"
+  "updatedAt": "2026-10-15T04:01:09.704Z"
 }
