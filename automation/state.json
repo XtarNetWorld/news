@@ -6,52 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T03:01:44.308Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m19.286179316s.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com",
-              "dw.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.933806146572104
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m19.286179316s."
-          }
-        },
-        {
-          "title": "RJ Mitte cause of death: Breaking Bad actor who played Walter White’s son dies at 34; reason behind his d - The Economic Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.4108527131782946
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T04:02:56.670Z",
       "query": "latest news",
       "found": 50,
@@ -2107,7 +2061,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T06:00:46.014Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-15T05:01:11.373Z"
+  "updatedAt": "2026-10-15T06:00:46.014Z"
 }
