@@ -7,51 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T09:02:41.798Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.9331742243436754
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "News Analysis 12 October 2026 | Latest News & Current Affairs - Drishti IAS",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "drishtiias.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.2625
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T10:02:40.111Z",
       "query": "latest news",
       "found": 50,
@@ -2058,7 +2013,64 @@
       "dailyCap": 100,
       "usedBeforeRun": 1,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-15T12:03:57.360Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Ukraine resumes strikes on Russian oil refineries as anger mounts with Trump",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "aol.com",
+              "cbc.ca"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.19548872180451127
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "Republicans’ last hope for 2026: Another polling miss - POLITICO",
+          "stage": "source-verification",
+          "reason": "The signal refers to a POLITICO report that is completely absent and unsupported by the provided source texts, failing the requirement of independent confirmation.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com",
+              "nypost.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.04044117647058824
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "POLITICO published an article or report titled 'Republicans’ last hope for 2026: Another polling miss'",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "Neither provided source mentions or confirms the existence of the POLITICO report; Source 1 is a CNN video segment on Midwest polling gaps, and Source 2 is an opinion piece from the New York Post."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal refers to a POLITICO report that is completely absent and unsupported by the provided source texts, failing the requirement of independent confirmation."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T11:00:51.362Z"
+  "updatedAt": "2026-10-15T12:03:57.360Z"
 }
