@@ -2,58 +2,10 @@
   "version": 1,
   "seen": [
     "trump says putin will release diesel fuel into global market",
-    "judge blocks trump administration from cutting down trees at d c golf course for 2 weeks cbs news"
+    "judge blocks trump administration from cutting down trees at d c golf course for 2 weeks cbs news",
+    "musk says trump responsible for any curbs on ukraine s starshield"
   ],
   "runs": [
-    {
-      "at": "2026-10-13T04:02:56.670Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h57m55.82443323s.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com",
-              "thehansindia.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.933806146572104
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h57m55.82443323s."
-          }
-        },
-        {
-          "title": "RJ Mitte cause of death: Breaking Bad actor who played Walter White’s son dies at 34; reason behind his d - The Economic Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "ynetnews.com",
-              "bbc.com",
-              "latimes.com",
-              "jpost.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.2515923566878981
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
     {
       "at": "2026-10-13T05:02:00.608Z",
       "query": "latest news",
@@ -2071,7 +2023,50 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-15T07:02:32.379Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 1,
+      "rejected": 1,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Exclusive | White House Press Secretary Katie Zacharia Didn’t Pass Bar Exam - WSJ",
+          "stage": "source-verification",
+          "reason": "The central claim is corroborated by two independent reporting domains citing the Wall Street Journal exclusive.",
+          "evidence": {
+            "domains": [
+              "thewrap.com",
+              "theaustralian.com.au",
+              "newsbreak.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "The Wall Street Journal reported that White House Press Secretary Katie Zacharia did not pass the bar exam.",
+                "sourceUrls": [
+                  "https://www.thewrap.com/media-platforms/politics/white-house-press-secretary-katie-zacharia-did-not-pass-bar-exam/",
+                  "https://www.newsbreak.com/thedailybeast-513346/4946586411645-humiliating-truth-about-katie-zacharia-s-legal-claims-exposed"
+                ],
+                "status": "supported",
+                "reason": "Both independent sources (TheWrap and NewsBreak/The Daily Beast) confirm that The Wall Street Journal reported that White House Press Secretary Katie Zacharia did not pass the bar exam."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim is corroborated by two independent reporting domains citing the Wall Street Journal exclusive."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T06:00:46.014Z"
+  "updatedAt": "2026-10-15T07:02:32.379Z"
 }
