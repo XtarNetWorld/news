@@ -7,56 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T11:02:32.768Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "CJP gives ‘24-hr ultimatum’ to police to set new protest date | Latest News Delhi - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.9331742243436754
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "India news Live Updates, 13 October 2026: Jairam Ramesh asks if Centre is preparing for U-turn on UPI MDR - The Indian Express",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "global-agriculture.com",
-              "english.mathrubhumi.com",
-              "etvbharat.com",
-              "techcrunch.com",
-              "bbc.com",
-              "economictimes.indiatimes.com"
-            ],
-            "independentSources": 6,
-            "maxTextOverlap": 0.25
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T13:02:39.063Z",
       "query": "latest news",
       "found": 50,
@@ -2066,7 +2016,43 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T14:01:46.510Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "The pope has a lung cancer that’s common in nonsmokers. Here’s what to know. - The Washington Post",
+          "stage": "source-verification",
+          "reason": "Resource has been exhausted (e.g. check quota).",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com",
+              "edition.cnn.com",
+              "abc.net.au",
+              "npr.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.138671875
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Resource has been exhausted (e.g. check quota)."
+          }
+        },
+        {
+          "title": "Ukraine resumes strikes on Russian oil refineries as anger mounts with Trump",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T13:01:33.028Z"
+  "updatedAt": "2026-10-15T14:01:46.510Z"
 }
