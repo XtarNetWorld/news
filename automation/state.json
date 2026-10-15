@@ -6,54 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T22:04:09.256Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "RJ Mitte dies at 34: When 'Breaking Bad' star spoke about living with cerebral palsy | Hindustan Times - Hindustan Times",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "variety.com",
-              "latimes.com",
-              "edition.cnn.com",
-              "cbsnews.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.15178571428571427
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "News Analysis 12 October 2026 | Latest News & Current Affairs - Drishti IAS",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "drishtiias.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.27009646302250806
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T00:01:57.374Z",
       "query": "latest news",
       "found": 50,
@@ -2083,7 +2035,64 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-15T02:01:06.546Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ilhan Omar’s phone seized and relatives subpoenaed in criminal inquiry, source says",
+          "stage": "source-verification",
+          "reason": "The central claim is only covered by a single domain (The Guardian), failing the requirement for two independent reporting domains. Sources 2 and 3 did not provide usable content.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "greenwichtime.com",
+              "triblive.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.027777777777777776
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Ilhan Omar's phone was seized and relatives were subpoenaed in a criminal inquiry",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/14/ilhan-omar-phone-seized-relatives-subpoenaed"
+                ],
+                "status": "unsupported",
+                "reason": "Only one source provides text (Source 2 and Source 3 are blocked/privacy walls), failing the requirement of at least two independent domains for the central event. In addition, the available source text contains a future/anomalous publication date of October 2026."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim is only covered by a single domain (The Guardian), failing the requirement for two independent reporting domains. Sources 2 and 3 did not provide usable content."
+          }
+        },
+        {
+          "title": "Supreme Court rules for Republicans on television ad rates",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T01:01:11.869Z"
+  "updatedAt": "2026-10-15T02:01:06.546Z"
 }
