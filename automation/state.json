@@ -6,67 +6,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-12T21:02:05.249Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "AP report: Trump, Rubio weigh firing Kimberly Guilfoyle after mounting reports of improper conduct | PBS News",
-          "stage": "source-verification",
-          "reason": "The requirement of at least two independent domains for the central event is not met because all available sources are syndications of the same Associated Press wire story.",
-          "evidence": {
-            "domains": [
-              "pbs.org",
-              "middletownpress.com",
-              "aol.ca",
-              "ksat.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.5925155925155925
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "President Donald Trump and Secretary of State Marco Rubio are considering firing U.S. Ambassador to Greece Kimberly Guilfoyle following mounting reports of improper conduct.",
-                "sourceUrls": [
-                  "https://www.pbs.org/newshour/world/ap-report-trump-rubio-weigh-firing-kimberly-guilfoyle-after-mounting-reports-of-improper-conduct",
-                  "https://www.aol.ca/articles/ap-source-trump-rubio-weigh-171613000.html"
-                ],
-                "status": "supported",
-                "reason": "The claim is present in the text, but all provided sources are syndications of a single Associated Press wire report by Matthew Lee."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The requirement of at least two independent domains for the central event is not met because all available sources are syndications of the same Associated Press wire story."
-          }
-        },
-        {
-          "title": "Erie mass shooting: Names of adult victims, suspect released",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "dallasexpress.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-12T22:04:09.256Z",
       "query": "latest news",
       "found": 50,
@@ -2084,7 +2023,67 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-15T01:01:11.869Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Breaking News, World News and Video from Al Jazeera",
+          "stage": "source-verification",
+          "reason": "The signal does not describe a verifiable central event, lacks a date, and fails the requirement of having at least two independent domains confirming the information.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "jpost.com",
+              "countercurrents.org"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.13709677419354838
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Breaking News, World News and Video from Al Jazeera",
+                "sourceUrls": [
+                  "https://www.aljazeera.com/"
+                ],
+                "status": "unsupported",
+                "reason": "The signal is a generic website title/tagline rather than an event claim, contains no specific date, and lacks corroboration across at least two independent domains."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal does not describe a verifiable central event, lacks a date, and fails the requirement of having at least two independent domains confirming the information."
+          }
+        },
+        {
+          "title": "VIDEO: F-35C Lands on New Navy Aircraft Carrier Class for First Time - USNI News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m48.131002245s.",
+          "evidence": {
+            "domains": [
+              "maritime-executive.com",
+              "businessinsider.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1349206349206349
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m48.131002245s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T00:01:01.485Z"
+  "updatedAt": "2026-10-15T01:01:11.869Z"
 }
