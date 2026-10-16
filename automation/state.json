@@ -7,31 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T09:02:54.750Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Judge extends White House access to banned media outlets CNN, MS Now and Politico",
-          "stage": "generation",
-          "reason": "Generation failed"
-        },
-        {
-          "title": "Rep Omar's immigration history faces new scrutiny as feds subpoena relatives | Fox News",
-          "stage": "article-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T10:02:48.951Z",
       "query": "latest news",
       "found": 50,
@@ -2058,7 +2033,58 @@
           "reason": "Generation failed"
         }
       ]
+    },
+    {
+      "at": "2026-10-16T11:01:33.943Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "How much money has Musk given to Republican groups since July? The quiz knows",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "npr.org",
+              "knpr.org",
+              "wnyc.org",
+              "kaxe.org"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.3282442748091603
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Six Flags parkgoer Hassan Kariem’s harrowing final moments before fatal Goliath roller coaster fall revealed",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "nypost.com",
+              "globemagazine.com",
+              "dailymail.com",
+              "atlantanewsfirst.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.26
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T10:01:59.202Z"
+  "updatedAt": "2026-10-16T11:01:33.943Z"
 }
