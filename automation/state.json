@@ -7,64 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T22:04:00.205Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Enter the Zachbot: Trump’s new press secretary malfunctions on podium debut",
-          "stage": "source-verification",
-          "reason": "The signal text is an exact verbatim copy of the headline from The Guardian article.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "aol.com",
-              "politicalwire.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.10049423393739704
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Donald Trump's new White House press secretary, Katie Zacharia, made a halting and awkward debut at the podium, drawing widespread commentary and being dubbed 'the Zachbot'.",
-                "sourceUrls": [
-                  "https://www.theguardian.com/us-news/2026/oct/13/katie-zacharia-trump-press-briefing",
-                  "https://www.aol.com/articles/fox-news-finds-rosy-spin-181105000.html"
-                ],
-                "status": "supported",
-                "reason": "Both The Guardian and AOL (syndicating HuffPost) report on Katie Zacharia's clumsy 14-minute maiden press briefing on October 13, 2026, which featured stiff delivery and abrupt departure after three questions."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "The signal text is an exact verbatim copy of the headline from The Guardian article."
-          }
-        },
-        {
-          "title": "'A gift to our adversary': Bipartisan group of senators slam Trump's Russian diesel deal - Live Updates - POLITICO",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-13T23:02:04.444Z",
       "query": "latest news",
       "found": 10,
@@ -2046,7 +1988,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T00:01:20.317Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump lashes out at Republicans as Ken Paxton struggles in Texas - POLITICO",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "npr.org"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Multiple people, including children, injured in elementary school shooting in Oregon",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m39.677051635s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "fox35orlando.com",
+              "abcnews.com",
+              "turnto10.com",
+              "abc3340.com",
+              "fox10phoenix.com"
+            ],
+            "independentSources": 6,
+            "maxTextOverlap": 0.4592833876221498
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m39.677051635s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-15T23:01:05.171Z"
+  "updatedAt": "2026-10-16T00:01:20.317Z"
 }
