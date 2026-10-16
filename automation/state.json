@@ -7,57 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T21:02:13.755Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Starlink: Musk says US government may be behind slowdown of Ukraine drone speeds",
-          "stage": "article-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "'It's rough out here': Americans struggle to survive amid rising costs",
-          "stage": "source-verification",
-          "reason": "The signal corresponds to an individual BBC feature story that is not reported or corroborated by a second independent domain as required by verification guidelines, and the primary source lacks a full absolute publication date.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "rollingstone.com",
-              "npr.org"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.06018518518518518
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Americans are struggling to survive amid rising costs, with individuals describing conditions as 'rough out here'",
-                "sourceUrls": [
-                  "https://www.bbc.com/news/articles/c305649p2d6o"
-                ],
-                "status": "supported",
-                "reason": "Supported by the BBC feature article which interviews Americans including Kathryn Vaughn, who explicitly states 'It's rough out here'."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal corresponds to an individual BBC feature story that is not reported or corroborated by a second independent domain as required by verification guidelines, and the primary source lacks a full absolute publication date."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T22:01:05.449Z",
       "query": "latest news",
       "found": 0,
@@ -2218,7 +2167,44 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T23:03:20.855Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "New NOAA outlook reveals what Minnesota can expect this winter",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "nbcchicago.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "El-Sayed responds after Vance calls him a \"weasel\" as Michigan Senate race grows contentious - CBS News",
+          "stage": "article-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 56m39.146715047s.",
+          "verifier": {
+            "decision": "reject",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 56m39.146715047s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T22:04:50.109Z"
+  "updatedAt": "2026-10-16T23:03:20.855Z"
 }
