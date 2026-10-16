@@ -7,16 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T19:01:23.801Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-14T20:02:13.845Z",
       "query": "latest news",
       "found": 50,
@@ -2150,7 +2140,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T21:02:11.567Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "New NOAA outlook reveals what Minnesota can expect this winter",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "nbcchicago.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Israeli settlers burn olive trees, injure journalist in West Bank attack",
+          "stage": "source-verification",
+          "reason": "Both provided sources are syndications of the exact same Reuters wire dispatch. Per the guidelines, multiple copies of the same wire report cannot be treated as independent confirmation, failing the requirement of at least two independent domains for the central event.",
+          "evidence": {
+            "domains": [
+              "arabnews.com",
+              "thehindu.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.4444444444444444
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Israeli settlers burned olive trees and injured a journalist during an attack in the West Bank village of Abu Falah.",
+                "sourceUrls": [
+                  "https://www.arabnews.com/middle-east/israeli-settlers-burn-olive-trees-injure-journalist-in-west-bank-attack-3006667",
+                  "https://www.thehindu.com/news/international/israeli-settlers-burn-olive-trees-injure-journalist-in-west-bank-attack/article71593869.ece/amp/"
+                ],
+                "status": "supported",
+                "reason": "Both sources report that masked Israeli settlers burned olive trees and injured Washington Post photojournalist Heidi Levine in Abu Falah."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "Both provided sources are syndications of the exact same Reuters wire dispatch. Per the guidelines, multiple copies of the same wire report cannot be treated as independent confirmation, failing the requirement of at least two independent domains for the central event."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T20:05:34.693Z"
+  "updatedAt": "2026-10-16T21:02:11.567Z"
 }
