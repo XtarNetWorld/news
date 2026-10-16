@@ -7,52 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T03:01:07.760Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "In heated Georgia Senate debate, Jon Ossoff says he won’t run for president in 2028",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "newrepublic.com",
-              "jta.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1111111111111111
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Democrats fear \"more October surprises\" after Ilhan Omar raid",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "middleeasteye.net"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T04:01:10.484Z",
       "query": "latest news",
       "found": 10,
@@ -2017,7 +1971,57 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-16T05:05:35.168Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Multiple people injured in shooting at Bend, Oregon, elementary school, suspect fatally shot: Police - ABC News",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "opb.org",
+              "cbsnews.com",
+              "kptv.com",
+              "theguardian.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.22942643391521197
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "\"Oh, shut up\": Maine Senate debate gets testy",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "usnews.com",
+              "washingtonexaminer.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.08527131782945736
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T04:01:15.759Z"
+  "updatedAt": "2026-10-16T05:05:35.168Z"
 }
