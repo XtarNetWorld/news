@@ -7,51 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T14:01:18.167Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Sudden Starlink Restrictions Hamper Ukraine Just as Russia Escalates - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "newscord.org"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.21728395061728395
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Pope Leo spends a peaceful night in the hospital after lung cancer surgery",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "wtvbam.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T15:01:09.495Z",
       "query": "latest news",
       "found": 10,
@@ -2075,7 +2030,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T16:01:28.980Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Israeli settlers attack olive farmers and Washington Post journalist in West Bank",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "aljazeera.com",
+              "bbc.co.uk",
+              "washingtonpost.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.18951612903225806
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "See the full list of major donors to the White House ballroom - The Washington Post",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.06179775280898876
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T15:01:32.077Z"
+  "updatedAt": "2026-10-16T16:01:28.980Z"
 }
