@@ -7,64 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T10:02:48.951Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Latest Hockey News and Updates - Hockey India",
-          "stage": "source-verification",
-          "reason": "The central event is reported by only one domain (hockeyindia.org) and lacks independent confirmation from a second domain.",
-          "evidence": {
-            "domains": [
-              "hockeyindia.org",
-              "thebridge.in"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.2951219512195122
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Indian men's hockey team beat Bangladesh 10-0 in a rain-hit game for their fifth straight win at the 2026 Asian Games to advance to the semi-finals against Pakistan.",
-                "sourceUrls": [
-                  "https://www.hockeyindia.org/news/indian-mens-team-beats-bangladesh-10-0-in-rain-hit-game-for-5th-straight-win-of-asian-games-2026-next-up-pakistan-in-the-semi-finals"
-                ],
-                "status": "unsupported",
-                "reason": "The event is only reported by a single domain (hockeyindia.org); it lacks corroboration from at least two independent domains."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event is reported by only one domain (hockeyindia.org) and lacks independent confirmation from a second domain."
-          }
-        },
-        {
-          "title": "India news Live Updates, 14 October 2026: Rahul Gandhi’s call for evidence to ‘punish’ those behind Delhi crackdown - The Indian Express",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "newindianexpress.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T11:01:20.298Z",
       "query": "latest news",
       "found": 10,
@@ -2084,7 +2026,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T12:01:45.473Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Breaking News, World News and Video from Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Breaking News LIVE | US TAKEOVER OF IRAN? Trump’s Latest Statement LIVE |  US IRAN NEWS LIVE",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "hindustantimes.com",
+              "wausaupilotandreview.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.4161184210526316
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T11:01:33.943Z"
+  "updatedAt": "2026-10-16T12:01:45.473Z"
 }
