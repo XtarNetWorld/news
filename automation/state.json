@@ -7,52 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T12:01:41.327Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Pope Leo spends a peaceful night in the hospital after lung cancer surgery",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "wtvbam.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Russia pounds Kyiv energy sites as Ukraine reports Starlink throttling - POLITICO",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "politico.eu",
-              "greenwichtime.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.08791208791208792
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T13:03:26.472Z",
       "query": "latest news",
       "found": 10,
@@ -2067,7 +2021,59 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T14:01:39.641Z",
+      "query": "latest news",
+      "found": 16,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "US senators call for investigation into Ukraine Starlink restrictions",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "unn.ua",
+              "bbc.co.uk",
+              "ua.news",
+              "gwaramedia.com",
+              "foreign.senate.gov"
+            ],
+            "independentSources": 6,
+            "maxTextOverlap": 0.488
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Alaska Senate candidates clash over the Iran war, high prices and their times in office",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "economictimes.indiatimes.com",
+              "streamlinefeed.co.ke"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.29037800687285226
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T13:01:39.741Z"
+  "updatedAt": "2026-10-16T14:01:39.641Z"
 }
