@@ -7,35 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T00:04:25.121Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 1,
-      "rejected": 1,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Rep. Ilhan Omar under investigation by Jeanine Pirro's office",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h55m34.877784078s.",
-          "evidence": {
-            "domains": [
-              "foxnews.com",
-              "ktrh.iheart.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.08471074380165289
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h55m34.877784078s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T01:01:09.542Z",
       "query": "latest news",
       "found": 10,
@@ -2044,7 +2015,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T02:01:09.260Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump’s new press secretary says it’s ‘unknown’ how much she’ll deal with media",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "komonews.com",
+              "fox5vegas.com",
+              "au.rollingstone.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.147008547008547
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "EXCLUSIVE: Order to limit Starshield for Ukraine came from inside White House, sources say",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m50.738051065s.",
+          "evidence": {
+            "domains": [
+              "internazionale.it",
+              "devdiscourse.com",
+              "newsquawk.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.4479553903345725
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h58m50.738051065s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T01:03:10.414Z"
+  "updatedAt": "2026-10-16T02:01:09.260Z"
 }
