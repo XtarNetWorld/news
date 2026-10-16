@@ -7,65 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T02:02:50.516Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump heads to Alaska as GOP scrambles to hold Senate",
-          "stage": "source-verification",
-          "reason": "The central event—Trump traveling to Alaska to rally for Dan Sullivan—is reported only by a single domain (The Independent). There is no confirmation from a second independent domain as required.",
-          "evidence": {
-            "domains": [
-              "independent.co.uk",
-              "pbs.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.14949201741654572
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Donald Trump travels to Alaska to campaign for Republican Senator Dan Sullivan amid GOP efforts to maintain control of the Senate.",
-                "sourceUrls": [
-                  "https://www.independent.co.uk/news/world/americas/us-politics/trump-alaska-senate-dan-sullivan-b3065689.html"
-                ],
-                "status": "supported",
-                "reason": "Supported by Source 1, but completely absent from Source 2."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event—Trump traveling to Alaska to rally for Dan Sullivan—is reported only by a single domain (The Independent). There is no confirmation from a second independent domain as required."
-          }
-        },
-        {
-          "title": "Cornell bans frat parties in wake of gang rape allegation | AP News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h57m9.484588186s.",
-          "evidence": {
-            "domains": [
-              "wowt.com",
-              "nbcdfw.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.6486486486486487
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21h57m9.484588186s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T03:01:07.760Z",
       "query": "latest news",
       "found": 10,
@@ -2066,7 +2007,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T04:01:15.759Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-16T03:01:25.543Z"
+  "updatedAt": "2026-10-16T04:01:15.759Z"
 }
