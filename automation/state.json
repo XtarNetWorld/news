@@ -7,54 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T01:01:09.542Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Enter the Zachbot: Trump’s new press secretary malfunctions on podium debut",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m57.94681063s.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "politicalwire.com",
-              "aol.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2915766738660907
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m57.94681063s."
-          }
-        },
-        {
-          "title": "Cornell bans frat parties in wake of gang rape allegation | AP News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m50.456561452s.",
-          "evidence": {
-            "domains": [
-              "nypost.com",
-              "cbsnews.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.35560344827586204
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m50.456561452s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T02:02:50.516Z",
       "query": "latest news",
       "found": 10,
@@ -2065,7 +2017,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T03:01:25.543Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "\"Oh, shut up\": Maine Senate debate gets testy",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m39.26992018s.",
+          "evidence": {
+            "domains": [
+              "rawstory.com",
+              "nhregister.com",
+              "usnews.com",
+              "nypost.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.12698412698412698
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m39.26992018s."
+          }
+        },
+        {
+          "title": "Trump names scapegoats as Republicans sweat in Texas",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m34.444535389s.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com",
+              "salon.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.09423347398030943
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m34.444535389s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T02:01:09.260Z"
+  "updatedAt": "2026-10-16T03:01:25.543Z"
 }
