@@ -7,56 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T11:01:20.298Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Bass vs. Raman: Here's who won the L.A. mayoral debate - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "latimes.com",
-              "nypost.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.17755681818181818
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Judge deals another blow to Trump’s White House media bans - The Washington Post",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "whec.com",
-              "huffingtonpost.co.uk",
-              "news3lv.com",
-              "poynter.org",
-              "alternet.org"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.17058823529411765
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T12:01:41.327Z",
       "query": "latest news",
       "found": 10,
@@ -2072,7 +2022,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T13:01:39.741Z",
+      "query": "latest news",
+      "found": 16,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "GOP senators press Pentagon over Ukraine’s loss of Starshield data",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "newsradio1410.iheart.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Trump aides brace for White House turmoil as midterm losses loom - The Washington Post",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T12:01:45.473Z"
+  "updatedAt": "2026-10-16T13:01:39.741Z"
 }
