@@ -7,51 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T05:01:12.367Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Judge blocks Trump's White House ban targeting CNN, MS NOW and Politico, saying it likely violated 1st Amendment - CBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Rep Omar's immigration history faces new scrutiny as feds subpoena relatives | Fox News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "foxnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.6654478976234004
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T06:01:20.523Z",
       "query": "latest news",
       "found": 50,
@@ -2020,7 +1975,50 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T07:01:23.812Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "School Shooting in Oregon Adds Silver Rail Elementary to Grim List - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "newscord.org"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Senators: Pentagon inspector general must probe Ukraine's Starlink outage",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T06:01:28.045Z"
+  "updatedAt": "2026-10-16T07:01:23.812Z"
 }
