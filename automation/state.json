@@ -7,55 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T17:01:16.677Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "'It's rough out here': Americans struggle to survive amid rising costs",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "pbs.org"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.5010615711252654
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Container ship sinks in Strait of Hormuz as Iran steps up attacks",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "cnbc.com",
-              "aljazeera.com",
-              "consent.yahoo.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.12367491166077739
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T18:01:12.500Z",
       "query": "latest news",
       "found": 0,
@@ -2114,7 +2065,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T19:01:27.763Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "New NOAA outlook reveals what Minnesota can expect this winter",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "nbcchicago.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Katie Zacharia, Trump’s New Press Secretary, Is Fired After 5 Days - The New York Times",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "ndtv.com",
+              "time.com",
+              "businessinsider.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.1956521739130435
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T18:01:30.250Z"
+  "updatedAt": "2026-10-16T19:01:27.763Z"
 }
