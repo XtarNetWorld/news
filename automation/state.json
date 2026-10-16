@@ -7,49 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-13T23:02:04.444Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Cornell bans frat parties in wake of gang rape allegation | AP News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Friend of woman allegedly killed by Massachusetts police officer: \"It was complete, 100% exploitation\" - CBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.3488372093023256
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T00:04:25.121Z",
       "query": "latest news",
       "found": 10,
@@ -2038,7 +1995,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T01:03:10.414Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Warm, wet winter in store for California. Here's what to know.",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "sfgate.com",
+              "kqed.org",
+              "newspress.com",
+              "mercurynews.com",
+              "californiacitynews.org"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.15562403697996918
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "Trump lashes out at Republicans as Ken Paxton struggles in Texas - POLITICO",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.17069701280227595
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T00:01:20.317Z"
+  "updatedAt": "2026-10-16T01:03:10.414Z"
 }
