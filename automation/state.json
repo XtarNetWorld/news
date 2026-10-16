@@ -7,53 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T13:03:26.472Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Ukraine accuses SpaceX of crippling drone missions as ties with US worsen",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "themoscowtimes.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Pope Leo spends a peaceful night in the hospital after lung cancer surgery",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "ynetnews.com",
-              "huffpost.com",
-              "cbsnews.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.18705035971223022
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T14:01:18.167Z",
       "query": "latest news",
       "found": 10,
@@ -2073,7 +2026,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T15:01:32.077Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "White House Reportedly Ordered Limits On Ukraine's Starshield Use—As Trump Blasts Zelenskyy",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "huffpost.com",
+              "nypost.com",
+              "cnbc.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.13509060955518945
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Israeli settlers attack olive farmers and Washington Post journalist in West Bank",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "aljazeera.com",
+              "edition.cnn.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.20040080160320642
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T14:01:39.641Z"
+  "updatedAt": "2026-10-16T15:01:32.077Z"
 }
