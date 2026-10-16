@@ -7,53 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T04:01:10.484Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "In heated Georgia Senate debate, Jon Ossoff says he won’t run for president in 2028",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m51.998093399s.",
-          "evidence": {
-            "domains": [
-              "newrepublic.com",
-              "jta.org"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1111111111111111
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m51.998093399s."
-          }
-        },
-        {
-          "title": "Democrats fear \"more October surprises\" after Ilhan Omar raid",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.516155452s.",
-          "evidence": {
-            "domains": [
-              "politicalwire.com",
-              "middleeasteye.net"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.059961315280464215
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.516155452s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T05:01:12.367Z",
       "query": "latest news",
       "found": 10,
@@ -2021,7 +1974,53 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T06:01:28.045Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Multiple people injured in shooting at Bend, Oregon, elementary school, suspect fatally shot: Police - ABC News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m33.637014934s.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "opb.org",
+              "aljazeera.com",
+              "washingtonpost.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.24043715846994534
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m33.637014934s."
+          }
+        },
+        {
+          "title": "Trump looms as tensions flare in final Maine Senate debate",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T05:05:35.168Z"
+  "updatedAt": "2026-10-16T06:01:28.045Z"
 }
