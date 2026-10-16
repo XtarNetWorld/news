@@ -7,16 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T07:01:06.292Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-14T08:01:33.806Z",
       "query": "latest news",
       "found": 10,
@@ -2036,7 +2026,50 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T09:01:33.641Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "The Washington Post - Breaking news and latest headlines, U.S. news, world news, and video",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "washingtonpost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.06666666666666667
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "US NEWS LIVE: 2 MINUTES AGO! Trump Drops Massive Iran Decision, \"Total Control\" Declared",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T08:01:42.945Z"
+  "updatedAt": "2026-10-16T09:01:33.641Z"
 }
