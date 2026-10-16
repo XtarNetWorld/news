@@ -7,50 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T08:01:33.806Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Judge extends White House access to banned media outlets CNN, MS Now and Politico",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "cnbc.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.22309197651663404
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Trump Adds Another Giveaway to His Midterm Pitch: Pardons. - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-14T09:02:54.750Z",
       "query": "latest news",
       "found": 10,
@@ -2069,7 +2025,40 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-16T10:01:59.202Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Six Flags parkgoer Hassan Kariem’s harrowing final moments before fatal Goliath roller coaster fall revealed",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "nypost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.5184135977337111
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Bend, Oregon shooting live updates: 3 children and shooter among killed at Silver Rail school | CNN",
+          "stage": "generation",
+          "reason": "Generation failed"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T09:01:33.641Z"
+  "updatedAt": "2026-10-16T10:01:59.202Z"
 }
