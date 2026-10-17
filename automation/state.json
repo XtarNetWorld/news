@@ -9,53 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T18:03:20.389Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "~`(VIRAL+HQ+vIDEO+18)@! mehjabin and pori moni)@* Pori Moni Latest News and Viral Search Interest Explained - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "variety.com",
-              "timesofindia.indiatimes.com",
-              "ndtv.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.13920163766632548
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Tottenham XI vs Coventry: Confirmed team news, predicted lineup and injury latest - Yahoo Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "sports.yahoo.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.33962264150943394
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T19:01:49.961Z",
       "query": "latest news",
       "found": 0,
@@ -2466,7 +2419,67 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T20:01:32.946Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "Ukraine still unable to intercept Russian drones due to Starlink restrictions, Zelenskyy says - CBS News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m46.844121905s.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "san.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.14680483592400692
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m46.844121905s."
+          }
+        },
+        {
+          "title": "Ilhan Omar’s lawyers demand the return of property seized in house raid | Courts News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "The signal requires at least two independent domains for the central event, but Source 2 explicitly notes its reporting is taken directly from Al Jazeera and The AP. Reprints or rewrites of the same wire reporting cannot serve as independent confirmation. Furthermore, the signal text is an exact verbatim copy of Source 1's headline.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "m.economictimes.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.24664879356568364
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Ilhan Omar's lawyers demanded the return of property seized during a federal search of her home.",
+                "sourceUrls": [
+                  "https://www.aljazeera.com/news/2026/10/17/ilhan-omars-lawyers-demand-the-return-of-property-seized-in-house-raid",
+                  "https://m.economictimes.com/world/us/what-documents-were-seized-from-ilhan-omars-property-by-federal-agents/amp_articleshow/135016628.cms"
+                ],
+                "status": "supported",
+                "reason": "The report appears in Source 1 and Source 2, detailing the legal letter sent to federal prosecutors requesting the return of seized property."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "The signal requires at least two independent domains for the central event, but Source 2 explicitly notes its reporting is taken directly from Al Jazeera and The AP. Reprints or rewrites of the same wire reporting cannot serve as independent confirmation. Furthermore, the signal text is an exact verbatim copy of Source 1's headline."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T19:01:19.688Z"
+  "updatedAt": "2026-10-17T20:01:32.946Z"
 }
