@@ -9,66 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T10:01:43.699Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Police search home following double homicide at Great Wolf Lodge amid hunt for motive - ABC News",
-          "stage": "source-verification",
-          "reason": "The central event of the signal—police searching the home in connection with the double homicide—is reported by only one domain (abcnews.com), failing the requirement of at least two independent domains.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "aol.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.22540250447227192
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Police searched the home of the family involved in the Great Wolf Lodge double homicide amid a search for a motive.",
-                "sourceUrls": [
-                  "https://abcnews.com/US/police-search-home-double-homicide-great-wolf-lodge/story?id=137273472"
-                ],
-                "status": "unsupported",
-                "reason": "The event regarding police executing a search of the family's home is only reported by ABC News and lacks corroboration from a second independent domain."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event of the signal—police searching the home in connection with the double homicide—is reported by only one domain (abcnews.com), failing the requirement of at least two independent domains."
-          }
-        },
-        {
-          "title": "Trump suggests those who leak government information should ‘be shot’ | Donald Trump News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "time.com",
-              "newsweek.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.21095334685598377
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T11:00:51.362Z",
       "query": "latest news",
       "found": 0,
@@ -2339,7 +2279,68 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T12:01:44.265Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "Canada’s Mark Carney makes final appeal against Alberta separation ahead of referendum",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "gulftoday.ae",
+              "cbc.ca",
+              "theglobeandmail.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.1678082191780822
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        },
+        {
+          "title": "Trump waives tariffs on largest buyers of Russian oil, days before Lindsey Graham-backed law was set to take effect - CBS News",
+          "stage": "source-verification",
+          "reason": "The central claim is unsupported by the provided texts, and there is a lack of confirmation from at least two independent domains.",
+          "evidence": {
+            "domains": [
+              "undercurrentnews.com",
+              "shanakaanslemperera.substack.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.10186513629842181
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Trump waived tariffs on the largest buyers of Russian oil days before a Lindsey Graham-backed law was set to take effect, as reported by CBS News.",
+                "sourceUrls": [
+                  "https://www.undercurrentnews.com/2026/08/11/trump-tariffs-fallout/",
+                  "https://shanakaanslemperera.substack.com/p/geopolitics-and-world-politics-monthly"
+                ],
+                "status": "unsupported",
+                "reason": "Neither source confirms that Trump waived tariffs on the largest buyers of Russian oil, nor do they mention a Lindsey Graham-backed law or a CBS News report detailing such a waiver. Furthermore, there are not two independent domains verifying the central event."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim is unsupported by the provided texts, and there is a lack of confirmation from at least two independent domains."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T11:01:24.730Z"
+  "updatedAt": "2026-10-17T12:01:44.265Z"
 }
