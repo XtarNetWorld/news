@@ -9,16 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T19:01:49.961Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-15T20:00:56.249Z",
       "query": "latest news",
       "found": 0,
@@ -2479,7 +2469,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T21:01:10.185Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "European diplomats attacked by Israeli settlers in West Bank",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m53.546183325s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "lemonde.fr",
+              "theguardian.com",
+              "washingtonpost.com",
+              "edition.cnn.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.22862453531598512
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m53.546183325s."
+          }
+        },
+        {
+          "title": "Trump's decision to waive Russian sanctions outrages Congress, but no quick counter seen | PBS News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m49.812345539s.",
+          "evidence": {
+            "domains": [
+              "pbs.org",
+              "kutv.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.21120689655172414
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 2h58m49.812345539s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T20:01:32.946Z"
+  "updatedAt": "2026-10-17T21:01:10.185Z"
 }
