@@ -9,54 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T09:01:04.723Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump administration seeks to strip Ilhan Omar of US citizenship: WSJ | News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "newsweek.com",
-              "time.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2510822510822511
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Police search home following double homicide at Great Wolf Lodge amid hunt for motive - ABC News",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "aol.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.22142857142857142
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T10:01:43.699Z",
       "query": "latest news",
       "found": 10,
@@ -2331,7 +2283,63 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T11:01:24.730Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "Canada’s Mark Carney makes final appeal against Alberta separation ahead of referendum",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "abcnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "The signal does not convey a meaningful factual claim or central event, representing only boilerplate paywall/subscription interface text.",
+          "evidence": {
+            "domains": [
+              "michaeljburry.substack.com",
+              "ndtvprofit.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.05604203152364273
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Subscribe to read",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "The text is a generic website user-interface prompt/paywall artifact rather than a verifiable factual event or reportable claim."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal does not convey a meaningful factual claim or central event, representing only boilerplate paywall/subscription interface text."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T10:02:30.888Z"
+  "updatedAt": "2026-10-17T11:01:24.730Z"
 }
