@@ -9,70 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T16:04:31.198Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Exclusive: Ukraine runs out of Patriot defense missiles, leaving it more vulnerable to Russian attacks, source tells CNN | CNN",
-          "stage": "source-verification",
-          "reason": "The central event reported in the signal is an exclusive report published only by CNN on October 15, 2026. The other provided sources (Al Jazeera, RFE/RL, PBS) date from August 2026 and cover earlier shortages, failing to meet the requirement of at least two independent domains confirming the central event.",
-          "evidence": {
-            "domains": [
-              "edition.cnn.com",
-              "aljazeera.com",
-              "rferl.org",
-              "pbs.org"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.17226277372262774
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Ukraine has run out of Patriot air defense missiles, leaving it more vulnerable to Russian attacks, according to a source who spoke to CNN.",
-                "sourceUrls": [
-                  "https://edition.cnn.com/2026/10/15/europe/ukraine-us-patriot-interceptor-missiles-run-out-intl"
-                ],
-                "status": "supported",
-                "reason": "Source 1 (CNN) reports this exclusive development from October 15, 2026, citing a source familiar with the situation."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event reported in the signal is an exclusive report published only by CNN on October 15, 2026. The other provided sources (Al Jazeera, RFE/RL, PBS) date from August 2026 and cover earlier shortages, failing to meet the requirement of at least two independent domains confirming the central event."
-          }
-        },
-        {
-          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "blic.rs",
-              "pink.rs",
-              "naslovi.net",
-              "24sedam.rs",
-              "objektiv.rs"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.2571428571428571
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T17:01:32.776Z",
       "query": "latest news",
       "found": 50,
@@ -2480,7 +2416,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T18:03:18.192Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "[LIVE!#NOW] Texas Tech vs Arizona State Live Streams",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "foxsports910.iheart.com",
+              "foxsports.com",
+              "sports.yahoo.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.16161616161616163
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "CBS News | Breaking News, Top Stories & Exclusive Coverage",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 5h56m41.804701654s.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "deadline.com",
+              "npr.org",
+              "businessinsider.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.10621761658031088
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 5h56m41.804701654s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T17:02:34.720Z"
+  "updatedAt": "2026-10-17T18:03:18.192Z"
 }
