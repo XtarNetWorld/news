@@ -9,16 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T20:00:56.249Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-15T21:01:23.548Z",
       "query": "latest news",
       "found": 10,
@@ -2519,7 +2509,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T22:01:11.116Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "NYC Subway Shooting in Midtown Leaves Man Dead",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m54.173404349s.",
+          "evidence": {
+            "domains": [
+              "wsls.com",
+              "edition.cnn.com",
+              "abcnews.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.2708333333333333
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m54.173404349s."
+          }
+        },
+        {
+          "title": "Half a million protesters sweep France in major show of youth unrest | CNN",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m48.864914332s.",
+          "evidence": {
+            "domains": [
+              "edition.cnn.com",
+              "consent.yahoo.com",
+              "ground.news",
+              "arabic.cnn.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.173828125
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m48.864914332s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T21:01:10.185Z"
+  "updatedAt": "2026-10-17T22:01:11.116Z"
 }
