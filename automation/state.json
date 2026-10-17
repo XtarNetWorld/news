@@ -8,63 +8,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T02:01:06.546Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ilhan Omar’s phone seized and relatives subpoenaed in criminal inquiry, source says",
-          "stage": "source-verification",
-          "reason": "The central claim is only covered by a single domain (The Guardian), failing the requirement for two independent reporting domains. Sources 2 and 3 did not provide usable content.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "greenwichtime.com",
-              "triblive.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.027777777777777776
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Ilhan Omar's phone was seized and relatives were subpoenaed in a criminal inquiry",
-                "sourceUrls": [
-                  "https://www.theguardian.com/us-news/2026/oct/14/ilhan-omar-phone-seized-relatives-subpoenaed"
-                ],
-                "status": "unsupported",
-                "reason": "Only one source provides text (Source 2 and Source 3 are blocked/privacy walls), failing the requirement of at least two independent domains for the central event. In addition, the available source text contains a future/anomalous publication date of October 2026."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central claim is only covered by a single domain (The Guardian), failing the requirement for two independent reporting domains. Sources 2 and 3 did not provide usable content."
-          }
-        },
-        {
-          "title": "Supreme Court rules for Republicans on television ad rates",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T03:01:07.429Z",
       "query": "latest news",
       "found": 10,
@@ -2272,7 +2215,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T04:01:12.542Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump waives several Russian sanctions as new US law takes effect",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.771943907s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk",
+              "devdiscourse.com",
+              "internazionale.it"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.3862559241706161
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.771943907s."
+          }
+        },
+        {
+          "title": "Katie Zacharia’s Five-Day Roller-Coaster as Trump’s Press Secretary - WSJ",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "ctvnews.ca"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T03:01:36.988Z"
+  "updatedAt": "2026-10-17T04:01:12.542Z"
 }
