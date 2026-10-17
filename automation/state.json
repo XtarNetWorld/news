@@ -9,16 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T11:00:51.362Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-15T12:03:57.360Z",
       "query": "latest news",
       "found": 10,
@@ -2340,7 +2330,78 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T13:01:43.030Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "CBS News | Breaking News, Top Stories & Exclusive Coverage",
+          "stage": "source-verification",
+          "reason": "The signal does not state a verifiable factual event and lacks confirmation from at least two independent domains.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com",
+              "npr.org"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.07547169811320754
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "CBS News | Breaking News, Top Stories & Exclusive Coverage",
+                "sourceUrls": [
+                  "https://www.cbsnews.com/"
+                ],
+                "status": "unsupported",
+                "reason": "The signal is merely a website header and tagline rather than a verifiable news event, and lacks reporting or confirmation across two independent domains."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal does not state a verifiable factual event and lacks confirmation from at least two independent domains."
+          }
+        },
+        {
+          "title": "BREAKING NEWS LIVE: Is Pete Hegseth Facing Firing? Latest US Breaking News | Trump Speech LIVE",
+          "stage": "source-verification",
+          "reason": "The central premise of the signal is unsupported by the provided sources, which report on firings enacted by Hegseth rather than Hegseth himself facing termination.",
+          "evidence": {
+            "domains": [
+              "nypost.com",
+              "washingtonpost.com",
+              "nbcnewyork.com",
+              "pjmedia.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.18867924528301888
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Pete Hegseth is facing firing.",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "None of the provided sources indicate or suggest that Pete Hegseth is facing termination; the sources instead discuss military leaders fired by Hegseth and a death sentence execution by firing squad approved by Donald Trump upon Hegseth's recommendation."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central premise of the signal is unsupported by the provided sources, which report on firings enacted by Hegseth rather than Hegseth himself facing termination."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T12:01:44.265Z"
+  "updatedAt": "2026-10-17T13:01:43.030Z"
 }
