@@ -8,70 +8,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T03:01:07.429Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Ilhan Omar’s phone seized and relatives subpoenaed in criminal inquiry, source says",
-          "stage": "source-verification",
-          "reason": "The signal accurately reflects corroborated reporting from multiple independent news organizations confirming the seizure of Rep. Omar's phone and subpoenas issued to her relatives in a federal investigation.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "latimes.com",
-              "foxnews.com",
-              "ms.now",
-              "cbsnews.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.3874709976798144
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Federal authorities seized Rep. Ilhan Omar's phone and subpoenaed her relatives as part of a criminal inquiry into her immigration records.",
-                "sourceUrls": [
-                  "https://www.theguardian.com/us-news/2026/oct/14/ilhan-omar-phone-seized-relatives-subpoenaed",
-                  "https://www.cbsnews.com/news/ilhan-omar-subpoenas-relatives-investigation-homeland-security/",
-                  "https://www.foxnews.com/politics/federal-agents-seize-phone-rep-ilhan-omar-raid-tied-immigration-fraud-probe"
-                ],
-                "status": "supported",
-                "reason": "Confirmed across multiple independent reporting outlets, including CBS News, Fox News, and the Associated Press (published via The Guardian)."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal accurately reflects corroborated reporting from multiple independent news organizations confirming the seizure of Rep. Omar's phone and subpoenas issued to her relatives in a federal investigation."
-          }
-        },
-        {
-          "title": "Supreme Court sides with Republicans in dispute over cost of campaign ads - Los Angeles Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m52.569408784s.",
-          "evidence": {
-            "domains": [
-              "latimes.com",
-              "newsweek.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.18167701863354038
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m52.569408784s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T04:01:09.704Z",
       "query": "latest news",
       "found": 10,
@@ -2263,7 +2199,80 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T05:01:42.557Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump suspends new Russia sanctions following deal to purchase diesel, citing ‘national interests’",
+          "stage": "source-verification",
+          "reason": "The signal asserts that the suspension followed a 'deal to purchase diesel,' which creates an unresolvable conflict among the sources; two sources report the deal was to allow Russian diesel onto the global market, not a direct purchase by the U.S.",
+          "evidence": {
+            "domains": [
+              "aol.com",
+              "kyivpost.com",
+              "nbcwashington.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.1638846737481032
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "President Trump suspended/waived new Russia sanctions passed by Congress, citing national interests.",
+                "sourceUrls": [
+                  "https://www.aol.com/articles/trump-suspends-russia-sanctions-following-024508000.html",
+                  "https://www.kyivpost.com/post/87342",
+                  "https://www.nbcwashington.com/news/politics/trump-russia-sanctions-hold-national-interest/4168582/"
+                ],
+                "status": "supported",
+                "reason": "All three sources confirm that Trump signed an executive order waiving or putting on hold sweeping new sanctions against Russia under the Graham Act, certifying that the action was in the national interests of the United States."
+              },
+              {
+                "claim": "The suspension followed a deal to purchase diesel.",
+                "sourceUrls": [
+                  "https://www.aol.com/articles/trump-suspends-russia-sanctions-following-024508000.html",
+                  "https://www.kyivpost.com/post/87342",
+                  "https://www.nbcwashington.com/news/politics/trump-russia-sanctions-hold-national-interest/4168582/"
+                ],
+                "status": "conflict",
+                "reason": "While Source 3 mentions Trump stating the U.S. had agreed to purchase diesel from Russia, Sources 1 and 2 report that the agreement was to ease export restrictions and allow Russia to release diesel onto the global/international market, not a U.S. purchase agreement."
+              }
+            ],
+            "conflicts": [
+              "Source 3 states the U.S. agreed to purchase diesel from Russia, whereas Sources 1 and 2 state the agreement was for Russia to release diesel onto the global market in exchange for eased export restrictions."
+            ],
+            "copyRisk": "low",
+            "reason": "The signal asserts that the suspension followed a 'deal to purchase diesel,' which creates an unresolvable conflict among the sources; two sources report the deal was to allow Russian diesel onto the global market, not a direct purchase by the U.S."
+          }
+        },
+        {
+          "title": "Ilhan Omar’s Sister’s Phone Was Seized Before Search of Lawmaker’s Home",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "time.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T04:01:12.542Z"
+  "updatedAt": "2026-10-17T05:01:42.557Z"
 }
