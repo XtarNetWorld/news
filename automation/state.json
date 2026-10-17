@@ -9,42 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T14:01:46.510Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "The pope has a lung cancer that’s common in nonsmokers. Here’s what to know. - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Resource has been exhausted (e.g. check quota).",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com",
-              "edition.cnn.com",
-              "abc.net.au",
-              "npr.org"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.138671875
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Resource has been exhausted (e.g. check quota)."
-          }
-        },
-        {
-          "title": "Ukraine resumes strikes on Russian oil refineries as anger mounts with Trump",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T15:01:14.787Z",
       "query": "latest news",
       "found": 10,
@@ -2442,7 +2406,70 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T16:01:16.387Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "Zelensky says Musk-owned satellite system still restricted in Ukraine",
+          "stage": "source-verification",
+          "reason": "The central claim that President Zelensky said the satellite system is still restricted is unsupported by the provided source texts.",
+          "evidence": {
+            "domains": [
+              "abcnews.com",
+              "newsweek.com",
+              "finance.yahoo.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.18518518518518517
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Zelensky says Musk-owned satellite system is still restricted in Ukraine",
+                "sourceUrls": [
+                  "https://abcnews.com/Politics/ukraine-faces-loss-key-us-affiliated-satellite-support/story?id=137260473",
+                  "https://www.newsweek.com/ukraine-starlink-access-restricted-as-musk-says-zelensky-has-gone-too-far-12565652",
+                  "https://finance.yahoo.com/technology/article/ukraine-claims-spacex-is-throttling-starlink-again-amid-war-with-russia-musk-says-ask-potus-193809373.html"
+                ],
+                "status": "unsupported",
+                "reason": "None of the sources report Ukrainian President Volodymyr Zelensky stating that the Musk-owned satellite system remains restricted. Statements regarding satellite restrictions were made by other Ukrainian officials, such as adviser Serhii Beskrestnov and former minister Mykhailo Fedorov."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central claim that President Zelensky said the satellite system is still restricted is unsupported by the provided source texts."
+          }
+        },
+        {
+          "title": "Beachfront homes destroyed as California coastal erosion and El Nino bring historic flooding",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 7h58m43.606821074s.",
+          "evidence": {
+            "domains": [
+              "foxweather.com",
+              "latimes.com",
+              "laist.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.15841584158415842
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 7h58m43.606821074s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T15:03:19.383Z"
+  "updatedAt": "2026-10-17T16:01:16.387Z"
 }
