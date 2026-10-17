@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-17T09:02:31.465Z",
+  "candidate": {
+    "title": "Rep. Ilhan Omar’s lawyers say authorities ignored judge’s restrictions on home search - The Washington Post",
+    "url": "https://www.washingtonpost.com/national-security/2026/10/16/rep-ilhan-omars-lawyers-say-authorities-ignored-judges-restrictions-home-search",
+    "publishedAt": "2026-10-17T02:45:03.000Z",
+    "description": "Lawyers for Rep. Ilhan Omar (D-Minnesota) on Friday accused federal authorities of ignoring key restrictions that a judge placed on the search of the lawmaker’s D.C. residence this week and demanded the immediate return of all property seized from the home.\n\n## Company\n\n## Sections\n\n## Get The Post\n\n## Contact Us\n\n## Terms of Use\n\n## Company\n\n## Sections\n\n## Get The Post\n\n## Contact Us\n\npixel [...] # Rep. Ilhan Omar’s lawyers say authorities ignored judge’s restrictions on home search\n\nIn a lett",
+    "provider": "Tavily",
+    "source": "washingtonpost.com",
+    "providers": [
+      "Tavily"
+    ],
+    "sources": [
+      {
+        "title": "Rep. Ilhan Omar’s lawyers say authorities ignored judge’s restrictions on home search - The Washington Post",
+        "url": "https://www.washingtonpost.com/national-security/2026/10/16/rep-ilhan-omars-lawyers-say-authorities-ignored-judges-restrictions-home-search",
+        "source": "washingtonpost.com",
+        "publishedAt": "2026-10-17T02:45:03.000Z",
+        "provider": "Tavily",
+        "description": "Lawyers for Rep. Ilhan Omar (D-Minnesota) on Friday accused federal authorities of ignoring key restrictions that a judge placed on the search of the lawmaker’s D.C. residence this week and demanded the immediate return of all property seized from the home.\n\n## Company\n\n## Sections\n\n## Get The Post\n\n## Contact Us\n\n## Terms of Use\n\n## Company\n\n## Sections\n\n## Get The Post\n\n## Contact Us\n\npixel [...] # Rep. Ilhan Omar’s lawyers say authorities ignored judge’s restrictions on home search\n\nIn a lett"
+      }
+    ],
+    "evidenceCount": 1,
+    "score": 117.5,
+    "freshnessHours": 6.3,
+    "confidence": "low",
+    "searchDemand": {
+      "matchingQueries": [],
+      "impressions": 0,
+      "clicks": 0,
+      "demandBoost": 0
+    },
+    "forecast": {
+      "score": 117.5,
+      "basis": "freshness, source velocity, cross-source evidence, and matching Search Console demand",
+      "searchDemandConfigured": true
+    }
+  },
+  "evidence": {
+    "domains": [
+      "washingtonpost.com",
+      "wral.com",
+      "mymotherlode.com",
+      "edition.cnn.com"
+    ],
+    "independentSources": 4,
+    "maxTextOverlap": 0.18,
+    "sources": [
+      {
+        "title": "Rep. Ilhan Omar’s lawyers say authorities ignored judge’s restrictions on home search - The Washington Post",
+        "url": "https://www.washingtonpost.com/national-security/2026/10/16/rep-ilhan-omars-lawyers-say-authorities-ignored-judges-restrictions-home-search/",
+        "source": "washingtonpost.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-17T02:45:03.000Z"
+      },
+      {
+        "title": "The Latest: Rep. Omar says she will ‘not be silenced’ after Homeland Security searches her home :: WRAL.com",
+        "url": "https://www.wral.com/news/ap/71133-the-latest-homeland-security-agents-searched-rep-ilhan-omars-home/",
+        "source": "wral.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-12T12:48:12.000Z"
+      },
+      {
+        "title": "Rep. Ilhan Omar’s attorneys demand return of property seized in federal search of her home - myMotherLode.com",
+        "url": "https://mymotherlode.com/news/national/11228741/rep-ilhan-omars-attorneys-demand-return-of-property-seized-in-federal-search-of-her-home.html/amp",
+        "source": "mymotherlode.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-17T02:00:00.000Z"
+      },
+      {
+        "title": "Exclusive: Judge limited Justice Department access to Rep. Ilhan Omar’s records in sprawling immigration fraud probe | CNN Politics",
+        "url": "https://edition.cnn.com/2026/10/14/politics/judge-limited-justice-department-access-rep-ilhan-omar-records-immigration-fraud",
+        "source": "edition.cnn.com",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-14T19:39:16.000Z"
+      }
+    ]
+  },
+  "sourceVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "claims": [
+      {
+        "claim": "Lawyers for Rep. Ilhan Omar stated that federal authorities ignored a judge's restrictions during the search of her home.",
+        "sourceUrls": [
+          "https://www.washingtonpost.com/national-security/2026/10/16/rep-ilhan-omars-lawyers-say-authorities-ignored-judges-restrictions-home-search/",
+          "https://mymotherlode.com/news/national/11228741/rep-ilhan-omars-attorneys-demand-return-of-property-seized-in-federal-search-of-her-home.html/amp"
+        ],
+        "status": "supported",
+        "reason": "Source 1 directly reports that Omar's attorneys accused federal authorities of ignoring key restrictions placed by a judge on the search of her residence, and Source 3 independently reports that her attorneys sent a letter raising concerns over whether the Justice Department followed the specific instructions set by the magistrate judge."
+      }
+    ],
+    "conflicts": [],
+    "copyRisk": "low",
+    "reason": "The signal is supported by multiple independent news organizations (The Washington Post and the Associated Press via myMotherLode) covering the letter sent by Rep. Ilhan Omar's legal team."
+  },
+  "deterministicGate": {
+    "pass": true,
+    "reasons": [],
+    "foreignUrls": [],
+    "bodyCharacters": 6140
+  },
+  "articleVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "unsupportedClaims": [],
+    "sourceCoverage": 100,
+    "titleAssessment": "accurate",
+    "reason": ""
+  },
+  "article": {
+    "title": "Rep. Ilhan Omar Lawyers Accuse Feds of Violating Search Restrictions",
+    "slug": "ilhan-omar-home-search-lawyers-judge-restrictions",
+    "category": "News"
+  }
+}
