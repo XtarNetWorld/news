@@ -9,63 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T12:03:57.360Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Ukraine resumes strikes on Russian oil refineries as anger mounts with Trump",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "aol.com",
-              "cbc.ca"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.19548872180451127
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "Republicans’ last hope for 2026: Another polling miss - POLITICO",
-          "stage": "source-verification",
-          "reason": "The signal refers to a POLITICO report that is completely absent and unsupported by the provided source texts, failing the requirement of independent confirmation.",
-          "evidence": {
-            "domains": [
-              "edition.cnn.com",
-              "nypost.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.04044117647058824
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "POLITICO published an article or report titled 'Republicans’ last hope for 2026: Another polling miss'",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "Neither provided source mentions or confirms the existence of the POLITICO report; Source 1 is a CNN video segment on Midwest polling gaps, and Source 2 is an opinion piece from the New York Post."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal refers to a POLITICO report that is completely absent and unsupported by the provided source texts, failing the requirement of independent confirmation."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T13:01:33.028Z",
       "query": "latest news",
       "found": 10,
@@ -2401,7 +2344,77 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T14:01:30.857Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 2,
+      "rejectedItems": [
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "The signal consists of website paywall/UI boilerplate text rather than a substantive factual claim or news event, and fails the requirement for a verifiable central event supported across independent sources.",
+          "evidence": {
+            "domains": [
+              "michaeljburry.substack.com",
+              "ndtvprofit.com",
+              "businessinsider.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.09278350515463918
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Subscribe to read",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "The text represents generic website paywall boilerplate or UI navigation text rather than a verifiable factual news event or verifiable claim."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal consists of website paywall/UI boilerplate text rather than a substantive factual claim or news event, and fails the requirement for a verifiable central event supported across independent sources."
+          }
+        },
+        {
+          "title": "Texas, Minnesota candidates fuel latest 2026 midterm election news | Live Updates from Fox News Digital",
+          "stage": "source-verification",
+          "reason": "The central event is reported only by a single source domain (Fox News Digital). The requirement of at least two independent domains confirming the central event is not met.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "wfmd.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.3175287356321839
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Texas and Minnesota candidates fueled 2026 midterm election news in a Fox News Digital live update coverage on October 17, 2026.",
+                "sourceUrls": [
+                  "https://www.foxnews.com/live-news/fiery-texas-house-race-minnesota-fraud-scandal-2026-midterm-elections-october-17"
+                ],
+                "status": "supported",
+                "reason": "The claim is supported by Source 1, but is not confirmed by a second independent domain."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event is reported only by a single source domain (Fox News Digital). The requirement of at least two independent domains confirming the central event is not met."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T13:01:43.030Z"
+  "updatedAt": "2026-10-17T14:01:30.857Z"
 }
