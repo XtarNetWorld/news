@@ -1,56 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <item>
-      <title>Rep. Ilhan Omar Lawyers Accuse Feds of Violating Search Restrictions</title>
-      <link>https://www.newsxphere/world/ilhan-omar-home-search-lawyers-judge-restrictions/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/ilhan-omar-home-search-lawyers-judge-restrictions/</guid>
-      <description>Rep. Ilhan Omar&apos;s legal team demands the return of seized items, alleging federal investigators breached strict judicial limits imposed on a home search weeks before election day.</description>
-      <pubDate>Sat, 17 Oct 2026 09:02:33 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
-    <item>
-      <title>Katie Zacharia Fired After Five Days as White House Press Secretary</title>
-      <link>https://www.newsxphere/world/katie-zacharia-fired-white-house-press-secretary-record-tenure/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/katie-zacharia-fired-white-house-press-secretary-record-tenure/</guid>
-      <description>Katie Zacharia has been ousted after just five days as White House press secretary, setting an all-time record for the shortest tenure in the role following briefing missteps and scrutiny over her credentials.</description>
-      <pubDate>Sat, 17 Oct 2026 02:02:22 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
-    <item>
-      <title>Musk Points to Trump for Sudden Starshield Limits Choking Ukraine Drones</title>
-      <link>https://www.newsxphere/world/musk-trump-ukraine-starshield-satellite-limits/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/musk-trump-ukraine-starshield-satellite-limits/</guid>
-      <description>Following front-line drone connection drops, Elon Musk declared that the Pentagon and Donald Trump decide operational curbs on Starshield.</description>
-      <pubDate>Thu, 15 Oct 2026 07:02:07 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
-    <item>
-      <title>Judge Halts Trump Administration Tree Cutting at D.C. Golf Course</title>
-      <link>https://www.newsxphere/world/judge-halts-trump-administration-tree-cutting-dc-golf-course/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/judge-halts-trump-administration-tree-cutting-dc-golf-course/</guid>
-      <description>A federal judge issued a restraining order against the Trump administration&apos;s East Potomac Golf Course overhaul after 430 trees were felled in a single weekend.</description>
-      <pubDate>Wed, 14 Oct 2026 00:04:15 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
-    <item>
-      <title>Trump Announces Deal with Putin to Release Russian Diesel Globally</title>
-      <link>https://www.newsxphere/world/trump-putin-russian-diesel-global-market-deal/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/trump-putin-russian-diesel-global-market-deal/</guid>
-      <description>Washington grants a sanctions waiver through 2027 after Trump claims Putin agreed to release over 4 million tons of diesel into global markets.</description>
-      <pubDate>Fri, 09 Oct 2026 20:03:15 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
     <title>NewsXphere — Latest signals</title>
     <link>https://www.newsxphere.com/</link>
     <description>Thoughtful reporting from NewsXphere.</description>
     <language>en-us</language>
     <atom:link href="https://www.newsxphere.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rep. Ilhan Omar Lawyers Accuse Feds of Violating Search Restrictions</title>
+      <link>https://www.newsxphere.com/world/ilhan-omar-home-search-lawyers-judge-restrictions/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/ilhan-omar-home-search-lawyers-judge-restrictions/</guid>
+      <description>Rep. Ilhan Omar&apos;s legal team demands the return of seized items, alleging federal investigators breached strict judicial limits imposed on a home search weeks before election day.</description>
+      <pubDate>Sat, 17 Oct 2026 09:02:33 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
+    <item>
+      <title>Katie Zacharia Fired After Five Days as White House Press Secretary</title>
+      <link>https://www.newsxphere.com/world/katie-zacharia-fired-white-house-press-secretary-record-tenure/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/katie-zacharia-fired-white-house-press-secretary-record-tenure/</guid>
+      <description>Katie Zacharia has been ousted after just five days as White House press secretary, setting an all-time record for the shortest tenure in the role following briefing missteps and scrutiny over her credentials.</description>
+      <pubDate>Sat, 17 Oct 2026 02:02:22 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
+    <item>
+      <title>Musk Points to Trump for Sudden Starshield Limits Choking Ukraine Drones</title>
+      <link>https://www.newsxphere.com/world/musk-trump-ukraine-starshield-satellite-limits/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/musk-trump-ukraine-starshield-satellite-limits/</guid>
+      <description>Following front-line drone connection drops, Elon Musk declared that the Pentagon and Donald Trump decide operational curbs on Starshield.</description>
+      <pubDate>Thu, 15 Oct 2026 07:02:07 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
+    <item>
+      <title>Judge Halts Trump Administration Tree Cutting at D.C. Golf Course</title>
+      <link>https://www.newsxphere.com/world/judge-halts-trump-administration-tree-cutting-dc-golf-course/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/judge-halts-trump-administration-tree-cutting-dc-golf-course/</guid>
+      <description>A federal judge issued a restraining order against the Trump administration&apos;s East Potomac Golf Course overhaul after 430 trees were felled in a single weekend.</description>
+      <pubDate>Wed, 14 Oct 2026 00:04:15 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
+    <item>
+      <title>Trump Announces Deal with Putin to Release Russian Diesel Globally</title>
+      <link>https://www.newsxphere.com/world/trump-putin-russian-diesel-global-market-deal/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/trump-putin-russian-diesel-global-market-deal/</guid>
+      <description>Washington grants a sanctions waiver through 2027 after Trump claims Putin agreed to release over 4 million tons of diesel into global markets.</description>
+      <pubDate>Fri, 09 Oct 2026 20:03:15 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
     <item>
       <title>Hurricane Polo Explodes to Category 5</title>
       <link>https://www.newsxphere.com/world/hurricane-polo-category-5-mexico/</link>
