@@ -7,16 +7,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-14T22:01:05.449Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": []
-    },
-    {
       "at": "2026-10-14T23:01:25.828Z",
       "query": "latest news",
       "found": 10,
@@ -2204,7 +2194,64 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T00:01:37.177Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump Kicks Off Georgia Rally By Complimenting Senate Candidate’s ‘Big, Strong Build’",
+          "stage": "source-verification",
+          "reason": "The core event and quote in the signal are entirely unsupported by the provided source texts.",
+          "evidence": {
+            "domains": [
+              "aol.com",
+              "ajc.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.09917355371900827
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Trump kicked off a Georgia rally by complimenting a Senate candidate's 'big, strong build'.",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "Neither provided source mentions Donald Trump complimenting a Senate candidate's physical build or using the phrase 'big, strong build'."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The core event and quote in the signal are entirely unsupported by the provided source texts."
+          }
+        },
+        {
+          "title": "Israeli settlers burn olive trees, injure journalist in West Bank attack",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m22.823188487s.",
+          "evidence": {
+            "domains": [
+              "bellinghamherald.com",
+              "unn.ua"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.137221269296741
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m22.823188487s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-16T23:03:20.855Z"
+  "updatedAt": "2026-10-17T00:01:37.177Z"
 }
