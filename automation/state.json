@@ -8,54 +8,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T05:01:11.373Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Retired US generals call on Pentagon to cancel livestream execution",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m56.269890258s.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "expressnews.com",
-              "nationalsecurity.law.georgetown.edu"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2482758620689655
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m56.269890258s."
-          }
-        },
-        {
-          "title": "Exclusive | White House Press Secretary Katie Zacharia Didn’t Pass Bar Exam - WSJ",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m48.627532029s.",
-          "evidence": {
-            "domains": [
-              "thewrap.com",
-              "theaustralian.com.au"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m48.627532029s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T06:00:46.014Z",
       "query": "latest news",
       "found": 0,
@@ -2284,7 +2236,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T07:01:36.231Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump Signs Order Exempting Russia From Sanctions Legislation - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Trump threatens California officials with imprisonment over stance on mail ballots | Reuters",
+          "stage": "source-verification",
+          "reason": "The central event is verified by at least two independent reporting sources (Reuters wire syndication and original reporting from ABC News).",
+          "evidence": {
+            "domains": [
+              "internazionale.it",
+              "huffpost.com",
+              "devdiscourse.com",
+              "abcnews.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.5379939209726444
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump threatened California election officials with imprisonment over counting mail ballots from voters flagged by the administration as alleged noncitizens.",
+                "sourceUrls": [
+                  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/17/trump-threatens-california-officials-with-imprisonment-over-stance-on-mail-ballots",
+                  "https://abcnews.com/Politics/trump-administration-threatens-prosecute-local-california-election-workers/story?id=137339732"
+                ],
+                "status": "supported",
+                "reason": "Both the Reuters report (syndicated across multiple outlets) and independent reporting from ABC News confirm that Trump shared a DOJ warning letter to California election officials regarding mail-in ballots on Truth Social, commenting 'They will all go to jail for a long period of time!!!'."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event is verified by at least two independent reporting sources (Reuters wire syndication and original reporting from ABC News)."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T06:01:31.391Z"
+  "updatedAt": "2026-10-17T07:01:36.231Z"
 }
