@@ -3,19 +3,10 @@
   "seen": [
     "trump says putin will release diesel fuel into global market",
     "judge blocks trump administration from cutting down trees at d c golf course for 2 weeks cbs news",
-    "musk says trump responsible for any curbs on ukraine s starshield"
+    "musk says trump responsible for any curbs on ukraine s starshield",
+    "katie zacharia is ousted after 5 days as white house press secretary the new york times"
   ],
   "runs": [
-    {
-      "at": "2026-10-15T00:01:01.485Z",
-      "query": "latest news",
-      "found": 0,
-      "published": 0,
-      "rejected": 0,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": []
-    },
     {
       "at": "2026-10-15T01:01:11.869Z",
       "query": "latest news",
@@ -2265,7 +2256,35 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T02:02:32.238Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 1,
+      "rejected": 1,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Chelsea transfer news, rumours and gossip: Live updates and latest on deals, signings, loans and contracts - Sky Sports",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "skysports.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.9833333333333333
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T01:01:25.015Z"
+  "updatedAt": "2026-10-17T02:02:32.238Z"
 }
