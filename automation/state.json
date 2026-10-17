@@ -8,66 +8,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T01:01:11.869Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Breaking News, World News and Video from Al Jazeera",
-          "stage": "source-verification",
-          "reason": "The signal does not describe a verifiable central event, lacks a date, and fails the requirement of having at least two independent domains confirming the information.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "jpost.com",
-              "countercurrents.org"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.13709677419354838
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Breaking News, World News and Video from Al Jazeera",
-                "sourceUrls": [
-                  "https://www.aljazeera.com/"
-                ],
-                "status": "unsupported",
-                "reason": "The signal is a generic website title/tagline rather than an event claim, contains no specific date, and lacks corroboration across at least two independent domains."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal does not describe a verifiable central event, lacks a date, and fails the requirement of having at least two independent domains confirming the information."
-          }
-        },
-        {
-          "title": "VIDEO: F-35C Lands on New Navy Aircraft Carrier Class for First Time - USNI News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m48.131002245s.",
-          "evidence": {
-            "domains": [
-              "maritime-executive.com",
-              "businessinsider.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1349206349206349
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m48.131002245s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T02:01:06.546Z",
       "query": "latest news",
       "found": 10,
@@ -2284,7 +2224,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-17T03:01:36.988Z",
+      "query": "latest news",
+      "found": 15,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "DHS Secretary Mullin calls Ilhan Omar probe a \"strong case,\" says agents executed multiple search warrants - CBS News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Oregon shooting victims: three boys and female teacher killed at elementary school",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m23.008062292s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "pbs.org",
+              "ktvz.com",
+              "washingtonpost.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.12837837837837837
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m23.008062292s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T02:02:32.238Z"
+  "updatedAt": "2026-10-17T03:01:36.988Z"
 }
