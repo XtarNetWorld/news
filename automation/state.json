@@ -10,53 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T19:01:27.763Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "New NOAA outlook reveals what Minnesota can expect this winter",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "nbcchicago.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Katie Zacharia, Trump’s New Press Secretary, Is Fired After 5 Days - The New York Times",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "ndtv.com",
-              "time.com",
-              "businessinsider.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1956521739130435
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T20:05:34.693Z",
       "query": "latest news",
       "found": 50,
@@ -2649,7 +2602,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T21:00:50.657Z",
+      "query": "latest news",
+      "found": 8,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Breaking News, World News and Video from Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Video. Latest news bulletin | October 18th, 2026 – Evening | Euronews",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "euronews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.6566037735849056
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T20:01:00.736Z"
+  "updatedAt": "2026-10-18T21:00:50.657Z"
 }
