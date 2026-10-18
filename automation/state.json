@@ -10,54 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T16:01:28.980Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Israeli settlers attack olive farmers and Washington Post journalist in West Bank",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "aljazeera.com",
-              "bbc.co.uk",
-              "washingtonpost.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.18951612903225806
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "See the full list of major donors to the White House ballroom - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.06179775280898876
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T17:01:28.420Z",
       "query": "latest news",
       "found": 10,
@@ -2669,7 +2621,40 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T18:01:07.207Z",
+      "query": "latest news",
+      "found": 16,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump Shuttering Popular D.C. Golf Course For 15 Month Renovation",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "Obama blasts Trump admin's Omar crackdown",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "ms.now"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T17:01:04.853Z"
+  "updatedAt": "2026-10-18T18:01:07.207Z"
 }
