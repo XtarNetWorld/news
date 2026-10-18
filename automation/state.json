@@ -10,49 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T09:01:33.641Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "The Washington Post - Breaking news and latest headlines, U.S. news, world news, and video",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.06666666666666667
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "US NEWS LIVE: 2 MINUTES AGO! Trump Drops Massive Iran Decision, \"Total Control\" Declared",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T10:01:59.202Z",
       "query": "latest news",
       "found": 10,
@@ -2608,7 +2565,56 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T11:03:14.367Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump waives Russia sanctions as Cruz and Haley call it a mistake | Fox Business",
+          "stage": "source-verification",
+          "reason": "error code: 524\n",
+          "evidence": {
+            "domains": [
+              "foxbusiness.com",
+              "nile1.com",
+              "sg.news.yahoo.com",
+              "egyptindependent.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.2344582593250444
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "error code: 524\n"
+          }
+        },
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "evidence": {
+            "domains": [
+              "businessinsider.com",
+              "ndtvprofit.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.09281437125748503
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T10:03:41.972Z"
+  "updatedAt": "2026-10-18T11:03:14.367Z"
 }
