@@ -9,56 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T05:05:35.168Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Multiple people injured in shooting at Bend, Oregon, elementary school, suspect fatally shot: Police - ABC News",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "opb.org",
-              "cbsnews.com",
-              "kptv.com",
-              "theguardian.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.22942643391521197
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        },
-        {
-          "title": "\"Oh, shut up\": Maine Senate debate gets testy",
-          "stage": "source-verification",
-          "reason": "error code: 524\n",
-          "evidence": {
-            "domains": [
-              "usnews.com",
-              "washingtonexaminer.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.08527131782945736
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "error code: 524\n"
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T06:01:28.045Z",
       "query": "latest news",
       "found": 10,
@@ -2590,7 +2540,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T07:00:58.958Z",
+      "query": "latest news",
+      "found": 9,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Breaking News, World News and Video from Al Jazeera",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Breaking News LIVE | US TAKEOVER OF IRAN? Trump’s Latest Statement LIVE |  US IRAN NEWS LIVE",
+          "stage": "source-verification",
+          "reason": "The signal presents a sensationalist headline implying a potential US takeover of Iran, which is completely unsupported by the provided reports detailing Trump's statements about controlling the Strait of Hormuz.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "ndtv.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.1062874251497006
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump made a statement regarding a US takeover of Iran",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/articles/c8d2vn38dy1o",
+                  "https://www.ndtv.com/world-news/donald-trump-posts-ai-photo-of-hormuz-as-new-us-territory-says-all-mines-removed-11927959"
+                ],
+                "status": "unsupported",
+                "reason": "The sources document Trump suggesting the US could take over or declare the Strait of Hormuz a US territory ('We are taking over the strait'), but neither source mentions a takeover of the country of Iran itself. The headline is an unsubstantiated sensationalization."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal presents a sensationalist headline implying a potential US takeover of Iran, which is completely unsupported by the provided reports detailing Trump's statements about controlling the Strait of Hormuz."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T06:01:06.240Z"
+  "updatedAt": "2026-10-18T07:00:58.958Z"
 }
