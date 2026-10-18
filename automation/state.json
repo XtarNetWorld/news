@@ -10,51 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T13:01:39.741Z",
-      "query": "latest news",
-      "found": 16,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "GOP senators press Pentagon over Ukraine’s loss of Starshield data",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "newsradio1410.iheart.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Trump aides brace for White House turmoil as midterm losses loom - The Washington Post",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "washingtonpost.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T14:01:39.641Z",
       "query": "latest news",
       "found": 16,
@@ -2637,7 +2592,77 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T15:01:15.361Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "~`(Leaked+HQ+vIDEO+18)@! Pori Moni Viral Video Latest News and Search Interest - Universidad de Córdoba (UCO)",
+          "stage": "source-verification",
+          "reason": "The signal consists of fabricated clickbait/SEO spam merging keywords from unrelated articles with completely unsupported claims.",
+          "evidence": {
+            "domains": [
+              "variety.com",
+              "biotechniques.com",
+              "timesofindia.indiatimes.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.09307135470527404
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "There is a leaked 18+ viral video involving Pori Moni associated with the Universidad de Córdoba (UCO).",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "The signal is an SEO spam/clickbait title combining unrelated keywords. Source 1 discusses Bangladeshi actress Pori Moni starring in a film adaptation of Tagore's 'Shasti', while Source 2 covers an olive oil quality research study from the Universidad de Córdoba. Neither source mentions any leaked or viral 18+ video."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal consists of fabricated clickbait/SEO spam merging keywords from unrelated articles with completely unsupported claims."
+          }
+        },
+        {
+          "title": "⊕[ＷＡＴＣＨ ＬＩＶＥ ＮＯＷ]⊕ Tulsa vs Rice Live Streams — Latest News - Universidad de Córdoba (UCO)",
+          "stage": "source-verification",
+          "reason": "The signal is promotional/SEO stream spam linking college athletics to Universidad de Córdoba without any factual basis in the provided sources.",
+          "evidence": {
+            "domains": [
+              "foxsports.com",
+              "espn.com",
+              "houstonchronicle.com",
+              "sports.yahoo.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 1
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Tulsa vs Rice live streams and latest news are hosted or provided by Universidad de Córdoba (UCO)",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "None of the provided sources mention Universidad de Córdoba (UCO) or validate this SEO streaming spam headline."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal is promotional/SEO stream spam linking college athletics to Universidad de Córdoba without any factual basis in the provided sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T14:00:57.939Z"
+  "updatedAt": "2026-10-18T15:01:15.361Z"
 }
