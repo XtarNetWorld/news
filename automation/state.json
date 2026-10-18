@@ -10,49 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T18:01:30.250Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "®√NEW▷☀+X𝕏X+!! Pori Moni Latest News and Viral Search Interest Explained - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Man Utd transfer news, rumours and gossip: Live updates and latest on deals, signings, loans and contracts - Sky Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "skysports.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T19:01:27.763Z",
       "query": "latest news",
       "found": 15,
@@ -2656,7 +2613,43 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T20:01:00.736Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "At least 2 dead after vehicle drives through soccer game in Wichita, Kansas: Police - ABC News",
+          "stage": "generation",
+          "reason": "Generation failed"
+        },
+        {
+          "title": "Trump team defends Russia energy moves but offers contradictory reasons",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m59.25760797s.",
+          "evidence": {
+            "domains": [
+              "livemint.com",
+              "timesofindia.indiatimes.com",
+              "abcnews.com",
+              "aljazeera.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.12872628726287264
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m59.25760797s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T19:01:06.206Z"
+  "updatedAt": "2026-10-18T20:01:00.736Z"
 }
