@@ -10,55 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T15:01:32.077Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "White House Reportedly Ordered Limits On Ukraine's Starshield Use—As Trump Blasts Zelenskyy",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "huffpost.com",
-              "nypost.com",
-              "cnbc.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.13509060955518945
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Israeli settlers attack olive farmers and Washington Post journalist in West Bank",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "aljazeera.com",
-              "edition.cnn.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.20040080160320642
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T16:01:28.980Z",
       "query": "latest news",
       "found": 10,
@@ -2659,7 +2610,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T17:01:04.853Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Two killed and at least 17 injured as Russia and Ukraine trade blows on power infrastructure",
+          "stage": "source-verification",
+          "reason": "The central event lacks confirmation from at least two independent domains. Only Source 1 reports on this specific strike and casualty toll, while Sources 2 and 3 detail unrelated strikes from different dates.",
+          "evidence": {
+            "domains": [
+              "france24.com",
+              "npr.org",
+              "bbc.co.uk"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.15294117647058825
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Two people were killed and at least 17 were injured as Russia struck Ukrainian energy infrastructure and both nations traded drone and missile strikes.",
+                "sourceUrls": [
+                  "https://www.france24.com/en/live-news/20251030-russia-batters-ukraine-energy-sites-killing-two"
+                ],
+                "status": "unsupported",
+                "reason": "The specific event and casualty figure (two killed, 17 injured in Zaporizhzhia) is reported only by Source 1 (France 24). Source 2 and Source 3 cover completely different attacks occurring on different dates with different casualty counts. The criteria require at least two independent domains for the central event."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event lacks confirmation from at least two independent domains. Only Source 1 reports on this specific strike and casualty toll, while Sources 2 and 3 detail unrelated strikes from different dates."
+          }
+        },
+        {
+          "title": "Zelenskyy: Not right to 'compare me and Putin' - POLITICO",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "politico.eu"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.14310051107325383
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T16:01:00.026Z"
+  "updatedAt": "2026-10-18T17:01:04.853Z"
 }
