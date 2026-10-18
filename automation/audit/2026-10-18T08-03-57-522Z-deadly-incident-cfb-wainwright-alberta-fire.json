@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-18T08:03:57.522Z",
+  "candidate": {
+    "title": "Deadly ‘Incident’ at Canadian Forces Base Wainwright Sparks Fire - The New York Times",
+    "url": "https://www.nytimes.com/2026/10/17/world/canada/fire-canadian-army-base-wainwright.html",
+    "publishedAt": "2026-10-18T02:43:51.000Z",
+    "description": "The fire comes just ahead of a vote on Monday in which the oil-rich Western province will ask its citizens whether they want to remain part of Canada or hold a binding referendum on seceding.\n\nThis is a developing story.\n\nIan Austen reports on Canada for The Times. A Windsor, Ontario, native now based in Ottawa, he has reported on the country for two decades. He can be reached at austen@nytimes.com.\n\n## Related Content\n\nAdvertisement [...] “I’m saddened to share that there have been both fatalit",
+    "provider": "Tavily",
+    "source": "nytimes.com",
+    "providers": [
+      "Tavily"
+    ],
+    "sources": [
+      {
+        "title": "Deadly ‘Incident’ at Canadian Forces Base Wainwright Sparks Fire - The New York Times",
+        "url": "https://www.nytimes.com/2026/10/17/world/canada/fire-canadian-army-base-wainwright.html",
+        "source": "nytimes.com",
+        "publishedAt": "2026-10-18T02:43:51.000Z",
+        "provider": "Tavily",
+        "description": "The fire comes just ahead of a vote on Monday in which the oil-rich Western province will ask its citizens whether they want to remain part of Canada or hold a binding referendum on seceding.\n\nThis is a developing story.\n\nIan Austen reports on Canada for The Times. A Windsor, Ontario, native now based in Ottawa, he has reported on the country for two decades. He can be reached at austen@nytimes.com.\n\n## Related Content\n\nAdvertisement [...] “I’m saddened to share that there have been both fatalit"
+      }
+    ],
+    "evidenceCount": 1,
+    "score": 119.4,
+    "freshnessHours": 5.3,
+    "confidence": "low",
+    "searchDemand": {
+      "matchingQueries": [],
+      "impressions": 0,
+      "clicks": 0,
+      "demandBoost": 0
+    },
+    "forecast": {
+      "score": 119.4,
+      "basis": "freshness, source velocity, cross-source evidence, and matching Search Console demand",
+      "searchDemandConfigured": true
+    }
+  },
+  "evidence": {
+    "domains": [
+      "web.matrixnews.in",
+      "newscord.org"
+    ],
+    "independentSources": 2,
+    "maxTextOverlap": 0.29608938547486036,
+    "sources": [
+      {
+        "title": "Deaths and injuries reported after fire at Alberta military base · Matrix News",
+        "url": "https://web.matrixnews.in/news/qshp62fjq662u/large-fire-at-cfb-wainwright-spreads-in-strong-winds",
+        "source": "web.matrixnews.in",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-18T03:00:00.000Z"
+      },
+      {
+        "title": "Mark Carney Says Serious Incident Sparked Fire at Canadian Forces Base Wainwright, Alberta: 58 outlets compared | NewsCord",
+        "url": "https://newscord.org/article/mark-carney-says-fire-kills-and-injures-at-canadian-forces-base-wainwright-in-al--Story_20261018_KanadaErnsthafterZwi3e798689",
+        "source": "newscord.org",
+        "provider": "Tavily",
+        "publishedAt": "2026-10-18T05:23:45.000Z"
+      }
+    ]
+  },
+  "sourceVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "claims": [
+      {
+        "claim": "A deadly incident at Canadian Forces Base Wainwright sparked a major fire.",
+        "sourceUrls": [
+          "https://web.matrixnews.in/news/qshp62fjq662u/large-fire-at-cfb-wainwright-spreads-in-strong-winds",
+          "https://newscord.org/article/mark-carney-says-fire-kills-and-injures-at-canadian-forces-base-wainwright-in-al--Story_20261018_KanadaErnsthafterZwi3e798689"
+        ],
+        "status": "supported",
+        "reason": "Both independent sources verify that an incident at Canadian Forces Base Wainwright resulted in deaths, injuries, and a major fire."
+      },
+      {
+        "claim": "The New York Times reported on the deadly incident at Canadian Forces Base Wainwright.",
+        "sourceUrls": [
+          "https://web.matrixnews.in/news/qshp62fjq662u/large-fire-at-cfb-wainwright-spreads-in-strong-winds"
+        ],
+        "status": "supported",
+        "reason": "Source 1 directly includes the headline 'Deadly ‘Incident’ at Canadian Forces Base Wainwright Sparks Fire' attributed to NYT."
+      }
+    ],
+    "conflicts": [],
+    "copyRisk": "low",
+    "reason": "The central event is corroborated by multiple independent sources with verified dates, and the specific headline attributed to The New York Times is documented in the source text."
+  },
+  "deterministicGate": {
+    "pass": true,
+    "reasons": [],
+    "foreignUrls": [],
+    "bodyCharacters": 5185
+  },
+  "articleVerification": {
+    "decision": "pass",
+    "confidence": "high",
+    "unsupportedClaims": [],
+    "sourceCoverage": 95,
+    "titleAssessment": "accurate",
+    "reason": "The article is thoroughly corroborated by the provided source texts. All quotes, figures, timelines, and organizational responses accurately reflect the reports."
+  },
+  "article": {
+    "title": "Deadly Incident at CFB Wainwright Triggers Fire and Edmonton Disaster Response",
+    "slug": "deadly-incident-cfb-wainwright-alberta-fire",
+    "category": "News"
+  }
+}
