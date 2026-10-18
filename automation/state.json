@@ -10,39 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T10:01:59.202Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Six Flags parkgoer Hassan Kariem’s harrowing final moments before fatal Goliath roller coaster fall revealed",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "nypost.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.5184135977337111
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Bend, Oregon shooting live updates: 3 children and shooter among killed at Silver Rail school | CNN",
-          "stage": "generation",
-          "reason": "Generation failed"
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T11:01:33.943Z",
       "query": "latest news",
       "found": 10,
@@ -2614,7 +2581,62 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T12:01:53.960Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "The signal consists purely of website boilerplate/paywall text ('Subscribe to read') and contains no verifiable factual claims or events.",
+          "evidence": {
+            "domains": [
+              "michaeljburry.substack.com",
+              "businessinsider.com",
+              "ndtvprofit.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.09865470852017937
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Subscribe to read",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "The text is paywall boilerplate/call-to-action UI text rather than a verifiable factual claim or news event."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal consists purely of website boilerplate/paywall text ('Subscribe to read') and contains no verifiable factual claims or events."
+          }
+        },
+        {
+          "title": "5 Takeaways From The Times’s Re-Examination of the O.J. Simpson Case - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T11:03:14.367Z"
+  "updatedAt": "2026-10-18T12:01:53.960Z"
 }
