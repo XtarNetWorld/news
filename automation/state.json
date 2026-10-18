@@ -5,55 +5,10 @@
     "judge blocks trump administration from cutting down trees at d c golf course for 2 weeks cbs news",
     "musk says trump responsible for any curbs on ukraine s starshield",
     "katie zacharia is ousted after 5 days as white house press secretary the new york times",
-    "rep ilhan omar s lawyers say authorities ignored judge s restrictions on home search the washington post"
+    "rep ilhan omar s lawyers say authorities ignored judge s restrictions on home search the washington post",
+    "deadly incident at canadian forces base wainwright sparks fire the new york times"
   ],
   "runs": [
-    {
-      "at": "2026-10-16T06:01:28.045Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Multiple people injured in shooting at Bend, Oregon, elementary school, suspect fatally shot: Police - ABC News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m33.637014934s.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "opb.org",
-              "aljazeera.com",
-              "washingtonpost.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.24043715846994534
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m33.637014934s."
-          }
-        },
-        {
-          "title": "Trump looms as tensions flare in final Maine Senate debate",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
     {
       "at": "2026-10-16T07:01:23.812Z",
       "query": "latest news",
@@ -2599,7 +2554,36 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T08:04:04.562Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 1,
+      "rejected": 1,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Child, adult killed after truck drives through Wichita soccer game",
+          "stage": "article-verification",
+          "reason": "The article introduces several specific, unsupported factual details not present in the source text, including references to toxicological screenings, vehicle telemetry, mechanical failure, medical crises, and an expected timeline for official charging announcements.",
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "unsupportedClaims": [
+              "Claims that investigators are evaluating mechanical failure or an acute medical crisis as potential causes.",
+              "Claims that detectives are evaluating toxicological screenings and vehicle telemetry.",
+              "Claim that a formal statement on criminal charges is anticipated early in the week.",
+              "Claim that 'medical staff' noted ten patients suffered traumatic injuries (this was stated by Police Captain Aaron Moses, not medical staff)."
+            ],
+            "sourceCoverage": 82,
+            "titleAssessment": "accurate",
+            "reason": "The article introduces several specific, unsupported factual details not present in the source text, including references to toxicological screenings, vehicle telemetry, mechanical failure, medical crises, and an expected timeline for official charging announcements."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T07:00:58.958Z"
+  "updatedAt": "2026-10-18T08:04:04.562Z"
 }
