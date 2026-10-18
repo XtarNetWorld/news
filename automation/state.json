@@ -10,52 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T12:01:45.473Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Breaking News, World News and Video from Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Breaking News LIVE | US TAKEOVER OF IRAN? Trump’s Latest Statement LIVE |  US IRAN NEWS LIVE",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "hindustantimes.com",
-              "wausaupilotandreview.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.4161184210526316
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T13:01:39.741Z",
       "query": "latest news",
       "found": 16,
@@ -2636,7 +2590,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T14:00:57.939Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "U.S. taking Putin’s side would be a ‘historic mistake,’ says Zelenskyy",
+          "stage": "source-verification",
+          "reason": "User location is not supported for the API use.",
+          "evidence": {
+            "domains": [
+              "unn.ua",
+              "news.liga.net",
+              "huffingtonpost.co.uk"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.13486005089058525
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "User location is not supported for the API use."
+          }
+        },
+        {
+          "title": "Major fire breaks out in Alberta after deadly incident at Canadian military base - POLITICO",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "npr.org"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T13:01:02.172Z"
+  "updatedAt": "2026-10-18T14:00:57.939Z"
 }
