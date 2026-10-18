@@ -10,67 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T08:01:42.945Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Bend, Oregon shooting live updates: 3 children and shooter among killed at Silver Rail school | CNN",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "edition.cnn.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.4071969696969697
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Most of Ken Paxton’s Money Can Be Traced to One Man: Elon Musk - The New York Times",
-          "stage": "source-verification",
-          "reason": "The central claim that most of Ken Paxton's campaign funds can be traced to Elon Musk is unsupported by the provided texts, which indicate Musk contributed $10 million out of more than $206 million spent by GOP-aligned groups.",
-          "evidence": {
-            "domains": [
-              "thedailybeast.com",
-              "theguardian.com",
-              "pbs.org"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1306122448979592
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Most of Ken Paxton’s money can be traced to Elon Musk, as reported by The New York Times.",
-                "sourceUrls": [
-                  "https://www.thedailybeast.com/elon-musks-frantic-bid-to-save-flailing-maga-texas-senate-candidate-ken-paxton",
-                  "https://www.theguardian.com/us-news/2026/oct/15/texas-paxton-talarico-senate-race-midterms-money",
-                  "https://www.pbs.org/newshour/politics/elon-musk-quietly-becomes-biggest-known-donor-in-midterm-contests-as-he-tries-to-save-republicans"
-                ],
-                "status": "unsupported",
-                "reason": "None of the provided sources verify the headline or state that most of Ken Paxton's money originates from Elon Musk. Rather, the sources report that Musk donated $10 million to a Paxton-aligned PAC (Lone Star Liberty PAC), while GOP-aligned groups have spent over $206 million trying to keep Paxton's campaign afloat."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central claim that most of Ken Paxton's campaign funds can be traced to Elon Musk is unsupported by the provided texts, which indicate Musk contributed $10 million out of more than $206 million spent by GOP-aligned groups."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T09:01:33.641Z",
       "query": "latest news",
       "found": 10,
@@ -2597,7 +2536,79 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T10:03:41.972Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "The signal contains no verifiable factual claims or events, consisting only of generic website boilerplate text.",
+          "evidence": {
+            "domains": [
+              "michaeljburry.substack.com",
+              "ndtvprofit.com"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.050347222222222224
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Subscribe to read",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "The text is generic website navigation/paywall boilerplate rather than an informative factual claim or event."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal contains no verifiable factual claims or events, consisting only of generic website boilerplate text."
+          }
+        },
+        {
+          "title": "Child, adult killed after truck drives through Wichita soccer game",
+          "stage": "source-verification",
+          "reason": "The signal is directly confirmed by multiple independent reporting outlets, including local broadcast KWCH and national outlet ABC News.",
+          "evidence": {
+            "domains": [
+              "kcbd.com",
+              "knopnews2.com",
+              "kwch.com",
+              "abcnews.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.6861702127659575
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "A child and an adult were killed after a truck drove through a soccer game in Wichita.",
+                "sourceUrls": [
+                  "https://www.kwch.com/2026/10/17/breaking-news-injury-accident-stryker-sports-complex/",
+                  "https://abcnews.com/US/2-dead-after-truck-drives-soccer-game-wichita/story?id=137352588"
+                ],
+                "status": "supported",
+                "reason": "Both sources independently report that a 6-year-old boy and a 35-year-old man died after a truck drove through a youth soccer game at the Stryker Sports Complex in east Wichita, Kansas."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The signal is directly confirmed by multiple independent reporting outlets, including local broadcast KWCH and national outlet ABC News."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T09:01:00.251Z"
+  "updatedAt": "2026-10-18T10:03:41.972Z"
 }
