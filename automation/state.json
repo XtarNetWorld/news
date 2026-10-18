@@ -10,54 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T17:01:28.420Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Why Trump and GOP’s billion-dollar midterm election blitz isn’t working",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "cnbc.com",
-              "slate.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.17329545454545456
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Katie Zacharia Says White House Never Asked If She'd Passed Bar Exam",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "popular.info",
-              "newrepublic.com",
-              "nymag.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.6845493562231759
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T18:01:30.250Z",
       "query": "latest news",
       "found": 50,
@@ -2654,7 +2606,57 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T19:01:06.206Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Trump says he will close historic D.C. golf course for 15 months of renovations | PBS News",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 4h59m0.791645646s.",
+          "evidence": {
+            "domains": [
+              "pbs.org",
+              "bozemandailychronicle.com",
+              "thespec.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.4352720450281426
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 4h59m0.791645646s."
+          }
+        },
+        {
+          "title": "Carney Says Fire at Canadian Forces Base Wainwright in Alberta Killed 4 and Injured Dozens - The New York Times",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 4h58m53.808234044s.",
+          "evidence": {
+            "domains": [
+              "foxnews.com",
+              "inquirer.com",
+              "edmontonjournal.com",
+              "cbc.ca"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.18518518518518517
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 4h58m53.808234044s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T18:01:07.207Z"
+  "updatedAt": "2026-10-18T19:01:06.206Z"
 }
