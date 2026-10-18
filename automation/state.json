@@ -10,57 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T11:01:33.943Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "How much money has Musk given to Republican groups since July? The quiz knows",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "npr.org",
-              "knpr.org",
-              "wnyc.org",
-              "kaxe.org"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.3282442748091603
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Six Flags parkgoer Hassan Kariem’s harrowing final moments before fatal Goliath roller coaster fall revealed",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "nypost.com",
-              "globemagazine.com",
-              "dailymail.com",
-              "atlantanewsfirst.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.26
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T12:01:45.473Z",
       "query": "latest news",
       "found": 15,
@@ -2636,7 +2585,58 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T13:01:02.172Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "Oil facilities hit in deadly overnight attack on St Petersburg",
+          "stage": "source-verification",
+          "reason": "User location is not supported for the API use.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "cedarnews.net",
+              "bbc.co.uk",
+              "aol.com",
+              "open.kg"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.44294003868471954
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "User location is not supported for the API use."
+          }
+        },
+        {
+          "title": "Subscribe to read",
+          "stage": "source-verification",
+          "reason": "User location is not supported for the API use.",
+          "evidence": {
+            "domains": [
+              "michaeljburry.substack.com",
+              "businessinsider.com",
+              "ndtvprofit.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.095952023988006
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "User location is not supported for the API use."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T12:01:53.960Z"
+  "updatedAt": "2026-10-18T13:01:02.172Z"
 }
