@@ -9,69 +9,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-15T22:01:38.108Z",
-      "query": "latest news",
-      "found": 5,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m38.672464105s.",
-          "evidence": {
-            "domains": [
-              "blic.rs",
-              "naslovi.net"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.7448979591836735
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 1h58m38.672464105s."
-          }
-        },
-        {
-          "title": "UK Study Visa Refusals Hit Foreign Student University Offers",
-          "stage": "source-verification",
-          "reason": "The signal is directly supported by multiple independent reports documenting British universities withdrawing admission offers due to a surge in UK student visa refusals and tightened compliance assessment thresholds.",
-          "evidence": {
-            "domains": [
-              "article.wn.com",
-              "timeshighereducation.com",
-              "africa.businessinsider.com",
-              "e.vnexpress.net"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.43872113676731794
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Rising UK study visa refusals and stricter government compliance thresholds have led British universities to withdraw or revoke admission offers to foreign students.",
-                "sourceUrls": [
-                  "https://article.wn.com/view/2026/10/15/UK_Study_Visa_Refusals_Hit_Foreign_Students_University_Offer/",
-                  "https://www.timeshighereducation.com/news/v-cs-seek-answers-over-late-surge-uk-student-visa-refusals",
-                  "https://africa.businessinsider.com/local/markets/uk-universities-withdraw-admission-offers-to-nigerian-pakistani-and-bangladeshi/wng8f8l"
-                ],
-                "status": "supported",
-                "reason": "Multiple independent sources verify that UK universities have begun withdrawing offers and pausing recruitment in specific markets to avoid breaching a 5 percent visa refusal limit that could endanger their international student sponsor licences."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal is directly supported by multiple independent reports documenting British universities withdrawing admission offers due to a surge in UK student visa refusals and tightened compliance assessment thresholds."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-15T23:01:05.171Z",
       "query": "latest news",
       "found": 10,
@@ -2547,7 +2484,54 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T00:01:10.352Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "New York City police seek suspect in fatal subway station shooting",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m51.944973212s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "amny.com",
+              "brooklyneagle.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.11053984575835475
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 23h58m51.944973212s."
+          }
+        },
+        {
+          "title": "In Kentucky midterm campaign stop, Trump says he \"can do stuff that is unbelievable\" - CBS News",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "cbsnews.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0.19140625
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-17T23:01:19.545Z"
+  "updatedAt": "2026-10-18T00:01:10.352Z"
 }
