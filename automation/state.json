@@ -10,49 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T07:01:23.812Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "School Shooting in Oregon Adds Silver Rail Elementary to Grim List - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "newscord.org"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Senators: Pentagon inspector general must probe Ukraine's Starlink outage",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T08:01:42.945Z",
       "query": "latest news",
       "found": 15,
@@ -2583,7 +2540,64 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-18T09:01:00.251Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 1,
+      "rejectedItems": [
+        {
+          "title": "[WATCHLIVE] MLB Playoffs 2026 ALCS — Live Streams, News & Latest Updates - Universidad de Córdoba (UCO)",
+          "stage": "source-verification",
+          "reason": "The connection to Universidad de Córdoba (UCO) is completely unsupported by the provided texts, reflecting SEO streaming spam rather than a verified signal.",
+          "evidence": {
+            "domains": [
+              "sportingnews.com",
+              "espn.com",
+              "cbssports.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.44673539518900346
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Universidad de Córdoba (UCO) provides or hosts live streams, news, and latest updates for the 2026 MLB Playoffs ALCS.",
+                "sourceUrls": [],
+                "status": "unsupported",
+                "reason": "None of the provided sources mention Universidad de Córdoba (UCO) or any affiliation between the university and MLB 2026 ALCS live streams."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The connection to Universidad de Córdoba (UCO) is completely unsupported by the provided texts, reflecting SEO streaming spam rather than a verified signal."
+          }
+        },
+        {
+          "title": "[[POSTSEASON BASEBALL]] ALCS Game — Live Streams & Latest MLB News - Universidad de Córdoba (UCO)",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "nemosportsnow.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T08:04:04.562Z"
+  "updatedAt": "2026-10-18T09:01:00.251Z"
 }
