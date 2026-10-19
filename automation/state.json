@@ -10,85 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T22:04:50.109Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Israeli settlers burn olive trees, injure journalist in West Bank attack",
-          "stage": "source-verification",
-          "reason": "Both sources rely exclusively on the same syndicated Reuters wire report, failing the requirement of at least two independent domains without relying on multiple copies of the same wire story. Additionally, the articles feature an implausible/future publication date of October 2026.",
-          "evidence": {
-            "domains": [
-              "arabnews.com",
-              "thehindu.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.45231607629427795
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Israeli settlers burned olive trees and injured a journalist during an attack on Palestinians harvesting olives in the West Bank village of Abu Falah.",
-                "sourceUrls": [
-                  "https://www.arabnews.com/middle-east/israeli-settlers-burn-olive-trees-injure-journalist-in-west-bank-attack-3006667",
-                  "https://www.thehindu.com/news/international/israeli-settlers-burn-olive-trees-injure-journalist-in-west-bank-attack/article71593869.ece/amp/"
-                ],
-                "status": "supported",
-                "reason": "Both texts report the event, but both are identical syndications of the same Reuters wire dispatch."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "Both sources rely exclusively on the same syndicated Reuters wire report, failing the requirement of at least two independent domains without relying on multiple copies of the same wire story. Additionally, the articles feature an implausible/future publication date of October 2026."
-          }
-        },
-        {
-          "title": "Trump denies limiting Ukraine access to Starlink network",
-          "stage": "source-verification",
-          "reason": "The signal accurately reflects verified statements reported across multiple independent domains without introducing unsupported details or invented quotes.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "cnbc.com",
-              "nypost.com",
-              "newscord.org",
-              "trtworld.com"
-            ],
-            "independentSources": 6,
-            "maxTextOverlap": 0.48440748440748443
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Trump denies limiting Ukraine access to Starlink network",
-                "sourceUrls": [
-                  "https://www.bbc.com/news/articles/ckz65g34wyd8o",
-                  "https://www.cnbc.com/2026/10/16/trump-denies-musk-claim-he-ordered-starlink-restrictions-in-ukraine.html",
-                  "https://nypost.com/2026/10/16/us-news/trump-denies-restricting-ukraines-starlink-starshield-access-despite-fingers-pointing-at-white-house/",
-                  "https://www.trtworld.com/article/d6e5f356f836"
-                ],
-                "status": "supported",
-                "reason": "Directly confirmed by multiple independent reporting outlets covering Donald Trump's public denial that he or the White House ordered restrictions on Ukraine's access to Starlink or Starshield satellite internet services."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal accurately reflects verified statements reported across multiple independent domains without introducing unsupported details or invented quotes."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-16T23:03:20.855Z",
       "query": "latest news",
       "found": 10,
@@ -2628,7 +2549,66 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T00:01:05.347Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Chicago's battle against the synthetic drugs flooding the US",
+          "stage": "source-verification",
+          "reason": "The story relies exclusively on a single media organization (BBC via bbc.com and bbc.co.uk), failing the requirement of at least two independent domains.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.9489795918367347
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Chicago communities are facing and battling an influx of potent synthetic drugs flooding the US.",
+                "sourceUrls": [
+                  "https://www.bbc.com/news/videos/c84g166kz003o",
+                  "https://www.bbc.co.uk/news/videos/c84g166kz003o"
+                ],
+                "status": "supported",
+                "reason": "Supported by the BBC report detailing the battle against synthetic drugs in Chicago's South Side and Cook County."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The story relies exclusively on a single media organization (BBC via bbc.com and bbc.co.uk), failing the requirement of at least two independent domains."
+          }
+        },
+        {
+          "title": "Trump's sinking approval leaves GOP candidates in a bind",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "pbs.org"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-18T23:00:57.762Z"
+  "updatedAt": "2026-10-19T00:01:05.347Z"
 }
