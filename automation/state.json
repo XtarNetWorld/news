@@ -10,65 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T07:01:36.231Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump Signs Order Exempting Russia From Sanctions Legislation - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Trump threatens California officials with imprisonment over stance on mail ballots | Reuters",
-          "stage": "source-verification",
-          "reason": "The central event is verified by at least two independent reporting sources (Reuters wire syndication and original reporting from ABC News).",
-          "evidence": {
-            "domains": [
-              "internazionale.it",
-              "huffpost.com",
-              "devdiscourse.com",
-              "abcnews.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.5379939209726444
-          },
-          "verifier": {
-            "decision": "pass",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Donald Trump threatened California election officials with imprisonment over counting mail ballots from voters flagged by the administration as alleged noncitizens.",
-                "sourceUrls": [
-                  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/17/trump-threatens-california-officials-with-imprisonment-over-stance-on-mail-ballots",
-                  "https://abcnews.com/Politics/trump-administration-threatens-prosecute-local-california-election-workers/story?id=137339732"
-                ],
-                "status": "supported",
-                "reason": "Both the Reuters report (syndicated across multiple outlets) and independent reporting from ABC News confirm that Trump shared a DOJ warning letter to California election officials regarding mail-in ballots on Truth Social, commenting 'They will all go to jail for a long period of time!!!'."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central event is verified by at least two independent reporting sources (Reuters wire syndication and original reporting from ABC News)."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T08:01:27.632Z",
       "query": "latest news",
       "found": 9,
@@ -2656,7 +2597,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T09:00:49.111Z",
+      "query": "latest news",
+      "found": 6,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Tottenham suffer double injury blow but Roberto De Zerbi confirms huge Dejan Kulusevski boost",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aol.co.uk"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "blic.rs"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T08:00:47.281Z"
+  "updatedAt": "2026-10-19T09:00:49.111Z"
 }
