@@ -10,66 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T20:01:32.946Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "Ukraine still unable to intercept Russian drones due to Starlink restrictions, Zelenskyy says - CBS News",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m46.844121905s.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com",
-              "san.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.14680483592400692
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 3h58m46.844121905s."
-          }
-        },
-        {
-          "title": "Ilhan Omar’s lawyers demand the return of property seized in house raid | Courts News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "The signal requires at least two independent domains for the central event, but Source 2 explicitly notes its reporting is taken directly from Al Jazeera and The AP. Reprints or rewrites of the same wire reporting cannot serve as independent confirmation. Furthermore, the signal text is an exact verbatim copy of Source 1's headline.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com",
-              "m.economictimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.24664879356568364
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Ilhan Omar's lawyers demanded the return of property seized during a federal search of her home.",
-                "sourceUrls": [
-                  "https://www.aljazeera.com/news/2026/10/17/ilhan-omars-lawyers-demand-the-return-of-property-seized-in-house-raid",
-                  "https://m.economictimes.com/world/us/what-documents-were-seized-from-ilhan-omars-property-by-federal-agents/amp_articleshow/135016628.cms"
-                ],
-                "status": "supported",
-                "reason": "The report appears in Source 1 and Source 2, detailing the legal letter sent to federal prosecutors requesting the return of seized property."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "The signal requires at least two independent domains for the central event, but Source 2 explicitly notes its reporting is taken directly from Al Jazeera and The AP. Reprints or rewrites of the same wire reporting cannot serve as independent confirmation. Furthermore, the signal text is an exact verbatim copy of Source 1's headline."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T21:01:10.185Z",
       "query": "latest news",
       "found": 10,
@@ -2208,7 +2148,52 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-19T22:00:50.068Z",
+      "query": "latest news",
+      "found": 2,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kabar Terbaru Jet Li , Cerita Kehidupan Keluarga dan Perjalanan Meditasi Selama 30 Tahun",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "liputan6.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Tottenham suffer double injury blow but Roberto De Zerbi confirms huge Dejan Kulusevski boost",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aol.co.uk"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T21:00:52.557Z"
+  "updatedAt": "2026-10-19T22:00:50.068Z"
 }
