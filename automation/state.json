@@ -10,49 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T10:02:30.888Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "How the Bend, Oregon, school shooting unfolded in three minutes | CNN",
-          "stage": "article-verification",
-          "reason": "The article includes details not found in the source text, including references to Deschutes County, specific timestamps of 1:00 p.m. and 1:02 p.m., and the specific hospital name St. Charles Bend.",
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "unsupportedClaims": [
-              "Deschutes County (referenced as the location of the school, the 911 dispatch center, and the District Attorney's Office) is not mentioned in the source text.",
-              "Specific minute-by-minute timestamps of 1:00 p.m. (breaching door locks) and 1:02 p.m. (armed civilian shooting the suspect) are not stated in the source text.",
-              "St. Charles Bend hospital is not mentioned in the source text."
-            ],
-            "sourceCoverage": 85,
-            "titleAssessment": "accurate",
-            "reason": "The article includes details not found in the source text, including references to Deschutes County, specific timestamps of 1:00 p.m. and 1:02 p.m., and the specific hospital name St. Charles Bend."
-          }
-        },
-        {
-          "title": "Trump Signs Order Exempting Russia From Sanctions Legislation - The New York Times",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [],
-            "independentSources": 0,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T11:01:24.730Z",
       "query": "latest news",
       "found": 10,
@@ -2571,7 +2528,48 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-19T12:00:46.597Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Who is Mehrdad Akhlaghi? Meet Iran’s new tech-focused defence minister in the news amid US war, UN sanctions — Profile - Livemint",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "IND vs NZ stats: Top 10 highest wicket-takers across Tests, ODIs and T20Is - Business Standard",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T11:00:44.488Z"
+  "updatedAt": "2026-10-19T12:00:46.597Z"
 }
