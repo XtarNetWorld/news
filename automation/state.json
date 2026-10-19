@@ -10,52 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T09:02:50.927Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 1,
-      "rejected": 1,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump Waives Russia Energy Tariffs, Sanctions in Graham Law - Bloomberg",
-          "stage": "source-verification",
-          "reason": "All provided sources derive directly from a single Bloomberg wire story without independent corroboration, failing the requirement of at least two independent sources for the central event.",
-          "evidence": {
-            "domains": [
-              "business-standard.com",
-              "ua.news",
-              "newsukraine.rbc.ua",
-              "newindianexpress.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.28716216216216217
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "President Donald Trump waived tariffs and sanctions on Russian energy exports mandated under the Graham law.",
-                "sourceUrls": [
-                  "https://www.business-standard.com/world-news/trump-waives-russia-energy-tariffs-and-sanctions-under-graham-law-126101700093_1.html",
-                  "https://ua.news/en/world/tramp-prizupiniv-sanktsiyi-proti-rosiyi-iaki-prosuvav-lindsi-grem-bloomberg",
-                  "https://newsukraine.rbc.ua/news/trump-puts-graham-backed-russia-sanctions-1792213839.html",
-                  "https://www.newindianexpress.com/world/2026/Oct/17/trump-waives-russia-related-tariffs-offering-india-relief-on-oil-imports"
-                ],
-                "status": "supported",
-                "reason": "The claim is supported within the provided texts, but all sources either syndicate or directly attribute their reporting to a single Bloomberg wire report."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "high",
-            "reason": "All provided sources derive directly from a single Bloomberg wire story without independent corroboration, failing the requirement of at least two independent sources for the central event."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T10:02:30.888Z",
       "query": "latest news",
       "found": 10,
@@ -2607,7 +2561,17 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-19T11:00:44.488Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-19T10:00:43.818Z"
+  "updatedAt": "2026-10-19T11:00:44.488Z"
 }
