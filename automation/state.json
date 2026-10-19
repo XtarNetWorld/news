@@ -10,67 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T17:02:34.720Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "Why Trump’s latest White House press secretary lasted just five days | Donald Trump News | Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.14285714285714285
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Zelensky says Musk-owned satellite system still restricted in Ukraine",
-          "stage": "source-verification",
-          "reason": "The central claim attributes statements about ongoing satellite restrictions directly to President Zelensky, which is not supported by any of the provided sources.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "newsweek.com",
-              "france24.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.18518518518518517
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Zelensky says Musk-owned satellite system still restricted in Ukraine",
-                "sourceUrls": [
-                  "https://abcnews.com/Politics/ukraine-faces-loss-key-us-affiliated-satellite-support/story?id=137260473",
-                  "https://www.newsweek.com/ukraine-starlink-access-restricted-as-musk-says-zelensky-has-gone-too-far-12565652",
-                  "https://www.france24.com/en/americas/20261014-musk-says-us-govt-responsible-for-any-starshield-restrictions-affecting-ukraine"
-                ],
-                "status": "unsupported",
-                "reason": "None of the sources report Zelensky stating that the satellite system is still restricted. Statements regarding ongoing restrictions, speed limits, and the need to fully remove caps were made by other Ukrainian officials, such as Mykhailo Fedorov, Serhii Beskrestnov, and defense ministry officials."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central claim attributes statements about ongoing satellite restrictions directly to President Zelensky, which is not supported by any of the provided sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T18:03:18.192Z",
       "query": "latest news",
       "found": 10,
@@ -2336,7 +2275,17 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-19T19:01:13.188Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-19T18:00:48.076Z"
+  "updatedAt": "2026-10-19T19:01:13.188Z"
 }
