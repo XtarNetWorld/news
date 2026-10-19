@@ -10,43 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-16T23:03:20.855Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "New NOAA outlook reveals what Minnesota can expect this winter",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "nbcchicago.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "El-Sayed responds after Vance calls him a \"weasel\" as Michigan Senate race grows contentious - CBS News",
-          "stage": "article-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 56m39.146715047s.",
-          "verifier": {
-            "decision": "reject",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 56m39.146715047s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T00:01:37.177Z",
       "query": "latest news",
       "found": 15,
@@ -2608,7 +2571,69 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T01:01:30.120Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump plans to begin DC golf course renovation in defiance of judge’s order",
+          "stage": "source-verification",
+          "reason": "The central event—Trump's announcement that he plans to begin renovation work on the D.C. golf course on November 15 in defiance of the judge's order—is reported only by a single domain (The Guardian). Sources 3, 4, and 5 predate this announcement and only cover the earlier tree-cutting incident, while Source 2 is a consent wall. The signal fails the requirement of having at least two independent domains confirming the central event.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "consent.yahoo.com",
+              "san.com",
+              "presstv.co.uk",
+              "newrepublic.com"
+            ],
+            "independentSources": 5,
+            "maxTextOverlap": 0.15555555555555556
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump announced plans to begin restoration work on the East Potomac Golf Links on November 15 despite a federal judge's order pausing his plans.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/18/trump-dc-golf-course-renovation"
+                ],
+                "status": "supported",
+                "reason": "Supported by Source 1. However, no other source in the provided set covers Trump's October 18 announcement to begin work on November 15."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The central event—Trump's announcement that he plans to begin renovation work on the D.C. golf course on November 15 in defiance of the judge's order—is reported only by a single domain (The Guardian). Sources 3, 4, and 5 predate this announcement and only cover the earlier tree-cutting incident, while Source 2 is a consent wall. The signal fails the requirement of having at least two independent domains confirming the central event."
+          }
+        },
+        {
+          "title": "Chicago's battle against the synthetic drugs flooding the US",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.8840427s.",
+          "evidence": {
+            "domains": [
+              "bbc.com",
+              "bbc.co.uk"
+            ],
+            "independentSources": 2,
+            "maxTextOverlap": 0.6946564885496184
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 22h58m29.8840427s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T00:01:05.347Z"
+  "updatedAt": "2026-10-19T01:01:30.120Z"
 }
