@@ -10,53 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T06:01:31.391Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump Signs Order Exempting Russia From Sanctions Legislation - The New York Times",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m32.478027732s.",
-          "evidence": {
-            "domains": [
-              "economictimes.indiatimes.com",
-              "hindustantimes.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.125
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m32.478027732s."
-          }
-        },
-        {
-          "title": "Trump threatens California officials with imprisonment over stance on mail ballots | Reuters",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m28.606702057s.",
-          "evidence": {
-            "domains": [
-              "internazionale.it",
-              "huffpost.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.3157894736842105
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 17h58m28.606702057s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T07:01:36.231Z",
       "query": "latest news",
       "found": 15,
@@ -2658,7 +2611,52 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T08:00:47.281Z",
+      "query": "latest news",
+      "found": 6,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Tottenham suffer double injury blow but Roberto De Zerbi confirms huge Dejan Kulusevski boost",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aol.co.uk"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Horor u centru Beograda : Pronađeno telo u tunelu za smeće , na licu mesta veliki broj policije",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "blic.rs"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T07:00:47.170Z"
+  "updatedAt": "2026-10-19T08:00:47.281Z"
 }
