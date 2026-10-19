@@ -10,62 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T11:01:24.730Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "Canada’s Mark Carney makes final appeal against Alberta separation ahead of referendum",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "abcnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Subscribe to read",
-          "stage": "source-verification",
-          "reason": "The signal does not convey a meaningful factual claim or central event, representing only boilerplate paywall/subscription interface text.",
-          "evidence": {
-            "domains": [
-              "michaeljburry.substack.com",
-              "ndtvprofit.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.05604203152364273
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Subscribe to read",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "The text is a generic website user-interface prompt/paywall artifact rather than a verifiable factual event or reportable claim."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal does not convey a meaningful factual claim or central event, representing only boilerplate paywall/subscription interface text."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T12:01:44.265Z",
       "query": "latest news",
       "found": 15,
@@ -2569,7 +2513,48 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T13:00:46.163Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Who is Mehrdad Akhlaghi? Meet Iran’s new tech-focused defence minister in the news amid US war, UN sanctions — Profile - Livemint",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "IND vs NZ stats: Top 10 highest wicket-takers across Tests, ODIs and T20Is - Business Standard",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T12:00:46.597Z"
+  "updatedAt": "2026-10-19T13:00:46.163Z"
 }
