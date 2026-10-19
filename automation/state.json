@@ -10,54 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T03:01:36.988Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "DHS Secretary Mullin calls Ilhan Omar probe a \"strong case,\" says agents executed multiple search warrants - CBS News",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "cbsnews.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Oregon shooting victims: three boys and female teacher killed at elementary school",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m23.008062292s.",
-          "evidence": {
-            "domains": [
-              "theguardian.com",
-              "pbs.org",
-              "ktvz.com",
-              "washingtonpost.com"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.12837837837837837
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h58m23.008062292s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T04:01:12.542Z",
       "query": "latest news",
       "found": 10,
@@ -2646,7 +2598,73 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T05:01:15.290Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump plans to begin DC golf course renovation in defiance of judge’s order",
+          "stage": "source-verification",
+          "reason": "The signal is supported by at least two independent domains covering the central event. Copy risk is high because the signal's text is identical to the headline of the Guardian article.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "sg.news.yahoo.com",
+              "san.com",
+              "newrepublic.com"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.43
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump plans to begin renovation work on a historic Washington D.C. golf course in November despite a federal judge's order.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/18/trump-dc-golf-course-renovation",
+                  "https://sg.news.yahoo.com/trump-says-washington-golf-course-174922310.html"
+                ],
+                "status": "supported",
+                "reason": "Both The Guardian and Reuters (published via Yahoo News) confirm that Trump announced on Truth Social that restoration work on the East Potomac Golf Links will begin on November 15, despite a federal judge's orders restricting substantive work without prior court notification."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "The signal is supported by at least two independent domains covering the central event. Copy risk is high because the signal's text is identical to the headline of the Guardian article."
+          }
+        },
+        {
+          "title": "Ukraine launches over 1,000 drones at Russia, setting oil facilities ablaze | Drone Strikes News | Al Jazeera",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m44.706845115s.",
+          "evidence": {
+            "domains": [
+              "aljazeera.com",
+              "nvdaily.com",
+              "transylvaniatimes.com",
+              "couriernews.com",
+              "economictimes.indiatimes.com",
+              "1news.co.nz"
+            ],
+            "independentSources": 6,
+            "maxTextOverlap": 0.4658040665434381
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m44.706845115s."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T04:01:12.992Z"
+  "updatedAt": "2026-10-19T05:01:15.290Z"
 }
