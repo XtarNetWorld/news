@@ -10,34 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T02:02:32.238Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 1,
-      "rejected": 1,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Chelsea transfer news, rumours and gossip: Live updates and latest on deals, signings, loans and contracts - Sky Sports",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "skysports.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0.9833333333333333
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T03:01:36.988Z",
       "query": "latest news",
       "found": 15,
@@ -2626,7 +2598,55 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T04:01:12.992Z",
+      "query": "latest news",
+      "found": 16,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump plans to begin DC golf course renovation in defiance of judge’s order",
+          "stage": "source-verification",
+          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m50.318798593s.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "sg.news.yahoo.com",
+              "san.com",
+              "presstv.co.uk"
+            ],
+            "independentSources": 4,
+            "maxTextOverlap": 0.43
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m50.318798593s."
+          }
+        },
+        {
+          "title": "Trump Defends Plans to Ease Russia Sanctions and Hints at a Hostage Deal - The New York Times",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "jpost.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T03:02:05.949Z"
+  "updatedAt": "2026-10-19T04:01:12.992Z"
 }
