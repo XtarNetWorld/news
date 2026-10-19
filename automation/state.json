@@ -10,67 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T12:01:44.265Z",
-      "query": "latest news",
-      "found": 15,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "Canada’s Mark Carney makes final appeal against Alberta separation ahead of referendum",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "gulftoday.ae",
-              "cbc.ca",
-              "theglobeandmail.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1678082191780822
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "Trump waives tariffs on largest buyers of Russian oil, days before Lindsey Graham-backed law was set to take effect - CBS News",
-          "stage": "source-verification",
-          "reason": "The central claim is unsupported by the provided texts, and there is a lack of confirmation from at least two independent domains.",
-          "evidence": {
-            "domains": [
-              "undercurrentnews.com",
-              "shanakaanslemperera.substack.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.10186513629842181
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Trump waived tariffs on the largest buyers of Russian oil days before a Lindsey Graham-backed law was set to take effect, as reported by CBS News.",
-                "sourceUrls": [
-                  "https://www.undercurrentnews.com/2026/08/11/trump-tariffs-fallout/",
-                  "https://shanakaanslemperera.substack.com/p/geopolitics-and-world-politics-monthly"
-                ],
-                "status": "unsupported",
-                "reason": "Neither source confirms that Trump waived tariffs on the largest buyers of Russian oil, nor do they mention a Lindsey Graham-backed law or a CBS News report detailing such a waiver. Furthermore, there are not two independent domains verifying the central event."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The central claim is unsupported by the provided texts, and there is a lack of confirmation from at least two independent domains."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T13:01:43.030Z",
       "query": "latest news",
       "found": 15,
@@ -2554,7 +2493,48 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T14:00:49.876Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "News Analysis 19 October 2026 | Latest News & Current Affairs - Drishti IAS",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Who is Mehrdad Akhlaghi? Meet Iran’s new tech-focused defence minister in the news amid US war, UN sanctions — Profile - Livemint",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T13:00:46.163Z"
+  "updatedAt": "2026-10-19T14:00:49.876Z"
 }
