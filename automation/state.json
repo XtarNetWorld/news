@@ -10,54 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T04:01:12.542Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump waives several Russian sanctions as new US law takes effect",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.771943907s.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "bbc.co.uk",
-              "devdiscourse.com",
-              "internazionale.it"
-            ],
-            "independentSources": 4,
-            "maxTextOverlap": 0.3862559241706161
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19h58m49.771943907s."
-          }
-        },
-        {
-          "title": "Katie Zacharia’s Five-Day Roller-Coaster as Trump’s Press Secretary - WSJ",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "ctvnews.ca"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T05:01:42.557Z",
       "query": "latest news",
       "found": 10,
@@ -2664,7 +2616,81 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T06:01:04.122Z",
+      "query": "latest news",
+      "found": 10,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Trump plans to begin DC golf course renovation in defiance of judge’s order",
+          "stage": "source-verification",
+          "reason": "The story lacks confirmation from at least two independent domains. Source 2 is The Guardian's social media account, and Source 3 is an automated aggregator syndicating/summarizing The Guardian's piece.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "bsky.app",
+              "joyfm-radio.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.14285714285714285
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Donald Trump announced plans to begin restoration work on a historic Washington DC golf course on November 15 despite a federal judge's order.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/18/trump-dc-golf-course-renovation"
+                ],
+                "status": "supported",
+                "reason": "The claim is supported by Source 1, but lacks corroboration from a second independent news domain (Source 2 is a social post linking to Source 1, and Source 3 is an aggregator republishing Source 1)."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "low",
+            "reason": "The story lacks confirmation from at least two independent domains. Source 2 is The Guardian's social media account, and Source 3 is an automated aggregator syndicating/summarizing The Guardian's piece."
+          }
+        },
+        {
+          "title": "Amelia Earhart researchers leave remote atoll empty-handed after ‘plane debris’ found to be a clump of trees",
+          "stage": "source-verification",
+          "reason": "The claim is independently confirmed by two separate news outlets (The Guardian and Newsweek), but the text of the signal is an exact verbatim copy of The Guardian's headline.",
+          "evidence": {
+            "domains": [
+              "theguardian.com",
+              "newsweek.com",
+              "timesofindia.indiatimes.com"
+            ],
+            "independentSources": 3,
+            "maxTextOverlap": 0.38980509745127434
+          },
+          "verifier": {
+            "decision": "pass",
+            "confidence": "high",
+            "claims": [
+              {
+                "claim": "Amelia Earhart researchers departed a remote Pacific atoll empty-handed after suspected aircraft debris was determined to be a clump of trees.",
+                "sourceUrls": [
+                  "https://www.theguardian.com/us-news/2026/oct/19/amelia-earhart-purdue-expedition-clump-of-trees-nikumaroro-kiribati",
+                  "https://www.newsweek.com/amelia-earhart-search-setback-expedition-rules-out-taraia-object-theory-12586588"
+                ],
+                "status": "supported",
+                "reason": "Both The Guardian and Newsweek report that an expedition investigating an anomaly in Nikumaroro's lagoon suspected to be Earhart's plane determined the object was likely a collection of large trees."
+              }
+            ],
+            "conflicts": [],
+            "copyRisk": "high",
+            "reason": "The claim is independently confirmed by two separate news outlets (The Guardian and Newsweek), but the text of the signal is an exact verbatim copy of The Guardian's headline."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T05:01:15.290Z"
+  "updatedAt": "2026-10-19T06:01:04.122Z"
 }
