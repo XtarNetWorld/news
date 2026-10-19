@@ -10,79 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T05:01:42.557Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 1,
-      "rejectedItems": [
-        {
-          "title": "Trump suspends new Russia sanctions following deal to purchase diesel, citing ‘national interests’",
-          "stage": "source-verification",
-          "reason": "The signal asserts that the suspension followed a 'deal to purchase diesel,' which creates an unresolvable conflict among the sources; two sources report the deal was to allow Russian diesel onto the global market, not a direct purchase by the U.S.",
-          "evidence": {
-            "domains": [
-              "aol.com",
-              "kyivpost.com",
-              "nbcwashington.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.1638846737481032
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "President Trump suspended/waived new Russia sanctions passed by Congress, citing national interests.",
-                "sourceUrls": [
-                  "https://www.aol.com/articles/trump-suspends-russia-sanctions-following-024508000.html",
-                  "https://www.kyivpost.com/post/87342",
-                  "https://www.nbcwashington.com/news/politics/trump-russia-sanctions-hold-national-interest/4168582/"
-                ],
-                "status": "supported",
-                "reason": "All three sources confirm that Trump signed an executive order waiving or putting on hold sweeping new sanctions against Russia under the Graham Act, certifying that the action was in the national interests of the United States."
-              },
-              {
-                "claim": "The suspension followed a deal to purchase diesel.",
-                "sourceUrls": [
-                  "https://www.aol.com/articles/trump-suspends-russia-sanctions-following-024508000.html",
-                  "https://www.kyivpost.com/post/87342",
-                  "https://www.nbcwashington.com/news/politics/trump-russia-sanctions-hold-national-interest/4168582/"
-                ],
-                "status": "conflict",
-                "reason": "While Source 3 mentions Trump stating the U.S. had agreed to purchase diesel from Russia, Sources 1 and 2 report that the agreement was to ease export restrictions and allow Russia to release diesel onto the global/international market, not a U.S. purchase agreement."
-              }
-            ],
-            "conflicts": [
-              "Source 3 states the U.S. agreed to purchase diesel from Russia, whereas Sources 1 and 2 state the agreement was for Russia to release diesel onto the global market in exchange for eased export restrictions."
-            ],
-            "copyRisk": "low",
-            "reason": "The signal asserts that the suspension followed a 'deal to purchase diesel,' which creates an unresolvable conflict among the sources; two sources report the deal was to allow Russian diesel onto the global market, not a direct purchase by the U.S."
-          }
-        },
-        {
-          "title": "Ilhan Omar’s Sister’s Phone Was Seized Before Search of Lawmaker’s Home",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "time.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T06:01:31.391Z",
       "query": "latest news",
       "found": 10,
@@ -2690,7 +2617,48 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-19T07:00:47.170Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "[WATCHLIVE] TODAY! MLB Baseball Playoffs — Live Streams, Latest News & Postseason Updates - Universidad de Córdoba (UCO)",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "CNN partners with Google on generative AI - Indian Broadcasting World",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T06:01:04.122Z"
+  "updatedAt": "2026-10-19T07:00:47.170Z"
 }
