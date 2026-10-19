@@ -10,75 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T15:03:19.383Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "Beachfront homes destroyed as California coastal erosion and El Nino bring historic flooding",
-          "stage": "source-verification",
-          "reason": "The signal exaggerates the impact reported in the sources: homes were damaged and red-tagged rather than destroyed, and the flooding was not characterized as historic (the El Niño pattern was described as potentially historic).",
-          "evidence": {
-            "domains": [
-              "foxweather.com",
-              "latimes.com",
-              "laist.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.2827476038338658
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Beachfront homes were destroyed along the California coast.",
-                "sourceUrls": [
-                  "https://www.foxweather.com/weather-news/tropical-storm-rachel-waves-batter-vulnerable-california-coast",
-                  "https://www.latimes.com/california/story/2026-10-09/tropical-storm-rachel-when-will-it-hit-socal-how-bad-will-it-be"
-                ],
-                "status": "unsupported",
-                "reason": "The sources report that oceanfront homes suffered damage and were red-tagged or yellow-tagged as unsafe, but none state that homes were destroyed (sections of the boardwalk were destroyed)."
-              },
-              {
-                "claim": "California coastal erosion and El Niño brought historic flooding.",
-                "sourceUrls": [
-                  "https://www.foxweather.com/weather-news/tropical-storm-rachel-waves-batter-vulnerable-california-coast",
-                  "https://www.latimes.com/california/story/2026-10-09/tropical-storm-rachel-when-will-it-hit-socal-how-bad-will-it-be",
-                  "https://laist.com/news/climate-environment/hurricane-marie-reshaped-southern-california-coastline-el-nino-could-be-worse"
-                ],
-                "status": "unsupported",
-                "reason": "The sources refer to a potentially 'historic' or record-breaking El Niño climate pattern and significant coastal flooding, but do not describe the flooding event itself as 'historic flooding'."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal exaggerates the impact reported in the sources: homes were damaged and red-tagged rather than destroyed, and the flooding was not characterized as historic (the El Niño pattern was described as potentially historic)."
-          }
-        },
-        {
-          "title": "Pope to be discharged days after lung cancer surgery",
-          "stage": "article-verification",
-          "reason": "The article introduces specific unverified dates and procedural requirements in its scenario section (specifying an October 19-22 window for pathology results and claiming the Holy See Secretariat of State must formally ratify or curtail the Latin America trip by late October). Additionally, the headline's claim of 'Defying Hospital Expectations' is misleading, as the sources state that the initial one-week estimate was given by the Holy See Press Office, and it was the hospital doctors themselves who evaluated him and deemed him fit for discharge.",
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "unsupportedClaims": [
-              "The medical team is expected to receive full laboratory pathology specifically between October 19 and October 22.",
-              "By late October, the Holy See Secretariat of State must formally ratify or curtail the November Latin American voyage."
-            ],
-            "sourceCoverage": 88,
-            "titleAssessment": "misleading",
-            "reason": "The article introduces specific unverified dates and procedural requirements in its scenario section (specifying an October 19-22 window for pathology results and claiming the Holy See Secretariat of State must formally ratify or curtail the Latin America trip by late October). Additionally, the headline's claim of 'Defying Hospital Expectations' is misleading, as the sources state that the initial one-week estimate was given by the Holy See Press Office, and it was the hospital doctors themselves who evaluated him and deemed him fit for discharge."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-17T16:01:16.387Z",
       "query": "latest news",
       "found": 10,
@@ -2413,7 +2344,52 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-19T17:01:00.131Z",
+      "query": "latest news",
+      "found": 2,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kabar Terbaru Jet Li , Cerita Kehidupan Keluarga dan Perjalanan Meditasi Selama 30 Tahun",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "liputan6.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Tottenham suffer double injury blow but Roberto De Zerbi confirms huge Dejan Kulusevski boost",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aol.co.uk"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-19T16:00:50.138Z"
+  "updatedAt": "2026-10-19T17:01:00.131Z"
 }
