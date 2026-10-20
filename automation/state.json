@@ -10,74 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-18T06:01:06.240Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "[WATCHLIVE] TODAY! Hadribeaj vs Fundora — Live Streams, Boxing News & Latest Updates - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "The signal represents an SEO spam title associating the boxing match with Universidad de Córdoba (UCO) and lacks a specific verifiable date, which is unsupported by the provided sources.",
-          "evidence": {
-            "domains": [
-              "bleacherreport.com",
-              "bozemandailychronicle.com",
-              "skysports.com",
-              "abcnews.com",
-              "houstonchronicle.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.18724279835390947
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Sebastian Fundora fought Ermal Hadribeaj in a championship boxing match.",
-                "sourceUrls": [
-                  "https://bleacherreport.com/liveblogs/25512079-sebastian-fundora-vs-ermal-hadribeaj-live-updates-highlights-and-results",
-                  "https://abcnews.com/Sports/wireStory/fundora-stops-hadribeaj-final-undisputed-title-hopes-alive-137356884"
-                ],
-                "status": "supported",
-                "reason": "Both Bleacher Report and ABC News independently report on the super welterweight title fight between Sebastian Fundora and Ermal Hadribeaj in Las Vegas."
-              },
-              {
-                "claim": "Universidad de Córdoba (UCO) is broadcasting or officially associated with live streams and updates for Hadribeaj vs. Fundora today.",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "None of the sources mention Universidad de Córdoba (UCO), and the signal uses an undated relative term ('TODAY!') typical of spam scrape links."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal represents an SEO spam title associating the boxing match with Universidad de Córdoba (UCO) and lacks a specific verifiable date, which is unsupported by the provided sources."
-          }
-        },
-        {
-          "title": "[[POSTSEASON BASEBALL]] ALCS Game — Live Streams & Latest MLB News - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "nemosportsnow.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 0
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-18T07:00:58.958Z",
       "query": "latest news",
       "found": 9,
@@ -1913,7 +1845,17 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-20T08:00:44.969Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-20T07:00:46.003Z"
+  "updatedAt": "2026-10-20T08:00:44.969Z"
 }
