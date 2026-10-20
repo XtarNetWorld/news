@@ -10,74 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-18T05:01:02.367Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "[WATCHLIVE] TODAY! Hadribeaj vs Fundora — Live Streams, Boxing News & Latest Updates - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "The signal is an SEO streaming spam headline associating the bout with Universidad de Córdoba (UCO), which is completely unsupported by the verified reporting.",
-          "evidence": {
-            "domains": [
-              "bleacherreport.com",
-              "bozemandailychronicle.com",
-              "skysports.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 0.36879432624113473
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Sebastian Fundora fought Ermal Hadribeaj in a super welterweight championship bout on October 17, 2026",
-                "sourceUrls": [
-                  "https://bleacherreport.com/liveblogs/25512079-sebastian-fundora-vs-ermal-hadribeaj-live-updates-highlights-and-results",
-                  "https://www.bozemandailychronicle.com/wire/sports/fundora-stops-hadribeaj-in-final-second-keeps-undisputed-title-hopes-alive/article_009c18eb-5fde-57d3-9434-6859a8eae39a.html"
-                ],
-                "status": "supported",
-                "reason": "Both Bleacher Report and the Associated Press (via Bozeman Daily Chronicle) confirm the WBC super welterweight title fight between Sebastian Fundora and Ermal Hadribeaj in Las Vegas."
-              },
-              {
-                "claim": "The fight or official live stream was hosted or broadcast by Universidad de Córdoba (UCO)",
-                "sourceUrls": [],
-                "status": "unsupported",
-                "reason": "None of the provided sources mention Universidad de Córdoba (UCO); the signal represents an SEO/streaming spam headline indexing an unrelated academic domain."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal is an SEO streaming spam headline associating the bout with Universidad de Córdoba (UCO), which is completely unsupported by the verified reporting."
-          }
-        },
-        {
-          "title": "[[POSTSEASON BASEBALL]] ALCS Game — Live Streams & Latest MLB News - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m57.622233855s.",
-          "evidence": {
-            "domains": [
-              "sportingnews.com",
-              "mlb.com",
-              "cbssports.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 18h58m57.622233855s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-18T06:01:06.240Z",
       "query": "latest news",
       "found": 50,
@@ -1971,7 +1903,17 @@
           }
         }
       ]
+    },
+    {
+      "at": "2026-10-20T07:00:46.003Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-20T06:00:52.267Z"
+  "updatedAt": "2026-10-20T07:00:46.003Z"
 }
