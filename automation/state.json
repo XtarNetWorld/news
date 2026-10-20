@@ -10,65 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-18T07:00:58.958Z",
-      "query": "latest news",
-      "found": 9,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Breaking News, World News and Video from Al Jazeera",
-          "stage": "source-verification",
-          "reason": "Insufficient independent original sources.",
-          "evidence": {
-            "domains": [
-              "aljazeera.com"
-            ],
-            "independentSources": 1,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "Insufficient independent original sources."
-          }
-        },
-        {
-          "title": "Breaking News LIVE | US TAKEOVER OF IRAN? Trump’s Latest Statement LIVE |  US IRAN NEWS LIVE",
-          "stage": "source-verification",
-          "reason": "The signal presents a sensationalist headline implying a potential US takeover of Iran, which is completely unsupported by the provided reports detailing Trump's statements about controlling the Strait of Hormuz.",
-          "evidence": {
-            "domains": [
-              "bbc.com",
-              "ndtv.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.1062874251497006
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "high",
-            "claims": [
-              {
-                "claim": "Donald Trump made a statement regarding a US takeover of Iran",
-                "sourceUrls": [
-                  "https://www.bbc.com/news/articles/c8d2vn38dy1o",
-                  "https://www.ndtv.com/world-news/donald-trump-posts-ai-photo-of-hormuz-as-new-us-territory-says-all-mines-removed-11927959"
-                ],
-                "status": "unsupported",
-                "reason": "The sources document Trump suggesting the US could take over or declare the Strait of Hormuz a US territory ('We are taking over the strait'), but neither source mentions a takeover of the country of Iran itself. The headline is an unsubstantiated sensationalization."
-              }
-            ],
-            "conflicts": [],
-            "copyRisk": "low",
-            "reason": "The signal presents a sensationalist headline implying a potential US takeover of Iran, which is completely unsupported by the provided reports detailing Trump's statements about controlling the Strait of Hormuz."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-18T08:04:04.562Z",
       "query": "latest news",
       "found": 10,
@@ -1855,7 +1796,48 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-20T09:00:47.494Z",
+      "query": "latest news",
+      "found": 50,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Ramesh Powar in selection panel; Pragyan Ojha new chief - The Times of India",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "India News Live Updates, 20 October 2026: Rubio lands in Mumbai, talks planned with Jaishankar - The Indian Express",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [],
+            "independentSources": 0,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-20T08:00:44.969Z"
+  "updatedAt": "2026-10-20T09:00:47.494Z"
 }
