@@ -10,54 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-17T23:01:19.545Z",
-      "query": "latest news",
-      "found": 50,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 2,
-      "rejectedItems": [
-        {
-          "title": "~`(Leaked+HQ+vIDEO+18)@! Pori Moni Viral Video Latest News and Search Interest - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "evidence": {
-            "domains": [
-              "variety.com",
-              "nypost.com"
-            ],
-            "independentSources": 2,
-            "maxTextOverlap": 0.05785123966942149
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-          }
-        },
-        {
-          "title": "⊕[ＷＡＴＣＨ ＬＩＶＥ ＮＯＷ]⊕ Troy vs Louisiana Live Streams — Latest News - Universidad de Córdoba (UCO)",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m40.454325472s.",
-          "evidence": {
-            "domains": [
-              "espn.com",
-              "cbssports.com",
-              "foxsports.com"
-            ],
-            "independentSources": 3,
-            "maxTextOverlap": 1
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58m40.454325472s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-18T00:01:10.352Z",
       "query": "latest news",
       "found": 10,
@@ -2113,7 +2065,17 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-20T01:00:50.057Z",
+      "query": "latest news",
+      "found": 0,
+      "published": 0,
+      "rejected": 0,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": []
     }
   ],
-  "updatedAt": "2026-10-20T00:00:49.643Z"
+  "updatedAt": "2026-10-20T01:00:50.057Z"
 }
