@@ -10,43 +10,6 @@
   ],
   "runs": [
     {
-      "at": "2026-10-18T03:00:57.608Z",
-      "query": "latest news",
-      "found": 10,
-      "published": 0,
-      "rejected": 2,
-      "dailyCap": 100,
-      "usedBeforeRun": 0,
-      "rejectedItems": [
-        {
-          "title": "Evacuation orders issued as wildfire burns in Orange County, California - ABC News",
-          "stage": "generation",
-          "reason": "Generation failed"
-        },
-        {
-          "title": "Child, adult killed after vehicle drives through soccer game in Wichita, Kansas",
-          "stage": "source-verification",
-          "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h59m2.39560935s.",
-          "evidence": {
-            "domains": [
-              "abcnews.com",
-              "cbsnews.com",
-              "wbtv.com",
-              "kwch.com",
-              "knopnews2.com"
-            ],
-            "independentSources": 5,
-            "maxTextOverlap": 0.4666666666666667
-          },
-          "verifier": {
-            "decision": "reject",
-            "confidence": "low",
-            "reason": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 20h59m2.39560935s."
-          }
-        }
-      ]
-    },
-    {
       "at": "2026-10-18T04:00:55.973Z",
       "query": "latest news",
       "found": 10,
@@ -1966,7 +1929,52 @@
       "dailyCap": 100,
       "usedBeforeRun": 0,
       "rejectedItems": []
+    },
+    {
+      "at": "2026-10-20T05:00:48.100Z",
+      "query": "latest news",
+      "found": 2,
+      "published": 0,
+      "rejected": 2,
+      "dailyCap": 100,
+      "usedBeforeRun": 0,
+      "rejectedItems": [
+        {
+          "title": "Kabar Terbaru Jet Li , Cerita Kehidupan Keluarga dan Perjalanan Meditasi Selama 30 Tahun",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "liputan6.com"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        },
+        {
+          "title": "Tottenham suffer double injury blow but Roberto De Zerbi confirms huge Dejan Kulusevski boost",
+          "stage": "source-verification",
+          "reason": "Insufficient independent original sources.",
+          "evidence": {
+            "domains": [
+              "aol.co.uk"
+            ],
+            "independentSources": 1,
+            "maxTextOverlap": 0
+          },
+          "verifier": {
+            "decision": "reject",
+            "confidence": "low",
+            "reason": "Insufficient independent original sources."
+          }
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-10-20T04:00:50.927Z"
+  "updatedAt": "2026-10-20T05:00:48.100Z"
 }
