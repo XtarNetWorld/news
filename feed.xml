@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <item>
-      <title>Deadly Incident at CFB Wainwright Triggers Fire and Edmonton Disaster Response</title>
-      <link>https://www.newsxphere/world/deadly-incident-cfb-wainwright-alberta-fire/</link>
-      <guid isPermaLink="true">https://www.newsxphere/world/deadly-incident-cfb-wainwright-alberta-fire/</guid>
-      <description>An undisclosed incident at Alberta&apos;s primary military training grounds leaves fatalities, injuries, and a wildfire burning beyond the perimeter fence.</description>
-      <pubDate>Sun, 18 Oct 2026 08:03:59 GMT</pubDate>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
-    </item>
-
     <title>NewsXphere — Latest signals</title>
     <link>https://www.newsxphere.com/</link>
     <description>Thoughtful reporting from NewsXphere.</description>
     <language>en-us</language>
     <atom:link href="https://www.newsxphere.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deadly Incident at CFB Wainwright Triggers Fire and Edmonton Disaster Response</title>
+      <link>https://www.newsxphere.com/world/deadly-incident-cfb-wainwright-alberta-fire/</link>
+      <guid isPermaLink="true">https://www.newsxphere.com/world/deadly-incident-cfb-wainwright-alberta-fire/</guid>
+      <description>An undisclosed incident at Alberta&apos;s primary military training grounds leaves fatalities, injuries, and a wildfire burning beyond the perimeter fence.</description>
+      <pubDate>Sun, 18 Oct 2026 08:03:59 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">NewsXphere Editorial Desk</dc:creator>
+    </item>
     <item>
       <title>Rep. Ilhan Omar Lawyers Accuse Feds of Violating Search Restrictions</title>
       <link>https://www.newsxphere.com/world/ilhan-omar-home-search-lawyers-judge-restrictions/</link>
