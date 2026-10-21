@@ -48,30 +48,6 @@
       "logo": "M"
     },
     {
-      "id": "nimbus-product",
-      "company": "Nimbus Labs",
-      "logo": "N",
-      "title": "Senior Product Designer",
-      "summary": "Shape the next generation of collaborative work tools.",
-      "skills": [
-        "Figma",
-        "UX research",
-        "Prototyping"
-      ],
-      "location": "Bengaluru",
-      "mode": "Hybrid",
-      "experience": "4–6 yrs",
-      "type": "Full-time",
-      "salary": "₹24–32",
-      "unit": "LPA",
-      "deadline": "Apply by Sep 30",
-      "posted": "2h ago",
-      "badge": "Hiring",
-      "tint": "sage",
-      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-      "applyUrl": "#"
-    },
-    {
       "id": "ledgerly-backend",
       "company": "Ledgerly",
       "logo": "L",
