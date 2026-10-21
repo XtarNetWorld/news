@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    <item>
+      <title>AI Is Eating Software: How Agentic AI Is Quietly Replacing the Cloud</title>
+      <link>https://www.newsxphere/tech/agentic-ai-offline-models-replacing-cloud-2026/</link>
+      <guid isPermaLink="true">https://www.newsxphere/tech/agentic-ai-offline-models-replacing-cloud-2026/</guid>
+      <description>Developers are pulling AI workloads off rented GPUs and back onto their own machines — trading a monthly API invoice for a quantized model that never phones home.</description>
+      <pubDate>Sun, 23 Aug 2026 05:45:00 GMT</pubDate>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Monu Sharma</dc:creator>
+    </item>
+
     <title>NewsXphere — Latest signals</title>
     <link>https://www.newsxphere.com/</link>
     <description>Thoughtful reporting from NewsXphere.</description>
