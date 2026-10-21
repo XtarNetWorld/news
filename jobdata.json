@@ -48,30 +48,6 @@
       "logo": "M"
     },
     {
-      "id": "ledgerly-backend",
-      "company": "Ledgerly",
-      "logo": "L",
-      "title": "Backend Engineer, Payments",
-      "summary": "Build reliable payment systems used by growing businesses.",
-      "skills": [
-        "Node.js",
-        "PostgreSQL",
-        "APIs"
-      ],
-      "location": "Remote",
-      "mode": "",
-      "experience": "3+ yrs",
-      "type": "Full-time",
-      "salary": "₹18–26",
-      "unit": "LPA",
-      "deadline": "Apply by Oct 5",
-      "posted": "2 days ago",
-      "badge": "Hiring",
-      "tint": "sand",
-      "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
-      "applyUrl": "#"
-    },
-    {
       "id": "kiln-growth",
       "company": "Kiln Studio",
       "logo": "K",
