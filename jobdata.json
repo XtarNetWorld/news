@@ -46,31 +46,6 @@
       "updatedAt": "2026-10-21T07:36:34.365Z",
       "tint": "sage",
       "logo": "M"
-    },
-    {
-      "id": "kiln-growth",
-      "company": "Kiln Studio",
-      "logo": "K",
-      "title": "Growth Marketing Lead",
-      "summary": "Own the growth engine for a fast-moving creative studio.",
-      "skills": [
-        "Growth",
-        "SEO",
-        "Analytics"
-      ],
-      "location": "Jaipur",
-      "mode": "On-site",
-      "experience": "5+ yrs",
-      "type": "Full-time",
-      "salary": "₹15–22",
-      "unit": "LPA",
-      "deadline": "Apply by Oct 2",
-      "posted": "1 day ago",
-      "badge": "Featured",
-      "tint": "sage",
-      "featured": true,
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-      "applyUrl": "#"
     }
   ]
 }
