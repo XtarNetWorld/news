@@ -120,30 +120,6 @@
       "tint": "sky",
       "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
       "applyUrl": "#"
-    },
-    {
-      "id": "marigold-writer",
-      "company": "Marigold News",
-      "logo": "M",
-      "title": "Content Writer, Tech & Startups",
-      "summary": "Explain the ideas shaping technology and business audiences.",
-      "skills": [
-        "Writing",
-        "Research",
-        "SEO"
-      ],
-      "location": "Delhi NCR",
-      "mode": "Hybrid",
-      "experience": "1–3 yrs",
-      "type": "Full-time",
-      "salary": "₹8–12",
-      "unit": "LPA",
-      "deadline": "Apply by Sep 28",
-      "posted": "5h ago",
-      "badge": "Hiring",
-      "tint": "sand",
-      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80",
-      "applyUrl": "#"
     }
   ]
 }
