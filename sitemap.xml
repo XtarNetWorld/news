@@ -82,6 +82,12 @@
     <loc>https://www.newsxphere.com/jobs/mnc-company-saudi-arabia-5-37-cie-at-a-c1/</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/jobs/undefined/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
