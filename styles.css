@@ -4864,7 +4864,7 @@ img, video, canvas, svg {
     width: min(390px, calc(100vw - 28px));
     height: min(560px, calc(100dvh - 24px));
     display: grid;
-    grid-template-rows: auto 194px 1fr auto;
+    grid-template-rows: auto 194px 1fr auto auto auto;
     gap: 0;
     padding: 16px 18px 16px;
     overflow: hidden;
@@ -4993,30 +4993,27 @@ img, video, canvas, svg {
 .orbit-chat-form button:disabled { opacity:.42; cursor:not-allowed; transform:none; box-shadow:none; }
 .orbit-chat-form button.is-processing { opacity:1; background:#000; color:#fff; }
 body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { pointer-events:none; }
-@media (max-width:520px) { .orbit-chat-panel { right:10px; top:12px; bottom:auto; width:calc(100vw - 20px); height:min(540px, calc(100dvh - 24px)); border-radius:20px; } body.maxai-keyboard-open .orbit-chat-panel { height:min(540px, calc(100dvh - 24px - 196px)); } }
+@media (max-width:520px) { .orbit-chat-panel { right:10px; top:12px; bottom:auto; width:calc(100vw - 20px); height:min(540px, calc(100dvh - 24px)); border-radius:20px; } }
 
 /* Keep the header live date on one line on narrow screens */
 #live-date { white-space: nowrap; }
 
-/* Max Ai custom keyboard: short, soft and themed. Only one set of keys
-   (letters or numbers/symbols) is shown at a time, and the panel above
-   it shrinks so the type area stays visible above the keyboard. */
+/* Max Ai custom keyboard, inside the panel: short, soft and themed.
+   Only one set of keys (letters or numbers/symbols) is shown at a time.
+   Because it is a grid row inside the panel, below the type form, it
+   can never overlap the type area -- the middle chat space shrinks. */
 .maxai-keyboard-panel {
     display: none;
-    position: fixed;
-    left: 10px;
-    right: 10px;
-    bottom: 12px;
-    z-index: 100002;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
     padding: 8px 8px 10px;
     border: 1px solid var(--line);
-    border-radius: 22px;
+    border-radius: 16px;
     background: var(--surface);
-    box-shadow: 0 14px 40px color-mix(in srgb, var(--ink) 22%, transparent);
 }
 @media (max-width: 640px) {
-    body.maxai-keyboard-open .maxai-keyboard-panel { display: grid; gap: 5px; }
-    body.maxai-keyboard-open .orbit-chat-panel { height: min(560px, calc(100dvh - 24px - 196px)); }
+    .maxai-keyboard-panel:not([hidden]) { display: grid; gap: 5px; }
 }
 .maxai-key-row { display: flex; gap: 5px; }
 .maxai-key-spacer { flex: 0.5 1 0; }
