@@ -1033,11 +1033,25 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
     };
     let maxaiLastVibrate = 0;
+    // Vibration fix (step 4): the old code set the 150ms guard BEFORE
+    // calling vibrate, even when vibrate failed/returned false, so the
+    // click retry was then blocked by the guard and the user felt
+    // nothing. Now: longer, more feelable 80ms buzz, guard only when
+    // vibrate actually succeeded, and touchstart as well as pointerdown
+    // so a blocked pointerdown still gets a click retry.
     const maxaiVibrate = () => {
         const now = Date.now();
-        if (now - maxaiLastVibrate < 150) return;
-        maxaiLastVibrate = now;
-        try { if (navigator.vibrate) navigator.vibrate(50); } catch (_) {}
+        if (now - maxaiLastVibrate < 100) return;
+        try {
+            if (!navigator.vibrate) return;
+            const ok = navigator.vibrate(80);
+            if (ok) maxaiLastVibrate = now;
+        } catch (_) {}
+    };
+    const maxaiAddVibrate = button => {
+        button.addEventListener('pointerdown', maxaiVibrate);
+        button.addEventListener('touchstart', maxaiVibrate, { passive: true });
+        return button;
     };
     const maxaiMakeKey = (label, action, extraClass) => {
         const button = document.createElement('button');
@@ -1045,6 +1059,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
         button.textContent = label;
         button.addEventListener('pointerdown', maxaiVibrate);
+        button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         button.addEventListener('click', () => { maxaiVibrate(); action(); });
         return button;
     };
@@ -1065,6 +1080,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button._mainEl = main;
         let holdTimer = null;
         let longPressed = false;
+        button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         button.addEventListener('pointerdown', () => {
             maxaiVibrate();
             if (!secondary) return;
@@ -1111,10 +1127,96 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         spacer.setAttribute('aria-hidden', 'true');
         return spacer;
     };
+    const maxaiSuggestWords = ['this','these','those','that','the','they','there','then','than','hello','hi','how','are','you','your','we','what','when','where','why','which','who','will','would','can','could','should','good','great','news','today','world','people','science','society','story','question','answer','please','thanks','yes','no','maybe','about','from','with','for','have','has','had','been','being','also','very','much','more','most','first','new','time','day','week','year','love','like','know','think','feel','want','need','make','take','give','find','show','tell','ask','work','life','future','change','start','learn','read','write','watch','listen','happy','amazing','surprising','interesting','important','possible','different','another','every','everyone','something','anything','everything','nothing','someone','anyone','because','through','between','under','over','after','before','during','while','until','again','still','already','never','always','often','sometimes','usually','really','just','only','even','well','right','true','big','small','long','short','high','low','fast','slow','easy','hard','open','close','stop','go','come','see','look','hear','speak','talk','chat','message','send','type','click','tap','button','screen','phone','mobile','keyboard','emoji','space','backspace','tomorrow','yesterday','morning','night','evening','friend','family','school','home','city','country','india','climate','health','startup','tech','ai','robot','space','art','music','movie','book','food','water','money','market','business','company','team','project','idea','problem','solution','help','hope','dream','peace','power','light','dark','fire','earth','air','sea','sun','moon','star','animal','dog','cat','bird','fish','tree','flower','mountain','river','ocean','beach','forest','winter','summer','spring','autumn','rain','snow','wind','storm'];
+    const maxaiEmojiList = ['😀','😃','😄','😁','😆','😅','😂','🤣','😊','😇','🙂','🙃','😉','😌','😍','🥰','😘','😗','😙','😚','😋','😛','😝','😜','🤪','🤨','🧐','🤓','😎','🤩','🥳','😏','😒','😞','😔','😟','😕','🙁','☹️','😣','😖','😫','😩','🥺','😢','😭','😤','😡','😠','🤬','😈','👿','💀','☠️','👻','👽','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','👍','👎','👏','🙌','👐','🤲','🤝','🙏','✌️','🤞','🤟','🤘','👌','👈','👉','👆','👇','☝️','✋','🤚','🖐️','🖖','👋','🤙','💪','🦾','🧠','🫀','👀','👄','💋','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','💕','💖','💘','🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐦','🐤','🐣','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🐛','🦋','🐌','🐞','🐜','🦟','🦗','🕷️','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥬','🥒','🌶️','🫑','🌽','🥕','🫒','🧄','🧅','🥔','🍠','🥐','🥯','🍞','🥖','🥨','🧀','🥚','🍳','🧈','🥞','🧇','🥓','🥩','🍗','🍖','🌭','🍔','🍟','🍕','🥪','🥙','🌮','🌯','🥗','🍝','🍜','🍲','🍛','🍣','🍱','🥟','🦪','🍤','🍙','🍚','🍘','🍥','🥠','🥮','🍢','🍡','🍧','🍨','🍦','🥧','🧁','🍰','🎂','🍮','🍭','🍬','🍫','🍿','🍩','🍪','🌰','🥜','🍯','🥛','🍼','☕','🍵','🧃','🥤','🧋','🍶','🍺','🍻','🥂','🍷','🥃','🍸','🍹','🧉','🍾','⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🧩','🎮','🎲','🧸','🎯','🎳','🚗','🚕','🚙','🚌','🚎','🏎️','🚓','🚑','🚒','🚐','🛻','🚚','🚛','🚜','🛵','🏍️','🛺','🚲','🛴','🛹','🛼','🚁','✈️','🚀','🛸','🚢','⛵','🚤','🛥️','🛳️','⛽','🚦','🚧','🗽','🗼','🏰','🏯','🏟️','🎡','🎢','🎠','⛲','⛱️','🏖️','🏝️','🏜️','🌋','⛰️','🏔️','🗻','🏕️','⛺','🏠','🏡','🏘️','🏚️','🏗️','🏭','🏢','🏬','🏣','🏤','🏥','🏦','🏨','🏪','🏫','🏩','💒','🏛️','⛪','🕌','🛕','🕍','🕋','⛩️','🎈','🎉','🎊','🎋','🎍','🎎','🎏','🎐','🧧','🎀','🎁','🎗️','🎟️','🎫','🎖️','🏆','🏅','🥇','🥈','🥉'];
+    let maxaiSuggestBar = null;
+    const maxaiGetSuggestions = () => {
+        const val = chatInput.value || '';
+        const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
+        const before = val.slice(0, cursor);
+        const m = before.match(/([A-Za-z]+)$/);
+        if (!m) return [];
+        const word = m[1].toLowerCase();
+        if (word.length < 1) return [];
+        const exact = maxaiSuggestWords.filter(w => w.startsWith(word) && w !== word);
+        const by2 = word.length >= 2 ? maxaiSuggestWords.filter(w => w.startsWith(word.slice(0, 2)) && w !== word && !exact.includes(w)) : [];
+        return [...new Set([word, ...exact, ...by2])].slice(0, 3);
+    };
+    const maxaiApplySuggestion = suggestion => {
+        const val = chatInput.value || '';
+        const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
+        const before = val.slice(0, cursor);
+        const after = val.slice(cursor);
+        const replaced = before.replace(/([A-Za-z]+)$/, suggestion + ' ');
+        chatInput.value = replaced + after;
+        const pos = replaced.length;
+        try { chatInput.setSelectionRange(pos, pos); } catch (_) {}
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+    };
+    const maxaiUpdateSuggestions = doRelayout => {
+        if (!maxaiSuggestBar) return;
+        const list = maxaiGetSuggestions();
+        if (list.length === 0) { maxaiSuggestBar.style.display = 'none'; }
+        else {
+            maxaiSuggestBar.style.display = 'flex';
+            maxaiSuggestBar.replaceChildren();
+            list.forEach(word => {
+                const b = document.createElement('button');
+                b.type = 'button'; b.className = 'maxai-suggest'; b.textContent = word;
+                maxaiAddVibrate(b);
+                b.addEventListener('click', () => { maxaiVibrate(); maxaiApplySuggestion(word); });
+                maxaiSuggestBar.appendChild(b);
+            });
+            const eb = document.createElement('button');
+            eb.type = 'button'; eb.className = 'maxai-suggest-emoji'; eb.textContent = '😊'; eb.setAttribute('aria-label', 'Open emoji');
+            maxaiAddVibrate(eb);
+            eb.addEventListener('click', () => { maxaiVibrate(); maxaiMode = 'emoji'; maxaiRenderWithLayout(); });
+            maxaiSuggestBar.appendChild(eb);
+        }
+        if (doRelayout) maxaiRelayout();
+    };
+    // Step 2: one fixed bottom row, identical in every mode, so Space
+    // (slot 4, wide) and Backspace (slot 6) never move. Only the mode
+    // label and the two punctuation slots change with the mode.
+    const maxaiBottomRow = () => {
+        const modeLabel = maxaiMode === 'letters' ? '?123' : 'ABC';
+        const modeAction = () => { maxaiMode = maxaiMode === 'letters' ? 'numbers' : 'letters'; maxaiRenderWithLayout(); };
+        const punctA = maxaiMode === 'numbers' ? '?' : ',';
+        const punctB = maxaiMode === 'numbers' ? '!' : '.';
+        const row = maxaiRow([
+            maxaiMakeKey(modeLabel, modeAction, 'is-mode'),
+            maxaiMakeKey('😊', () => { maxaiMode = maxaiMode === 'emoji' ? 'letters' : 'emoji'; maxaiRenderWithLayout(); }, 'is-emoji'),
+            maxaiMakeKey(punctA, () => maxaiInsertText(punctA)),
+            maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
+            maxaiMakeKey(punctB, () => maxaiInsertText(punctB)),
+            maxaiMakeKey('⌫', maxaiBackspace),
+            maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send'),
+        ]);
+        row.lastChild.setAttribute('aria-label', 'Send question');
+        return row;
+    };
     const maxaiRenderKeyboard = () => {
         maxaiKeyboard.replaceChildren();
         maxaiLetterKeys = [];
-        if (maxaiMode === 'letters') {
+        // Step 1: suggestion line on top, like a real keyboard.
+        maxaiSuggestBar = document.createElement('div');
+        maxaiSuggestBar.className = 'maxai-suggest-bar';
+        maxaiKeyboard.appendChild(maxaiSuggestBar);
+        if (maxaiMode === 'emoji') {
+            // Step 3: many emojis, like a real keyboard. Tap inserts
+            // and stays in the panel so you can tap several in a row.
+            const grid = document.createElement('div');
+            grid.className = 'maxai-emoji-panel';
+            maxaiEmojiList.forEach(emoji => {
+                const b = document.createElement('button');
+                b.type = 'button'; b.className = 'maxai-emoji-btn'; b.textContent = emoji;
+                maxaiAddVibrate(b);
+                b.addEventListener('click', () => { maxaiVibrate(); maxaiInsertText(emoji); });
+                grid.appendChild(b);
+            });
+            maxaiKeyboard.appendChild(grid);
+            maxaiKeyboard.appendChild(maxaiBottomRow());
+        } else if (maxaiMode === 'letters') {
             const row1Seconds = { q: '1', w: '2', e: '3', r: '4', t: '5', y: '6', u: '7', i: '8', o: '9', p: '0' };
             maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch, row1Seconds[ch]); maxaiLetterKeys.push(b); return b; })));
             const row2Seconds = { a: '@', s: '#', d: '₹', f: '-', g: '&', h: '-', j: '+', k: '(', l: ')' };
@@ -1129,36 +1231,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             const row3 = maxaiRow([shiftButton]);
             const row3Seconds = { z: '*', x: '"', c: "'", v: ':', b: ';', n: '!', m: '?' };
             'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch, row3Seconds[ch]); maxaiLetterKeys.push(b); row3.appendChild(b); });
-            row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
+            row3.appendChild(maxaiSpacer());
             maxaiKeyboard.appendChild(row3);
-            const bottom = maxaiRow([
-                maxaiMakeKey('?123', () => { maxaiMode = 'numbers'; maxaiRenderWithLayout(); }, 'is-mode'),
-                maxaiMakeKey('😊', () => maxaiInsertText('😊'), 'is-emoji'),
-                maxaiMakeKey(',', () => maxaiInsertText(',')),
-                maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
-                maxaiMakeKey('.', () => maxaiInsertText('.')),
-            ]);
-            const sendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
-            sendButton.setAttribute('aria-label', 'Send question');
-            bottom.appendChild(sendButton);
-            maxaiKeyboard.appendChild(bottom);
+            maxaiKeyboard.appendChild(maxaiBottomRow());
         } else {
             maxaiKeyboard.appendChild(maxaiRow('1234567890'.split('').map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
             maxaiKeyboard.appendChild(maxaiRow(['@','#','$','%','&','*','-','+','=','/'].map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
-            const bottom = maxaiRow([
-                maxaiMakeKey('ABC', () => { maxaiMode = 'letters'; maxaiRenderWithLayout(); }, 'is-mode'),
-                maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
-                maxaiMakeKey('?', () => maxaiInsertText('?')),
-                maxaiMakeKey('!', () => maxaiInsertText('!')),
-                maxaiMakeKey('⌫', maxaiBackspace),
-            ]);
-            const sendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
-            sendButton.setAttribute('aria-label', 'Send question');
-            bottom.appendChild(sendButton);
-            maxaiKeyboard.appendChild(bottom);
+            maxaiKeyboard.appendChild(maxaiBottomRow());
         }
+        maxaiUpdateSuggestions(false);
     };
     const maxaiRenderWithLayout = () => { maxaiRenderKeyboard(); maxaiRelayout(); };
+    chatInput?.addEventListener('input', () => maxaiUpdateSuggestions(true));
     maxaiRenderKeyboard();
     // Keep the chat input focused without opening the native keyboard:
     // tapping a custom key must not move focus away from the input.
