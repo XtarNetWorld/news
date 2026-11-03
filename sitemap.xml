@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.newsxphere.com/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -85,8 +85,32 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.newsxphere/tech/agentic-ai-offline-models-replacing-cloud-2026/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://www.newsxphere.com/business/australia-cash-rate-4-85-percent-18-year-high/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/culture/fables-in-fashion-2026-wahy-al-qalam-doha/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/startups/startup-capital-physical-infrastructure-shift/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/tech/passkeys-are-replacing-passwords/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/cop31-antalya-two-presidents-climate-test/</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
