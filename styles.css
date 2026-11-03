@@ -5070,9 +5070,9 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     position: fixed;
     inset: 0;
     z-index: 100000;
-    background: color-mix(in srgb, var(--ink) 22%, transparent);
-    backdrop-filter: blur(12px) saturate(1.1);
-    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    background: color-mix(in srgb, var(--ink) 10%, transparent);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
 }
 .orbit-chat-backdrop[hidden] { display: none; }
 
@@ -5092,4 +5092,31 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
        just compact, and the bigger panel below gives it room. */
     .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { margin-bottom: 2px; padding: 6px 14px; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-suggestion { min-height: 38px; padding: 6px 9px; }
+}
+
+/* Mobile-only full-screen Max Ai. Tablet, laptop and desktop keep the
+   previous card-sized panel exactly as before. */
+@media (max-width: 640px) {
+    .orbit-chat-panel {
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100dvh;
+        border-radius: 0;
+        padding-top: calc(16px + env(safe-area-inset-top, 0px));
+        padding-left: calc(18px + env(safe-area-inset-left, 0px));
+        padding-right: calc(18px + env(safe-area-inset-right, 0px));
+        padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+    .maxai-keyboard-panel {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        border-radius: 20px 20px 0 0;
+        padding-left: calc(10px + env(safe-area-inset-left, 0px));
+        padding-right: calc(10px + env(safe-area-inset-right, 0px));
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    }
 }
