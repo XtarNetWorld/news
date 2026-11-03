@@ -5141,3 +5141,4 @@ html.maxai-no-zoom .orbit-chat-space, html.maxai-no-zoom .orbit-chat-log { touch
 
 /* No copy/selection on long-press in the custom keyboard. */
 .maxai-keyboard-panel, .maxai-key { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.maxai-key { touch-action: none; }
