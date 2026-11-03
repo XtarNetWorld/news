@@ -1217,13 +1217,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 // page cannot scroll back up, so Chrome's bar stays
                 // collapsed while Max Ai is open. Gaps are untouched.
                 maxaiSavedScrollY = window.scrollY || 0;
-                try { window.scrollTo(0, maxaiSavedScrollY + 120); } catch (_) {}
-                maxaiBackdrop.hidden = false;
-                document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden';
-                // Chrome bar collapse changes the viewport height;
-                // re-measure the panel after it settles.
-                window.setTimeout(maxaiRelayout, 300);
+                try { window.scrollTo(0, maxaiSavedScrollY + 200); } catch (_) {}
+                // Lock AFTER Chrome's bar has time to collapse. Locking
+                // at once, and focusing the box, brought the bar back
+                // in v40. The locked page cannot scroll back up, so
+                // the bar stays collapsed while Max Ai is open.
+                window.setTimeout(() => {
+                    if (!document.body.classList.contains('bot-chat-open')) return;
+                    maxaiBackdrop.hidden = false;
+                    document.body.style.overflow = 'hidden';
+                    document.documentElement.style.overflow = 'hidden';
+                    maxaiRelayout();
+                }, 350);
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
@@ -1231,7 +1236,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             orbitBotHost.classList.add('bot-chat-bot');
             requestAnimationFrame(() => chatPanel.classList.add('is-open'));
             maxaiShowKeyboard();
-            window.setTimeout(() => chatInput?.focus(), 220);
+            // No input focus on mobile: it brings Chrome's bar back
+            // and the custom keyboard does not need native focus.
+            if (window.innerWidth > 640) window.setTimeout(() => chatInput?.focus(), 220);
         } else {
             if (assistantMicActive) {
                 assistantRecognition?.stop();
