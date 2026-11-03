@@ -1199,11 +1199,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
-    document.addEventListener('fullscreenchange', () => {
-        if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
-            requestAnimationFrame(maxaiLayoutPanel);
-        }
-    });
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1211,16 +1206,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             // Mobile-only system: on tablet, laptop and desktop the panel
             // keeps its previous behaviour (no backdrop, no scroll lock).
             if (window.innerWidth <= 640) {
-                // Fullscreen first, in the click gesture: hide the
-                // browser top area. If the browser refuses, the panel
-                // still fills the screen height by layout (below), so
-                // it still looks full screen like before.
-                try {
-                    const el = document.documentElement;
-                    const fs = el.requestFullscreen ? el.requestFullscreen()
-                        : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
-                    if (fs && fs.catch) fs.catch(() => {});
-                } catch (_) {}
+                // No Fullscreen API on purpose: fullscreen hides the
+                // phone's top status bar (time, battery, tower), and
+                // that bar must stay visible, as in the wanted shot.
+                // Max Ai opens inside the browser, below that bar.
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
@@ -1242,14 +1231,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
-            // Close button closes everything: exit fullscreen first, so
-            // the browser top area comes back, then hide the panel.
-            try {
-                if (document.fullscreenElement) {
-                    const ex = document.exitFullscreen?.();
-                    if (ex && ex.catch) ex.catch(() => {});
-                }
-            } catch (_) {}
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
