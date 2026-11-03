@@ -1,0 +1,44 @@
+name: Submit to Google Indexing API
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'business/**'
+      - 'culture/**'
+      - 'startups/**'
+      - 'tech/**'
+      - 'world/**'
+      - 'jobs/**'
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'One URL per line to submit (leave empty to use changed files from the last push)'
+        required: false
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install google-auth requests
+      - name: Submit changed article and job URLs
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          MANUAL_URLS: ${{ inputs.urls }}
+        run: |
+          # Manual run: use the URLs given in workflow_dispatch.
+          # Push run: changed index.html files become URLs, e.g. tech/slug/index.html -> https://www.newsxphere.com/tech/slug/
+          if [ -n "$MANUAL_URLS" ]; then
+            printf '%s\n' "$MANUAL_URLS" > urls.txt
+          else
+            git diff --name-only HEAD~1 HEAD | grep 'index.html$' | sed 's|/index.html|/|' | sed 's|^|https://www.newsxphere.com/|' > urls.txt || true
+          fi
+          if [ -s urls.txt ]; then
+            python3 automation/submit_indexing.py $(cat urls.txt)
+          else
+            echo "No article URLs changed"
+          fi
