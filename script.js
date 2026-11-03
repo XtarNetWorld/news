@@ -999,22 +999,17 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('input', updateChatSendState);
     updateChatSendState();
     renderSuggestions();
-    // Custom on-screen keyboard for Max Ai. It uses the site theme (CSS variables),
-    // lives in its own bottom panel, opens with the Max Ai panel, and closes with it.
+    // Custom on-screen keyboard for Max Ai. Short and soft: only letters
+    // (or, after tapping 123, numbers and symbols) are shown at once.
+    // It lives in its own bottom panel, opens with the Max Ai panel,
+    // and closes with it. Colours come from the site theme.
     const maxaiKeyboard = document.createElement('div');
     maxaiKeyboard.className = 'maxai-keyboard-panel';
     maxaiKeyboard.setAttribute('aria-label', 'Max Ai keyboard');
     maxaiKeyboard.hidden = true;
     let maxaiShift = false;
-    const maxaiLetterKeys = [];
-    const maxaiMakeKey = (label, action, extraClass) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
-        button.textContent = label;
-        button.addEventListener('click', action);
-        return button;
-    };
+    let maxaiMode = 'letters';
+    let maxaiLetterKeys = [];
     const maxaiInsertText = text => {
         const start = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : chatInput.value.length;
         const end = typeof chatInput.selectionEnd === 'number' ? chatInput.selectionEnd : start;
@@ -1034,6 +1029,19 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
         try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
     };
+    const maxaiMakeKey = (label, action, extraClass) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
+        button.textContent = label;
+        button.addEventListener('click', action);
+        return button;
+    };
+    const maxaiCharKey = ch => {
+        const button = maxaiMakeKey(maxaiShift ? ch.toUpperCase() : ch, () => maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch));
+        button.dataset.char = ch;
+        return button;
+    };
     const maxaiRefreshShift = () => {
         maxaiLetterKeys.forEach(button => {
             const ch = button.dataset.char || '';
@@ -1045,34 +1053,62 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             shiftButton.setAttribute('aria-pressed', String(maxaiShift));
         }
     };
-    [['1','2','3','4','5','6','7','8','9','0'], ['q','w','e','r','t','y','u','i','o','p'], ['a','s','d','f','g','h','j','k','l'], ['z','x','c','v','b','n','m']].forEach(rowChars => {
+    const maxaiRow = keys => {
         const row = document.createElement('div');
         row.className = 'maxai-key-row';
-        rowChars.forEach(ch => {
-            const button = maxaiMakeKey(ch, () => maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch));
-            button.dataset.char = ch;
-            maxaiLetterKeys.push(button);
-            row.appendChild(button);
-        });
-        maxaiKeyboard.appendChild(row);
-    });
-    const maxaiBottomRow = document.createElement('div');
-    maxaiBottomRow.className = 'maxai-key-row';
-    const maxaiShiftButton = maxaiMakeKey('⇧', () => { maxaiShift = !maxaiShift; maxaiRefreshShift(); }, 'is-shift');
-    maxaiShiftButton.setAttribute('aria-label', 'Shift');
-    maxaiShiftButton.setAttribute('aria-pressed', 'false');
-    maxaiBottomRow.appendChild(maxaiShiftButton);
-    maxaiBottomRow.appendChild(maxaiMakeKey('.', () => maxaiInsertText('.')));
-    maxaiBottomRow.appendChild(maxaiMakeKey(',', () => maxaiInsertText(',')));
-    maxaiBottomRow.appendChild(maxaiMakeKey('?', () => maxaiInsertText('?')));
-    maxaiBottomRow.appendChild(maxaiMakeKey('!', () => maxaiInsertText('!')));
-    const maxaiSpaceButton = maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space');
-    maxaiBottomRow.appendChild(maxaiSpaceButton);
-    maxaiBottomRow.appendChild(maxaiMakeKey('⌫', maxaiBackspace));
-    const maxaiSendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
-    maxaiSendButton.setAttribute('aria-label', 'Send question');
-    maxaiBottomRow.appendChild(maxaiSendButton);
-    maxaiKeyboard.appendChild(maxaiBottomRow);
+        keys.forEach(key => row.appendChild(key));
+        return row;
+    };
+    const maxaiSpacer = () => {
+        const spacer = document.createElement('span');
+        spacer.className = 'maxai-key-spacer';
+        spacer.setAttribute('aria-hidden', 'true');
+        return spacer;
+    };
+    const maxaiRenderKeyboard = () => {
+        maxaiKeyboard.replaceChildren();
+        maxaiLetterKeys = [];
+        if (maxaiMode === 'letters') {
+            maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); return b; })));
+            const row2 = maxaiRow('asdfghjkl'.split('').map(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); return b; }));
+            row2.insertBefore(maxaiSpacer(), row2.firstChild);
+            row2.appendChild(maxaiSpacer());
+            maxaiKeyboard.appendChild(row2);
+            const shiftButton = maxaiMakeKey('⇧', () => { maxaiShift = !maxaiShift; maxaiRefreshShift(); }, 'is-shift is-wide');
+            shiftButton.setAttribute('aria-label', 'Shift');
+            shiftButton.setAttribute('aria-pressed', String(maxaiShift));
+            if (maxaiShift) shiftButton.classList.add('is-shift-active');
+            const row3 = maxaiRow([shiftButton]);
+            'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); row3.appendChild(b); });
+            row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
+            maxaiKeyboard.appendChild(row3);
+            const bottom = maxaiRow([
+                maxaiMakeKey('123', () => { maxaiMode = 'numbers'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
+                maxaiMakeKey('.', () => maxaiInsertText('.')),
+                maxaiMakeKey(',', () => maxaiInsertText(',')),
+            ]);
+            const sendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
+            sendButton.setAttribute('aria-label', 'Send question');
+            bottom.appendChild(sendButton);
+            maxaiKeyboard.appendChild(bottom);
+        } else {
+            maxaiKeyboard.appendChild(maxaiRow('1234567890'.split('').map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
+            maxaiKeyboard.appendChild(maxaiRow(['@','#','$','%','&','*','-','+','=','/'].map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
+            const bottom = maxaiRow([
+                maxaiMakeKey('ABC', () => { maxaiMode = 'letters'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
+                maxaiMakeKey('?', () => maxaiInsertText('?')),
+                maxaiMakeKey('!', () => maxaiInsertText('!')),
+                maxaiMakeKey('⌫', maxaiBackspace),
+            ]);
+            const sendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
+            sendButton.setAttribute('aria-label', 'Send question');
+            bottom.appendChild(sendButton);
+            maxaiKeyboard.appendChild(bottom);
+        }
+    };
+    maxaiRenderKeyboard();
     // Keep the chat input focused without opening the native keyboard:
     // tapping a custom key must not move focus away from the input.
     maxaiKeyboard.addEventListener('mousedown', event => {
