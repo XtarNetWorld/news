@@ -1346,7 +1346,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
+    // No zoom, ONLY in fullscreen mode. Pinch/double-tap zoom in
+    // fullscreen would zoom the panel/keyboard and break the layout.
+    // Locked only while document.fullscreenElement is present;
+    // restored on fullscreen exit and on Max Ai close.
+    const maxaiViewportMeta = document.querySelector('meta[name="viewport"]');
+    const maxaiViewportOriginal = maxaiViewportMeta ? maxaiViewportMeta.getAttribute('content') : 'width=device-width, initial-scale=1';
+    const maxaiSetZoomLock = on => {
+        if (maxaiViewportMeta) maxaiViewportMeta.setAttribute('content', on ? 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' : maxaiViewportOriginal);
+        document.documentElement.classList.toggle('maxai-no-zoom', !!on);
+    };
     document.addEventListener('fullscreenchange', () => {
+        maxaiSetZoomLock(!!document.fullscreenElement);
         if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
             requestAnimationFrame(maxaiLayoutPanel);
         }
@@ -1406,6 +1417,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             chatAbortController?.abort();
             stopChatSpeech();
             maxaiHideKeyboard();
+            maxaiSetZoomLock(false);
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
             // Close exits fullscreen and closes the panel.
