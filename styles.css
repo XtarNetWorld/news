@@ -4864,8 +4864,7 @@ img, video, canvas, svg {
     width: min(390px, calc(100vw - 28px));
     height: min(560px, calc(100dvh - 24px));
     display: grid;
-    grid-template-rows: auto 194px 1fr auto auto auto;
-    transition: grid-template-rows .2s ease;
+    grid-template-rows: auto 194px 1fr auto;
     gap: 0;
     padding: 16px 18px 16px;
     overflow: hidden;
@@ -4999,30 +4998,31 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 /* Keep the header live date on one line on narrow screens */
 #live-date { white-space: nowrap; }
 
-/* Max Ai custom keyboard, inside the panel, styled like the reference
-   keyboard but in the site theme. Each letter key carries a big letter
-   and a small symbol at its top-right. Because it is a grid row inside
-   the panel, below the type form, it can never overlap the type area.
-   When it opens, the bot face row shrinks so everything still fits. */
+/* Max Ai custom keyboard: a separate card at the bottom of the screen,
+   OUTSIDE the panel, so it never disturbs the panel's own layout.
+   Its width and right edge match the Max Ai panel exactly, and the
+   panel's height is set in JS from this card's measured height, so
+   the panel always ends 10px above it. Styled like the reference
+   keyboard, in the site theme: big letter, small symbol top-right. */
 .maxai-keyboard-panel {
     display: none;
-    width: auto;
+    position: fixed;
+    right: clamp(14px, 3vw, 38px);
+    bottom: 12px;
+    z-index: 100002;
+    width: min(390px, calc(100vw - 28px));
     box-sizing: border-box;
-    margin: 10px -18px -16px;
     padding: 10px 10px 12px;
-    border: 0;
-    border-top: 1px solid var(--line);
-    border-radius: 0 0 24px 24px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
     background: var(--surface);
-}
-@media (max-width: 520px) {
-    .maxai-keyboard-panel { border-radius: 0 0 20px 20px; }
+    box-shadow: 0 14px 40px color-mix(in srgb, var(--ink) 22%, transparent);
 }
 @media (max-width: 640px) {
     .maxai-keyboard-panel:not([hidden]) { display: grid; gap: 6px; }
-    .orbit-chat-panel.maxai-keyboard-open { grid-template-rows: auto 130px 1fr auto auto auto; }
-    .orbit-chat-panel.maxai-keyboard-open .orbit-chat-bot-slot { height: 130px; }
-    .orbit-chat-panel.maxai-keyboard-open .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
+}
+@media (max-width: 520px) {
+    .maxai-keyboard-panel { right: 10px; width: calc(100vw - 20px); border-radius: 20px; }
 }
 .maxai-key-row { display: flex; gap: 6px; }
 .maxai-key-spacer { flex: 0.5 1 0; }
