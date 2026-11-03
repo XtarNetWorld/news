@@ -1378,6 +1378,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     // not change it (spaces, punctuation, same top-3), so rebuilding
     // 4 buttons + 8 listeners on every tap was pure DOM churn.
     let maxaiLastSuggestKey = null;
+    let maxaiPasteNoteToken = 0;
     const maxaiUpdateSuggestions = doRelayout => {
         if (!maxaiSuggestBar) return;
         // Never hide the suggestion line, even when nothing is typed:
@@ -1390,6 +1391,39 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiLastSuggestKey = key;
             maxaiSuggestBar.style.display = 'flex';
             maxaiSuggestBar.replaceChildren();
+            // v76: paste/copy system. The type box is readonly while
+            // the custom keyboard is open (so the native keyboard
+            // stays away), which also blocks the system paste menu
+            // on the type box itself. So paste gets a real button:
+            // tap 📋, allow clipboard once if Chrome asks, and the
+            // copied text lands in the type box at the cursor.
+            // Copy is the system way: long-press a chat message to
+            // select it, then Copy from Android's menu (messages are
+            // made explicitly selectable in styles). Keyboard keys
+            // keep their hold = secondary symbol, so long-press copy
+            // stays blocked ONLY on the keys themselves.
+            const pasteBtn = document.createElement('button');
+            pasteBtn.type = 'button'; pasteBtn.className = 'maxai-suggest-paste'; pasteBtn.textContent = '📋'; pasteBtn.setAttribute('aria-label', 'Paste from clipboard');
+            maxaiAddVibrate(pasteBtn);
+            pasteBtn.addEventListener('click', async () => {
+                maxaiVibrate();
+                const showPasteNote = note => {
+                    if (!chatInput) return;
+                    const previous = chatInput.placeholder;
+                    const token = ++maxaiPasteNoteToken;
+                    chatInput.placeholder = note;
+                    window.setTimeout(() => { if (token === maxaiPasteNoteToken && chatInput) chatInput.placeholder = previous; }, 2500);
+                };
+                try {
+                    if (!navigator.clipboard || !navigator.clipboard.readText) throw new Error('clipboard unavailable');
+                    const text = await navigator.clipboard.readText();
+                    if (!text) { showPasteNote('Clipboard is empty'); return; }
+                    maxaiInsertText(text);
+                } catch (_) {
+                    showPasteNote('Paste blocked — allow clipboard, then tap 📋 again');
+                }
+            });
+            maxaiSuggestBar.appendChild(pasteBtn);
             list.forEach(word => {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'maxai-suggest'; b.textContent = word;
