@@ -1175,9 +1175,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // Card panel, like before full screen: top gap 12, bottom gap
-        // 12, and a 10px gap between panel and keyboard.
-        const available = window.innerHeight - kbHeight - 12 - 12 - 10;
+        // Full screen height (side gaps kept): panel top at the screen
+        // top, keyboard bottom at the screen bottom, panel bottom
+        // touching keyboard top, no gap between them.
+        const available = window.innerHeight - kbHeight;
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
@@ -1199,6 +1200,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
+    document.addEventListener('fullscreenchange', () => {
+        if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
+            requestAnimationFrame(maxaiLayoutPanel);
+        }
+    });
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1209,6 +1215,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
+                // Remove the browser top area: fullscreen hides the
+                // address bar / browser chrome while Max Ai is open.
+                // If the browser refuses, Max Ai still opens normally.
+                try {
+                    const fs = document.documentElement.requestFullscreen?.();
+                    if (fs && fs.catch) fs.catch(() => {});
+                } catch (_) {}
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
@@ -1227,6 +1240,14 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
+            // Close button closes everything: exit fullscreen first, so
+            // the browser top area comes back, then hide the panel.
+            try {
+                if (document.fullscreenElement) {
+                    const ex = document.exitFullscreen?.();
+                    if (ex && ex.catch) ex.catch(() => {});
+                }
+            } catch (_) {}
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
