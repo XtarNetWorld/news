@@ -5123,3 +5123,9 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 .maxai-emoji-panel { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; max-height: 176px; overflow-y: auto; padding: 4px; }
 .maxai-emoji-btn { border: none; background: transparent; font-size: 22px; padding: 6px 0; cursor: pointer; border-radius: 8px; }
 .maxai-emoji-btn:active { background: color-mix(in srgb, var(--teal) 18%, var(--surface)); }
+
+.maxai-caret { display: none; position: absolute; width: 2px; height: 20px; background: var(--ink); pointer-events: none; z-index: 5; animation: maxaiCaretBlink 1s step-end infinite; }
+@keyframes maxaiCaretBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@media (max-width: 640px) {
+    .orbit-chat-input { caret-color: transparent; }
+}
