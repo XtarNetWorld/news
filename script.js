@@ -1147,7 +1147,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
         const before = val.slice(0, cursor);
         const after = val.slice(cursor);
-        const replaced = /([A-Za-z]+)$/.test(before) ? before.replace(/([A-Za-z]+)$/, suggestion + ' ') : before + suggestion + ' ';
+        const replaced = before.replace(/([A-Za-z]+)$/, suggestion + ' ');
         chatInput.value = replaced + after;
         const pos = replaced.length;
         try { chatInput.setSelectionRange(pos, pos); } catch (_) {}
@@ -1155,27 +1155,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     };
     const maxaiUpdateSuggestions = doRelayout => {
         if (!maxaiSuggestBar) return;
-        // Never hide the suggestion line, even when not typing:
-        // with no word being typed, show default words to tap.
-        const list = maxaiGetSuggestions().length ? maxaiGetSuggestions() : ['hello', 'hi', 'how'];
-        if (true) {
+        const list = maxaiGetSuggestions();
+        if (list.length === 0) { maxaiSuggestBar.style.display = 'none'; }
+        else {
             maxaiSuggestBar.style.display = 'flex';
             maxaiSuggestBar.replaceChildren();
-            const cb = document.createElement('button');
-            cb.type = 'button'; cb.className = 'maxai-suggest-clipboard'; cb.textContent = '📋'; cb.setAttribute('aria-label', 'Paste from clipboard');
-            maxaiAddVibrate(cb);
-            cb.addEventListener('click', async () => {
-                maxaiVibrate();
-                try {
-                    if (navigator.clipboard && navigator.clipboard.readText) {
-                        const text = await navigator.clipboard.readText();
-                        if (text) maxaiInsertText(text);
-                        return;
-                    }
-                } catch (_) {}
-                try { chatInput.focus(); document.execCommand('paste'); } catch (_) {}
-            });
-            maxaiSuggestBar.appendChild(cb);
             list.forEach(word => {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'maxai-suggest'; b.textContent = word;
@@ -1191,24 +1175,23 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         }
         if (doRelayout) maxaiRelayout();
     };
-    // Bottom row: Space stays at slot 4 (wide) in every mode.
-    // Backspace is in this row in numbers/emoji modes, and back in
-    // row 3 (right end, like before) in letters mode.
-    const maxaiBottomRow = (withBackspace) => {
+    // Step 2: one fixed bottom row, identical in every mode, so Space
+    // (slot 4, wide) and Backspace (slot 6) never move. Only the mode
+    // label and the two punctuation slots change with the mode.
+    const maxaiBottomRow = () => {
         const modeLabel = maxaiMode === 'letters' ? '?123' : 'ABC';
         const modeAction = () => { maxaiMode = maxaiMode === 'letters' ? 'numbers' : 'letters'; maxaiRenderWithLayout(); };
         const punctA = maxaiMode === 'numbers' ? '?' : ',';
         const punctB = maxaiMode === 'numbers' ? '!' : '.';
-        const keys = [
+        const row = maxaiRow([
             maxaiMakeKey(modeLabel, modeAction, 'is-mode'),
             maxaiMakeKey('😊', () => { maxaiMode = maxaiMode === 'emoji' ? 'letters' : 'emoji'; maxaiRenderWithLayout(); }, 'is-emoji'),
             maxaiMakeKey(punctA, () => maxaiInsertText(punctA)),
             maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
             maxaiMakeKey(punctB, () => maxaiInsertText(punctB)),
-        ];
-        if (withBackspace) keys.push(maxaiMakeKey('⌫', maxaiBackspace));
-        keys.push(maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send'));
-        const row = maxaiRow(keys);
+            maxaiMakeKey('⌫', maxaiBackspace),
+            maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send'),
+        ]);
         row.lastChild.setAttribute('aria-label', 'Send question');
         return row;
     };
@@ -1232,7 +1215,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 grid.appendChild(b);
             });
             maxaiKeyboard.appendChild(grid);
-            maxaiKeyboard.appendChild(maxaiBottomRow(true));
+            maxaiKeyboard.appendChild(maxaiBottomRow());
         } else if (maxaiMode === 'letters') {
             const row1Seconds = { q: '1', w: '2', e: '3', r: '4', t: '5', y: '6', u: '7', i: '8', o: '9', p: '0' };
             maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch, row1Seconds[ch]); maxaiLetterKeys.push(b); return b; })));
@@ -1248,13 +1231,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             const row3 = maxaiRow([shiftButton]);
             const row3Seconds = { z: '*', x: '"', c: "'", v: ':', b: ';', n: '!', m: '?' };
             'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch, row3Seconds[ch]); maxaiLetterKeys.push(b); row3.appendChild(b); });
-            row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
+            row3.appendChild(maxaiSpacer());
             maxaiKeyboard.appendChild(row3);
-            maxaiKeyboard.appendChild(maxaiBottomRow(false));
+            maxaiKeyboard.appendChild(maxaiBottomRow());
         } else {
             maxaiKeyboard.appendChild(maxaiRow('1234567890'.split('').map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
             maxaiKeyboard.appendChild(maxaiRow(['@','#','$','%','&','*','-','+','=','/'].map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
-            maxaiKeyboard.appendChild(maxaiBottomRow(true));
+            maxaiKeyboard.appendChild(maxaiBottomRow());
         }
         maxaiUpdateSuggestions(false);
     };
