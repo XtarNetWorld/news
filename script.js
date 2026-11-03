@@ -1175,11 +1175,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // Full-screen mobile: panel starts at the top of the screen and
-        // the keyboard sits at the very bottom, so panel height is the
-        // viewport minus the keyboard minus a 10px gap. No top/bottom
-        // card gaps any more on mobile.
-        const available = window.innerHeight - kbHeight - 10;
+        // REALLY full screen mobile: panel top at the screen top,
+        // keyboard bottom at the screen bottom, panel bottom touching
+        // keyboard top. No gap at all: panel + keyboard = full viewport.
+        const available = window.innerHeight - kbHeight;
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
