@@ -1063,6 +1063,19 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
         try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
     };
+    const maxaiBackspaceWord = () => {
+        const val = chatInput.value || '';
+        const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
+        if (cursor === 0) return;
+        const before = val.slice(0, cursor);
+        const after = val.slice(cursor);
+        const trimmed = before.replace(/\s+$/, '');
+        const newBefore = trimmed.replace(/\S+$/, '');
+        chatInput.value = newBefore + after;
+        try { chatInput.setSelectionRange(newBefore.length, newBefore.length); } catch (_) {}
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+        try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
+    };
     const maxaiBackspace = () => {
         const start = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : chatInput.value.length;
         const end = typeof chatInput.selectionEnd === 'number' ? chatInput.selectionEnd : start;
@@ -1127,17 +1140,36 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             const stopRepeat = () => {
                 if (repeatDelay) { clearTimeout(repeatDelay); repeatDelay = null; }
                 if (repeatInterval) { clearInterval(repeatInterval); repeatInterval = null; }
+                if (window.__maxaiBsStop === stopRepeat) window.__maxaiBsStop = null;
             };
+            // One window-level backup stop, so a missed button
+            // pointerup can never leave the repeat running, and a
+            // slight finger drift (pointerleave) does NOT stop it.
+            if (!window.__maxaiBsWindowListener) {
+                window.__maxaiBsWindowListener = true;
+                window.addEventListener('pointerup', () => { if (window.__maxaiBsStop) window.__maxaiBsStop(); });
+                window.addEventListener('touchend', () => { if (window.__maxaiBsStop) window.__maxaiBsStop(); });
+            }
+            button.addEventListener('contextmenu', e => e.preventDefault());
             button.addEventListener('pointerdown', () => {
                 backspaceFromPointer = true;
                 maxaiVibrate(); action();
+                const pressStart = Date.now();
+                let tick = 0;
                 repeatDelay = setTimeout(() => {
-                    repeatInterval = setInterval(() => { maxaiVibrate(); action(); }, 60);
+                    repeatInterval = setInterval(() => {
+                        tick++;
+                        maxaiVibrate();
+                        // Real keyboard acceleration: first characters,
+                        // then after 1.5s, whole words every 3rd tick.
+                        if (Date.now() - pressStart > 1500 && tick % 3 === 0) maxaiBackspaceWord();
+                        else action();
+                    }, 60);
                 }, 400);
+                window.__maxaiBsStop = stopRepeat;
             });
             button.addEventListener('pointerup', stopRepeat);
             button.addEventListener('pointercancel', stopRepeat);
-            button.addEventListener('pointerleave', stopRepeat);
             button.addEventListener('blur', stopRepeat);
             // Click on release is suppressed when it came from a
             // pointer press, because deletion already happened on
@@ -1271,20 +1303,24 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     // Step 2: one fixed bottom row, identical in every mode, so Space
     // (slot 4, wide) and Backspace (slot 6) never move. Only the mode
     // label and the two punctuation slots change with the mode.
-    const maxaiBottomRow = () => {
+    // Bottom row, no emoji button anymore: emoji stays only in
+    // the suggestion line at the top right, where it was already good.
+    // Letters mode: no Backspace here, it lives at row 3 right (below).
+    // Numbers/emoji modes: Backspace stays in the bottom row.
+    const maxaiBottomRow = (withBackspace) => {
         const modeLabel = maxaiMode === 'letters' ? '?123' : 'ABC';
         const modeAction = () => { maxaiMode = maxaiMode === 'letters' ? 'numbers' : 'letters'; maxaiRenderWithLayout(); };
         const punctA = maxaiMode === 'numbers' ? '?' : ',';
         const punctB = maxaiMode === 'numbers' ? '!' : '.';
-        const row = maxaiRow([
+        const keys = [
             maxaiMakeKey(modeLabel, modeAction, 'is-mode'),
-            maxaiMakeKey('😊', () => { maxaiMode = maxaiMode === 'emoji' ? 'letters' : 'emoji'; maxaiRenderWithLayout(); }, 'is-emoji'),
             maxaiMakeKey(punctA, () => maxaiInsertText(punctA)),
             maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
             maxaiMakeKey(punctB, () => maxaiInsertText(punctB)),
-            maxaiMakeKey('⌫', maxaiBackspace),
-            maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send'),
-        ]);
+        ];
+        if (withBackspace) keys.push(maxaiMakeKey('⌫', maxaiBackspace));
+        keys.push(maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send'));
+        const row = maxaiRow(keys);
         row.lastChild.setAttribute('aria-label', 'Send question');
         return row;
     };
@@ -1308,7 +1344,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 grid.appendChild(b);
             });
             maxaiKeyboard.appendChild(grid);
-            maxaiKeyboard.appendChild(maxaiBottomRow());
+            maxaiKeyboard.appendChild(maxaiBottomRow(true));
         } else if (maxaiMode === 'letters') {
             const row1Seconds = { q: '1', w: '2', e: '3', r: '4', t: '5', y: '6', u: '7', i: '8', o: '9', p: '0' };
             maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch, row1Seconds[ch]); maxaiLetterKeys.push(b); return b; })));
@@ -1324,13 +1360,15 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             const row3 = maxaiRow([shiftButton]);
             const row3Seconds = { z: '*', x: '"', c: "'", v: ':', b: ';', n: '!', m: '?' };
             'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch, row3Seconds[ch]); maxaiLetterKeys.push(b); row3.appendChild(b); });
-            row3.appendChild(maxaiSpacer());
+            // Backspace in its perfect place: right end of row 3,
+            // next to 'm', like a real keyboard (and like the screenshot).
+            row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
             maxaiKeyboard.appendChild(row3);
-            maxaiKeyboard.appendChild(maxaiBottomRow());
+            maxaiKeyboard.appendChild(maxaiBottomRow(false));
         } else {
             maxaiKeyboard.appendChild(maxaiRow('1234567890'.split('').map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
             maxaiKeyboard.appendChild(maxaiRow(['@','#','$','%','&','*','-','+','=','/'].map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
-            maxaiKeyboard.appendChild(maxaiBottomRow());
+            maxaiKeyboard.appendChild(maxaiBottomRow(true));
         }
         maxaiUpdateSuggestions(false);
     };
