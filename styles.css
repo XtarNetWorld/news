@@ -5088,8 +5088,8 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
-    /* While typing, the welcome heading is hidden so the recommended
-       questions get the full middle space and show in full, uncut. */
-    .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { display: none; }
+    /* Welcome heading is back (undone): it stays visible while typing,
+       just compact, and the bigger panel below gives it room. */
+    .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { margin-bottom: 2px; padding: 6px 14px; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-suggestion { min-height: 38px; padding: 6px 9px; }
 }
