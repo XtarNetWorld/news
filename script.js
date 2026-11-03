@@ -400,13 +400,22 @@ if (orbitBotHost) {
         });
     };
     const removeChatWelcome = () => {
+        // v69 fix: only remove the whole welcome block. The old code
+        // also removed the suggestions separately, which detached them
+        // from the block, so a later restore put them back as a
+        // sibling of the block instead of inside it.
         chatEmpty?.remove();
-        chatSuggestions?.remove();
     };
     const restoreChatWelcome = () => {
         const chatSpace = chatPanel.querySelector('.orbit-chat-space');
+        // v69 fix: suggestions must live INSIDE the welcome block, not
+        // as a direct child of the space. Put them back inside first
+        // (this also repairs a block detached by the old code), then
+        // put the whole block back in the space, so the heading,
+        // subtitle and questions centre together again, as on the
+        // first chat, instead of the questions dropping to the bottom.
+        if (chatEmpty && chatSuggestions && chatSuggestions.parentElement !== chatEmpty) chatEmpty.appendChild(chatSuggestions);
         if (chatSpace && chatEmpty && !chatEmpty.isConnected) chatSpace.appendChild(chatEmpty);
-        if (chatSpace && chatSuggestions && !chatSuggestions.isConnected) chatSpace.appendChild(chatSuggestions);
         if (chatEmpty) chatEmpty.hidden = false;
         renderSuggestions();
     };
