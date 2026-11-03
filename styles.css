@@ -5092,9 +5092,14 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-panel.keyboard-visible { grid-template-rows: auto 130px 1fr auto auto; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 130px; margin-top: 0; }
     .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
-    /* Log starts at the top instead of centring, so a tall output
-       message is never clipped at its top edge. */
-    .orbit-chat-panel.keyboard-visible .orbit-chat-log { justify-content: flex-start; }
+    /* Sent message at the bottom, always, not shifting: the log
+       stacks from the bottom, and a sent message pushes itself to
+       the bottom with margin-top:auto, so its bottom edge stays in
+       the same place no matter how long the answer above it is.
+       The log already scrolls to the bottom on every new message. */
+    .orbit-chat-panel.keyboard-visible .orbit-chat-log { justify-content: flex-end; }
+    .orbit-chat-panel .orbit-chat-log { justify-content: flex-end; }
+    .orbit-chat-panel .orbit-chat-message.sent { margin-top: auto; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
     /* Welcome heading is back (undone): it stays visible while typing,
