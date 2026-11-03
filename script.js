@@ -1080,7 +1080,25 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         const start = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : chatInput.value.length;
         const end = typeof chatInput.selectionEnd === 'number' ? chatInput.selectionEnd : start;
         if (start === end && start === 0) return;
-        const from = start === end ? start - 1 : start;
+        // v68 fix: delete a whole grapheme, not one UTF-16 code unit.
+        // An emoji is 2 code units (some are more, e.g. ZWJ / skin-tone
+        // / flag sequences), so the old start-1 cut it in half and left
+        // a lone surrogate, which Android renders as the ? diamond
+        // seen in the screenshot after one Backspace tap on an emoji.
+        // Intl.Segmenter (Chrome Android) gives the true grapheme;
+        // Array.from is the code-point fallback for older browsers.
+        let from = start;
+        if (start === end) {
+            const before = chatInput.value.slice(0, start);
+            if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+                const segments = [...new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(before)];
+                from = segments.length ? segments[segments.length - 1].index : 0;
+            } else {
+                const points = Array.from(before);
+                points.pop();
+                from = points.join('').length;
+            }
+        }
         chatInput.value = chatInput.value.slice(0, from) + chatInput.value.slice(end);
         try { chatInput.setSelectionRange(from, from); } catch (_) {}
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
