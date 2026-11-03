@@ -421,6 +421,39 @@ if (orbitBotHost) {
     };
     let activeSessionIndex = -1;
     let activeExchangeIndex = -1;
+    // v75, Step 1: article context, current page only. Read the article
+    // that is already open in this tab, from the page DOM only. Never
+    // fetch other articles, never load allnewsdata.json or a sitemap.
+    // Homepage, About, Contact and other pages have no
+    // <article class="post-shell"> + .post-copy, so this returns null
+    // there and Max Ai gets no article context at all.
+    const maxaiDetectArticle = () => {
+        try {
+            const articleEl = document.querySelector('article.post-shell');
+            if (!articleEl) return null;
+            const bodyEl = articleEl.querySelector('.post-copy');
+            if (!bodyEl) return null;
+            const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
+            const title = clean(articleEl.querySelector('.post-title')?.textContent || document.title).slice(0, 200);
+            if (!title) return null;
+            const dek = clean(articleEl.querySelector('.post-dek')?.textContent).slice(0, 300);
+            const text = clean(bodyEl.textContent).slice(0, 5000);
+            if (!text) return null;
+            return { url: window.location.href.split('#')[0], title, dek, text };
+        } catch (_) { return null; }
+    };
+    // v75, Step 2: article tied to the chat, not to the page. A new chat
+    // starts with the article open on this page (or none). Selecting an
+    // old chat switches to that chat's stored article, even on the
+    // homepage. Once a chat has an article, it never switches to a
+    // different article inside the same chat.
+    let maxaiActiveArticle = maxaiDetectArticle();
+    const maxaiSetActiveArticle = article => {
+        maxaiActiveArticle = article || null;
+        if (chatInput) chatInput.placeholder = maxaiActiveArticle
+            ? 'Ask about this article…'
+            : 'Type your question…';
+    };
     try {
         const cachedChats = JSON.parse(localStorage.getItem(chatHistoryStorageKey) || '[]');
         if (Array.isArray(cachedChats)) {
@@ -432,17 +465,23 @@ if (orbitBotHost) {
                     if (exchanges.length) chatSessions.push({
                         title: typeof session.title === 'string' ? session.title : exchanges[0].user,
                         createdAt: session.createdAt || Date.now(),
-                        exchanges
+                        exchanges,
+                        article: (session.article && typeof session.article.title === 'string' && typeof session.article.text === 'string')
+                            ? { url: typeof session.article.url === 'string' ? session.article.url : '', title: session.article.title, dek: typeof session.article.dek === 'string' ? session.article.dek : '', text: session.article.text }
+                            : null
                     });
                 });
             } else {
                 const exchanges = cachedChats.filter(exchange => exchange && typeof exchange.user === 'string' && typeof exchange.answer === 'string');
-                if (exchanges.length) chatSessions.push({ title: exchanges[0].user, createdAt: Date.now(), exchanges });
+                if (exchanges.length) chatSessions.push({ title: exchanges[0].user, createdAt: Date.now(), exchanges, article: null });
             }
         }
         if (chatSessions.length) {
             activeSessionIndex = chatSessions.length - 1;
             activeExchangeIndex = chatSessions[activeSessionIndex].exchanges.length - 1;
+            maxaiSetActiveArticle(chatSessions[activeSessionIndex].article || null);
+        } else {
+            maxaiSetActiveArticle(maxaiActiveArticle);
         }
     } catch (_) { /* cached history is optional */ }
     const getSystemPrompt = () => `You are Max Ai, an AI assistant created by Monu Sharma, born in 2010 and founder of XtarNet. Monu studies at Little Angels Public School. His father's name is NandLal Sharma. He has a brother, Vikash Sharma, and two sisters, Tannu Sharma and Nilu Sharma. His school friends are Sumit Sharma, Yash Sharma, and Ayush Singh.
@@ -460,11 +499,21 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         const repeatInstruction = isRepeatRequest
             ? 'Repeat only the immediately previous assistant answer below. Do not answer with Max Ai profile facts and do not invent a new topic. Previous answer: ' + JSON.stringify(lastAssistantAnswer)
             : 'Answer the current user message directly. Do not repeat an earlier answer unless the user explicitly asks for it.';
+        // v75: article context, only when this chat has one. It is the
+        // one article from Step 1/2, never all site articles.
+        const articleSection = maxaiActiveArticle
+            ? 'Current article context (this is the only article this chat knows; do not claim to know other articles): Title: ' + JSON.stringify(maxaiActiveArticle.title)
+                + ' URL: ' + JSON.stringify(maxaiActiveArticle.url)
+                + (maxaiActiveArticle.dek ? ' Summary: ' + JSON.stringify(maxaiActiveArticle.dek) : '')
+                + ' Article excerpt: ' + JSON.stringify(maxaiActiveArticle.text)
+                + ' Use this excerpt to answer questions about this article. If a question is not about this article, answer normally and do not force article details in. Do not invent facts that are not in the excerpt; if the excerpt does not contain the answer, say so plainly.'
+            : null;
         return [
             'You are Max Ai, an AI assistant created by Monu Sharma, founder of XtarNet.',
             'Respond directly, naturally, and helpfully. Give the answer first in 1–4 concise sentences unless more detail is requested. Match the user language. Do not generate images or image prompts.',
             'Profile policy: creator facts are private background context, not a default answer. Never volunteer Monu Sharma\'s birth year, school, family, siblings, or friends. Mention a profile fact only when the user directly asks for that exact fact. If asked who built or created you, answer only: "I was created by Monu Sharma, founder of XtarNet."',
             repeatInstruction,
+            ...(articleSection ? [articleSection] : []),
             'Recent relevant conversation history: ' + JSON.stringify(recentHistory),
             'Current user message: ' + JSON.stringify(String(userMessage || ''))
         ].join('\n\n');
@@ -634,6 +683,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const renderSession = sessionIndex => {
         const session = chatSessions[sessionIndex];
         if (!session || !chatLog) return;
+        maxaiSetActiveArticle(session.article || null);
         activeSessionIndex = sessionIndex;
         activeExchangeIndex = session.exchanges.length - 1;
         chatLog.replaceChildren();
@@ -712,6 +762,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 if (!await showHistoryDialog('delete', session)) return;
                 chatSessions.splice(index, 1);
                 if (activeSessionIndex === index) {
+                    maxaiSetActiveArticle(maxaiDetectArticle());
                     activeSessionIndex = -1;
                     activeExchangeIndex = -1;
                     chatLog?.replaceChildren();
@@ -1568,7 +1619,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (assistantMicActive) { assistantRecognition?.stop(); setAssistantMic(false); }
         removeChatWelcome();
         if (!chatSessions[activeSessionIndex]) {
-            chatSessions.push({ title: message, createdAt: Date.now(), exchanges: [] });
+            chatSessions.push({ title: message, createdAt: Date.now(), exchanges: [], article: maxaiActiveArticle });
             activeSessionIndex = chatSessions.length - 1;
         }
         const activeSession = chatSessions[activeSessionIndex];
@@ -1647,6 +1698,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     });
     historyPrev?.addEventListener('click', () => renderExchange(activeExchangeIndex - 1));
     newChatButton?.addEventListener('click', () => {
+        maxaiSetActiveArticle(maxaiDetectArticle());
         activeSessionIndex = -1;
         activeExchangeIndex = -1;
         chatLog?.replaceChildren();
