@@ -5133,11 +5133,7 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 .maxai-key-preview { display: none; position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); min-width: 52px; height: 56px; padding: 0 10px; border: 1px solid color-mix(in srgb, var(--teal) 42%, var(--line)); border-radius: 12px; background: color-mix(in srgb, var(--surface) 96%, transparent); color: var(--ink); font: 700 28px "DM Sans", system-ui, sans-serif; align-items: center; justify-content: center; box-shadow: 0 10px 24px color-mix(in srgb, var(--ink) 22%, transparent); z-index: 10; pointer-events: none; }
 .maxai-key-preview.is-on { display: flex; }
 
-/* No zoom, only in Max Ai fullscreen: vertical scroll still works,
-   pinch zoom and double-tap zoom do not. Removed on fullscreen exit. */
-html.maxai-no-zoom, html.maxai-no-zoom body { touch-action: pan-y; }
-html.maxai-no-zoom .orbit-chat-panel, html.maxai-no-zoom .maxai-keyboard-panel { touch-action: manipulation; }
-html.maxai-no-zoom .orbit-chat-space, html.maxai-no-zoom .orbit-chat-log { touch-action: pan-y; }
+/* v74: fullscreen system removed, so its zoom-lock rules are gone. */
 
 /* No copy/selection on long-press in the custom keyboard. */
 .maxai-keyboard-panel, .maxai-key { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
