@@ -1149,28 +1149,47 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 window.__maxaiBsWindowListener = true;
                 window.addEventListener('pointerup', () => { if (window.__maxaiBsStop) window.__maxaiBsStop(); });
                 window.addEventListener('touchend', () => { if (window.__maxaiBsStop) window.__maxaiBsStop(); });
+                // Runaway safety net only: if the page is hidden while
+                // holding, stop. This never fires during a normal hold.
+                document.addEventListener('visibilitychange', () => { if (document.hidden && window.__maxaiBsStop) window.__maxaiBsStop(); });
             }
             button.addEventListener('contextmenu', e => e.preventDefault());
-            button.addEventListener('pointerdown', () => {
+            button.addEventListener('pointerdown', (e) => {
                 backspaceFromPointer = true;
+                // v67 fix: capture the pointer to this button, so a
+                // slight finger drift while holding can no longer make
+                // the browser cancel the touch (pointercancel) or move
+                // it off the button and kill the repeat after ~2 words.
+                try { if (e && e.pointerId !== undefined) button.setPointerCapture(e.pointerId); } catch (_) {}
                 maxaiVibrate(); action();
                 const pressStart = Date.now();
                 let tick = 0;
                 repeatDelay = setTimeout(() => {
                     repeatInterval = setInterval(() => {
+                        // Stop cleanly once the text is gone, instead
+                        // of vibrating forever on an empty box.
+                        if (!(chatInput.value || '')) { stopRepeat(); return; }
                         tick++;
                         maxaiVibrate();
-                        // Real keyboard acceleration: first characters,
-                        // then after 1.5s, whole words every 3rd tick.
-                        if (Date.now() - pressStart > 1500 && tick % 3 === 0) maxaiBackspaceWord();
+                        // Real keyboard acceleration, faster than v66:
+                        // first characters, then after 1.5s a whole
+                        // word EVERY tick (60ms), so holding really
+                        // runs to the end of the text, not just 2 words.
+                        if (Date.now() - pressStart > 1500) maxaiBackspaceWord();
                         else action();
                     }, 60);
                 }, 400);
                 window.__maxaiBsStop = stopRepeat;
             });
             button.addEventListener('pointerup', stopRepeat);
-            button.addEventListener('pointercancel', stopRepeat);
-            button.addEventListener('blur', stopRepeat);
+            // v67 fix: deliberately NO pointercancel / blur stop here.
+            // On Android, a held touch that drifts a little fires
+            // pointercancel (and focus moves to the input on every
+            // delete, firing blur), which is what stopped v66 after
+            // about two words even though the finger was still down.
+            // Repeat now stops only on a real release: the button's
+            // pointerup, or the window pointerup / touchend backup
+            // below, plus page-hide as a runaway safety net.
             // Click on release is suppressed when it came from a
             // pointer press, because deletion already happened on
             // press / during repeat. The flag is consumed here, so a
