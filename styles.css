@@ -5114,7 +5114,7 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
         right: 0;
         bottom: 0;
         width: 100vw;
-        border-radius: 20px 20px 0 0;
+        border-radius: 0;
         padding-left: calc(10px + env(safe-area-inset-left, 0px));
         padding-right: calc(10px + env(safe-area-inset-right, 0px));
         padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
