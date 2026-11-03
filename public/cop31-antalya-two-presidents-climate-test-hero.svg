@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Illustration of a climate summit on the Antalya coast, with sun, sea, mountains and wind turbines">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#142322"/>
+      <stop offset="60%" stop-color="#1e4a44"/>
+      <stop offset="100%" stop-color="#2a7f76"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3aa99e"/>
+      <stop offset="100%" stop-color="#123f3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="950" cy="150" r="95" fill="#e8b34a" opacity="0.9"/>
+  <circle cx="950" cy="150" r="130" fill="#e8b34a" opacity="0.15"/>
+  <path d="M0 420 L180 340 L320 420 L480 320 L640 420 L820 350 L1000 420 L1200 360 L1200 800 L0 800 Z" fill="#0f2e2a"/>
+  <path d="M0 520 Q300 480 600 520 T1200 500 L1200 800 L0 800 Z" fill="url(#sea)"/>
+  <path d="M0 600 Q300 570 600 600 T1200 590 L1200 800 L0 800 Z" fill="#0d2f2b" opacity="0.7"/>
+  <!-- wind turbines -->
+  <g stroke="#d8efe9" stroke-width="6" stroke-linecap="round">
+    <line x1="220" y1="520" x2="220" y2="380"/><line x1="220" y1="380" x2="180" y2="430"/><line x1="220" y1="380" x2="260" y2="430"/><line x1="220" y1="380" x2="220" y2="330"/>
+    <line x1="420" y1="520" x2="420" y2="400"/><line x1="420" y1="400" x2="385" y2="445"/><line x1="420" y1="400" x2="455" y2="445"/><line x1="420" y1="400" x2="420" y2="355"/>
+  </g>
+  <circle cx="220" cy="380" r="8" fill="#d8efe9"/><circle cx="420" cy="400" r="8" fill="#d8efe9"/>
+  <!-- summit flags, abstract, no country flags -->
+  <g>
+    <line x1="760" y1="520" x2="760" y2="360" stroke="#f2f2f2" stroke-width="5"/>
+    <path d="M760 360 L860 385 L760 410 Z" fill="#2a9d8f"/>
+    <line x1="880" y1="520" x2="880" y2="360" stroke="#f2f2f2" stroke-width="5"/>
+    <path d="M880 360 L980 385 L880 410 Z" fill="#e8b34a"/>
+    <line x1="1000" y1="520" x2="1000" y2="360" stroke="#f2f2f2" stroke-width="5"/>
+    <path d="M1000 360 L1100 385 L1000 410 Z" fill="#7fb3ad"/>
+  </g>
+  <g fill="#d8efe9" opacity="0.85">
+    <ellipse cx="300" cy="620" rx="70" ry="12"/><ellipse cx="700" cy="660" rx="90" ry="12"/><ellipse cx="950" cy="620" rx="60" ry="10"/>
+  </g>
+</svg>
