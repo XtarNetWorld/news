@@ -1448,14 +1448,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     maxaiBackdrop.setAttribute('aria-hidden', 'true');
     document.body.appendChild(maxaiBackdrop);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
-    let maxaiLastKbHeight = -1;
     const maxaiLayoutPanel = () => {
-        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; maxaiLastKbHeight = -1; return; }
+        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // v70 speed: if the keyboard is the same height and the panel
-        // already has a height, writing it again is a wasted layout.
-        if (kbHeight === maxaiLastKbHeight && chatPanel.style.height) return;
-        maxaiLastKbHeight = kbHeight;
+        // v73 fix: always recalculate. The v70 guard skipped the write
+        // when the keyboard height was unchanged, but the panel height
+        // also depends on window.innerHeight, which grows when Max Ai
+        // enters fullscreen (Chrome's bar hides). Skipping then left
+        // the panel sized for the old, shorter screen, leaving a
+        // ~50-60px gap above the keyboard instead of 10px. Layout
+        // only runs on open / mode change / resize / fullscreenchange,
+        // never on typing, so recalculating here costs nothing
+        // per keystroke; the v70 suggestion and emoji speed wins stay.
         // Gaps like previously: top 12, bottom 12, middle 10,
         // plus side gaps. No extra top strip.
         const available = window.innerHeight - kbHeight - 12 - 12 - 10;
