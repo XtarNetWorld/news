@@ -1121,7 +1121,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
             maxaiKeyboard.appendChild(row3);
             const bottom = maxaiRow([
-                maxaiMakeKey('?123', () => { maxaiMode = 'numbers'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('?123', () => { maxaiMode = 'numbers'; maxaiRenderWithLayout(); }, 'is-mode'),
                 maxaiMakeKey('😊', () => maxaiInsertText('😊'), 'is-emoji'),
                 maxaiMakeKey(',', () => maxaiInsertText(',')),
                 maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
@@ -1135,7 +1135,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiKeyboard.appendChild(maxaiRow('1234567890'.split('').map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
             maxaiKeyboard.appendChild(maxaiRow(['@','#','$','%','&','*','-','+','=','/'].map(ch => maxaiMakeKey(ch, () => maxaiInsertText(ch)))));
             const bottom = maxaiRow([
-                maxaiMakeKey('ABC', () => { maxaiMode = 'letters'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('ABC', () => { maxaiMode = 'letters'; maxaiRenderWithLayout(); }, 'is-mode'),
                 maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
                 maxaiMakeKey('?', () => maxaiInsertText('?')),
                 maxaiMakeKey('!', () => maxaiInsertText('!')),
@@ -1147,26 +1147,39 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiKeyboard.appendChild(bottom);
         }
     };
+    const maxaiRenderWithLayout = () => { maxaiRenderKeyboard(); maxaiRelayout(); };
     maxaiRenderKeyboard();
     // Keep the chat input focused without opening the native keyboard:
     // tapping a custom key must not move focus away from the input.
     maxaiKeyboard.addEventListener('mousedown', event => {
         if (event.target.closest('button')) event.preventDefault();
     });
-    chatPanel.appendChild(maxaiKeyboard);
+    document.body.appendChild(maxaiKeyboard);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
+    const maxaiLayoutPanel = () => {
+        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
+        const kbHeight = maxaiKeyboard.offsetHeight;
+        const maxHeight = window.innerWidth <= 520
+            ? Math.min(540, window.innerHeight - 24)
+            : Math.min(560, window.innerHeight - 24);
+        // Panel top gap 12 + bottom gap 12 + 10px gap above the keyboard.
+        const available = window.innerHeight - 12 - 12 - 10 - kbHeight;
+        chatPanel.style.height = Math.max(200, Math.min(maxHeight, available)) + 'px';
+    };
     const maxaiShowKeyboard = () => {
         if (!maxaiIsNarrow()) return;
         maxaiKeyboard.hidden = false;
-        chatPanel.classList.add('maxai-keyboard-open');
         // Read-only stops the native keyboard; custom keys still edit via script.
         chatInput.setAttribute('readonly', '');
+        requestAnimationFrame(maxaiLayoutPanel);
     };
     const maxaiHideKeyboard = () => {
         maxaiKeyboard.hidden = true;
-        chatPanel.classList.remove('maxai-keyboard-open');
+        chatPanel.style.height = '';
         chatInput.removeAttribute('readonly');
     };
+    const maxaiRelayout = () => { if (!maxaiKeyboard.hidden) requestAnimationFrame(maxaiLayoutPanel); };
+    window.addEventListener('resize', maxaiRelayout);
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
