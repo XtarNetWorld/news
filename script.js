@@ -1155,6 +1155,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (event.target.closest('button')) event.preventDefault();
     });
     document.body.appendChild(maxaiKeyboard);
+    const maxaiBackdrop = document.createElement('div');
+    maxaiBackdrop.className = 'orbit-chat-backdrop';
+    maxaiBackdrop.hidden = true;
+    maxaiBackdrop.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(maxaiBackdrop);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
@@ -1169,12 +1174,14 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiShowKeyboard = () => {
         if (!maxaiIsNarrow()) return;
         maxaiKeyboard.hidden = false;
+        chatPanel.classList.add('keyboard-visible');
         // Read-only stops the native keyboard; custom keys still edit via script.
         chatInput.setAttribute('readonly', '');
         requestAnimationFrame(maxaiLayoutPanel);
     };
     const maxaiHideKeyboard = () => {
         maxaiKeyboard.hidden = true;
+        chatPanel.classList.remove('keyboard-visible');
         chatPanel.style.height = '';
         chatInput.removeAttribute('readonly');
     };
@@ -1187,6 +1194,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
             document.body.classList.add('bot-chat-open');
+            maxaiBackdrop.hidden = false;
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
             chatSlot.appendChild(orbitBotHost);
@@ -1204,6 +1214,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
+            maxaiBackdrop.hidden = true;
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
             orbitBotHost.classList.remove('bot-chat-bot');
             if (orbitBotHome?.isConnected && orbitBotAnchor?.isConnected) orbitBotHome.insertBefore(orbitBotHost, orbitBotAnchor.nextSibling);
             // Reset the previous docking marker before recalculating. Without
