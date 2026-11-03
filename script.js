@@ -1040,15 +1040,47 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.addEventListener('click', action);
         return button;
     };
-    const maxaiCharKey = ch => {
-        const button = maxaiMakeKey(maxaiShift ? ch.toUpperCase() : ch, () => maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch));
+    const maxaiCharKey = (ch, secondary) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'maxai-key';
         button.dataset.char = ch;
+        const sub = document.createElement('span');
+        sub.className = 'maxai-key-sub';
+        sub.textContent = secondary || '';
+        const main = document.createElement('span');
+        main.className = 'maxai-key-main';
+        main.textContent = maxaiShift ? ch.toUpperCase() : ch;
+        button.appendChild(sub);
+        button.appendChild(main);
+        button.dataset.mainEl = '';
+        button._mainEl = main;
+        let holdTimer = null;
+        let longPressed = false;
+        button.addEventListener('pointerdown', () => {
+            if (!secondary) return;
+            longPressed = false;
+            holdTimer = setTimeout(() => {
+                longPressed = true;
+                maxaiInsertText(secondary);
+            }, 450);
+        });
+        const clearHold = () => { if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; } };
+        button.addEventListener('pointerup', clearHold);
+        button.addEventListener('pointerleave', clearHold);
+        button.addEventListener('pointercancel', clearHold);
+        button.addEventListener('click', () => {
+            if (longPressed) { longPressed = false; return; }
+            maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch);
+        });
         return button;
     };
     const maxaiRefreshShift = () => {
         maxaiLetterKeys.forEach(button => {
             const ch = button.dataset.char || '';
-            button.textContent = maxaiShift ? ch.toUpperCase() : ch;
+            const main = button._mainEl || button.querySelector('.maxai-key-main');
+            if (main) main.textContent = maxaiShift ? ch.toUpperCase() : ch;
+            else button.textContent = maxaiShift ? ch.toUpperCase() : ch;
         });
         const shiftButton = maxaiKeyboard.querySelector('.is-shift');
         if (shiftButton) {
@@ -1072,8 +1104,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         maxaiKeyboard.replaceChildren();
         maxaiLetterKeys = [];
         if (maxaiMode === 'letters') {
-            maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); return b; })));
-            const row2 = maxaiRow('asdfghjkl'.split('').map(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); return b; }));
+            const row1Seconds = { q: '1', w: '2', e: '3', r: '4', t: '5', y: '6', u: '7', i: '8', o: '9', p: '0' };
+            maxaiKeyboard.appendChild(maxaiRow('qwertyuiop'.split('').map(ch => { const b = maxaiCharKey(ch, row1Seconds[ch]); maxaiLetterKeys.push(b); return b; })));
+            const row2Seconds = { a: '@', s: '#', d: '₹', f: '-', g: '&', h: '-', j: '+', k: '(', l: ')' };
+            const row2 = maxaiRow('asdfghjkl'.split('').map(ch => { const b = maxaiCharKey(ch, row2Seconds[ch]); maxaiLetterKeys.push(b); return b; }));
             row2.insertBefore(maxaiSpacer(), row2.firstChild);
             row2.appendChild(maxaiSpacer());
             maxaiKeyboard.appendChild(row2);
@@ -1082,14 +1116,16 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             shiftButton.setAttribute('aria-pressed', String(maxaiShift));
             if (maxaiShift) shiftButton.classList.add('is-shift-active');
             const row3 = maxaiRow([shiftButton]);
-            'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch); maxaiLetterKeys.push(b); row3.appendChild(b); });
+            const row3Seconds = { z: '*', x: '"', c: "'", v: ':', b: ';', n: '!', m: '?' };
+            'zxcvbnm'.split('').forEach(ch => { const b = maxaiCharKey(ch, row3Seconds[ch]); maxaiLetterKeys.push(b); row3.appendChild(b); });
             row3.appendChild(maxaiMakeKey('⌫', maxaiBackspace, 'is-wide'));
             maxaiKeyboard.appendChild(row3);
             const bottom = maxaiRow([
-                maxaiMakeKey('123', () => { maxaiMode = 'numbers'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('?123', () => { maxaiMode = 'numbers'; maxaiRenderKeyboard(); }, 'is-mode'),
+                maxaiMakeKey('😊', () => maxaiInsertText('😊'), 'is-emoji'),
+                maxaiMakeKey(',', () => maxaiInsertText(',')),
                 maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space'),
                 maxaiMakeKey('.', () => maxaiInsertText('.')),
-                maxaiMakeKey(',', () => maxaiInsertText(',')),
             ]);
             const sendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
             sendButton.setAttribute('aria-label', 'Send question');
@@ -1122,11 +1158,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiShowKeyboard = () => {
         if (!maxaiIsNarrow()) return;
         maxaiKeyboard.hidden = false;
+        chatPanel.classList.add('maxai-keyboard-open');
         // Read-only stops the native keyboard; custom keys still edit via script.
         chatInput.setAttribute('readonly', '');
     };
     const maxaiHideKeyboard = () => {
         maxaiKeyboard.hidden = true;
+        chatPanel.classList.remove('maxai-keyboard-open');
         chatInput.removeAttribute('readonly');
     };
     chatInput?.addEventListener('click', () => {
