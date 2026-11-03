@@ -5085,13 +5085,13 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-space { overflow-y: auto; }
     .orbit-chat-empty { min-height: 0; overflow-y: auto; }
     /* Output area grows from the TOP only: the panel grid row for the
-       bot shrinks 194px -> 64px (bot face .36 -> .18 to match), so the
+       bot row shrinks 194px -> 130px (bot face back to .36, its old size), so the
        1fr chat space below it gains that height. Panel height, MESSAGES
        nav, type form and keyboard are untouched, so the bottom does
        not move at all. */
-    .orbit-chat-panel.keyboard-visible { grid-template-rows: auto 64px 1fr auto auto; }
-    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 64px; margin-top: 0; }
-    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.18) !important; }
+    .orbit-chat-panel.keyboard-visible { grid-template-rows: auto 130px 1fr auto auto; }
+    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 130px; margin-top: 0; }
+    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
     /* Log starts at the top instead of centring, so a tall output
        message is never clipped at its top edge. */
     .orbit-chat-panel.keyboard-visible .orbit-chat-log { justify-content: flex-start; }
