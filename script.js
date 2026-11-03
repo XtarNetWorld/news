@@ -1199,7 +1199,7 @@ const updateLiveClock = () => {
     const locale = navigator.language || 'en-US';
     const dateText = new Intl.DateTimeFormat(locale, {
         weekday: 'long',
-        month: 'long',
+        month: 'short',
         day: 'numeric',
         year: 'numeric',
         timeZone: resolvedZone
