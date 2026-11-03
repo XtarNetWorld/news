@@ -4993,3 +4993,6 @@ img, video, canvas, svg {
 .orbit-chat-form button.is-processing { opacity:1; background:#000; color:#fff; }
 body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { pointer-events:none; }
 @media (max-width:520px) { .orbit-chat-panel { right:10px; bottom:10px; width:calc(100vw - 20px); height:min(540px, calc(100dvh - 20px)); border-radius:20px; } }
+
+/* Keep the header live date on one line on narrow screens */
+#live-date { white-space: nowrap; }
