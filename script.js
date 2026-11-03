@@ -1194,9 +1194,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
             document.body.classList.add('bot-chat-open');
-            maxaiBackdrop.hidden = false;
-            document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
+            // Mobile-only system: on tablet, laptop and desktop the panel
+            // keeps its previous behaviour (no backdrop, no scroll lock).
+            if (window.innerWidth <= 640) {
+                maxaiBackdrop.hidden = false;
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
             chatSlot.appendChild(orbitBotHost);
