@@ -4865,6 +4865,7 @@ img, video, canvas, svg {
     height: min(560px, calc(100dvh - 24px));
     display: grid;
     grid-template-rows: auto 194px 1fr auto auto auto;
+    transition: grid-template-rows .2s ease;
     gap: 0;
     padding: 16px 18px 16px;
     overflow: hidden;
@@ -4998,10 +4999,11 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 /* Keep the header live date on one line on narrow screens */
 #live-date { white-space: nowrap; }
 
-/* Max Ai custom keyboard, inside the panel: short, soft and themed.
-   Only one set of keys (letters or numbers/symbols) is shown at a time.
-   Because it is a grid row inside the panel, below the type form, it
-   can never overlap the type area -- the middle chat space shrinks. */
+/* Max Ai custom keyboard, inside the panel, styled like the reference
+   keyboard but in the site theme. Each letter key carries a big letter
+   and a small symbol at its top-right. Because it is a grid row inside
+   the panel, below the type form, it can never overlap the type area.
+   When it opens, the bot face row shrinks so everything still fits. */
 .maxai-keyboard-panel {
     display: none;
     width: 100%;
@@ -5013,26 +5015,43 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     background: var(--surface);
 }
 @media (max-width: 640px) {
-    .maxai-keyboard-panel:not([hidden]) { display: grid; gap: 5px; }
+    .maxai-keyboard-panel:not([hidden]) { display: grid; gap: 6px; }
+    .orbit-chat-panel.maxai-keyboard-open { grid-template-rows: auto 130px 1fr auto auto auto; }
 }
-.maxai-key-row { display: flex; gap: 5px; }
+.maxai-key-row { display: flex; gap: 6px; }
 .maxai-key-spacer { flex: 0.5 1 0; }
 .maxai-key {
+    position: relative;
     flex: 1 1 0;
     min-width: 0;
-    height: 38px;
+    height: 48px;
     padding: 0 2px;
     border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-    border-radius: 14px;
+    border-radius: 12px;
     background: color-mix(in srgb, var(--surface) 92%, var(--bg));
     color: var(--ink);
     font: 600 16px "DM Sans", system-ui, sans-serif;
     cursor: pointer;
     box-shadow: 0 2px 6px color-mix(in srgb, var(--ink) 8%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .maxai-key:active { background: color-mix(in srgb, var(--teal) 18%, var(--surface)); transform: translateY(1px); }
+.maxai-key-sub {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.55;
+    line-height: 1;
+}
+.maxai-key-main { font-size: 20px; font-weight: 600; margin-top: 8px; line-height: 1; }
 .maxai-key.is-shift-active { background: var(--teal); color: var(--bg); }
 .maxai-key.is-space { flex: 3 1 0; }
+.maxai-key.is-space .maxai-key-main { font-size: 16px; margin-top: 0; }
 .maxai-key.is-wide { flex: 1.4 1 0; }
-.maxai-key.is-send { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.maxai-key.is-mode { font-size: 13px; }
+.maxai-key.is-send { background: var(--teal); color: var(--bg); border-color: var(--teal); }
+.maxai-key.is-send .maxai-key-main { margin-top: 0; }
+.maxai-key.is-mode, .maxai-key.is-emoji { font-size: 14px; }
