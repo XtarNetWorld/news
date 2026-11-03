@@ -871,6 +871,45 @@
 
 <p class="hook">For years, the AI boom was described in terms of what models could do. On 2 November, it was described in terms of what they cost. A $115 billion deal for lasers and optics. About $895 billion in promised spending on computer power. And the world's most valuable phone maker warning that memory — the humble component that stores your photos and apps — is now expensive enough to squeeze its profits. Taken together, those three numbers tell a single story: AI is no longer just a research race. It is an infrastructure bill, and it has arrived.</p>
 
+<style>
+.nx-magic{margin:28px 0 32px;padding:22px 22px 18px;border-radius:18px;background:linear-gradient(135deg,#f6f1e7,#eef4f2);border:2px solid #0e2a28;position:relative;overflow:hidden}
+.nx-magic:before{content:"";position:absolute;inset:-2px;border-radius:20px;padding:2px;background:conic-gradient(from 0deg,#0e2a28,#e8b34a,#0e2a28,#7fb3ad,#0e2a28);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:nxSpin 6s linear infinite;pointer-events:none}
+@keyframes nxSpin{to{transform:rotate(360deg)}}
+.nx-magic h3{margin:0 0 12px;font-size:20px;display:flex;align-items:center;gap:10px}
+.nx-dot{width:14px;height:14px;border-radius:50%;background:#e8b34a;display:inline-block;animation:nxPulse 1.6s ease-in-out infinite;flex:none}
+@keyframes nxPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(232,179,74,.6)}50%{transform:scale(1.35);box-shadow:0 0 0 8px rgba(232,179,74,0)}}
+.nx-take{margin:0 0 8px;padding-left:28px;position:relative;animation:nxSlide .6s ease both}
+.nx-take:nth-child(2){animation-delay:.1s}.nx-take:nth-child(3){animation-delay:.2s}.nx-take:nth-child(4){animation-delay:.3s}
+@keyframes nxSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.nx-take span{position:absolute;left:0;top:0}
+.nx-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.nx-num{background:#fff;border:1px solid #d8d2c2;border-radius:12px;padding:12px 8px;text-align:center}
+.nx-num b{display:block;font-size:26px;line-height:1.1}
+.nx-num small{font-size:12px;color:#555}
+.nx-steps{border-left:3px solid #7fb3ad;margin:16px 0 8px 8px;padding-left:16px}
+.nx-step{margin:0 0 10px;position:relative}
+.nx-step:before{content:"";position:absolute;left:-24px;top:4px;width:12px;height:12px;border-radius:50%;background:#e8b34a;border:2px solid #0e2a28}
+.nx-step b{display:block}
+.nx-reveal{margin-top:14px;background:#0e2a28;color:#fff;border-radius:12px;padding:12px 14px;cursor:pointer}
+.nx-reveal summary{font-weight:700;list-style:none}
+.nx-reveal summary::-webkit-details-marker{display:none}
+.nx-reveal p{color:#fff;margin:8px 0 0}
+.nx-float{animation:nxFloat 3s ease-in-out infinite;display:inline-block}
+@keyframes nxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:640px){.nx-nums{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){.nx-magic:before,.nx-dot,.nx-float,.nx-take{animation:none}}
+</style>
+<div class="nx-magic"><h3><span class="nx-dot"></span><span class="nx-float">🤖</span> 30-Second Signal — read this, you get the story</h3><p class="nx-take"><span>⚡</span>Marvell is buying Lumentum for $115 billion in enterprise value.</p><p class="nx-take"><span>🎯</span>Anthropic disclosed about $895.4 billion in compute commitments — about $213.8 billion of it is contingent.</p><p class="nx-take"><span>🔭</span>Apple made $114.5 billion in a quarter, but warned margins will fall on memory costs.</p><div class="nx-nums"><div class="nx-num"><b data-target="115" data-dec="0" data-pre="$" data-suf=" bn">$115 bn</b><small>Marvell–Lumentum</small></div><div class="nx-num"><b data-target="895.4" data-dec="1" data-pre="$" data-suf=" bn">$895.4 bn</b><small>Anthropic commitments, dec=1</small></div><div class="nx-num"><b data-target="114.5" data-dec="1" data-pre="$" data-suf=" bn">$114.5 bn</b><small>Apple quarter, dec=1</small></div><div class="nx-num"><b data-target="96" data-dec="0" data-pre="" data-suf="%">96%</b><small>Palantir growth</small></div></div><div class="nx-steps"><div class="nx-step"><b>2 Nov</b>Marvell deal, Anthropic filing, Apple results</div><div class="nx-step"><b>2 Nov</b>Palantir Q3: revenue +96%, contract value only +11%</div><div class="nx-step"><b>2 Nov</b>OpenAI Abu Dhabi: 4 agreements, no financial terms</div><div class="nx-step"><b>H1 2028</b>Marvell–Lumentum close, subject to approvals</div></div><details class="nx-reveal"><summary>Tap to reveal what happens next →</summary><p>Regulatory approvals for the Marvell deal, and whether memory costs keep biting Apple through the holiday quarter.</p></details><p style="font-size:12px;color:#666;margin:10px 0 0">Tap, scroll and watch the numbers — the full story, with sources, is below. All figures are from the article, no new claims added.</p></div>
+<script>
+(function(){
+  var nums=document.querySelectorAll('.nx-num b[data-target]');
+  if(!('IntersectionObserver' in window)){nums.forEach(function(el){el.textContent=el.getAttribute('data-display')||el.getAttribute('data-target')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var el=e.target,target=parseFloat(el.getAttribute('data-target')),dec=parseInt(el.getAttribute('data-dec')||'0'),pre=el.getAttribute('data-pre')||'',suf=el.getAttribute('data-suf')||'',t0=null;function tick(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1200),v=target*(1-Math.pow(1-p,3));el.textContent=pre+v.toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);});},{threshold:.4});
+  nums.forEach(function(el){io.observe(el);});
+})();
+</script>
+
+
 <h2 data-index="01">Apple first: your next iPhone could cost more to make</h2>
 <p>Start with Apple, because it is the part of this story most readers will feel directly. Apple reported fiscal fourth-quarter results on 2 November, in the first report under chief executive John Ternus, who succeeded Tim Cook on 1 September. Revenue was $114.5 billion, up about 12% year-on-year, with earnings per share of $2.10, up 14%, beating analyst estimates. iPhone revenue was $57.58 billion. Gross margin was 47.9%, including about one point from tariff refunds.</p>
 <p>Then came the warning. Apple guided December-quarter gross margin to 45–46%, mainly because of higher memory costs plus costs associated with Siri AI. Memory had already shaved about one point off margin from June to September, excluding refunds, and the chief executive called memory pricing unprecedented. Purchase obligations rose by $33 billion in the quarter as Apple locked in parts. December revenue was guided up 7–10%, and services up 8–9%, below expectations in that segment.</p>
