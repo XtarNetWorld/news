@@ -1451,15 +1451,12 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // v73 fix: always recalculate. The v70 guard skipped the write
-        // when the keyboard height was unchanged, but the panel height
-        // also depends on window.innerHeight, which grows when Max Ai
-        // enters fullscreen (Chrome's bar hides). Skipping then left
-        // the panel sized for the old, shorter screen, leaving a
-        // ~50-60px gap above the keyboard instead of 10px. Layout
-        // only runs on open / mode change / resize / fullscreenchange,
-        // never on typing, so recalculating here costs nothing
-        // per keystroke; the v70 suggestion and emoji speed wins stay.
+        // v73 fix: always recalculate. The panel height also depends
+        // on window.innerHeight, which changes when browser chrome
+        // shows or hides. Layout only runs on open / mode change /
+        // resize, never on typing, so recalculating here costs
+        // nothing per keystroke; the v70 suggestion and emoji
+        // speed wins stay.
         // Gaps like previously: top 12, bottom 12, middle 10,
         // plus side gaps. No extra top strip.
         const available = window.innerHeight - kbHeight - 12 - 12 - 10;
@@ -1487,42 +1484,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
-    // No zoom, ONLY in fullscreen mode. Pinch/double-tap zoom in
-    // fullscreen would zoom the panel/keyboard and break the layout.
-    // Locked only while document.fullscreenElement is present;
-    // restored on fullscreen exit and on Max Ai close.
-    const maxaiViewportMeta = document.querySelector('meta[name="viewport"]');
-    const maxaiViewportOriginal = maxaiViewportMeta ? maxaiViewportMeta.getAttribute('content') : 'width=device-width, initial-scale=1';
-    const maxaiSetZoomLock = on => {
-        if (maxaiViewportMeta) maxaiViewportMeta.setAttribute('content', on ? 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' : maxaiViewportOriginal);
-        document.documentElement.classList.toggle('maxai-no-zoom', !!on);
-    };
-    document.addEventListener('fullscreenchange', () => {
-        maxaiSetZoomLock(!!document.fullscreenElement);
-        if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
-            requestAnimationFrame(maxaiLayoutPanel);
-        }
-    });
-    const maxaiEnsureFullscreen = () => {
-        if (!maxaiIsNarrow()) return;
-        if (!document.body.classList.contains('bot-chat-open')) return;
-        if (document.fullscreenElement) return;
-        try {
-            const el = document.documentElement;
-            const fs = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' })
-                : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
-            if (fs && fs.catch) fs.catch(() => {});
-        } catch (_) {}
-    };
-    // Chrome minimized then reopened: page visible again, Max Ai still open.
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') maxaiEnsureFullscreen();
-    });
-    window.addEventListener('pageshow', maxaiEnsureFullscreen);
-    window.addEventListener('focus', maxaiEnsureFullscreen);
-    // Gesture fallback: first tap inside Max Ai after reopening will
-    // re-enter fullscreen even if the visibility attempt was rejected.
-    document.addEventListener('pointerdown', maxaiEnsureFullscreen, true);
+    // v74: no fullscreen system anymore. Max Ai opens inside Chrome
+    // as a normal card panel, so there is no fullscreen request,
+    // no auto re-entry, and no fullscreen-only zoom lock. Pinch /
+    // double-tap zoom works normally again, and the panel keeps
+    // its gaps: top 12, bottom 12, middle 10, side gaps.
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1530,15 +1496,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             // Mobile-only system: on tablet, laptop and desktop the panel
             // keeps its previous behaviour (no backdrop, no scroll lock).
             if (window.innerWidth <= 640) {
-                // Full screen on bot click: first in the gesture, so
-                // Chrome's bar is removed. Gaps like previously:
-                // top 12, bottom 12, middle 10, side gaps.
-                try {
-                    const el = document.documentElement;
-                    const fs = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' })
-                        : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
-                    if (fs && fs.catch) fs.catch(() => {});
-                } catch (_) {}
+                // v74: no fullscreen. Panel opens inside Chrome, with
+                // gaps like previously: top 12, bottom 12, middle 10,
+                // side gaps. Chrome's bar and the status bar stay visible.
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
@@ -1558,16 +1518,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             chatAbortController?.abort();
             stopChatSpeech();
             maxaiHideKeyboard();
-            maxaiSetZoomLock(false);
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
-            // Close exits fullscreen and closes the panel.
-            try {
-                if (document.fullscreenElement) {
-                    const ex = document.exitFullscreen?.();
-                    if (ex && ex.catch) ex.catch(() => {});
-                }
-            } catch (_) {}
+            // v74: close just closes the panel. No fullscreen to exit.
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
