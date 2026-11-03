@@ -1,4 +1,4 @@
-const CACHE = 'newsxphere-static-v19';
+const CACHE = 'newsxphere-static-v20';
 const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css', '/script.js', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
@@ -20,7 +20,19 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    if (request.destination === 'style' || request.destination === 'script' || request.destination === 'image' || request.destination === 'font') {
+    if (request.destination === 'style' || request.destination === 'script') {
+        // Network first, cache as fallback: site code updates must reach
+        // phones on the next visit instead of sitting behind an old cache.
+        event.respondWith(
+            fetch(request).then(response => {
+                const copy = response.clone();
+                caches.open(CACHE).then(cache => cache.put(request, copy));
+                return response;
+            }).catch(() => caches.match(request))
+        );
+        return;
+    }
+    if (request.destination === 'image' || request.destination === 'font') {
         event.respondWith(
             caches.match(request).then(cached => cached || fetch(request).then(response => {
                 const copy = response.clone();
