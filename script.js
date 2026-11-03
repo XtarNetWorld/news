@@ -1091,6 +1091,24 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         return button;
     };
+    // Key-press popup, like a real keyboard: while a key is pressed,
+    // a big preview of that letter/symbol pops up above the key, so
+    // you can see exactly which key you clicked. Hides on release.
+    const maxaiAddKeyPreview = (button, getText) => {
+        const preview = document.createElement('span');
+        preview.className = 'maxai-key-preview';
+        preview.setAttribute('aria-hidden', 'true');
+        button.appendChild(preview);
+        const show = () => { preview.textContent = getText(); preview.classList.add('is-on'); };
+        const hide = () => { preview.classList.remove('is-on'); };
+        button.addEventListener('pointerdown', show);
+        button.addEventListener('touchstart', show, { passive: true });
+        button.addEventListener('pointerup', hide);
+        button.addEventListener('pointercancel', hide);
+        button.addEventListener('pointerleave', hide);
+        button.addEventListener('blur', hide);
+        return preview;
+    };
     const maxaiMakeKey = (label, action, extraClass) => {
         const button = document.createElement('button');
         button.type = 'button';
@@ -1099,6 +1117,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.addEventListener('pointerdown', maxaiVibrate);
         button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         button.addEventListener('click', () => { maxaiVibrate(); action(); });
+        if (label.length === 1 && label !== '⌫' && label !== '↗') maxaiAddKeyPreview(button, () => label);
         return button;
     };
     const maxaiCharKey = (ch, secondary) => {
@@ -1118,6 +1137,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button._mainEl = main;
         let holdTimer = null;
         let longPressed = false;
+        const charPreview = maxaiAddKeyPreview(button, () => longPressed && secondary ? secondary : (maxaiShift ? ch.toUpperCase() : ch));
         button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         button.addEventListener('pointerdown', () => {
             maxaiVibrate();
@@ -1126,6 +1146,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             holdTimer = setTimeout(() => {
                 longPressed = true;
                 maxaiVibrate();
+                if (charPreview) { charPreview.textContent = secondary; charPreview.classList.add('is-on'); }
                 maxaiInsertText(secondary);
             }, 450);
         });
