@@ -1194,6 +1194,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatPanel.style.height = '';
         chatInput.removeAttribute('readonly');
     };
+    let maxaiSavedScrollY = 0;
     const maxaiRelayout = () => { if (!maxaiKeyboard.hidden) requestAnimationFrame(maxaiLayoutPanel); };
     window.addEventListener('resize', maxaiRelayout);
     chatInput?.addEventListener('click', () => {
@@ -1209,10 +1210,20 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 // No Fullscreen API on purpose: fullscreen hides the
                 // phone's top status bar (time, battery, tower), and
                 // that bar must stay visible, as in the wanted shot.
-                // Max Ai opens inside the browser, below that bar.
+                // Instead, hide only Chrome's bar: on Android Chrome
+                // the address bar collapses when the page scrolls
+                // down, while the system status bar stays. So scroll
+                // down a little BEFORE locking scroll -- the locked
+                // page cannot scroll back up, so Chrome's bar stays
+                // collapsed while Max Ai is open. Gaps are untouched.
+                maxaiSavedScrollY = window.scrollY || 0;
+                try { window.scrollTo(0, maxaiSavedScrollY + 120); } catch (_) {}
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
+                // Chrome bar collapse changes the viewport height;
+                // re-measure the panel after it settles.
+                window.setTimeout(maxaiRelayout, 300);
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
@@ -1234,6 +1245,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
+            // Back to where the user was: scrolling back up brings
+            // Chrome's bar back, and the status bar was never hidden.
+            try { window.scrollTo(0, maxaiSavedScrollY); } catch (_) {}
             orbitBotHost.classList.remove('bot-chat-bot');
             if (orbitBotHome?.isConnected && orbitBotAnchor?.isConnected) orbitBotHome.insertBefore(orbitBotHost, orbitBotAnchor.nextSibling);
             // Reset the previous docking marker before recalculating. Without
