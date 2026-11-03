@@ -4942,7 +4942,7 @@ img, video, canvas, svg {
 .orbit-chat-control.orbit-chat-speaker { right:12px; }
 .orbit-chat-control.is-active, .orbit-chat-control:not(.is-muted)[aria-pressed="true"] { background:var(--surface); color:var(--ink); border-color:var(--ink); box-shadow:0 8px 20px color-mix(in srgb, #000 18%, transparent), 0 0 0 4px color-mix(in srgb, var(--ink) 10%, transparent); }
 .orbit-chat-control.is-muted { background:#000; color:#fff; border-color:#000; opacity:.82; }
-.orbit-chat-space { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:0; overflow-y:auto; color:color-mix(in srgb, var(--ink) 58%, var(--muted)); font:11px "DM Mono", monospace; letter-spacing:.04em; }
+.orbit-chat-space { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:0; overflow:hidden; color:color-mix(in srgb, var(--ink) 58%, var(--muted)); font:11px "DM Mono", monospace; letter-spacing:.04em; }
 .orbit-chat-log { display:flex; flex:1 1 auto; align-items:center; justify-content:center; width:100%; height:auto; min-height:0; max-height:100%; box-sizing:border-box; flex-direction:column; gap:12px; overflow-y:auto; padding:18px 10px; }
 .orbit-chat-log:empty { flex:0 0 0; padding:0; }
 .orbit-chat-message { align-self:center !important; width:min(88%, 320px); max-width:88%; margin-inline:auto; padding:11px 14px; border:1px solid color-mix(in srgb, var(--ink) 11%, transparent); border-radius:18px; color:var(--ink); font:13px/1.52 "DM Sans", system-ui, sans-serif; text-align:center; white-space:pre-wrap; overflow-wrap:anywhere; box-shadow:0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
@@ -4966,7 +4966,7 @@ img, video, canvas, svg {
 .orbit-chat-thinking i:nth-child(3) { animation-delay:.28s; }
 .orbit-chat-thinking em { margin-left:4px; font-style:normal; font-size:10px; letter-spacing:.05em; }
 @keyframes orbit-chat-dot { 0%,60%,100% { opacity:.28; transform:translateY(0); } 30% { opacity:1; transform:translateY(-3px); } }
-.orbit-chat-empty { display:flex; flex:1 1 auto; flex-direction:column; align-items:center; justify-content:center; gap:6px; width:100%; min-height:0; box-sizing:border-box; padding:10px 14px; overflow-y:auto; text-align:center; }
+.orbit-chat-empty { display:flex; flex:1 1 auto; flex-direction:column; align-items:center; justify-content:center; gap:6px; width:100%; box-sizing:border-box; padding:10px 14px; text-align:center; }
 .orbit-chat-welcome { display:flex; flex-direction:column; align-items:center; gap:6px; width:min(94%, 350px); margin:0 auto 8px; padding:10px 14px; text-align:center; }
 .orbit-chat-welcome strong { color:var(--ink); font:700 15px/1.2 "DM Sans", system-ui, sans-serif; }
 .orbit-chat-welcome > span { padding:0; border:0; background:transparent; box-shadow:none; color:var(--muted); font:10px/1.35 "DM Mono", monospace; }
@@ -5081,10 +5081,15 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
    suggestions compact slightly, and the middle space starts at the
    top and scrolls instead of cropping content at the edges. */
 @media (max-width: 640px) {
+    /* Mobile only: middle space may scroll, so nothing is ever clipped. */
+    .orbit-chat-space { overflow-y: auto; }
+    .orbit-chat-empty { min-height: 0; overflow-y: auto; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 130px; }
     .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
-    .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { margin-bottom: 2px; padding: 6px 14px; }
+    /* While typing, the welcome heading is hidden so the recommended
+       questions get the full middle space and show in full, uncut. */
+    .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { display: none; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-suggestion { min-height: 38px; padding: 6px 9px; }
 }
