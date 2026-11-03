@@ -1,5 +1,5 @@
-const CACHE = 'newsxphere-static-v57';
-const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=57', '/script.js?v=57', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
+const CACHE = 'newsxphere-static-v58';
+const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=58', '/script.js?v=58', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', event => {
