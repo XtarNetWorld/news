@@ -1032,11 +1032,15 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
         try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
     };
+    const maxaiVibrate = () => {
+        try { if (navigator.vibrate) navigator.vibrate(10); } catch (_) {}
+    };
     const maxaiMakeKey = (label, action, extraClass) => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
         button.textContent = label;
+        button.addEventListener('pointerdown', maxaiVibrate);
         button.addEventListener('click', action);
         return button;
     };
@@ -1058,10 +1062,12 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         let holdTimer = null;
         let longPressed = false;
         button.addEventListener('pointerdown', () => {
+            maxaiVibrate();
             if (!secondary) return;
             longPressed = false;
             holdTimer = setTimeout(() => {
                 longPressed = true;
+                maxaiVibrate();
                 maxaiInsertText(secondary);
             }, 450);
         });
