@@ -50,8 +50,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://text.pollinations.ai">
-    <link rel="preload" href="styles.css?v=77" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=77"></noscript>
+    <link rel="preload" href="styles.css?v=78" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css?v=78"></noscript>
     <link rel="stylesheet" href="jobs.css">
     <script>
         (function () {
@@ -63,10 +63,13 @@
             } catch (e) {}
         })();
     </script>
-    <script defer src="script.js?v=77"></script>
-    <!-- v77 speed: three.js and orbit-bot.js are NOT loaded here
-         anymore. script.js loads them itself (same path article
-         pages already use), so they were being parsed twice. -->
+    <script defer src="script.js?v=78"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="orbit-bot.js"></script>
+    <!-- v78 fix: v77 wrongly removed these two defer tags. On the
+         homepage the bot engine loader in script.js only runs for
+         pages WITHOUT a hero orbit, so the homepage bot relied on
+         these tags alone. Restored exactly as in v76. -->
     <!-- High-quality JSON-LD Structured Data: Organization, Founder, WebSite, WebPage -->
     <script type="application/ld+json">
     {
