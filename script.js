@@ -1199,6 +1199,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
     });
+    document.addEventListener('fullscreenchange', () => {
+        if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
+            requestAnimationFrame(maxaiLayoutPanel);
+        }
+    });
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1209,10 +1214,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
-                // No Fullscreen API here on purpose: fullscreen would
-                // also hide the top notch / status bar (time, battery,
-                // tower), which must stay visible. Max Ai opens inside
-                // the browser, below that status bar.
+                // Remove the browser top area: fullscreen hides the
+                // address bar / browser chrome while Max Ai is open.
+                // If the browser refuses, Max Ai still opens normally.
+                try {
+                    const fs = document.documentElement.requestFullscreen?.();
+                    if (fs && fs.catch) fs.catch(() => {});
+                } catch (_) {}
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
@@ -1231,6 +1239,14 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
+            // Close button closes everything: exit fullscreen first, so
+            // the browser top area comes back, then hide the panel.
+            try {
+                if (document.fullscreenElement) {
+                    const ex = document.exitFullscreen?.();
+                    if (ex && ex.catch) ex.catch(() => {});
+                }
+            } catch (_) {}
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
