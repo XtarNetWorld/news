@@ -1175,13 +1175,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // Full screen, with the top notch strip kept: in fullscreen
-        // the top gap is 36px (notch height + gap) so the panel starts
-        // below the time/battery/tower bar. Otherwise top gap is 12.
-        // Bottom gap 12, middle gap 10, side gaps kept.
-        const topGap = document.fullscreenElement ? 36 : 12;
-        const available = window.innerHeight - kbHeight - topGap - 12 - 10;
-        chatPanel.style.top = topGap + 'px';
+        // Gaps like previously: top 12, bottom 12, middle 10,
+        // plus side gaps. No extra top strip.
+        const available = window.innerHeight - kbHeight - 12 - 12 - 10;
+        chatPanel.style.top = '';
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
