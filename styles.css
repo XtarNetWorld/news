@@ -5084,8 +5084,17 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     /* Mobile only: middle space may scroll, so nothing is ever clipped. */
     .orbit-chat-space { overflow-y: auto; }
     .orbit-chat-empty { min-height: 0; overflow-y: auto; }
-    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 130px; }
-    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
+    /* Output area grows from the TOP only: the panel grid row for the
+       bot shrinks 194px -> 64px (bot face .36 -> .18 to match), so the
+       1fr chat space below it gains that height. Panel height, MESSAGES
+       nav, type form and keyboard are untouched, so the bottom does
+       not move at all. */
+    .orbit-chat-panel.keyboard-visible { grid-template-rows: auto 64px 1fr auto auto; }
+    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 64px; margin-top: 0; }
+    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.18) !important; }
+    /* Log starts at the top instead of centring, so a tall output
+       message is never clipped at its top edge. */
+    .orbit-chat-panel.keyboard-visible .orbit-chat-log { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
     /* Welcome heading is back (undone): it stays visible while typing,
