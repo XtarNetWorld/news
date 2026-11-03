@@ -1,5 +1,5 @@
-const CACHE = 'newsxphere-static-v76';
-const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=66', '/script.js?v=66', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
+const CACHE = 'newsxphere-static-v77';
+const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=77', '/script.js?v=77', '/jobs.css', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', event => {
@@ -21,8 +21,22 @@ self.addEventListener('fetch', event => {
     }
 
     if (request.destination === 'style' || request.destination === 'script') {
-        // Network first, cache as fallback: site code updates must reach
-        // phones on the next visit instead of sitting behind an old cache.
+        // v77 speed: versioned assets (?v=77) are immutable, so they
+        // are cache-first: repeat visits serve script/styles instantly
+        // from the service-worker cache, no network wait. A new release
+        // gets a new ?v= URL, so it can never serve stale code.
+        // Unversioned assets (article pages load plain script.js)
+        // stay network-first, so Max Ai updates still reach them.
+        if (url.searchParams.has('v')) {
+            event.respondWith(
+                caches.match(request).then(cached => cached || fetch(request).then(response => {
+                    const copy = response.clone();
+                    caches.open(CACHE).then(cache => cache.put(request, copy));
+                    return response;
+                }))
+            );
+            return;
+        }
         event.respondWith(
             fetch(request).then(response => {
                 const copy = response.clone();
