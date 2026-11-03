@@ -5119,6 +5119,11 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 .maxai-suggest { flex: 1 1 0; min-width: 0; height: 32px; border: none; background: transparent; color: var(--ink); font: 600 14px "DM Sans", system-ui, sans-serif; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .maxai-suggest + .maxai-suggest { border-left: 1px solid var(--line); }
 .maxai-suggest-emoji { flex: 0 0 36px; height: 32px; border: none; background: transparent; font-size: 18px; cursor: pointer; }
+.maxai-suggest-paste { flex: 0 0 36px; height: 32px; border: none; background: transparent; font-size: 18px; cursor: pointer; }
+/* v76: chat messages are explicitly selectable, so long-pressing a
+   message opens Android's system Copy menu. This does not touch the
+   keyboard rules below (keys stay user-select: none, hold = symbol). */
+.orbit-chat-message { user-select: text; -webkit-user-select: text; -webkit-touch-callout: default; }
 /* Emoji panel: many emojis in a scrollable grid, like a real keyboard. */
 .maxai-emoji-panel { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; max-height: 176px; overflow-y: auto; padding: 4px; }
 .maxai-emoji-btn { border: none; background: transparent; font-size: 22px; padding: 6px 0; cursor: pointer; border-radius: 8px; }
