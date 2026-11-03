@@ -999,7 +999,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('input', updateChatSendState);
     updateChatSendState();
     renderSuggestions();
-    // Custom on-screen keyboard for Max Ai. Short and soft: only letters
+    // Custom on-screen keyboard for Max Ai, placed INSIDE the panel
+    // (after the type form) so it can never cover the panel or the
+    // type area: when it opens, only the middle chat space shrinks.
+    // Short and soft: only letters
     // (or, after tapping 123, numbers and symbols) are shown at once.
     // It lives in its own bottom panel, opens with the Max Ai panel,
     // and closes with it. Colours come from the site theme.
@@ -1114,18 +1117,16 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     maxaiKeyboard.addEventListener('mousedown', event => {
         if (event.target.closest('button')) event.preventDefault();
     });
-    document.body.appendChild(maxaiKeyboard);
+    chatPanel.appendChild(maxaiKeyboard);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
     const maxaiShowKeyboard = () => {
         if (!maxaiIsNarrow()) return;
         maxaiKeyboard.hidden = false;
-        document.body.classList.add('maxai-keyboard-open');
         // Read-only stops the native keyboard; custom keys still edit via script.
         chatInput.setAttribute('readonly', '');
     };
     const maxaiHideKeyboard = () => {
         maxaiKeyboard.hidden = true;
-        document.body.classList.remove('maxai-keyboard-open');
         chatInput.removeAttribute('readonly');
     };
     chatInput?.addEventListener('click', () => {
