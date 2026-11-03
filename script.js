@@ -211,7 +211,7 @@ if (orbitBotHost) {
     const historyMenu = document.createElement('div');
     historyMenu.className = 'orbit-chat-history-menu';
     historyMenu.hidden = true;
-    historyMenu.innerHTML = '<div class="orbit-chat-history-menu-title"><span>Previous chats</span><button type="button" class="orbit-chat-new-button"><span>New chat</span><b aria-hidden="true">+</b></button></div><div class="orbit-chat-history-menu-list"></div><button type="button" class="orbit-chat-history-menu-more" hidden><span class="orbit-chat-history-menu-more-arrow" aria-hidden="true">\u2193</span><span class="orbit-chat-history-menu-more-text"></span></button>';
+    historyMenu.innerHTML = '<div class="orbit-chat-history-menu-title"><span>Previous chats</span><button type="button" class="orbit-chat-new-button"><span>New chat</span><b aria-hidden="true">+</b></button></div><div class="orbit-chat-history-menu-list"></div>';
     chatPanel.appendChild(historyMenu);
     const historyDialog = document.createElement('div');
     historyDialog.className = 'orbit-chat-history-dialog';
@@ -234,29 +234,6 @@ if (orbitBotHost) {
     const closeChat = chatPanel.querySelector('.orbit-chat-close');
     const newChatButton = historyMenu.querySelector('.orbit-chat-new-button');
     const historyMenuList = historyMenu.querySelector('.orbit-chat-history-menu-list');
-    const historyMenuMore = historyMenu.querySelector('.orbit-chat-history-menu-more');
-    const historyMenuMoreText = historyMenu.querySelector('.orbit-chat-history-menu-more-text');
-    // v71: the old menu hid its scrollbar, so nothing told the user
-    // more chats were below. This counts the items that are still
-    // below the visible list area and shows them as a tappable
-    // down-arrow with the exact number, so it is obvious at a glance.
-    const updateHistoryMenuMore = () => {
-        if (!historyMenu || !historyMenuMore || !historyMenuList) return;
-        if (historyMenu.hidden) { historyMenuMore.hidden = true; return; }
-        const listRect = historyMenuList.getBoundingClientRect();
-        let below = 0;
-        historyMenuList.querySelectorAll('.orbit-chat-history-menu-item').forEach(item => {
-            if (item.getBoundingClientRect().bottom > listRect.bottom + 1) below++;
-        });
-        if (!below) { historyMenuMore.hidden = true; return; }
-        if (historyMenuMoreText) historyMenuMoreText.textContent = below + (below === 1 ? ' more chat below' : ' more chats below');
-        historyMenuMore.setAttribute('aria-label', 'Show ' + below + ' more chats below');
-        historyMenuMore.hidden = false;
-    };
-    historyMenuList?.addEventListener('scroll', updateHistoryMenuMore, { passive: true });
-    historyMenuMore?.addEventListener('click', () => {
-        historyMenuList?.scrollBy({ top: (historyMenuList.clientHeight || 200) * 0.8, behavior: 'smooth' });
-    });
     const historyDialogTitle = historyDialog.querySelector('.orbit-chat-history-dialog-title');
     const historyDialogInput = historyDialog.querySelector('.orbit-chat-history-dialog-input');
     const historyDialogMessage = historyDialog.querySelector('.orbit-chat-history-dialog-message');
@@ -689,7 +666,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             empty.className = 'orbit-chat-history-menu-empty';
             empty.textContent = 'No previous chats yet';
             historyMenuList.appendChild(empty);
-            updateHistoryMenuMore();
             return;
         }
         chatSessions.slice().reverse().forEach((session, reverseIndex) => {
@@ -751,7 +727,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             item.append(itemMain, actions);
             historyMenuList.appendChild(item);
         });
-        updateHistoryMenuMore();
     };
     const stopChatSpeech = () => {
         speechRequestId += 1;
@@ -1727,7 +1702,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     historyHead?.addEventListener('click', () => {
         refreshHistoryMenu();
         historyMenu.hidden = !historyMenu.hidden;
-        if (!historyMenu.hidden) requestAnimationFrame(updateHistoryMenuMore);
     });
     historyNext?.addEventListener('click', () => renderExchange(activeExchangeIndex + 1));
     document.addEventListener('click', event => {
