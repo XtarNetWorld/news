@@ -1081,7 +1081,14 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiCaretMirror = document.createElement('span');
     maxaiCaretMirror.style.cssText = 'position:absolute;top:-9999px;left:-9999px;visibility:hidden;white-space:pre;font:14px "DM Sans", system-ui, sans-serif;';
     document.body.appendChild(maxaiCaretMirror);
-    const maxaiUpdateCaret = () => {
+    // v79 realtime: caret measurement reads layout (mirror offsetWidth,
+    // input clientWidth/offset), so running it on every keystroke forced
+    // a layout per key. Now it is scheduled at most once per animation
+    // frame: fast typing in one frame measures once, at the latest
+    // value/cursor, so the final caret position is identical, just
+    // without a forced reflow per key.
+    let maxaiCaretScheduled = false;
+    const maxaiRunCaret = () => {
         if (!chatInput || !maxaiCaret) return;
         const panelOpen = document.body.classList.contains('bot-chat-open');
         if (window.innerWidth > 640 || !panelOpen) { maxaiCaret.style.display = 'none'; return; }
@@ -1100,6 +1107,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (left < chatInput.offsetLeft + 15) left = chatInput.offsetLeft + 15;
         maxaiCaret.style.left = left + 'px';
         maxaiCaret.style.top = (chatInput.offsetTop + (chatInput.offsetHeight - 20) / 2) + 'px';
+    };
+    const maxaiUpdateCaret = () => {
+        if (maxaiCaretScheduled) return;
+        maxaiCaretScheduled = true;
+        requestAnimationFrame(() => { maxaiCaretScheduled = false; maxaiRunCaret(); });
     };
     chatInput?.addEventListener('input', maxaiUpdateCaret);
     chatInput?.addEventListener('focus', maxaiUpdateCaret);
@@ -1277,7 +1289,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 maxaiVibrate(); action();
             });
         } else {
-            button.addEventListener('click', () => { maxaiVibrate(); action(); });
+            // v79 realtime: run the action on pointerdown (press), not
+            // on click (release), like Backspace already does. The
+            // click that follows a pointer press is suppressed, so
+            // the action still runs exactly once. This matters most
+            // for Send: a second submit on click used to abort the
+            // first request, so suppression is required, not optional.
+            let pressedFromPointer = false;
+            button.addEventListener('pointerdown', () => { pressedFromPointer = true; maxaiVibrate(); action(); });
+            button.addEventListener('click', () => {
+                if (pressedFromPointer) { pressedFromPointer = false; return; }
+                maxaiVibrate(); action();
+            });
         }
         if (label.length === 1 && label !== '⌫' && label !== '↗') maxaiAddKeyPreview(button, () => label);
         return button;
@@ -1299,16 +1322,38 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button._mainEl = main;
         let holdTimer = null;
         let longPressed = false;
+        let insertedOnPointer = false;
+        let pressedLetter = '';
+        let pressedLetterEnd = -1;
         const charPreview = maxaiAddKeyPreview(button, () => longPressed && secondary ? secondary : (maxaiShift ? ch.toUpperCase() : ch));
         button.addEventListener('touchstart', maxaiVibrate, { passive: true });
         button.addEventListener('pointerdown', () => {
             maxaiVibrate();
+            // v79 realtime: insert the letter at press time, not on
+            // release. Final outcome is unchanged for a normal tap:
+            // letter only. For a hold, the timer below replaces the
+            // press-time letter with the secondary symbol, so the
+            // final outcome is still secondary only, never letter
+            // plus secondary. Replacement only runs when the cursor
+            // is still right after the inserted letter; otherwise
+            // (e.g. multi-touch changed the text) it inserts the
+            // secondary at the current cursor, as the old code did.
+            const letter = maxaiShift ? ch.toUpperCase() : ch;
+            maxaiInsertText(letter);
+            insertedOnPointer = true;
+            pressedLetter = letter;
+            pressedLetterEnd = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : -1;
             if (!secondary) return;
             longPressed = false;
             holdTimer = setTimeout(() => {
                 longPressed = true;
                 maxaiVibrate();
                 if (charPreview) { charPreview.textContent = secondary; charPreview.classList.add('is-on'); }
+                const cur = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : -1;
+                const val = chatInput.value || '';
+                if (pressedLetter && cur === pressedLetterEnd && val.slice(pressedLetterEnd - pressedLetter.length, pressedLetterEnd) === pressedLetter) {
+                    maxaiBackspace();
+                }
                 maxaiInsertText(secondary);
             }, 450);
         });
@@ -1317,7 +1362,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.addEventListener('pointerleave', clearHold);
         button.addEventListener('pointercancel', clearHold);
         button.addEventListener('click', () => {
-            if (longPressed) { longPressed = false; return; }
+            if (longPressed || insertedOnPointer) { longPressed = false; insertedOnPointer = false; return; }
             maxaiVibrate();
             maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch);
         });
@@ -1359,8 +1404,29 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (!m) return [];
         const word = m[1].toLowerCase();
         if (word.length < 1) return [];
-        const exact = maxaiSuggestWords.filter(w => w.startsWith(word) && w !== word);
-        const by2 = word.length >= 2 ? maxaiSuggestWords.filter(w => w.startsWith(word.slice(0, 2)) && w !== word && !exact.includes(w)) : [];
+        // v79 realtime: one pass instead of two filters. Output is
+        // identical to the old version, because the old version only
+        // ever used the first 2 exact matches and the first 2 by-2
+        // matches (the list is sliced to 3 after prepending the word
+        // itself). As soon as 2 exact matches are found, no by-2
+        // match can ever appear in the final 3, so scanning stops.
+        const exact = [];
+        const by2 = [];
+        const prefix2 = word.length >= 2 ? word.slice(0, 2) : '';
+        for (const w of maxaiSuggestWords) {
+            if (w === word) continue;
+            if (w.startsWith(word)) {
+                if (!exact.includes(w)) exact.push(w);
+                if (exact.length >= 2) break;
+            } else if (prefix2 && w.startsWith(prefix2) && !by2.includes(w)) {
+                // Unique only: the word list contains "space" twice,
+                // and the old Set() step deduplicated it, so counting
+                // raw entries would lose the third suggestion.
+                // No early break here: a later exact match still
+                // outranks an earlier by-2 match in the old output.
+                if (by2.length < 2) by2.push(w);
+            }
+        }
         return [...new Set([word, ...exact, ...by2])].slice(0, 3);
     };
     const maxaiApplySuggestion = suggestion => {
