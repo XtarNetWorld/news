@@ -1194,7 +1194,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatPanel.style.height = '';
         chatInput.removeAttribute('readonly');
     };
-    let maxaiSavedScrollY = 0;
     const maxaiRelayout = () => { if (!maxaiKeyboard.hidden) requestAnimationFrame(maxaiLayoutPanel); };
     window.addEventListener('resize', maxaiRelayout);
     chatInput?.addEventListener('click', () => {
@@ -1210,25 +1209,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
                 // No Fullscreen API on purpose: fullscreen hides the
                 // phone's top status bar (time, battery, tower), and
                 // that bar must stay visible, as in the wanted shot.
-                // Instead, hide only Chrome's bar: on Android Chrome
-                // the address bar collapses when the page scrolls
-                // down, while the system status bar stays. So scroll
-                // down a little BEFORE locking scroll -- the locked
-                // page cannot scroll back up, so Chrome's bar stays
-                // collapsed while Max Ai is open. Gaps are untouched.
-                maxaiSavedScrollY = window.scrollY || 0;
-                try { window.scrollTo(0, maxaiSavedScrollY + 200); } catch (_) {}
-                // Lock AFTER Chrome's bar has time to collapse. Locking
-                // at once, and focusing the box, brought the bar back
-                // in v40. The locked page cannot scroll back up, so
-                // the bar stays collapsed while Max Ai is open.
-                window.setTimeout(() => {
-                    if (!document.body.classList.contains('bot-chat-open')) return;
-                    maxaiBackdrop.hidden = false;
-                    document.body.style.overflow = 'hidden';
-                    document.documentElement.style.overflow = 'hidden';
-                    maxaiRelayout();
-                }, 350);
+                // Max Ai opens inside the browser, below that bar.
+                maxaiBackdrop.hidden = false;
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
@@ -1236,9 +1220,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             orbitBotHost.classList.add('bot-chat-bot');
             requestAnimationFrame(() => chatPanel.classList.add('is-open'));
             maxaiShowKeyboard();
-            // No input focus on mobile: it brings Chrome's bar back
-            // and the custom keyboard does not need native focus.
-            if (window.innerWidth > 640) window.setTimeout(() => chatInput?.focus(), 220);
+            window.setTimeout(() => chatInput?.focus(), 220);
         } else {
             if (assistantMicActive) {
                 assistantRecognition?.stop();
@@ -1252,9 +1234,6 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
-            // Back to where the user was: scrolling back up brings
-            // Chrome's bar back, and the status bar was never hidden.
-            try { window.scrollTo(0, maxaiSavedScrollY); } catch (_) {}
             orbitBotHost.classList.remove('bot-chat-bot');
             if (orbitBotHome?.isConnected && orbitBotAnchor?.isConnected) orbitBotHome.insertBefore(orbitBotHost, orbitBotAnchor.nextSibling);
             // Reset the previous docking marker before recalculating. Without
