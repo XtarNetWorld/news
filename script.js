@@ -1032,8 +1032,12 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
         try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
     };
+    let maxaiLastVibrate = 0;
     const maxaiVibrate = () => {
-        try { if (navigator.vibrate) navigator.vibrate(20); } catch (_) {}
+        const now = Date.now();
+        if (now - maxaiLastVibrate < 150) return;
+        maxaiLastVibrate = now;
+        try { if (navigator.vibrate) navigator.vibrate(30); } catch (_) {}
     };
     const maxaiMakeKey = (label, action, extraClass) => {
         const button = document.createElement('button');
@@ -1041,7 +1045,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
         button.textContent = label;
         button.addEventListener('pointerdown', maxaiVibrate);
-        button.addEventListener('click', action);
+        button.addEventListener('click', () => { maxaiVibrate(); action(); });
         return button;
     };
     const maxaiCharKey = (ch, secondary) => {
@@ -1077,6 +1081,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.addEventListener('pointercancel', clearHold);
         button.addEventListener('click', () => {
             if (longPressed) { longPressed = false; return; }
+            maxaiVibrate();
             maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch);
         });
         return button;
