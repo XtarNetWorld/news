@@ -1147,7 +1147,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
         const before = val.slice(0, cursor);
         const after = val.slice(cursor);
-        const replaced = before.replace(/([A-Za-z]+)$/, suggestion + ' ');
+        const replaced = /([A-Za-z]+)$/.test(before) ? before.replace(/([A-Za-z]+)$/, suggestion + ' ') : before + suggestion + ' ';
         chatInput.value = replaced + after;
         const pos = replaced.length;
         try { chatInput.setSelectionRange(pos, pos); } catch (_) {}
@@ -1155,9 +1155,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     };
     const maxaiUpdateSuggestions = doRelayout => {
         if (!maxaiSuggestBar) return;
-        const list = maxaiGetSuggestions();
-        if (list.length === 0) { maxaiSuggestBar.style.display = 'none'; }
-        else {
+        // Never hide the suggestion line, even when nothing is typed:
+        // with no word being typed, show default words to tap.
+        const list = maxaiGetSuggestions().length ? maxaiGetSuggestions() : ['hello', 'hi', 'how'];
+        if (true) {
             maxaiSuggestBar.style.display = 'flex';
             maxaiSuggestBar.replaceChildren();
             list.forEach(word => {
