@@ -55,4 +55,70 @@
       <news:title>COP31 in Antalya: Two Presidents, One Climate Test</news:title>
     </news:news>
   </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/cyclone-murasu-andhra-pradesh-landfall-damage-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>Cyclone Murasu Batters Andhra Pradesh: Two Dead, Crops and Homes Damaged in a Second Storm in a Week</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/indian-navy-azini-rescue-somalia-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>Indian Navy Rescues 20 Crew From Hijacked Vessel Azini Off Somalia After a 48-Hour Operation</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/tech/isro-nvs-03-navic-gslv-f18-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>ISRO Launches NVS-03 on GSLV-F18 to Restore NavIC, India's Own Navigation System</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/business/india-gst-october-2026-second-highest-factory-output/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>India Collected ₹2.31 Lakh Crore GST in October, the Second-Highest Ever, as Factory Output Grew 6.7%</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/tech/ai-deals-115-billion-marvell-anthropic-apple-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>AI's Bill Has Arrived: A $115 Billion Chip Deal, $895 Billion in Compute Promises, and Apple's Memory Warning</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/startups/hurun-gazelle-indian-startups-unicorns-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-03T12:30:00+05:30</news:publication_date>
+      <news:title>51 Indian Startups Worth ₹3.3 Lakh Crore Are One Step From Unicorn Status, Led by AI, Rockets and Drones</news:title>
+    </news:news>
+  </url>
 </urlset>
