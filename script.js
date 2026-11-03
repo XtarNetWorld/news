@@ -1007,6 +1007,44 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     // It lives in its own bottom panel, opens with the Max Ai panel,
     // and closes with it. Colours come from the site theme.
     const maxaiKeyboard = document.createElement('div');
+    // Blinking text cursor for the type box. On mobile the input is
+    // readonly (so the native keyboard stays away) and Android Chrome
+    // does not show a native caret for it, so users type blind. This
+    // custom caret sits over the input, blinks, and follows the real
+    // cursor position (measured with a hidden mirror span in the
+    // input's own font, so it lands exactly at the end of the text
+    // up to the cursor, even when the text scrolls).
+    const maxaiCaret = document.createElement('span');
+    maxaiCaret.className = 'maxai-caret';
+    maxaiCaret.setAttribute('aria-hidden', 'true');
+    chatForm?.appendChild(maxaiCaret);
+    const maxaiCaretMirror = document.createElement('span');
+    maxaiCaretMirror.style.cssText = 'position:absolute;top:-9999px;left:-9999px;visibility:hidden;white-space:pre;font:14px "DM Sans", system-ui, sans-serif;';
+    document.body.appendChild(maxaiCaretMirror);
+    const maxaiUpdateCaret = () => {
+        if (!chatInput || !maxaiCaret) return;
+        const panelOpen = document.body.classList.contains('bot-chat-open');
+        if (window.innerWidth > 640 || !panelOpen) { maxaiCaret.style.display = 'none'; return; }
+        maxaiCaret.style.display = 'block';
+        const val = chatInput.value || '';
+        const cursor = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : val.length;
+        maxaiCaretMirror.textContent = val.slice(0, cursor);
+        const textW = maxaiCaretMirror.offsetWidth;
+        const inputW = chatInput.clientWidth;
+        const visibleW = inputW - 28;
+        try { chatInput.scrollLeft = textW > visibleW ? textW - visibleW : 0; } catch (_) {}
+        const scroll = chatInput.scrollLeft || 0;
+        let left = chatInput.offsetLeft + 1 + 14 + textW - scroll;
+        const maxLeft = chatInput.offsetLeft + 1 + inputW - 14 - 2;
+        if (left > maxLeft) left = maxLeft;
+        if (left < chatInput.offsetLeft + 15) left = chatInput.offsetLeft + 15;
+        maxaiCaret.style.left = left + 'px';
+        maxaiCaret.style.top = (chatInput.offsetTop + (chatInput.offsetHeight - 20) / 2) + 'px';
+    };
+    chatInput?.addEventListener('input', maxaiUpdateCaret);
+    chatInput?.addEventListener('focus', maxaiUpdateCaret);
+    chatInput?.addEventListener('click', () => setTimeout(maxaiUpdateCaret, 0));
+    chatInput?.addEventListener('scroll', maxaiUpdateCaret);
     maxaiKeyboard.className = 'maxai-keyboard-panel';
     maxaiKeyboard.setAttribute('aria-label', 'Max Ai keyboard');
     maxaiKeyboard.hidden = true;
@@ -1273,6 +1311,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         // Read-only stops the native keyboard; custom keys still edit via script.
         chatInput.setAttribute('readonly', '');
         requestAnimationFrame(maxaiLayoutPanel);
+        setTimeout(maxaiUpdateCaret, 50);
     };
     const maxaiHideKeyboard = () => {
         maxaiKeyboard.hidden = true;
