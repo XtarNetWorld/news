@@ -1206,6 +1206,26 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             requestAnimationFrame(maxaiLayoutPanel);
         }
     });
+    const maxaiEnsureFullscreen = () => {
+        if (!maxaiIsNarrow()) return;
+        if (!document.body.classList.contains('bot-chat-open')) return;
+        if (document.fullscreenElement) return;
+        try {
+            const el = document.documentElement;
+            const fs = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' })
+                : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
+            if (fs && fs.catch) fs.catch(() => {});
+        } catch (_) {}
+    };
+    // Chrome minimized then reopened: page visible again, Max Ai still open.
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') maxaiEnsureFullscreen();
+    });
+    window.addEventListener('pageshow', maxaiEnsureFullscreen);
+    window.addEventListener('focus', maxaiEnsureFullscreen);
+    // Gesture fallback: first tap inside Max Ai after reopening will
+    // re-enter fullscreen even if the visibility attempt was rejected.
+    document.addEventListener('pointerdown', maxaiEnsureFullscreen, true);
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1214,10 +1234,8 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             // keeps its previous behaviour (no backdrop, no scroll lock).
             if (window.innerWidth <= 640) {
                 // Full screen on bot click: first in the gesture, so
-                // Chrome's bar is removed. The panel layout above
-                // leaves a 36px strip at the top in fullscreen, so
-                // the notch bar (time, battery, tower) area is not
-                // covered by the panel.
+                // Chrome's bar is removed. Gaps like previously:
+                // top 12, bottom 12, middle 10, side gaps.
                 try {
                     const el = document.documentElement;
                     const fs = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' })
