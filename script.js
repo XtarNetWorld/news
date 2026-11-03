@@ -1323,12 +1323,20 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         try { chatInput.setSelectionRange(pos, pos); } catch (_) {}
         chatInput.dispatchEvent(new Event('input', { bubbles: true }));
     };
+    // v70 speed: remember the last suggestion list. Most keystrokes do
+    // not change it (spaces, punctuation, same top-3), so rebuilding
+    // 4 buttons + 8 listeners on every tap was pure DOM churn.
+    let maxaiLastSuggestKey = null;
     const maxaiUpdateSuggestions = doRelayout => {
         if (!maxaiSuggestBar) return;
         // Never hide the suggestion line, even when nothing is typed:
         // with no word being typed, show default words to tap.
-        const list = maxaiGetSuggestions().length ? maxaiGetSuggestions() : ['hello', 'hi', 'how'];
-        if (true) {
+        // Compute the list ONCE (the old code ran the filter twice).
+        const found = maxaiGetSuggestions();
+        const list = found.length ? found : ['hello', 'hi', 'how'];
+        const key = list.join('\u0000');
+        if (key !== maxaiLastSuggestKey) {
+            maxaiLastSuggestKey = key;
             maxaiSuggestBar.style.display = 'flex';
             maxaiSuggestBar.replaceChildren();
             list.forEach(word => {
@@ -1370,7 +1378,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         row.lastChild.setAttribute('aria-label', 'Send question');
         return row;
     };
+    let maxaiEmojiGrid = null;
     const maxaiRenderKeyboard = () => {
+        maxaiLastSuggestKey = null;
         maxaiKeyboard.replaceChildren();
         maxaiLetterKeys = [];
         // Step 1: suggestion line on top, like a real keyboard.
@@ -1380,16 +1390,21 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (maxaiMode === 'emoji') {
             // Step 3: many emojis, like a real keyboard. Tap inserts
             // and stays in the panel so you can tap several in a row.
-            const grid = document.createElement('div');
-            grid.className = 'maxai-emoji-panel';
-            maxaiEmojiList.forEach(emoji => {
-                const b = document.createElement('button');
-                b.type = 'button'; b.className = 'maxai-emoji-btn'; b.textContent = emoji;
-                maxaiAddVibrate(b);
-                b.addEventListener('click', () => { maxaiVibrate(); maxaiInsertText(emoji); });
-                grid.appendChild(b);
-            });
-            maxaiKeyboard.appendChild(grid);
+            // v70 speed: build the 300+ buttons once and reuse the grid
+            // (its handlers only insert text, so they stay valid).
+            // The old code rebuilt all of them on every emoji open.
+            if (!maxaiEmojiGrid) {
+                maxaiEmojiGrid = document.createElement('div');
+                maxaiEmojiGrid.className = 'maxai-emoji-panel';
+                maxaiEmojiList.forEach(emoji => {
+                    const b = document.createElement('button');
+                    b.type = 'button'; b.className = 'maxai-emoji-btn'; b.textContent = emoji;
+                    maxaiAddVibrate(b);
+                    b.addEventListener('click', () => { maxaiVibrate(); maxaiInsertText(emoji); });
+                    maxaiEmojiGrid.appendChild(b);
+                });
+            }
+            maxaiKeyboard.appendChild(maxaiEmojiGrid);
             maxaiKeyboard.appendChild(maxaiBottomRow(true));
         } else if (maxaiMode === 'letters') {
             const row1Seconds = { q: '1', w: '2', e: '3', r: '4', t: '5', y: '6', u: '7', i: '8', o: '9', p: '0' };
@@ -1419,7 +1434,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         maxaiUpdateSuggestions(false);
     };
     const maxaiRenderWithLayout = () => { maxaiRenderKeyboard(); maxaiRelayout(); };
-    chatInput?.addEventListener('input', () => maxaiUpdateSuggestions(true));
+    chatInput?.addEventListener('input', () => maxaiUpdateSuggestions(false));
     maxaiRenderKeyboard();
     // Keep the chat input focused without opening the native keyboard:
     // tapping a custom key must not move focus away from the input.
@@ -1433,9 +1448,14 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     maxaiBackdrop.setAttribute('aria-hidden', 'true');
     document.body.appendChild(maxaiBackdrop);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
+    let maxaiLastKbHeight = -1;
     const maxaiLayoutPanel = () => {
-        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; return; }
+        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; maxaiLastKbHeight = -1; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
+        // v70 speed: if the keyboard is the same height and the panel
+        // already has a height, writing it again is a wasted layout.
+        if (kbHeight === maxaiLastKbHeight && chatPanel.style.height) return;
+        maxaiLastKbHeight = kbHeight;
         // Gaps like previously: top 12, bottom 12, middle 10,
         // plus side gaps. No extra top strip.
         const available = window.innerHeight - kbHeight - 12 - 12 - 10;
