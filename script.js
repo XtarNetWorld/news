@@ -1161,6 +1161,21 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         if (true) {
             maxaiSuggestBar.style.display = 'flex';
             maxaiSuggestBar.replaceChildren();
+            const cb = document.createElement('button');
+            cb.type = 'button'; cb.className = 'maxai-suggest-clipboard'; cb.textContent = '📋'; cb.setAttribute('aria-label', 'Paste from clipboard');
+            maxaiAddVibrate(cb);
+            cb.addEventListener('click', async () => {
+                maxaiVibrate();
+                try {
+                    if (navigator.clipboard && navigator.clipboard.readText) {
+                        const text = await navigator.clipboard.readText();
+                        if (text) maxaiInsertText(text);
+                        return;
+                    }
+                } catch (_) {}
+                try { chatInput.focus(); document.execCommand('paste'); } catch (_) {}
+            });
+            maxaiSuggestBar.appendChild(cb);
             list.forEach(word => {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'maxai-suggest'; b.textContent = word;
