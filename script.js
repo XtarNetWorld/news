@@ -1173,11 +1173,15 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     document.body.appendChild(maxaiBackdrop);
     const maxaiIsNarrow = () => window.innerWidth <= 640;
     const maxaiLayoutPanel = () => {
-        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
+        if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; chatPanel.style.top = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // Gaps back, like before: top gap 12, bottom gap 12, and a
-        // 10px gap between panel and keyboard, plus side gaps.
-        const available = window.innerHeight - kbHeight - 12 - 12 - 10;
+        // Full screen, with the top notch strip kept: in fullscreen
+        // the top gap is 36px (notch height + gap) so the panel starts
+        // below the time/battery/tower bar. Otherwise top gap is 12.
+        // Bottom gap 12, middle gap 10, side gaps kept.
+        const topGap = document.fullscreenElement ? 36 : 12;
+        const available = window.innerHeight - kbHeight - topGap - 12 - 10;
+        chatPanel.style.top = topGap + 'px';
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
@@ -1192,12 +1196,18 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         maxaiKeyboard.hidden = true;
         chatPanel.classList.remove('keyboard-visible');
         chatPanel.style.height = '';
+        chatPanel.style.top = '';
         chatInput.removeAttribute('readonly');
     };
     const maxaiRelayout = () => { if (!maxaiKeyboard.hidden) requestAnimationFrame(maxaiLayoutPanel); };
     window.addEventListener('resize', maxaiRelayout);
     chatInput?.addEventListener('click', () => {
         if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
+    });
+    document.addEventListener('fullscreenchange', () => {
+        if (document.body.classList.contains('bot-chat-open') && !maxaiKeyboard.hidden) {
+            requestAnimationFrame(maxaiLayoutPanel);
+        }
     });
     const setChatOpen = open => {
         if (open) {
@@ -1206,10 +1216,17 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             // Mobile-only system: on tablet, laptop and desktop the panel
             // keeps its previous behaviour (no backdrop, no scroll lock).
             if (window.innerWidth <= 640) {
-                // No Fullscreen API on purpose: fullscreen hides the
-                // phone's top status bar (time, battery, tower), and
-                // that bar must stay visible, as in the wanted shot.
-                // Max Ai opens inside the browser, below that bar.
+                // Full screen on bot click: first in the gesture, so
+                // Chrome's bar is removed. The panel layout above
+                // leaves a 36px strip at the top in fullscreen, so
+                // the notch bar (time, battery, tower) area is not
+                // covered by the panel.
+                try {
+                    const el = document.documentElement;
+                    const fs = el.requestFullscreen ? el.requestFullscreen({ navigationUI: 'hide' })
+                        : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
+                    if (fs && fs.catch) fs.catch(() => {});
+                } catch (_) {}
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
@@ -1231,6 +1248,13 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
+            // Close exits fullscreen and closes the panel.
+            try {
+                if (document.fullscreenElement) {
+                    const ex = document.exitFullscreen?.();
+                    if (ex && ex.catch) ex.catch(() => {});
+                }
+            } catch (_) {}
             maxaiBackdrop.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
