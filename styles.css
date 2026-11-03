@@ -5094,29 +5094,3 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-panel.keyboard-visible .orbit-chat-suggestion { min-height: 38px; padding: 6px 9px; }
 }
 
-/* Mobile-only full-screen Max Ai. Tablet, laptop and desktop keep the
-   previous card-sized panel exactly as before. */
-@media (max-width: 640px) {
-    .orbit-chat-panel {
-        left: 0;
-        right: 0;
-        top: 0;
-        width: 100vw;
-        height: 100dvh;
-        border-radius: 0;
-        padding-top: calc(16px + env(safe-area-inset-top, 0px));
-        padding-left: calc(18px + env(safe-area-inset-left, 0px));
-        padding-right: calc(18px + env(safe-area-inset-right, 0px));
-        padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    }
-    .maxai-keyboard-panel {
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        border-radius: 0;
-        padding-left: calc(10px + env(safe-area-inset-left, 0px));
-        padding-right: calc(10px + env(safe-area-inset-right, 0px));
-        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    }
-}
