@@ -5101,7 +5101,7 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-panel .orbit-chat-log { justify-content: flex-end; }
     .orbit-chat-panel .orbit-chat-message.sent { margin-top: auto; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
-    .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
+    .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: center; }
     /* Welcome heading is back (undone): it stays visible while typing,
        just compact, and the bigger panel below gives it room. */
     .orbit-chat-panel.keyboard-visible .orbit-chat-welcome { margin-bottom: 2px; padding: 6px 14px; }
