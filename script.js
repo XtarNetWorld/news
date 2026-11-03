@@ -1037,7 +1037,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         const now = Date.now();
         if (now - maxaiLastVibrate < 150) return;
         maxaiLastVibrate = now;
-        try { if (navigator.vibrate) navigator.vibrate(30); } catch (_) {}
+        try { if (navigator.vibrate) navigator.vibrate(50); } catch (_) {}
     };
     const maxaiMakeKey = (label, action, extraClass) => {
         const button = document.createElement('button');
@@ -1175,11 +1175,11 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // No 540/560px cap while the keyboard is open: panel top gap 12
-        // + 10px gap above the keyboard, and everything in between is
-        // panel. On tall phones this makes the panel noticeably bigger,
-        // so welcome + recommended questions fit in full.
-        const available = window.innerHeight - 12 - 12 - 10 - kbHeight;
+        // Full-screen mobile: panel starts at the top of the screen and
+        // the keyboard sits at the very bottom, so panel height is the
+        // viewport minus the keyboard minus a 10px gap. No top/bottom
+        // card gaps any more on mobile.
+        const available = window.innerHeight - kbHeight - 10;
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
