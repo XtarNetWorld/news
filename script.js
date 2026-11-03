@@ -999,6 +999,102 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('input', updateChatSendState);
     updateChatSendState();
     renderSuggestions();
+    // Custom on-screen keyboard for Max Ai. It uses the site theme (CSS variables),
+    // lives in its own bottom panel, opens with the Max Ai panel, and closes with it.
+    const maxaiKeyboard = document.createElement('div');
+    maxaiKeyboard.className = 'maxai-keyboard-panel';
+    maxaiKeyboard.setAttribute('aria-label', 'Max Ai keyboard');
+    maxaiKeyboard.hidden = true;
+    let maxaiShift = false;
+    const maxaiLetterKeys = [];
+    const maxaiMakeKey = (label, action, extraClass) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'maxai-key' + (extraClass ? ' ' + extraClass : '');
+        button.textContent = label;
+        button.addEventListener('click', action);
+        return button;
+    };
+    const maxaiInsertText = text => {
+        const start = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : chatInput.value.length;
+        const end = typeof chatInput.selectionEnd === 'number' ? chatInput.selectionEnd : start;
+        chatInput.value = chatInput.value.slice(0, start) + text + chatInput.value.slice(end);
+        const pos = start + text.length;
+        try { chatInput.setSelectionRange(pos, pos); } catch (_) {}
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+        try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
+    };
+    const maxaiBackspace = () => {
+        const start = typeof chatInput.selectionStart === 'number' ? chatInput.selectionStart : chatInput.value.length;
+        const end = typeof chatInput.selectionEnd === 'number' ? chatInput.selectionEnd : start;
+        if (start === end && start === 0) return;
+        const from = start === end ? start - 1 : start;
+        chatInput.value = chatInput.value.slice(0, from) + chatInput.value.slice(end);
+        try { chatInput.setSelectionRange(from, from); } catch (_) {}
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+        try { chatInput.focus({ preventScroll: true }); } catch (_) { chatInput.focus(); }
+    };
+    const maxaiRefreshShift = () => {
+        maxaiLetterKeys.forEach(button => {
+            const ch = button.dataset.char || '';
+            button.textContent = maxaiShift ? ch.toUpperCase() : ch;
+        });
+        const shiftButton = maxaiKeyboard.querySelector('.is-shift');
+        if (shiftButton) {
+            shiftButton.classList.toggle('is-shift-active', maxaiShift);
+            shiftButton.setAttribute('aria-pressed', String(maxaiShift));
+        }
+    };
+    [['1','2','3','4','5','6','7','8','9','0'], ['q','w','e','r','t','y','u','i','o','p'], ['a','s','d','f','g','h','j','k','l'], ['z','x','c','v','b','n','m']].forEach(rowChars => {
+        const row = document.createElement('div');
+        row.className = 'maxai-key-row';
+        rowChars.forEach(ch => {
+            const button = maxaiMakeKey(ch, () => maxaiInsertText(maxaiShift ? ch.toUpperCase() : ch));
+            button.dataset.char = ch;
+            maxaiLetterKeys.push(button);
+            row.appendChild(button);
+        });
+        maxaiKeyboard.appendChild(row);
+    });
+    const maxaiBottomRow = document.createElement('div');
+    maxaiBottomRow.className = 'maxai-key-row';
+    const maxaiShiftButton = maxaiMakeKey('⇧', () => { maxaiShift = !maxaiShift; maxaiRefreshShift(); }, 'is-shift');
+    maxaiShiftButton.setAttribute('aria-label', 'Shift');
+    maxaiShiftButton.setAttribute('aria-pressed', 'false');
+    maxaiBottomRow.appendChild(maxaiShiftButton);
+    maxaiBottomRow.appendChild(maxaiMakeKey('.', () => maxaiInsertText('.')));
+    maxaiBottomRow.appendChild(maxaiMakeKey(',', () => maxaiInsertText(',')));
+    maxaiBottomRow.appendChild(maxaiMakeKey('?', () => maxaiInsertText('?')));
+    maxaiBottomRow.appendChild(maxaiMakeKey('!', () => maxaiInsertText('!')));
+    const maxaiSpaceButton = maxaiMakeKey('Space', () => maxaiInsertText(' '), 'is-space');
+    maxaiBottomRow.appendChild(maxaiSpaceButton);
+    maxaiBottomRow.appendChild(maxaiMakeKey('⌫', maxaiBackspace));
+    const maxaiSendButton = maxaiMakeKey('↗', () => { chatForm?.requestSubmit(); }, 'is-send');
+    maxaiSendButton.setAttribute('aria-label', 'Send question');
+    maxaiBottomRow.appendChild(maxaiSendButton);
+    maxaiKeyboard.appendChild(maxaiBottomRow);
+    // Keep the chat input focused without opening the native keyboard:
+    // tapping a custom key must not move focus away from the input.
+    maxaiKeyboard.addEventListener('mousedown', event => {
+        if (event.target.closest('button')) event.preventDefault();
+    });
+    document.body.appendChild(maxaiKeyboard);
+    const maxaiIsNarrow = () => window.innerWidth <= 640;
+    const maxaiShowKeyboard = () => {
+        if (!maxaiIsNarrow()) return;
+        maxaiKeyboard.hidden = false;
+        document.body.classList.add('maxai-keyboard-open');
+        // Read-only stops the native keyboard; custom keys still edit via script.
+        chatInput.setAttribute('readonly', '');
+    };
+    const maxaiHideKeyboard = () => {
+        maxaiKeyboard.hidden = true;
+        document.body.classList.remove('maxai-keyboard-open');
+        chatInput.removeAttribute('readonly');
+    };
+    chatInput?.addEventListener('click', () => {
+        if (document.body.classList.contains('bot-chat-open')) maxaiShowKeyboard();
+    });
     const setChatOpen = open => {
         if (open) {
             if (document.body.classList.contains('bot-chat-open')) return;
@@ -1008,6 +1104,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             chatSlot.appendChild(orbitBotHost);
             orbitBotHost.classList.add('bot-chat-bot');
             requestAnimationFrame(() => chatPanel.classList.add('is-open'));
+            maxaiShowKeyboard();
             window.setTimeout(() => chatInput?.focus(), 220);
         } else {
             if (assistantMicActive) {
@@ -1016,6 +1113,7 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             }
             chatAbortController?.abort();
             stopChatSpeech();
+            maxaiHideKeyboard();
             chatPanel.classList.remove('is-open');
             document.body.classList.remove('bot-chat-open');
             orbitBotHost.classList.remove('bot-chat-bot');
