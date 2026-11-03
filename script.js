@@ -1175,9 +1175,10 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     const maxaiLayoutPanel = () => {
         if (maxaiKeyboard.hidden || !maxaiIsNarrow()) { chatPanel.style.height = ''; return; }
         const kbHeight = maxaiKeyboard.offsetHeight;
-        // Card panel, like before the element edit: top gap 12,
-        // bottom gap 12, and a 10px gap between panel and keyboard.
-        const available = window.innerHeight - kbHeight - 12 - 12 - 10;
+        // Full screen height, like before: panel top at the screen
+        // top, keyboard bottom at the screen bottom, panel bottom
+        // touching keyboard top, no gap between them. Side gaps kept.
+        const available = window.innerHeight - kbHeight;
         chatPanel.style.height = Math.max(200, available) + 'px';
     };
     const maxaiShowKeyboard = () => {
@@ -1211,16 +1212,19 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
             // Mobile-only system: on tablet, laptop and desktop the panel
             // keeps its previous behaviour (no backdrop, no scroll lock).
             if (window.innerWidth <= 640) {
+                // Fullscreen first, in the click gesture: hide the
+                // browser top area. If the browser refuses, the panel
+                // still fills the screen height by layout (below), so
+                // it still looks full screen like before.
+                try {
+                    const el = document.documentElement;
+                    const fs = el.requestFullscreen ? el.requestFullscreen()
+                        : (el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null);
+                    if (fs && fs.catch) fs.catch(() => {});
+                } catch (_) {}
                 maxaiBackdrop.hidden = false;
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
-                // Remove the browser top area: fullscreen hides the
-                // address bar / browser chrome while Max Ai is open.
-                // If the browser refuses, Max Ai still opens normally.
-                try {
-                    const fs = document.documentElement.requestFullscreen?.();
-                    if (fs && fs.catch) fs.catch(() => {});
-                } catch (_) {}
             }
             if (botDockLayer) { botDockLayer.remove(); botDockLayer = null; }
             chatPanel.hidden = false;
