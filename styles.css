@@ -5094,3 +5094,32 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     .orbit-chat-panel.keyboard-visible .orbit-chat-suggestion { min-height: 38px; padding: 6px 9px; }
 }
 
+
+/* Mobile-only full screen, keeping side gaps (like the screenshot):
+   panel and keyboard keep 10px gaps on the left and right, but fill
+   the full screen height together: panel top at the screen top,
+   keyboard bottom at the screen bottom, no gap between them. */
+@media (max-width: 640px) {
+    .orbit-chat-panel {
+        left: 10px;
+        right: 10px;
+        top: 0;
+        width: calc(100vw - 20px);
+        height: 100dvh;
+        border-radius: 20px 20px 0 0;
+        padding-top: calc(16px + env(safe-area-inset-top, 0px));
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-bottom: 16px;
+    }
+    .maxai-keyboard-panel {
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        width: calc(100vw - 20px);
+        border-radius: 0 0 20px 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    }
+}
