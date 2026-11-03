@@ -1046,6 +1046,9 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
     chatInput?.addEventListener('click', () => setTimeout(maxaiUpdateCaret, 0));
     chatInput?.addEventListener('scroll', maxaiUpdateCaret);
     maxaiKeyboard.className = 'maxai-keyboard-panel';
+    // No copy on long-press: holding a key must not open the
+    // browser's copy/paste menu or select key text.
+    maxaiKeyboard.addEventListener('contextmenu', e => e.preventDefault());
     maxaiKeyboard.setAttribute('aria-label', 'Max Ai keyboard');
     maxaiKeyboard.hidden = true;
     let maxaiShift = false;
@@ -1116,7 +1119,37 @@ Conversation history: ${JSON.stringify(conversationHistory)}`;
         button.textContent = label;
         button.addEventListener('pointerdown', maxaiVibrate);
         button.addEventListener('touchstart', maxaiVibrate, { passive: true });
-        button.addEventListener('click', () => { maxaiVibrate(); action(); });
+        if (label === '⌫') {
+            // Backspace repeat, like a normal keyboard.
+            let repeatDelay = null;
+            let repeatInterval = null;
+            let backspaceFromPointer = false;
+            const stopRepeat = () => {
+                if (repeatDelay) { clearTimeout(repeatDelay); repeatDelay = null; }
+                if (repeatInterval) { clearInterval(repeatInterval); repeatInterval = null; }
+            };
+            button.addEventListener('pointerdown', () => {
+                backspaceFromPointer = true;
+                maxaiVibrate(); action();
+                repeatDelay = setTimeout(() => {
+                    repeatInterval = setInterval(() => { maxaiVibrate(); action(); }, 60);
+                }, 400);
+            });
+            button.addEventListener('pointerup', stopRepeat);
+            button.addEventListener('pointercancel', stopRepeat);
+            button.addEventListener('pointerleave', stopRepeat);
+            button.addEventListener('blur', stopRepeat);
+            // Click on release is suppressed when it came from a
+            // pointer press, because deletion already happened on
+            // press / during repeat. The flag is consumed here, so a
+            // keyboard Enter click (no pointerdown) still deletes once.
+            button.addEventListener('click', () => {
+                if (backspaceFromPointer) { backspaceFromPointer = false; return; }
+                maxaiVibrate(); action();
+            });
+        } else {
+            button.addEventListener('click', () => { maxaiVibrate(); action(); });
+        }
         if (label.length === 1 && label !== '⌫' && label !== '↗') maxaiAddKeyPreview(button, () => label);
         return button;
     };
