@@ -4945,9 +4945,9 @@ img, video, canvas, svg {
 .orbit-chat-space { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:0; overflow:hidden; color:color-mix(in srgb, var(--ink) 58%, var(--muted)); font:11px "DM Mono", monospace; letter-spacing:.04em; }
 .orbit-chat-log { display:flex; flex:1 1 auto; align-items:center; justify-content:center; width:100%; height:auto; min-height:0; max-height:100%; box-sizing:border-box; flex-direction:column; gap:12px; overflow-y:auto; padding:18px 10px; }
 .orbit-chat-log:empty { flex:0 0 0; padding:0; }
-.orbit-chat-message { align-self:center !important; width:min(88%, 320px); max-width:88%; margin-inline:auto; padding:11px 14px; border:1px solid color-mix(in srgb, var(--ink) 11%, transparent); border-radius:18px; color:var(--ink); font:13px/1.52 "DM Sans", system-ui, sans-serif; text-align:center; white-space:pre-wrap; overflow-wrap:anywhere; box-shadow:0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
+.orbit-chat-message { align-self:center !important; width:min(88%, 320px); max-width:88%; margin-inline:auto; padding:14px 16px; border:1px solid color-mix(in srgb, var(--ink) 11%, transparent); border-radius:18px; color:var(--ink); font:14px/1.6 "DM Sans", system-ui, sans-serif; text-align:center; white-space:pre-wrap; overflow-wrap:anywhere; box-shadow:0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
 .orbit-chat-message.sent { width:fit-content; max-width:min(88%, 320px); border-color:color-mix(in srgb, var(--ink) 18%, transparent); background:linear-gradient(145deg, color-mix(in srgb, var(--ink) 14%, var(--surface)), color-mix(in srgb, var(--surface) 92%, transparent)); }
-.orbit-chat-message.received { width:min(88%, 320px); max-height:360px; overflow-y:auto; scrollbar-width:none; background:linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 76%, transparent)); box-shadow:inset 0 12px 18px -18px color-mix(in srgb, var(--ink) 55%, transparent), inset 0 -14px 20px -19px color-mix(in srgb, var(--ink) 55%, transparent), 0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
+.orbit-chat-message.received { width:min(88%, 320px); max-height:480px; overflow-y:auto; scrollbar-width:none; background:linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 76%, transparent)); box-shadow:inset 0 12px 18px -18px color-mix(in srgb, var(--ink) 55%, transparent), inset 0 -14px 20px -19px color-mix(in srgb, var(--ink) 55%, transparent), 0 7px 20px color-mix(in srgb, var(--ink) 7%, transparent), 0 1px 0 color-mix(in srgb, white 28%, transparent) inset; }
 .orbit-chat-message.received::-webkit-scrollbar { display:none; }
 .orbit-chat-word { transition:none; }
 .orbit-chat-word.is-speaking-word {
@@ -5030,7 +5030,7 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     position: relative;
     flex: 1 1 0;
     min-width: 0;
-    height: 48px;
+    height: 56px;
     padding: 0 2px;
     border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
     border-radius: 12px;
@@ -5084,8 +5084,8 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
     /* Mobile only: middle space may scroll, so nothing is ever clipped. */
     .orbit-chat-space { overflow-y: auto; }
     .orbit-chat-empty { min-height: 0; overflow-y: auto; }
-    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 130px; }
-    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.36) !important; }
+    .orbit-chat-panel.keyboard-visible .orbit-chat-bot-slot { height: 110px; }
+    .orbit-chat-panel.keyboard-visible .orbit-bot-host.bot-chat-bot { transform: translate(-50%, -50%) scale(.32) !important; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-space { justify-content: flex-start; }
     .orbit-chat-panel.keyboard-visible .orbit-chat-empty { justify-content: flex-start; }
     /* Welcome heading is back (undone): it stays visible while typing,
@@ -5101,10 +5101,10 @@ body.bot-chat-open .bot-dock-layer, body.bot-chat-open .hero-orbit.ai-docked { p
 /* Suggestion line above the custom keyboard, like a real keyboard:
    three word suggestions, separated like the reference, plus an emoji
    button on the right that opens the emoji panel. */
-.maxai-suggest-bar { display: none; gap: 6px; align-items: center; min-height: 36px; padding: 2px 4px; border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--surface) 92%, var(--bg)); }
-.maxai-suggest { flex: 1 1 0; min-width: 0; height: 32px; border: none; background: transparent; color: var(--ink); font: 600 14px "DM Sans", system-ui, sans-serif; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.maxai-suggest-bar { display: flex; gap: 6px; align-items: center; min-height: 48px; padding: 2px 4px; border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--surface) 92%, var(--bg)); }
+.maxai-suggest { flex: 1 1 0; min-width: 0; height: 44px; border: none; background: transparent; color: var(--ink); font: 600 16px "DM Sans", system-ui, sans-serif; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .maxai-suggest + .maxai-suggest { border-left: 1px solid var(--line); }
-.maxai-suggest-emoji { flex: 0 0 36px; height: 32px; border: none; background: transparent; font-size: 18px; cursor: pointer; }
+.maxai-suggest-emoji { flex: 0 0 36px; height: 44px; border: none; background: transparent; font-size: 18px; cursor: pointer; }
 /* Emoji panel: many emojis in a scrollable grid, like a real keyboard. */
 .maxai-emoji-panel { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; max-height: 176px; overflow-y: auto; padding: 4px; }
 .maxai-emoji-btn { border: none; background: transparent; font-size: 22px; padding: 6px 0; cursor: pointer; border-radius: 8px; }
