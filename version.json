@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-04-01",
-  "updated": "2026-11-04T08:00:00+05:30",
-  "note": "Auto-update check file - bump version on every site deploy"
+  "version": "2026-11-04-02",
+  "updated": "2026-11-04T08:15:00+05:30",
+  "note": "Fix Google site name: remove newsxphere.com from WebSite alternateName"
 }
