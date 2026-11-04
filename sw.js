@@ -1,5 +1,5 @@
-const CACHE = 'newsxphere-static-v79';
-const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=79', '/script.js?v=79', '/jobs.css', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
+const CACHE = 'newsxphere-static-v80';
+const STATIC_ASSETS = ['/', '/404.html', '/results.html', '/styles.css?v=80', '/script.js?v=80', '/jobs.css', '/orbit-bot.js', '/favicon.ico', '/favicon-dark.ico', '/favicon-restore.ico', '/public/favicon-16.png', '/public/favicon-32.png', '/public/favicon-48.png', '/public/apple-touch-icon.png', '/public/icon-192-padded.png', '/public/icon-512-padded.png', '/public/site.webmanifest', '/public/newsxphere-light-mode-logo.png', '/public/newsxphere-dark-mode-logo.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', event => {
@@ -7,6 +7,7 @@ self.addEventListener('fetch', event => {
     if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) return;
 
     const url = new URL(request.url);
+    if (url.pathname === '/version.json') { event.respondWith(fetch(request, {cache: 'no-store'}).catch(() => caches.match(request))); return; }
     if (url.pathname === '/allnewsdata.json' || url.pathname === '/feed.xml' || url.pathname === '/sitemap.xml') {
         event.respondWith(
             fetch(request)
@@ -48,11 +49,11 @@ self.addEventListener('fetch', event => {
     }
     if (request.destination === 'image' || request.destination === 'font') {
         event.respondWith(
-            caches.match(request).then(cached => cached || fetch(request).then(response => {
+            fetch(request).then(response => {
                 const copy = response.clone();
                 caches.open(CACHE).then(cache => cache.put(request, copy));
                 return response;
-            }))
+            }).catch(() => caches.match(request))
         );
     }
 });
