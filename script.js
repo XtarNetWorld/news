@@ -2946,15 +2946,14 @@ if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     document.addEventListener('touchstart', maybeClose, { passive: true, capture: true });
 })();
 
-/* NewsXphere auto-update (v80, refresh version): on page load, if /version.json differs from the stored version, clear site caches and reload once, so a browser refresh always loads the newest version without manual cache clear. No auto-reload while a tab is just sitting open, so Max Ai typing is never lost mid-chat. */
+/* NewsXphere auto-update (v80, refresh version, user-data safe): on page load, if /version.json differs from the stored version, reload once, so a browser refresh always loads the newest version without manual cache clear. NEVER clears user data: it does not touch localStorage except its own nx-site-version key (saved stories newsxphere-save-*, saved jobs newsxphere-job-*, Max Ai chats, theme, searches all stay), does not clear sessionStorage except its own reload flag, does not touch IndexedDB or cookies, and does not delete Cache Storage - new versioned assets (?v=) and the service worker's own activate cleanup handle old site files. No auto-reload while a tab is just sitting open, so Max Ai typing is never lost mid-chat. */
 (function () {
   if (typeof window === 'undefined') return;
   var KEY = 'nx-site-version';
   var RELOADED = 'nx-reloaded-for-';
   function doReload(newVersion) {
     try { localStorage.setItem(KEY, newVersion); sessionStorage.setItem(RELOADED + newVersion, '1'); } catch (e) {}
-    var done = function () { window.location.reload(); };
-    if ('caches' in window) { caches.keys().then(function (keys) { return Promise.all(keys.map(function (k) { return caches.delete(k); })); }).then(done).catch(done); } else { done(); }
+    window.location.reload();
   }
   fetch('/version.json?ts=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
     if (!j || !j.version) return;
@@ -2963,7 +2962,6 @@ if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     if (!stored) { try { localStorage.setItem(KEY, j.version); } catch (e) {} return; }
     if (stored !== j.version && !already) doReload(j.version);
   }).catch(function () {});
-  // If a new service worker takes control after a refresh, reload once to serve its assets.
   if ('serviceWorker' in navigator) {
     var reloaded = false;
     navigator.serviceWorker.addEventListener('controllerchange', function () {
