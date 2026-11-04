@@ -2945,3 +2945,42 @@ if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     document.addEventListener('mousedown', maybeClose, true);
     document.addEventListener('touchstart', maybeClose, { passive: true, capture: true });
 })();
+
+/* NewsXphere auto-update (v80): checks /version.json, shows a small top toast only, never auto-reloads, so Max Ai typing is never lost. */
+(function () {
+  if (typeof window === 'undefined') return;
+  var KEY = 'nx-site-version';
+  var timer = null;
+  function showToast(newVersion) {
+    if (document.getElementById('nx-update-toast')) return;
+    var t = document.createElement('div');
+    t.id = 'nx-update-toast';
+    t.setAttribute('role', 'status');
+    t.style.cssText = 'position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:99999;background:#0e2a28;color:#fff;padding:10px 12px;border-radius:999px;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;gap:10px;align-items:center;max-width:92vw';
+    var s = document.createElement('span'); s.textContent = 'New version available';
+    var b = document.createElement('button'); b.textContent = 'Update'; b.style.cssText = 'background:#e8b34a;color:#0e2a28;border:0;border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer';
+    var x = document.createElement('button'); x.textContent = 'Later'; x.style.cssText = 'background:transparent;color:#fff;border:0;cursor:pointer';
+    b.addEventListener('click', function () {
+      try { localStorage.setItem(KEY, newVersion); } catch (e) {}
+      var done = function () { window.location.reload(); };
+      if ('caches' in window) { caches.keys().then(function (keys) { return Promise.all(keys.map(function (k) { return caches.delete(k); })); }).then(done).catch(done); } else { done(); }
+    });
+    x.addEventListener('click', function () { t.remove(); });
+    t.appendChild(s); t.appendChild(b); t.appendChild(x);
+    document.body.appendChild(t);
+  }
+  function check() {
+    fetch('/version.json?ts=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.version) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (!stored) { try { localStorage.setItem(KEY, j.version); } catch (e) {} return; }
+      if (stored !== j.version) showToast(j.version);
+    }).catch(function () {});
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistration().then(function (reg) { if (reg) reg.update().catch(function () {}); }).catch(function () {}); }
+  }
+  check();
+  timer = setInterval(check, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) check(); });
+  window.addEventListener('focus', check);
+})();
