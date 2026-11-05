@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-05-02",
-  "updated": "2026-11-05T07:00:00+05:30",
-  "note": "Sam Altman podcast hero replaced with NEW-tag thumbnail."
+  "version": "2026-11-05-03",
+  "updated": "2026-11-05T07:05:00+05:30",
+  "note": "Dark-mode fix for cute modules: explicit dark text on light cards, site-wide."
 }
