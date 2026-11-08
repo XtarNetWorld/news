@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+    <loc>https://www.newsxphere.com/culture/ramayana-part-one-day-two-box-office-saturday-verdict-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-07T06:00:00+05:30</news:publication_date>
+      <news:title>Ramayana Part One: Saturday Beat Day 1 — Rs 69.80 Crore Takes Three-Day Total to Rs 182.70 Crore</news:title>
+    </news:news>
+  </url>
   <url>
+    <loc>https://www.newsxphere.com/world/delhi-aqi-green-cracker-window-grap-iii-diwali-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-07T06:00:00+05:30</news:publication_date>
+      <news:title>Delhi Diwali Morning: AQI 384 at 6 am, Rising to 483 by 8:10 am as the Green-Cracker Window Opens</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/business/sensex-nifty-best-week-ai-selloff-india-safe-harbour-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-07T06:00:00+05:30</news:publication_date>
+      <news:title>Sensex Has Its Best Week in Six Years: Up 8.82% as Foreign Money Pours Back While the Nasdaq Slides</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/tech/openai-gpt-6-cyber-hacking-model-locked-away-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-07T06:00:00+05:30</news:publication_date>
+      <news:title>OpenAI Built an AI That Can Hack Linux 948 Ways — and Locked It Away on Day One</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/paraguay-president-resigned-still-in-office-impeachment-limbo-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-07T06:00:00+05:30</news:publication_date>
+      <news:title>Paraguay Removed Its President 44–0 — and Swore In His Successor the Same Day</news:title>
+    </news:news>
+  </url>
+<url>
     <loc>https://www.newsxphere.com/world/cristiano-ronaldo-retires-portugal-international-football-2026/</loc>
     <news:news>
       <news:publication>
