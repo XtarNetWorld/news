@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-    <url>
+      <url>
+    <loc>https://www.newsxphere.com/tech/nvidia-board-probes-ceo-jensen-huang-china-intelligence-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-09T17:00:00+05:30</news:publication_date>
+      <news:title>Nvidia's Board Is Investigating Its Own CEO — and the Shares Fell 4.5% Before the Market Opened</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/culture/ramayana-part-one-day-four-five-box-office-500-crore-worldwide-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-09T17:00:00+05:30</news:publication_date>
+      <news:title>Ramayana Crosses ₹500 Crore Worldwide in Four Days — and Monday Is Loading Bigger</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/delhi-aqi-post-diwali-severe-stations-political-row-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-09T17:00:00+05:30</news:publication_date>
+      <news:title>Delhi Woke Up to 368 AQI After Diwali — and a Fight Over Whether the Numbers Are Real</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/culture/govardhan-puja-2026-date-9-or-10-november-muhurat-vidhi-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-09T17:00:00+05:30</news:publication_date>
+      <news:title>Govardhan Puja 2026: 9 or 10 November? The Correct Date, Muhurat and Vidhi</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/trump-iran-strikes-unlikely-houthis-aramco-riyadh-oil-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-09T17:00:00+05:30</news:publication_date>
+      <news:title>Trump Says New Iran Strikes Are 'Highly Unlikely' — the Same Day Houthis Hit an Aramco Tower in Riyadh</news:title>
+    </news:news>
+  </url>
+<url>
     <loc>https://www.newsxphere.com/culture/ramayana-part-one-day-two-box-office-saturday-verdict-2026/</loc>
     <news:news>
       <news:publication>
