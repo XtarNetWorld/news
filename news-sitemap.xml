@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-    <url>
+  <url>
+    <loc>https://www.newsxphere.com/business/anthropic-ipo-81-billion-largest-ever-nasdaq-ant-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:45:00+05:30</news:publication_date>
+      <news:title>Anthropic Just Pulled Off the Biggest IPO in History — $81.3 Billion, and It Starts Trading Today</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/tech/voyager-1-one-light-day-first-human-object-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:40:00+05:30</news:publication_date>
+      <news:title>Voyager 1 Just Crossed a Line No Human-Made Object Ever Has — One Light-Day From Home</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/bangladesh-unrest-yunus-home-ablaze-hasina-return-lockdown-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:35:00+05:30</news:publication_date>
+      <news:title>Bangladesh Is Burning Again — Yunus’s Family Home Torched as Hasina’s Party Shuts the Country Down</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/culture/world-heritage-week-free-entry-taj-mahal-asi-monuments-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:30:00+05:30</news:publication_date>
+      <news:title>Today Only: The Taj Mahal, Red Fort and 141 Other Monuments Are Free — Here’s the One Catch</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/startups/bharat-semi-24-million-seed-ai-image-sensors-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:25:00+05:30</news:publication_date>
+      <news:title>This Delhi Startup Just Raised $24M to Put AI Inside the Camera Itself — Before a Single Sale</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.newsxphere.com/world/india-new-zealand-first-test-day-one-nicholls-phillips-243-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>NewsXphere</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-19T17:20:00+05:30</news:publication_date>
+      <news:title>70 for 5 to 243 for 5: How New Zealand Stole Day One — and Why Siraj and Jadeja’s Absence Is the Story</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://www.newsxphere.com/culture/gta-6-launches-india-price-pc-modi-2026/</loc>
     <news:news>
       <news:publication>
